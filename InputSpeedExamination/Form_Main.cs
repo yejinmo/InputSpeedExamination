@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace InputSpeedExamination
 {
-    public partial class Form1 : Form
+    public partial class Form_Main : Form
     {
-        public Form1()
+        public Form_Main()
         {
             InitializeComponent();
         }
