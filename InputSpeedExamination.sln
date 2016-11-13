@@ -5,7 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSpeedExamination", "InputSpeedExamination\InputSpeedExamination.csproj", "{F0795C39-1932-48E2-A8D1-1DA99F177BE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin-master\MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSpeedExamination_Server", "InputSpeedExamination_Server\InputSpeedExamination_Server.csproj", "{BD1621A7-B2DE-41B8-A761-0641F0F32964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSpeedExamination_Controller", "InputSpeedExamination_Controller\InputSpeedExamination_Controller.csproj", "{C859B013-3ED0-4C9E-B84E-7572645ED743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		{F0795C39-1932-48E2-A8D1-1DA99F177BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0795C39-1932-48E2-A8D1-1DA99F177BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0795C39-1932-48E2-A8D1-1DA99F177BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1621A7-B2DE-41B8-A761-0641F0F32964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1621A7-B2DE-41B8-A761-0641F0F32964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1621A7-B2DE-41B8-A761-0641F0F32964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1621A7-B2DE-41B8-A761-0641F0F32964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C859B013-3ED0-4C9E-B84E-7572645ED743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C859B013-3ED0-4C9E-B84E-7572645ED743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C859B013-3ED0-4C9E-B84E-7572645ED743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C859B013-3ED0-4C9E-B84E-7572645ED743}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB7611B-68CD-4B8B-987A-11717E2B250C}.Release|Any CPU.ActiveCfg = Release|Any CPU
