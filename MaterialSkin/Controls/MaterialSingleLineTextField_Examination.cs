@@ -989,7 +989,7 @@ namespace MaterialSkin.Controls
                 ForeColor = ForeColor,
                 Location = new Point(0, 0),
                 Width = Width,
-                Height = Height - 5
+                Height = Height - 5 
             };
 
             if (!Controls.Contains(baseTextBox) && !DesignMode)
