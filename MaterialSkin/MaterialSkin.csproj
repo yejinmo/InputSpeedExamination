@@ -73,6 +73,9 @@
     <Compile Include="Controls\MaterialSingleLineTextField.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MaterialSingleLineTextField_Examination.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MaterialTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -85,6 +88,9 @@
     <Compile Include="DrawHelper.cs" />
     <Compile Include="IMaterialControl.cs" />
     <Compile Include="Controls\MaterialRaisedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MaterialLabel_Examination.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MaterialSkinManager.cs" />
