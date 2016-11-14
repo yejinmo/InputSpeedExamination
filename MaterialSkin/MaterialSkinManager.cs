@@ -226,10 +226,10 @@ namespace MaterialSkin
         }
 
         //Roboto font
-        public Font ROBOTO_MEDIUM_12;
-        public Font ROBOTO_REGULAR_11;
-        public Font ROBOTO_MEDIUM_11;
-        public Font ROBOTO_MEDIUM_10;
+        public Font FONT_SIZE_14;
+        public Font FONT_SIZE_18;
+        public Font FONT_SIZE_22;
+        public Font FONT_SIZE_26;
 
         //Other constants
         public int FORM_PADDING = 14;
@@ -239,10 +239,10 @@ namespace MaterialSkin
 
         private MaterialSkinManager()
         {
-            ROBOTO_MEDIUM_12 = new Font("微软雅黑", 14f);
-            ROBOTO_MEDIUM_10 = new Font("微软雅黑", 14f);
-            ROBOTO_REGULAR_11 = new Font("微软雅黑", 14f);
-            ROBOTO_MEDIUM_11 = new Font("微软雅黑", 14f);
+            FONT_SIZE_14 = new Font("微软雅黑", 14f);
+            FONT_SIZE_18 = new Font("微软雅黑", 18f);
+            FONT_SIZE_22 = new Font("微软雅黑", 22f);
+            FONT_SIZE_26 = new Font("微软雅黑", 26f);
 			Theme = Themes.LIGHT;
 			ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
