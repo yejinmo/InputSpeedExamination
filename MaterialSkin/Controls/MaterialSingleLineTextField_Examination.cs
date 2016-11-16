@@ -64,7 +64,6 @@ namespace MaterialSkin.Controls
         public void SelectAll() { baseTextBox.SelectAll(); }
         public void Clear() { baseTextBox.Clear(); }
 
-
         # region Forwarding events to baseTextBox
         public event EventHandler AcceptsTabChanged
         {
@@ -969,7 +968,7 @@ namespace MaterialSkin.Controls
 
         private readonly AnimationManager animationManager;
 
-        private readonly BaseTextBox baseTextBox;
+        private BaseTextBox baseTextBox;
         public MaterialSingleLineTextField_Examination()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
@@ -1016,6 +1015,13 @@ namespace MaterialSkin.Controls
             //Fix for tabstop
             baseTextBox.TabStop = true;
             this.TabStop = false;
+
+            if (BindingLabel != null)
+            {
+                BindingLabel.TextFieldString = Text;
+                MaxLength = BindingLabel.TextString.Length;
+                BindingLabel.BindingLabelTextChanged += new MaterialLabel_Examination.ChangedEventHandler(OnBindingLabelTextChanged);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs pevent)
@@ -1145,6 +1151,9 @@ namespace MaterialSkin.Controls
             [DllImport("user32.dll", CharSet = CharSet.Auto)]
             private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
 
+            [DllImport("user32")]
+            private static extern IntPtr GetWindowDC(IntPtr hwnd);
+
             private const int EM_SETCUEBANNER = 0x1501;
             private const char EmptyChar = (char)0;
             private const char VisualStylePasswordChar = '\u25CF';
@@ -1181,7 +1190,6 @@ namespace MaterialSkin.Controls
                 });
             }
 
-
             private char useSystemPasswordChar = EmptyChar;
             public new bool UseSystemPasswordChar
             {
@@ -1208,12 +1216,20 @@ namespace MaterialSkin.Controls
 
             public BaseTextBox()
             {
+                //base.SetStyle(ControlStyles.UserPaint, true);
                 MaterialContextMenuStrip cms = new TextBoxContextMenuStrip();
                 cms.Opening += ContextMenuStripOnOpening;
                 cms.OnItemClickStart += ContextMenuStripOnItemClickStart;
-
                 ContextMenuStrip = cms;
             }
+
+            //protected override void OnPaint(PaintEventArgs e)
+            //{
+            //    Graphics g = e.Graphics;
+            //    g.DrawString(Text, Font, new SolidBrush(Color.Green), new Point(0, 0));
+
+            //    base.OnPaint(e);
+            //}
 
             private void ContextMenuStripOnItemClickStart(object sender, ToolStripItemClickedEventArgs toolStripItemClickedEventArgs)
             {
@@ -1323,8 +1339,21 @@ namespace MaterialSkin.Controls
             {
                 bindingLabel = value;
                 if (value != null)
+                {
                     value.TextFieldString = Text;
+                    MaxLength = value.TextString.Length;
+                    value.BindingLabelTextChanged += new MaterialLabel_Examination.ChangedEventHandler(OnBindingLabelTextChanged);
+                }
+                else
+                {
+                    MaxLength = 32767;
+                }
             }
+        }
+
+        private void OnBindingLabelTextChanged(object sender, EventArgs e)
+        {
+            MaxLength = BindingLabel.TextString.Length;
         }
 
         #endregion

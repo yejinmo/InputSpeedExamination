@@ -27,6 +27,7 @@ namespace InputSpeedExamination
             NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OffLine, NeedCenterControlStyle.Horizontal));
             NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OnLine, NeedCenterControlStyle.Horizontal));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
+            debug();
         }
 
         #endregion
@@ -108,9 +109,41 @@ namespace InputSpeedExamination
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Examination;
+            debug();
         }
 
         #endregion
 
+        #region Debug
+
+        string debug_str = @"visual foxpro常用命令
+ADD  TABLE  在当前数据库中添加一个自由表                            
+APPEND  在表的末尾添加一个或多个新记录                          
+APPEND FROM ARRAY 由数组添加记录到表中                                    
+APPEND FROM  从一个文件中读入记录，追加到当前表的尾部                
+APPEND GENERAL 从文件中导入OLE对象并将其放入通用字段中                 
+APPEND MEMO  将文本文件的内容复制到备注字段中                        
+APPEND PROCEDURES 将文本文件中的存储过程追加到当前数据库中                
+AVERAGE  计算数值表达式或字段的算术平均值                        
+BLANK   清除当前记录中所有字段的数据                    ";
+
+        private void debug()
+        {
+            ExaminationController.Reset(debug_str);
+            ExaminationController.Spilt(materialLabel_Examination1.Font, materialLabel_Examination1.Width);
+
+            materialLabel_Examination1.TextString = ExaminationController.GetStringByIndex(0);
+            materialLabel_Examination2.TextString = ExaminationController.GetStringByIndex(1);
+            materialLabel_Examination3.TextString = ExaminationController.GetStringByIndex(2);
+            materialLabel_Examination4.TextString = ExaminationController.GetStringByIndex(3);
+            materialLabel_Examination5.TextString = ExaminationController.GetStringByIndex(4);
+
+            //materialLabel_Examination2.TextString = ExaminationController.GetStringByIndex(0);
+            //materialLabel_Examination3.TextString = ExaminationController.GetStringByIndex(1);
+            //materialLabel_Examination4.TextString = ExaminationController.GetStringByIndex(2);
+            //materialLabel_Examination5.TextString = ExaminationController.GetStringByIndex(3);
+        }
+
+        #endregion
     }
 }
