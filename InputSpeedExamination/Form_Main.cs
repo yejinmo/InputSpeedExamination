@@ -137,11 +137,6 @@ BLANK   清除当前记录中所有字段的数据                    ";
             materialLabel_Examination3.TextString = ExaminationController.GetStringByIndex(2);
             materialLabel_Examination4.TextString = ExaminationController.GetStringByIndex(3);
             materialLabel_Examination5.TextString = ExaminationController.GetStringByIndex(4);
-
-            //materialLabel_Examination2.TextString = ExaminationController.GetStringByIndex(0);
-            //materialLabel_Examination3.TextString = ExaminationController.GetStringByIndex(1);
-            //materialLabel_Examination4.TextString = ExaminationController.GetStringByIndex(2);
-            //materialLabel_Examination5.TextString = ExaminationController.GetStringByIndex(3);
         }
 
         #endregion

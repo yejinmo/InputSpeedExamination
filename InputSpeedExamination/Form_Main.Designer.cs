@@ -162,7 +162,7 @@
             this.materialSingleLineTextField_Examination5.SelectedText = "";
             this.materialSingleLineTextField_Examination5.SelectionLength = 0;
             this.materialSingleLineTextField_Examination5.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination5.Size = new System.Drawing.Size(692, 51);
+            this.materialSingleLineTextField_Examination5.Size = new System.Drawing.Size(861, 51);
             this.materialSingleLineTextField_Examination5.TabIndex = 9;
             this.materialSingleLineTextField_Examination5.TabStop = false;
             this.materialSingleLineTextField_Examination5.UseSystemPasswordChar = false;
@@ -180,7 +180,7 @@
             this.materialLabel_Examination5.Margin = new System.Windows.Forms.Padding(2);
             this.materialLabel_Examination5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel_Examination5.Name = "materialLabel_Examination5";
-            this.materialLabel_Examination5.Size = new System.Drawing.Size(700, 50);
+            this.materialLabel_Examination5.Size = new System.Drawing.Size(869, 50);
             this.materialLabel_Examination5.TabIndex = 5;
             this.materialLabel_Examination5.TextFieldString = "";
             this.materialLabel_Examination5.TextString = "";
@@ -211,7 +211,7 @@
             this.materialSingleLineTextField_Examination4.SelectedText = "";
             this.materialSingleLineTextField_Examination4.SelectionLength = 0;
             this.materialSingleLineTextField_Examination4.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination4.Size = new System.Drawing.Size(692, 51);
+            this.materialSingleLineTextField_Examination4.Size = new System.Drawing.Size(861, 51);
             this.materialSingleLineTextField_Examination4.TabIndex = 8;
             this.materialSingleLineTextField_Examination4.TabStop = false;
             this.materialSingleLineTextField_Examination4.UseSystemPasswordChar = false;
@@ -229,7 +229,7 @@
             this.materialLabel_Examination4.Margin = new System.Windows.Forms.Padding(2);
             this.materialLabel_Examination4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel_Examination4.Name = "materialLabel_Examination4";
-            this.materialLabel_Examination4.Size = new System.Drawing.Size(700, 50);
+            this.materialLabel_Examination4.Size = new System.Drawing.Size(869, 50);
             this.materialLabel_Examination4.TabIndex = 4;
             this.materialLabel_Examination4.TextFieldString = "";
             this.materialLabel_Examination4.TextString = "";
@@ -260,7 +260,7 @@
             this.materialSingleLineTextField_Examination3.SelectedText = "";
             this.materialSingleLineTextField_Examination3.SelectionLength = 0;
             this.materialSingleLineTextField_Examination3.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination3.Size = new System.Drawing.Size(692, 51);
+            this.materialSingleLineTextField_Examination3.Size = new System.Drawing.Size(861, 51);
             this.materialSingleLineTextField_Examination3.TabIndex = 7;
             this.materialSingleLineTextField_Examination3.TabStop = false;
             this.materialSingleLineTextField_Examination3.UseSystemPasswordChar = false;
@@ -278,7 +278,7 @@
             this.materialLabel_Examination3.Margin = new System.Windows.Forms.Padding(2);
             this.materialLabel_Examination3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel_Examination3.Name = "materialLabel_Examination3";
-            this.materialLabel_Examination3.Size = new System.Drawing.Size(700, 50);
+            this.materialLabel_Examination3.Size = new System.Drawing.Size(869, 50);
             this.materialLabel_Examination3.TabIndex = 3;
             this.materialLabel_Examination3.TextFieldString = "";
             this.materialLabel_Examination3.TextString = "";
@@ -309,7 +309,7 @@
             this.materialSingleLineTextField_Examination2.SelectedText = "";
             this.materialSingleLineTextField_Examination2.SelectionLength = 0;
             this.materialSingleLineTextField_Examination2.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination2.Size = new System.Drawing.Size(692, 51);
+            this.materialSingleLineTextField_Examination2.Size = new System.Drawing.Size(861, 51);
             this.materialSingleLineTextField_Examination2.TabIndex = 6;
             this.materialSingleLineTextField_Examination2.TabStop = false;
             this.materialSingleLineTextField_Examination2.UseSystemPasswordChar = false;
@@ -327,7 +327,7 @@
             this.materialLabel_Examination2.Margin = new System.Windows.Forms.Padding(2);
             this.materialLabel_Examination2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel_Examination2.Name = "materialLabel_Examination2";
-            this.materialLabel_Examination2.Size = new System.Drawing.Size(700, 50);
+            this.materialLabel_Examination2.Size = new System.Drawing.Size(869, 50);
             this.materialLabel_Examination2.TabIndex = 2;
             this.materialLabel_Examination2.TextFieldString = "";
             this.materialLabel_Examination2.TextString = "";
@@ -345,7 +345,7 @@
             this.materialLabel_Examination1.Margin = new System.Windows.Forms.Padding(2);
             this.materialLabel_Examination1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel_Examination1.Name = "materialLabel_Examination1";
-            this.materialLabel_Examination1.Size = new System.Drawing.Size(700, 50);
+            this.materialLabel_Examination1.Size = new System.Drawing.Size(869, 50);
             this.materialLabel_Examination1.TabIndex = 1;
             this.materialLabel_Examination1.TextFieldString = "";
             this.materialLabel_Examination1.TextString = "123   一二三abc   ";
@@ -376,7 +376,7 @@
             this.materialSingleLineTextField_Examination1.SelectedText = "";
             this.materialSingleLineTextField_Examination1.SelectionLength = 0;
             this.materialSingleLineTextField_Examination1.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination1.Size = new System.Drawing.Size(692, 51);
+            this.materialSingleLineTextField_Examination1.Size = new System.Drawing.Size(861, 51);
             this.materialSingleLineTextField_Examination1.TabIndex = 0;
             this.materialSingleLineTextField_Examination1.TabStop = false;
             this.materialSingleLineTextField_Examination1.UseSystemPasswordChar = false;
