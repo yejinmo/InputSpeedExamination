@@ -126,13 +126,16 @@ namespace InputSpeedExamination
                 }
                 else
                 {
-                    TextLine tl = new TextLine();
                     temp = ExaminationText.Substring(pos_left, pos - pos_left - 1);
                     temp = temp.TrimEnd('\n');
                     temp = TrimAll(temp);
-                    tl.ExaminationText = temp;
-                    tl.UserText = string.Empty;
-                    TextLineList.Add(tl);
+                    if (temp.Length != 0)
+                    {
+                        TextLine tl = new TextLine();
+                        tl.ExaminationText = temp;
+                        tl.UserText = string.Empty;
+                        TextLineList.Add(tl);
+                    }
                     FlagNeedSpilt = false;
                     pos--;
                     pos_left = pos;
@@ -165,7 +168,7 @@ namespace InputSpeedExamination
                     {
                         str = str.TrimEnd(needTrimchr);
                         flag = false;
-                    }
+                    } 
                     if (flag)
                         break;
                 }

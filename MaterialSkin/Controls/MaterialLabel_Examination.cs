@@ -100,8 +100,6 @@ namespace MaterialSkin.Controls
             while (true)
             {
                 char chr = AnswerStringArray[i];
-                //if (chr == ' ')
-                //    chr = '_';
                 var size = GetStringWidth(chr.ToString());
                 if (i == Len_UserStringArray)
                     g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
@@ -130,7 +128,6 @@ namespace MaterialSkin.Controls
             gs.Dispose();
             return sizef;
         }
-
 
         public delegate void ChangedEventHandler(object sender, EventArgs e);
 

@@ -1216,59 +1216,24 @@ namespace MaterialSkin.Controls
 
             public BaseTextBox()
             {
-                //base.SetStyle(ControlStyles.UserPaint, true);
-                MaterialContextMenuStrip cms = new TextBoxContextMenuStrip();
-                cms.Opening += ContextMenuStripOnOpening;
-                cms.OnItemClickStart += ContextMenuStripOnItemClickStart;
-                ContextMenuStrip = cms;
+                //SetStyle(ControlStyles.UserPaint, true);
             }
 
             //protected override void OnPaint(PaintEventArgs e)
             //{
             //    Graphics g = e.Graphics;
             //    g.DrawString(Text, Font, new SolidBrush(Color.Green), new Point(0, 0));
-
             //    base.OnPaint(e);
             //}
 
-            private void ContextMenuStripOnItemClickStart(object sender, ToolStripItemClickedEventArgs toolStripItemClickedEventArgs)
+            protected override void WndProc(ref Message m)
             {
-                switch (toolStripItemClickedEventArgs.ClickedItem.Text)
+                if (m.Msg != 0x007B && m.Msg != 0x0301 && m.Msg != 0x0302)
                 {
-                    case "Undo":
-                        Undo();
-                        break;
-                    case "Cut":
-                        Cut();
-                        break;
-                    case "Copy":
-                        Copy();
-                        break;
-                    case "Paste":
-                        Paste();
-                        break;
-                    case "Delete":
-                        SelectedText = string.Empty;
-                        break;
-                    case "Select All":
-                        SelectAll();
-                        break;
+                    base.WndProc(ref m);
                 }
             }
 
-            private void ContextMenuStripOnOpening(object sender, CancelEventArgs cancelEventArgs)
-            {
-                var strip = sender as TextBoxContextMenuStrip;
-                if (strip != null)
-                {
-                    strip.undo.Enabled = CanUndo;
-                    strip.cut.Enabled = !string.IsNullOrEmpty(SelectedText);
-                    strip.copy.Enabled = !string.IsNullOrEmpty(SelectedText);
-                    strip.paste.Enabled = Clipboard.ContainsText();
-                    strip.delete.Enabled = !string.IsNullOrEmpty(SelectedText);
-                    strip.selectAll.Enabled = !string.IsNullOrEmpty(Text);
-                }
-            }
         }
 
         private class TextBoxContextMenuStrip : MaterialContextMenuStrip
