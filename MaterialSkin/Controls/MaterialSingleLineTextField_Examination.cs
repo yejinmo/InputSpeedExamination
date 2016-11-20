@@ -1318,7 +1318,12 @@ namespace MaterialSkin.Controls
 
         private void OnBindingLabelTextChanged(object sender, EventArgs e)
         {
+            Text = string.Empty;
             MaxLength = BindingLabel.TextString.Length;
+            if (MaxLength == 0)
+                ReadOlay = true;
+            else
+                ReadOlay = false;
         }
 
         public new void Focus()

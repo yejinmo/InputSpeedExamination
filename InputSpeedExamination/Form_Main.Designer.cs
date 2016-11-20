@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Select = new System.Windows.Forms.TabPage();
             this.FlatButton_Select_OnLine = new MaterialSkin.Controls.MaterialFlatButton();
@@ -45,6 +46,7 @@
             this.Examination_TextLine_3 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Examination_Lable_3 = new MaterialSkin.Controls.MaterialLabel_Examination();
             this.Examination_TextLine_2 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -143,10 +145,10 @@
             this.panel1.Controls.Add(this.Examination_TextLine_2);
             this.panel1.Controls.Add(this.Examination_Lable_4);
             this.panel1.Controls.Add(this.Examination_Lable_5);
-            this.panel1.Location = new System.Drawing.Point(34, 25);
+            this.panel1.Location = new System.Drawing.Point(34, 11);
             this.panel1.Margin = new System.Windows.Forms.Padding(30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1091, 668);
+            this.panel1.Size = new System.Drawing.Size(1091, 691);
             this.panel1.TabIndex = 10;
             // 
             // Examination_Lable_1
@@ -158,7 +160,7 @@
             this.Examination_Lable_1.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_1.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Examination_Lable_1.Location = new System.Drawing.Point(4, 44);
+            this.Examination_Lable_1.Location = new System.Drawing.Point(4, 6);
             this.Examination_Lable_1.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_Lable_1.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_1.Name = "Examination_Lable_1";
@@ -183,7 +185,7 @@
             this.Examination_TextLine_5.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_5.Hint = "";
             this.Examination_TextLine_5.IsErrorMode = false;
-            this.Examination_TextLine_5.Location = new System.Drawing.Point(10, 534);
+            this.Examination_TextLine_5.Location = new System.Drawing.Point(10, 496);
             this.Examination_TextLine_5.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_TextLine_5.MaxLength = 32767;
             this.Examination_TextLine_5.MouseState = MaterialSkin.MouseState.HOVER;
@@ -208,7 +210,7 @@
             this.Examination_Lable_5.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_5.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Examination_Lable_5.Location = new System.Drawing.Point(4, 480);
+            this.Examination_Lable_5.Location = new System.Drawing.Point(4, 442);
             this.Examination_Lable_5.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_Lable_5.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_5.Name = "Examination_Lable_5";
@@ -233,7 +235,7 @@
             this.Examination_TextLine_1.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_1.Hint = "";
             this.Examination_TextLine_1.IsErrorMode = false;
-            this.Examination_TextLine_1.Location = new System.Drawing.Point(10, 98);
+            this.Examination_TextLine_1.Location = new System.Drawing.Point(10, 60);
             this.Examination_TextLine_1.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_TextLine_1.MaxLength = 0;
             this.Examination_TextLine_1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -265,7 +267,7 @@
             this.Examination_TextLine_4.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_4.Hint = "";
             this.Examination_TextLine_4.IsErrorMode = false;
-            this.Examination_TextLine_4.Location = new System.Drawing.Point(10, 425);
+            this.Examination_TextLine_4.Location = new System.Drawing.Point(10, 387);
             this.Examination_TextLine_4.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_TextLine_4.MaxLength = 32767;
             this.Examination_TextLine_4.MouseState = MaterialSkin.MouseState.HOVER;
@@ -290,7 +292,7 @@
             this.Examination_Lable_4.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_4.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Examination_Lable_4.Location = new System.Drawing.Point(4, 371);
+            this.Examination_Lable_4.Location = new System.Drawing.Point(4, 333);
             this.Examination_Lable_4.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_Lable_4.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_4.Name = "Examination_Lable_4";
@@ -308,7 +310,7 @@
             this.Examination_Lable_2.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_2.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Examination_Lable_2.Location = new System.Drawing.Point(4, 153);
+            this.Examination_Lable_2.Location = new System.Drawing.Point(4, 115);
             this.Examination_Lable_2.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_Lable_2.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_2.Name = "Examination_Lable_2";
@@ -333,7 +335,7 @@
             this.Examination_TextLine_3.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_3.Hint = "";
             this.Examination_TextLine_3.IsErrorMode = false;
-            this.Examination_TextLine_3.Location = new System.Drawing.Point(10, 316);
+            this.Examination_TextLine_3.Location = new System.Drawing.Point(10, 278);
             this.Examination_TextLine_3.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_TextLine_3.MaxLength = 32767;
             this.Examination_TextLine_3.MouseState = MaterialSkin.MouseState.HOVER;
@@ -358,7 +360,7 @@
             this.Examination_Lable_3.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_3.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Examination_Lable_3.Location = new System.Drawing.Point(4, 262);
+            this.Examination_Lable_3.Location = new System.Drawing.Point(4, 224);
             this.Examination_Lable_3.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_Lable_3.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_3.Name = "Examination_Lable_3";
@@ -383,7 +385,7 @@
             this.Examination_TextLine_2.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_2.Hint = "";
             this.Examination_TextLine_2.IsErrorMode = false;
-            this.Examination_TextLine_2.Location = new System.Drawing.Point(10, 207);
+            this.Examination_TextLine_2.Location = new System.Drawing.Point(10, 169);
             this.Examination_TextLine_2.Margin = new System.Windows.Forms.Padding(2);
             this.Examination_TextLine_2.MaxLength = 32767;
             this.Examination_TextLine_2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -399,6 +401,11 @@
             this.Examination_TextLine_2.UseSystemPasswordChar = false;
             this.Examination_TextLine_2.TextChanged += new System.EventHandler(this.Examination_TextLine_2_TextChanged);
             // 
+            // Timer_Clocks
+            // 
+            this.Timer_Clocks.Interval = 1000;
+            this.Timer_Clocks.Tick += new System.EventHandler(this.Timer_Clocks_Tick);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -408,6 +415,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 480);
             this.Name = "Form_Main";
             this.Text = "键盘录入测试";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.ResizeBegin += new System.EventHandler(this.Form_Main_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.Form_Main_ResizeEnd);
@@ -439,6 +447,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_3;
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer Timer_Clocks;
     }
 }
 

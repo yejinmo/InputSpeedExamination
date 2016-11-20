@@ -14,7 +14,7 @@ namespace InputSpeedExamination
 {
     public partial class Form_Main : MaterialForm
     {
-            
+
         #region Load
 
         public Form_Main()
@@ -119,59 +119,276 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_1_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.Pause)
+                Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length)
                 Examination_TextLine_2.Focus();
         }
 
         private void Examination_TextLine_2_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.Pause)
+                Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length)
                 Examination_TextLine_3.Focus();
         }
 
         private void Examination_TextLine_3_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.Pause)
+                Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length)
                 Examination_TextLine_4.Focus();
         }
 
         private void Examination_TextLine_4_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.Pause)
+                Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length)
                 Examination_TextLine_5.Focus();
         }
 
         private void Examination_TextLine_5_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.Pause)
+                Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length)
-                Examination_TextLine_1.Focus();
+                LoadNextExaminationPage();
+        }
+
+        /// <summary>
+        /// 当前页数（每页五行）
+        /// </summary>
+        int CurrentPageIndex = 0;
+
+        /// <summary>
+        /// 行列表
+        /// </summary>
+        public List<ExaminationController.TextLine> TextLineList;
+
+        /// <summary>
+        /// 加载下一页
+        /// </summary>
+        private void LoadNextExaminationPage()
+        {
+            if ((float)CurrentPageIndex + 1.0 >= TextLineList.Count / 5.0)
+                return;
+            RecordCurrentPageTextLineAndUpdateStats();
+            CurrentPageIndex++;
+            Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
+            Examination_Lable_2.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 1);
+            Examination_Lable_3.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 2);
+            Examination_Lable_4.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 3);
+            Examination_Lable_5.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 4);
+            Examination_TextLine_1.Focus();
+        }
+
+        /// <summary>
+        /// 加载上一页
+        /// </summary>
+        private void LoadPreviousExaminationPage()
+        {
+            if (CurrentPageIndex == 0)
+                return;
+            RecordCurrentPageTextLineAndUpdateStats();
+            CurrentPageIndex--;
+            Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
+            Examination_Lable_2.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 1);
+            Examination_Lable_3.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 2);
+            Examination_Lable_4.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 3);
+            Examination_Lable_5.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 4);
+            Examination_TextLine_5.Focus();
+        }
+
+        /// <summary>
+        /// 记录当前页的 UserText 并更新统计信息
+        /// </summary>
+        private void RecordCurrentPageTextLineAndUpdateStats()
+        {
+            SetTextLineUserText(CurrentPageIndex * 5 + 0, Examination_Lable_1.TextFieldString);
+            SetTextLineUserText(CurrentPageIndex * 5 + 1, Examination_Lable_2.TextFieldString);
+            SetTextLineUserText(CurrentPageIndex * 5 + 2, Examination_Lable_3.TextFieldString);
+            SetTextLineUserText(CurrentPageIndex * 5 + 3, Examination_Lable_4.TextFieldString);
+            SetTextLineUserText(CurrentPageIndex * 5 + 4, Examination_Lable_5.TextFieldString);
+        }
+
+        /// <summary>
+        /// 为 TextLine 设置 UserText
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="UserText"></param>
+        private void SetTextLineUserText(int index, string UserText)
+        {
+            if (index >= TextLineList.Count)
+                return;
+            else
+                TextLineList[index].UserText = UserText;
+        }
+
+        /// <summary>
+        /// 根据索引号获取行字符串
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        private string GetExaminationStringByIndex(int index)
+        {
+            if (index >= TextLineList.Count)
+                return string.Empty;
+            else
+                return TextLineList[index].ExaminationText;
+        }
+
+        /// <summary>
+        /// 加载考试
+        /// </summary>
+        private void LoadExamination()
+        {
+
         }
 
         #endregion
 
+        #region Stats
+
+        int _Stats_Time = 0;
+        /// <summary>
+        /// 输入时间
+        /// </summary>
+        public int Stats_Time
+        {
+            get
+            {
+                return _Stats_Time;
+            }
+
+            set
+            {
+                _Stats_Time = value;
+            }
+        }
+
+        int _Stats_Char_Current_Total = 0;
+        /// <summary>
+        /// 输入字符数
+        /// </summary>
+        public int Stats_Char_Current_Total
+        {
+            get
+            {
+                return _Stats_Char_Current_Total;
+            }
+
+            set
+            {
+                _Stats_Char_Current_Total = value;
+            }
+        }
+
+        int _Stats_Char_Correct_Total = 0;
+        /// <summary>
+        /// 输入正确字符数
+        /// </summary>
+        public int Stats_Char_Correct_Total
+        {
+            get
+            {
+                return _Stats_Char_Correct_Total;
+            }
+
+            set
+            {
+                _Stats_Char_Correct_Total = value;
+            }
+        }
+
+        int _Stats_Char_Total = 0;
+        /// <summary>
+        /// 当前文档字符总数
+        /// </summary>
+        public int Stats_Char_Total
+        {
+            get
+            {
+                return _Stats_Char_Total;
+            }
+
+            set
+            {
+                _Stats_Char_Total = value;
+            }
+        }
+
+        enum Input_Status_Enum
+        {
+            /// <summary>
+            /// 正在输入
+            /// </summary>
+            Input,
+            /// <summary>
+            /// 暂停
+            /// </summary>
+            Pause,
+            /// <summary>
+            /// 停止
+            /// </summary>
+            Stop
+        }
+        Input_Status_Enum _Input_Status = Input_Status_Enum.Stop;
+        /// <summary>
+        /// 输入状态
+        /// </summary>
+        private Input_Status_Enum Input_Status
+        {
+            get
+            {
+                return _Input_Status;
+            }
+
+            set
+            {
+                _Input_Status = value;
+                if (value == Input_Status_Enum.Pause)
+                    Timer_Clocks.Enabled = false;
+                else if (value == Input_Status_Enum.Input)
+                    Timer_Clocks.Enabled = true;
+            }
+        }
+
+        private void Timer_Clocks_Tick(object sender, EventArgs e)
+        {
+            Stats_Time++;
+        }
+
+        #endregion        
+        
         #region Debug
 
-        string debug_str = @"visual foxpro常用命令
-ADD  TABLE  在当前数据库中添加一个自由表                            
-APPEND  在表的末尾添加一个或多个新记录                          
-APPEND FROM ARRAY 由数组添加记录到表中                                    
-APPEND FROM  从一个文件中读入记录，追加到当前表的尾部                
-APPEND GENERAL 从文件中导入OLE对象并将其放入通用字段中                 
-APPEND MEMO  将文本文件的内容复制到备注字段中                        
-APPEND PROCEDURES 将文本文件中的存储过程追加到当前数据库中                
-AVERAGE  计算数值表达式或字段的算术平均值                        
-BLANK   清除当前记录中所有字段的数据                    ";
+        string debug_str = @"
+123456789
+987654321
+123456
+654321
+abcdef
+123
+321
+456
+654
+abc
+cba
+";
 
         private void debug()
         {
             ExaminationController.Reset(debug_str);
             ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
 
-            Examination_Lable_1.TextString = ExaminationController.GetStringByIndex(0);
-            Examination_Lable_2.TextString = ExaminationController.GetStringByIndex(1);
-            Examination_Lable_3.TextString = ExaminationController.GetStringByIndex(2);
-            Examination_Lable_4.TextString = ExaminationController.GetStringByIndex(3);
-            Examination_Lable_5.TextString = ExaminationController.GetStringByIndex(4);
+            TextLineList = ExaminationController.GetSpiltList();
+            Examination_Lable_1.TextString = GetExaminationStringByIndex(0);
+            Examination_Lable_2.TextString = GetExaminationStringByIndex(1);
+            Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
+            Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
+            Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
         }
 
         #endregion

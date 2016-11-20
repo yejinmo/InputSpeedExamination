@@ -62,12 +62,13 @@ namespace InputSpeedExamination
 
         private static List<TextLine> TextLineList;
 
-        public struct TextLine
+        public class TextLine
         {
             /// <summary>
             /// 测试字符串
             /// </summary>
             public string ExaminationText;
+
             /// <summary>
             /// 用户字符串
             /// </summary>
@@ -106,9 +107,12 @@ namespace InputSpeedExamination
             Graphics gs = Graphics.FromImage(b);
             while (true)
             {
-                if (pos >= len)
-                    break;
-                if (ExaminationText[pos] == '\n')
+                if (pos >= len && !FlagNeedSpilt)
+                {
+                    FlagNeedSpilt = true;
+                    continue;
+                }
+                if (!FlagNeedSpilt && ExaminationText[pos] == '\n')
                 {
                     FlagNeedSpilt = true;
                     pos++;
@@ -136,6 +140,10 @@ namespace InputSpeedExamination
                         tl.UserText = string.Empty;
                         TextLineList.Add(tl);
                     }
+                    if (pos >= len)
+                    {
+                        break;
+                    }
                     FlagNeedSpilt = false;
                     pos--;
                     pos_left = pos;
@@ -144,6 +152,15 @@ namespace InputSpeedExamination
             }
             gs.Dispose();
             b.Dispose();
+        }
+
+        /// <summary>
+        /// 获取字符串行列表
+        /// </summary>
+        /// <returns></returns>
+        public static List<TextLine> GetSpiltList()
+        {
+            return TextLineList;
         }
 
         /// <summary>
@@ -188,6 +205,11 @@ namespace InputSpeedExamination
             return (int)sizef.Width;
         }
 
+        /// <summary>
+        /// 根据索引号获取行字符串
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static string GetStringByIndex(int index)
         {
             if (index >= TextLineList.Count)

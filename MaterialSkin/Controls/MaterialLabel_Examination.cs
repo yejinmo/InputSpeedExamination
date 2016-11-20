@@ -80,6 +80,7 @@ namespace MaterialSkin.Controls
             set
             {
                 textString = value;
+                Invalidate();
                 OnBindingLabelTextChanged(new EventArgs());
             }
         }
