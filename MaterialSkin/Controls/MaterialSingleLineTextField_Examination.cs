@@ -1321,6 +1321,12 @@ namespace MaterialSkin.Controls
             MaxLength = BindingLabel.TextString.Length;
         }
 
+        public new void Focus()
+        {
+            //base.Focus();
+            baseTextBox.Focus();
+        }
+
         #endregion
 
     }

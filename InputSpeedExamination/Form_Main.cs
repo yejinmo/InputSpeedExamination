@@ -15,7 +15,7 @@ namespace InputSpeedExamination
     public partial class Form_Main : MaterialForm
     {
             
-        #region 初始化
+        #region Load
 
         public Form_Main()
         {
@@ -100,7 +100,7 @@ namespace InputSpeedExamination
 
         #endregion
 
-        #region 选择页
+        #region Select
 
         private void FlatButton_Select_OffLine_MouseMove(object sender, MouseEventArgs e)
         {
@@ -111,6 +111,40 @@ namespace InputSpeedExamination
         {
             TabControl_Main.SelectedTab = TabPage_Examination;
             debug();
+        }
+
+        #endregion
+
+        #region Examination
+
+        private void Examination_TextLine_1_TextChanged(object sender, EventArgs e)
+        {
+            if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length)
+                Examination_TextLine_2.Focus();
+        }
+
+        private void Examination_TextLine_2_TextChanged(object sender, EventArgs e)
+        {
+            if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length)
+                Examination_TextLine_3.Focus();
+        }
+
+        private void Examination_TextLine_3_TextChanged(object sender, EventArgs e)
+        {
+            if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length)
+                Examination_TextLine_4.Focus();
+        }
+
+        private void Examination_TextLine_4_TextChanged(object sender, EventArgs e)
+        {
+            if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length)
+                Examination_TextLine_5.Focus();
+        }
+
+        private void Examination_TextLine_5_TextChanged(object sender, EventArgs e)
+        {
+            if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length)
+                Examination_TextLine_1.Focus();
         }
 
         #endregion
@@ -131,15 +165,16 @@ BLANK   清除当前记录中所有字段的数据                    ";
         private void debug()
         {
             ExaminationController.Reset(debug_str);
-            ExaminationController.Spilt(materialLabel_Examination1.Font, materialLabel_Examination1.Width);
+            ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
 
-            materialLabel_Examination1.TextString = ExaminationController.GetStringByIndex(0);
-            materialLabel_Examination2.TextString = ExaminationController.GetStringByIndex(1);
-            materialLabel_Examination3.TextString = ExaminationController.GetStringByIndex(2);
-            materialLabel_Examination4.TextString = ExaminationController.GetStringByIndex(3);
-            materialLabel_Examination5.TextString = ExaminationController.GetStringByIndex(4);
+            Examination_Lable_1.TextString = ExaminationController.GetStringByIndex(0);
+            Examination_Lable_2.TextString = ExaminationController.GetStringByIndex(1);
+            Examination_Lable_3.TextString = ExaminationController.GetStringByIndex(2);
+            Examination_Lable_4.TextString = ExaminationController.GetStringByIndex(3);
+            Examination_Lable_5.TextString = ExaminationController.GetStringByIndex(4);
         }
 
         #endregion
+
     }
 }
