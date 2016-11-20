@@ -119,6 +119,8 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_1_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.SystemUpdate)
+                return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length)
@@ -127,6 +129,8 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_2_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.SystemUpdate)
+                return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length)
@@ -135,6 +139,8 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_3_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.SystemUpdate)
+                return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length)
@@ -143,6 +149,8 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_4_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.SystemUpdate)
+                return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length)
@@ -151,6 +159,8 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_5_TextChanged(object sender, EventArgs e)
         {
+            if (Input_Status == Input_Status_Enum.SystemUpdate)
+                return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length)
@@ -174,6 +184,7 @@ namespace InputSpeedExamination
         {
             if ((float)CurrentPageIndex + 1.0 >= TextLineList.Count / 5.0)
                 return;
+            Input_Status = Input_Status_Enum.SystemUpdate;
             RecordCurrentPageTextLineAndUpdateStats();
             CurrentPageIndex++;
             Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
@@ -181,7 +192,13 @@ namespace InputSpeedExamination
             Examination_Lable_3.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 2);
             Examination_Lable_4.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 3);
             Examination_Lable_5.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 4);
+            Examination_TextLine_1.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 0);
+            Examination_TextLine_2.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 1);
+            Examination_TextLine_3.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 2);
+            Examination_TextLine_4.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 3);
+            Examination_TextLine_5.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 4);
             Examination_TextLine_1.Focus();
+            Input_Status = Input_Status_Enum.Input;
         }
 
         /// <summary>
@@ -191,6 +208,7 @@ namespace InputSpeedExamination
         {
             if (CurrentPageIndex == 0)
                 return;
+            Input_Status = Input_Status_Enum.SystemUpdate;
             RecordCurrentPageTextLineAndUpdateStats();
             CurrentPageIndex--;
             Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
@@ -198,7 +216,13 @@ namespace InputSpeedExamination
             Examination_Lable_3.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 2);
             Examination_Lable_4.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 3);
             Examination_Lable_5.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 4);
+            Examination_TextLine_1.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 0);
+            Examination_TextLine_2.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 1);
+            Examination_TextLine_3.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 2);
+            Examination_TextLine_4.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 3);
+            Examination_TextLine_5.Text = GetUserTextByIndex(CurrentPageIndex * 5 + 4);
             Examination_TextLine_5.Focus();
+            Input_Status = Input_Status_Enum.Input;
         }
 
         /// <summary>
@@ -227,7 +251,7 @@ namespace InputSpeedExamination
         }
 
         /// <summary>
-        /// 根据索引号获取行字符串
+        /// 根据索引号获取行字符串 ExaminationString
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -237,6 +261,19 @@ namespace InputSpeedExamination
                 return string.Empty;
             else
                 return TextLineList[index].ExaminationText;
+        }
+
+        /// <summary>
+        /// 根据索引号获取行字符串 UserText 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        private string GetUserTextByIndex(int index)
+        {
+            if (index >= TextLineList.Count)
+                return string.Empty;
+            else
+                return TextLineList[index].UserText;
         }
 
         /// <summary>
@@ -332,7 +369,11 @@ namespace InputSpeedExamination
             /// <summary>
             /// 停止
             /// </summary>
-            Stop
+            Stop,
+            /// <summary>
+            /// 状态更新
+            /// </summary>
+            SystemUpdate
         }
         Input_Status_Enum _Input_Status = Input_Status_Enum.Stop;
         /// <summary>
@@ -348,7 +389,7 @@ namespace InputSpeedExamination
             set
             {
                 _Input_Status = value;
-                if (value == Input_Status_Enum.Pause)
+                if (value == Input_Status_Enum.Pause || value == Input_Status_Enum.SystemUpdate)
                     Timer_Clocks.Enabled = false;
                 else if (value == Input_Status_Enum.Input)
                     Timer_Clocks.Enabled = true;
@@ -393,5 +434,15 @@ cba
 
         #endregion
 
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            LoadPreviousExaminationPage();
+        }
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            LoadNextExaminationPage();
+        }
     }
 }
+

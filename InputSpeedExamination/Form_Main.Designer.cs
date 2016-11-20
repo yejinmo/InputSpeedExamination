@@ -36,6 +36,8 @@
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Examination_Lable_1 = new MaterialSkin.Controls.MaterialLabel_Examination();
             this.Examination_TextLine_5 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Examination_Lable_5 = new MaterialSkin.Controls.MaterialLabel_Examination();
@@ -135,6 +137,8 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.materialRaisedButton2);
+            this.panel1.Controls.Add(this.materialRaisedButton1);
             this.panel1.Controls.Add(this.Examination_Lable_1);
             this.panel1.Controls.Add(this.Examination_TextLine_5);
             this.panel1.Controls.Add(this.Examination_TextLine_1);
@@ -151,12 +155,39 @@
             this.panel1.Size = new System.Drawing.Size(1091, 691);
             this.panel1.TabIndex = 10;
             // 
+            // materialRaisedButton2
+            // 
+            this.materialRaisedButton2.Depth = 0;
+            this.materialRaisedButton2.Location = new System.Drawing.Point(913, 632);
+            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton2.Name = "materialRaisedButton2";
+            this.materialRaisedButton2.Primary = true;
+            this.materialRaisedButton2.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton2.TabIndex = 11;
+            this.materialRaisedButton2.Text = "下一页";
+            this.materialRaisedButton2.UseVisualStyleBackColor = true;
+            this.materialRaisedButton2.Click += new System.EventHandler(this.materialRaisedButton2_Click);
+            // 
+            // materialRaisedButton1
+            // 
+            this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Location = new System.Drawing.Point(733, 632);
+            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton1.Name = "materialRaisedButton1";
+            this.materialRaisedButton1.Primary = true;
+            this.materialRaisedButton1.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton1.TabIndex = 10;
+            this.materialRaisedButton1.Text = "上一页";
+            this.materialRaisedButton1.UseVisualStyleBackColor = true;
+            this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
+            // 
             // Examination_Lable_1
             // 
             this.Examination_Lable_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Examination_Lable_1.CorrectForeColor = System.Drawing.Color.DimGray;
             this.Examination_Lable_1.Depth = 0;
+            this.Examination_Lable_1.DrawNextCharHint = false;
             this.Examination_Lable_1.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_1.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -207,6 +238,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Examination_Lable_5.CorrectForeColor = System.Drawing.Color.DimGray;
             this.Examination_Lable_5.Depth = 0;
+            this.Examination_Lable_5.DrawNextCharHint = false;
             this.Examination_Lable_5.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_5.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -289,6 +321,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Examination_Lable_4.CorrectForeColor = System.Drawing.Color.DimGray;
             this.Examination_Lable_4.Depth = 0;
+            this.Examination_Lable_4.DrawNextCharHint = false;
             this.Examination_Lable_4.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_4.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -307,6 +340,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Examination_Lable_2.CorrectForeColor = System.Drawing.Color.DimGray;
             this.Examination_Lable_2.Depth = 0;
+            this.Examination_Lable_2.DrawNextCharHint = false;
             this.Examination_Lable_2.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_2.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -357,6 +391,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Examination_Lable_3.CorrectForeColor = System.Drawing.Color.DimGray;
             this.Examination_Lable_3.Depth = 0;
+            this.Examination_Lable_3.DrawNextCharHint = false;
             this.Examination_Lable_3.ErrorForeColor = System.Drawing.Color.Red;
             this.Examination_Lable_3.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Examination_Lable_3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -448,6 +483,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer Timer_Clocks;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
     }
 }
 

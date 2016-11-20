@@ -1078,6 +1078,8 @@ namespace MaterialSkin.Controls
 
         private void MaterialSingleLineTextField_GotFocus(object sender, EventArgs e)
         {
+            if (BindingLabel != null)
+                BindingLabel.DrawNextCharHint = true;
             if (followLabel == null || onError || !baseTextBox.Focused)
                 return;
             followLabel.ForeColor = followLabelColor;
@@ -1095,6 +1097,8 @@ namespace MaterialSkin.Controls
 
         private void MaterialSingleLineTextField_LostFocus(object sender, EventArgs e)
         {
+            if (BindingLabel != null)
+                BindingLabel.DrawNextCharHint = false;
             if (followLabel == null || onError)
                 return;
             followLabel.ForeColor = followLabeloldColor;

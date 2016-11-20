@@ -70,7 +70,6 @@ namespace MaterialSkin.Controls
         private new string Text;
 
         private string textString = string.Empty;
-
         public string TextString
         {
             get
@@ -82,6 +81,21 @@ namespace MaterialSkin.Controls
                 textString = value;
                 Invalidate();
                 OnBindingLabelTextChanged(new EventArgs());
+            }
+        }
+
+        private bool drawNextCharHint = false;
+        public bool DrawNextCharHint
+        {
+            get
+            {
+                return drawNextCharHint;
+            }
+
+            set
+            {
+                drawNextCharHint = value;
+                Invalidate();
             }
         }
 
@@ -102,9 +116,9 @@ namespace MaterialSkin.Controls
             {
                 char chr = AnswerStringArray[i];
                 var size = GetStringWidth(chr.ToString());
-                if (i == Len_UserStringArray)
+                if (DrawNextCharHint && i == Len_UserStringArray)
                     g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
-                else if (i > Len_UserStringArray)
+                else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
                     g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ForeColor), new PointF(pos_left, 0));
                 else
                 {
