@@ -35,7 +35,7 @@
             this.FlatButton_Select_OffLine = new MaterialSkin.Controls.MaterialFlatButton();
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Panel_Input_Main = new System.Windows.Forms.Panel();
             this.Label_Stats_Time = new MaterialSkin.Controls.MaterialLabel();
             this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -55,7 +55,7 @@
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.Panel_Input_Main.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -128,7 +128,7 @@
             // TabPage_Examination
             // 
             this.TabPage_Examination.BackColor = System.Drawing.Color.White;
-            this.TabPage_Examination.Controls.Add(this.panel1);
+            this.TabPage_Examination.Controls.Add(this.Panel_Input_Main);
             this.TabPage_Examination.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Examination.Name = "TabPage_Examination";
             this.TabPage_Examination.Padding = new System.Windows.Forms.Padding(3);
@@ -136,33 +136,35 @@
             this.TabPage_Examination.TabIndex = 1;
             this.TabPage_Examination.Text = "tabPage2";
             // 
-            // panel1
+            // Panel_Input_Main
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Panel_Input_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.Button_Pause_Continue);
-            this.panel1.Controls.Add(this.materialRaisedButton4);
-            this.panel1.Controls.Add(this.Label_Stats_Time);
-            this.panel1.Controls.Add(this.materialRaisedButton2);
-            this.panel1.Controls.Add(this.materialRaisedButton1);
-            this.panel1.Controls.Add(this.Examination_Lable_1);
-            this.panel1.Controls.Add(this.Examination_TextLine_5);
-            this.panel1.Controls.Add(this.Examination_TextLine_1);
-            this.panel1.Controls.Add(this.Examination_TextLine_4);
-            this.panel1.Controls.Add(this.Examination_Lable_2);
-            this.panel1.Controls.Add(this.Examination_TextLine_3);
-            this.panel1.Controls.Add(this.Examination_Lable_3);
-            this.panel1.Controls.Add(this.Examination_TextLine_2);
-            this.panel1.Controls.Add(this.Examination_Lable_4);
-            this.panel1.Controls.Add(this.Examination_Lable_5);
-            this.panel1.Location = new System.Drawing.Point(34, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(30);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1091, 691);
-            this.panel1.TabIndex = 10;
+            this.Panel_Input_Main.Controls.Add(this.Button_Pause_Continue);
+            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton4);
+            this.Panel_Input_Main.Controls.Add(this.Label_Stats_Time);
+            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton2);
+            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton1);
+            this.Panel_Input_Main.Controls.Add(this.Examination_Lable_1);
+            this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_5);
+            this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_1);
+            this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_4);
+            this.Panel_Input_Main.Controls.Add(this.Examination_Lable_2);
+            this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_3);
+            this.Panel_Input_Main.Controls.Add(this.Examination_Lable_3);
+            this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_2);
+            this.Panel_Input_Main.Controls.Add(this.Examination_Lable_4);
+            this.Panel_Input_Main.Controls.Add(this.Examination_Lable_5);
+            this.Panel_Input_Main.Location = new System.Drawing.Point(34, 11);
+            this.Panel_Input_Main.Margin = new System.Windows.Forms.Padding(30);
+            this.Panel_Input_Main.Name = "Panel_Input_Main";
+            this.Panel_Input_Main.Size = new System.Drawing.Size(1091, 691);
+            this.Panel_Input_Main.TabIndex = 10;
             // 
             // Label_Stats_Time
             // 
+            this.Label_Stats_Time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Label_Stats_Time.AutoSize = true;
             this.Label_Stats_Time.Depth = 0;
             this.Label_Stats_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
@@ -177,12 +179,13 @@
             // 
             // materialRaisedButton2
             // 
+            this.materialRaisedButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialRaisedButton2.Depth = 0;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(554, 632);
+            this.materialRaisedButton2.Location = new System.Drawing.Point(689, 632);
             this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton2.Name = "materialRaisedButton2";
             this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton2.Size = new System.Drawing.Size(129, 56);
             this.materialRaisedButton2.TabIndex = 11;
             this.materialRaisedButton2.Text = "下一页";
             this.materialRaisedButton2.UseVisualStyleBackColor = true;
@@ -190,12 +193,13 @@
             // 
             // materialRaisedButton1
             // 
+            this.materialRaisedButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(374, 632);
+            this.materialRaisedButton1.Location = new System.Drawing.Point(554, 632);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton1.Size = new System.Drawing.Size(129, 56);
             this.materialRaisedButton1.TabIndex = 10;
             this.materialRaisedButton1.Text = "上一页";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
@@ -463,12 +467,13 @@
             // 
             // Button_Pause_Continue
             // 
+            this.Button_Pause_Continue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Pause_Continue.Depth = 0;
-            this.Button_Pause_Continue.Location = new System.Drawing.Point(914, 632);
+            this.Button_Pause_Continue.Location = new System.Drawing.Point(959, 632);
             this.Button_Pause_Continue.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Pause_Continue.Name = "Button_Pause_Continue";
             this.Button_Pause_Continue.Primary = true;
-            this.Button_Pause_Continue.Size = new System.Drawing.Size(174, 56);
+            this.Button_Pause_Continue.Size = new System.Drawing.Size(129, 56);
             this.Button_Pause_Continue.TabIndex = 14;
             this.Button_Pause_Continue.Text = "暂停";
             this.Button_Pause_Continue.UseVisualStyleBackColor = true;
@@ -476,12 +481,13 @@
             // 
             // materialRaisedButton4
             // 
+            this.materialRaisedButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialRaisedButton4.Depth = 0;
-            this.materialRaisedButton4.Location = new System.Drawing.Point(734, 632);
+            this.materialRaisedButton4.Location = new System.Drawing.Point(824, 632);
             this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton4.Name = "materialRaisedButton4";
             this.materialRaisedButton4.Primary = true;
-            this.materialRaisedButton4.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton4.Size = new System.Drawing.Size(129, 56);
             this.materialRaisedButton4.TabIndex = 13;
             this.materialRaisedButton4.Text = "开始";
             this.materialRaisedButton4.UseVisualStyleBackColor = true;
@@ -493,8 +499,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 816);
             this.Controls.Add(this.TabControl_Main);
+            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 480);
             this.Name = "Form_Main";
+            this.Sizable = false;
             this.Text = "键盘录入测试";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Main_Load);
@@ -504,8 +512,8 @@
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Select.ResumeLayout(false);
             this.TabPage_Examination.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Panel_Input_Main.ResumeLayout(false);
+            this.Panel_Input_Main.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -528,7 +536,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_4;
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_3;
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Panel_Input_Main;
         private System.Windows.Forms.Timer Timer_Clocks;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;

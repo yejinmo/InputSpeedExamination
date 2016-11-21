@@ -303,8 +303,28 @@ namespace InputSpeedExamination
         /// <summary>
         /// 加载考试
         /// </summary>
-        private void LoadExamination()
+        private void LoadExamination(string str)
         {
+
+            Stats_Time = 0;
+            Stats_Char_Current_Total = 0;
+            Stats_Char_Correct_Total = 0;
+            Stats_Char_Total = 0;
+            Input_Status = Input_Status_Enum.Stop;
+            ExaminationController.Reset(str);
+            ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
+
+            TextLineList = ExaminationController.GetSpiltList();
+
+            #region 获取字符总数
+            {
+                int CharTotal = 0;
+                foreach (var l in TextLineList)
+                    CharTotal += l.ExaminationText.Length;
+                Stats_Char_Total = CharTotal;
+            }
+            #endregion
+
 
         }
 
@@ -463,7 +483,6 @@ cba
             Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
             Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
             Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
-            Input_Status = Input_Status_Enum.Input;
         }
         
         #endregion
@@ -480,12 +499,7 @@ cba
 
         private void materialRaisedButton4_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void materialRaisedButton3_Click(object sender, EventArgs e)
-        {
-
+            Input_Status = Input_Status_Enum.Input;
         }
 
     }
