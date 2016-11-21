@@ -125,6 +125,8 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length)
                 Examination_TextLine_2.Focus();
+            if (Input_Status == Input_Status_Enum.Input)
+                UpdateStats();
         }
 
         private void Examination_TextLine_2_TextChanged(object sender, EventArgs e)
@@ -135,6 +137,8 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length)
                 Examination_TextLine_3.Focus();
+            if (Input_Status == Input_Status_Enum.Input)
+                UpdateStats();
         }
 
         private void Examination_TextLine_3_TextChanged(object sender, EventArgs e)
@@ -145,6 +149,8 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length)
                 Examination_TextLine_4.Focus();
+            if (Input_Status == Input_Status_Enum.Input)
+                UpdateStats();
         }
 
         private void Examination_TextLine_4_TextChanged(object sender, EventArgs e)
@@ -155,6 +161,8 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.Input;
             if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length)
                 Examination_TextLine_5.Focus();
+            if (Input_Status == Input_Status_Enum.Input)
+                UpdateStats();
         }
 
         private void Examination_TextLine_5_TextChanged(object sender, EventArgs e)
@@ -163,6 +171,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (Input_Status == Input_Status_Enum.Input)
+                UpdateStats();
             if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length)
                 LoadNextExaminationPage();
         }
@@ -200,7 +210,7 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.PauseAndSystemUpdate;
             else if(Input_Status == Input_Status_Enum.Input)
                 Input_Status = Input_Status_Enum.SystemUpdate;
-            RecordCurrentPageTextLineAndUpdateStats();
+            RecordCurrentPageTextLine();
             CurrentPageIndex++;
             Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
             Examination_Lable_2.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 1);
@@ -230,7 +240,7 @@ namespace InputSpeedExamination
                 Input_Status = Input_Status_Enum.PauseAndSystemUpdate;
             else if (Input_Status == Input_Status_Enum.Input)
                 Input_Status = Input_Status_Enum.SystemUpdate;
-            RecordCurrentPageTextLineAndUpdateStats();
+            RecordCurrentPageTextLine();
             CurrentPageIndex--;
             Examination_Lable_1.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 0);
             Examination_Lable_2.TextString = GetExaminationStringByIndex(CurrentPageIndex * 5 + 1);
@@ -250,9 +260,9 @@ namespace InputSpeedExamination
         }
 
         /// <summary>
-        /// 记录当前页的 UserText 并更新统计信息
+        /// 记录当前页的 UserText
         /// </summary>
-        private void RecordCurrentPageTextLineAndUpdateStats()
+        private void RecordCurrentPageTextLine()
         {
             SetTextLineUserText(CurrentPageIndex * 5 + 0, Examination_Lable_1.TextFieldString);
             SetTextLineUserText(CurrentPageIndex * 5 + 1, Examination_Lable_2.TextFieldString);
@@ -306,13 +316,15 @@ namespace InputSpeedExamination
         private void LoadExamination(string str)
         {
 
+            ExaminationController.Reset(str);
+            ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
+
             Stats_Time = 0;
             Stats_Char_Current_Total = 0;
             Stats_Char_Correct_Total = 0;
             Stats_Char_Total = 0;
             Input_Status = Input_Status_Enum.Stop;
-            ExaminationController.Reset(str);
-            ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
+            CurrentPageIndex = 0;
 
             TextLineList = ExaminationController.GetSpiltList();
 
@@ -325,6 +337,11 @@ namespace InputSpeedExamination
             }
             #endregion
 
+            Examination_Lable_1.TextString = GetExaminationStringByIndex(0);
+            Examination_Lable_2.TextString = GetExaminationStringByIndex(1);
+            Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
+            Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
+            Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
 
         }
 
@@ -346,7 +363,8 @@ namespace InputSpeedExamination
             set
             {
                 _Stats_Time = value;
-                Label_Stats_Time.Text = string.Format(Label_Stats_Time.Tag.ToString(), value / 60, value % 60);
+                if (Input_Status != Input_Status_Enum.Stop)
+                    UpdateStats();
             }
         }
 
@@ -449,16 +467,73 @@ namespace InputSpeedExamination
             }
         }
 
+        /// <summary>
+        /// 计算输入字符数
+        /// </summary>
+        private void Count_Stats_Char_Current_Total()
+        {
+            Console.WriteLine("Count_Stats_Char_Current_Total Start at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
+            int temp = 0;
+            foreach (var l in TextLineList)
+            {
+                temp += l.UserText.Length;
+            }
+            Stats_Char_Current_Total = temp;
+            Console.WriteLine("Count_Stats_Char_Current_Total Finish at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
+        }
+
+        /// <summary>
+        /// 计算输入正确字符数
+        /// </summary>
+        private void Count_Stats_Char_Correct_Total()
+        {
+            Console.WriteLine("Count_Stats_Char_Correct_Total Start at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
+            int temp = 0;
+            foreach (var l in TextLineList)
+            {
+                for (int i = 0; i < l.UserText.Length; ++i)
+                {
+                    if (i >= l.ExaminationText.Length)
+                        break;
+                    if (l.UserText[i] == l.ExaminationText[i])
+                        temp++;
+                }
+            }
+            Stats_Char_Correct_Total = temp;
+            Console.WriteLine("Count_Stats_Char_Correct_Total Finish at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
+        }
+
         private void Timer_Clocks_Tick(object sender, EventArgs e)
         {
             Stats_Time++;
         }
 
-        #endregion        
-        
+        /// <summary>
+        /// 更新统计数据
+        /// </summary>
+        private void UpdateStats()
+        {
+            RecordCurrentPageTextLine();
+            Count_Stats_Char_Current_Total();
+            Count_Stats_Char_Correct_Total();
+            Label_Stats_Time.Text = string.Format(Label_Stats_Time.Tag.ToString(), Stats_Time / 60, Stats_Time % 60,
+                (Stats_Char_Current_Total == 0 ? 100 : (int)((float)Stats_Char_Correct_Total / Stats_Char_Current_Total * 100)) + "%",
+                (Stats_Time == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Time * 60.0)),
+                (Stats_Char_Total == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Char_Total * 100)) + "%");
+        }
+
+        #endregion
+
         #region Debug
 
         string debug_str = @"
+扮演年轻的聪明黑客马可仕．哈洛威（Marcus Holloway），来到技术革命的起源地：旧金山湾区。
+加入最恶名昭彰的黑客团体 DedSec，执行史上最大规模的黑客行动，彻底消灭犯罪首脑用来大规模监视操控市民的侵入性运作系统 ctOS 2.0。 
+
+探索动态开放世界，充满各种游戏操作可能。 
+骇进每一组联机装置，控制城市公共设施。 
+根据你的游戏风格培养不同技能，升级你的黑客工具：遥控车、四旋翼无人机、3D 打印武器和更多内容。 
+在全新的合作模式和对抗式多人游戏与好友无缝联机，享受全新的《看门狗》游戏体验。
 123456789
 987654321
 123456
@@ -474,15 +549,16 @@ cba
 
         private void debug()
         {
-            ExaminationController.Reset(debug_str);
-            ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
+            LoadExamination(debug_str);
+            //ExaminationController.Reset(debug_str);
+            //ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
 
-            TextLineList = ExaminationController.GetSpiltList();
-            Examination_Lable_1.TextString = GetExaminationStringByIndex(0);
-            Examination_Lable_2.TextString = GetExaminationStringByIndex(1);
-            Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
-            Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
-            Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
+            //TextLineList = ExaminationController.GetSpiltList();
+            //Examination_Lable_1.TextString = GetExaminationStringByIndex(0);
+            //Examination_Lable_2.TextString = GetExaminationStringByIndex(1);
+            //Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
+            //Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
+            //Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
         }
         
         #endregion

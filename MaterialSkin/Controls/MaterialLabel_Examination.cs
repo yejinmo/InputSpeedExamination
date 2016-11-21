@@ -112,10 +112,34 @@ namespace MaterialSkin.Controls
             g.Clear(BackColor);
             if (Len_UserStringArray == 0 && Len_AnswerStringArray == 0)
                 return;
+            string temp_str = string.Empty;
             while (true)
             {
+                #region 单字符测量
+                //char chr = AnswerStringArray[i];
+                //var size = GetStringWidth(chr.ToString());
+                //if (DrawNextCharHint && i == Len_UserStringArray)
+                //    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
+                //else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
+                //    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ForeColor), new PointF(pos_left, 0));
+                //else
+                //{
+                //    if (AnswerStringArray[i] == UserStringArray[i])
+                //        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(CorrectForeColor), new PointF(pos_left, 0));
+                //    else
+                //        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ErrorForeColor), new PointF(pos_left, 0));
+                //}
+                //pos_left += size.Width;
+                //++i;
+                //if (i >= Len_AnswerStringArray)
+                //    break;
+                #endregion
+
                 char chr = AnswerStringArray[i];
-                var size = GetStringWidth(chr.ToString());
+                temp_str += chr;
+                var sizeChr = GetStringWidth(chr.ToString());
+                var sizeStr = GetStringWidth(temp_str);
+                pos_left = sizeStr.Width - sizeChr.Width;
                 if (DrawNextCharHint && i == Len_UserStringArray)
                     g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
                 else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
@@ -127,7 +151,6 @@ namespace MaterialSkin.Controls
                     else
                         g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ErrorForeColor), new PointF(pos_left, 0));
                 }
-                pos_left += size.Width;
                 ++i;
                 if (i >= Len_AnswerStringArray)
                     break;
@@ -139,7 +162,7 @@ namespace MaterialSkin.Controls
             Graphics gs = CreateGraphics();
             StringFormat sf = StringFormat.GenericTypographic;
             sf.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
-            var sizef = gs.MeasureString(str, Font, 1000, sf);
+            var sizef = gs.MeasureString(str, Font, 5000, sf);
             gs.Dispose();
             return sizef;
         }

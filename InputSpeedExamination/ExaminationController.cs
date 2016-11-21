@@ -105,6 +105,7 @@ namespace InputSpeedExamination
             string temp = string.Empty;
             Bitmap b = new Bitmap(width + 100, width + 100);
             Graphics gs = Graphics.FromImage(b);
+            //gs.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             while (true)
             {
                 if (pos >= len && !FlagNeedSpilt)
@@ -131,7 +132,7 @@ namespace InputSpeedExamination
                 else
                 {
                     temp = ExaminationText.Substring(pos_left, pos - pos_left - 1);
-                    temp = temp.TrimEnd('\n');
+                    temp = temp.Trim('\n');
                     temp = TrimAll(temp);
                     if (temp.Length != 0)
                     {
@@ -201,7 +202,7 @@ namespace InputSpeedExamination
         {
             StringFormat sf = StringFormat.GenericTypographic;
             sf.FormatFlags |= StringFormatFlags.MeasureTrailingSpaces;
-            var sizef = gs.MeasureString(str, font, 1000, sf);
+            var sizef = gs.MeasureString(str, font, 5000, sf);
             return (int)sizef.Width;
         }
 
