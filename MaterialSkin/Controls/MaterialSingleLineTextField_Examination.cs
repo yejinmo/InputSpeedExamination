@@ -1220,22 +1220,23 @@ namespace MaterialSkin.Controls
 
             public BaseTextBox()
             {
-                //SetStyle(ControlStyles.UserPaint, true);
+                ShortcutsEnabled = false;
             }
 
-            //protected override void OnPaint(PaintEventArgs e)
-            //{
-            //    Graphics g = e.Graphics;
-            //    g.DrawString(Text, Font, new SolidBrush(Color.Green), new Point(0, 0));
-            //    base.OnPaint(e);
-            //}
+            protected override void OnGotFocus(EventArgs e)
+            {
+                base.OnGotFocus(e);
+                DeselectAll();
+                SelectionStart = Text.Length;
+            }
 
             protected override void WndProc(ref Message m)
             {
-                if (m.Msg != 0x007B && m.Msg != 0x0301 && m.Msg != 0x0302)
-                {
-                    base.WndProc(ref m);
-                }
+                base.WndProc(ref m);
+                //if (m.Msg != 0x007B && m.Msg != 0x0301 && m.Msg != 0x0302)
+                //{
+                //    base.WndProc(ref m);
+                //}
             }
 
         }

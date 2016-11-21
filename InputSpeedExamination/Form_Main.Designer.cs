@@ -36,6 +36,7 @@
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Label_Stats_Time = new MaterialSkin.Controls.MaterialLabel();
             this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Examination_Lable_1 = new MaterialSkin.Controls.MaterialLabel_Examination();
@@ -49,6 +50,8 @@
             this.Examination_Lable_3 = new MaterialSkin.Controls.MaterialLabel_Examination();
             this.Examination_TextLine_2 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
+            this.Button_Pause_Continue = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialRaisedButton4 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -137,6 +140,9 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.Button_Pause_Continue);
+            this.panel1.Controls.Add(this.materialRaisedButton4);
+            this.panel1.Controls.Add(this.Label_Stats_Time);
             this.panel1.Controls.Add(this.materialRaisedButton2);
             this.panel1.Controls.Add(this.materialRaisedButton1);
             this.panel1.Controls.Add(this.Examination_Lable_1);
@@ -155,10 +161,24 @@
             this.panel1.Size = new System.Drawing.Size(1091, 691);
             this.panel1.TabIndex = 10;
             // 
+            // Label_Stats_Time
+            // 
+            this.Label_Stats_Time.AutoSize = true;
+            this.Label_Stats_Time.Depth = 0;
+            this.Label_Stats_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Stats_Time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Stats_Time.Location = new System.Drawing.Point(4, 632);
+            this.Label_Stats_Time.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Stats_Time.Name = "Label_Stats_Time";
+            this.Label_Stats_Time.Size = new System.Drawing.Size(323, 46);
+            this.Label_Stats_Time.TabIndex = 12;
+            this.Label_Stats_Time.Tag = "时间：{0:00}:{1:00}";
+            this.Label_Stats_Time.Text = "时间：{0:00}:{1:00}";
+            // 
             // materialRaisedButton2
             // 
             this.materialRaisedButton2.Depth = 0;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(913, 632);
+            this.materialRaisedButton2.Location = new System.Drawing.Point(554, 632);
             this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton2.Name = "materialRaisedButton2";
             this.materialRaisedButton2.Primary = true;
@@ -171,7 +191,7 @@
             // materialRaisedButton1
             // 
             this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(733, 632);
+            this.materialRaisedButton1.Location = new System.Drawing.Point(374, 632);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
@@ -441,6 +461,32 @@
             this.Timer_Clocks.Interval = 1000;
             this.Timer_Clocks.Tick += new System.EventHandler(this.Timer_Clocks_Tick);
             // 
+            // Button_Pause_Continue
+            // 
+            this.Button_Pause_Continue.Depth = 0;
+            this.Button_Pause_Continue.Location = new System.Drawing.Point(914, 632);
+            this.Button_Pause_Continue.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Pause_Continue.Name = "Button_Pause_Continue";
+            this.Button_Pause_Continue.Primary = true;
+            this.Button_Pause_Continue.Size = new System.Drawing.Size(174, 56);
+            this.Button_Pause_Continue.TabIndex = 14;
+            this.Button_Pause_Continue.Text = "暂停";
+            this.Button_Pause_Continue.UseVisualStyleBackColor = true;
+            this.Button_Pause_Continue.Click += new System.EventHandler(this.Button_Pause_Continue_Click);
+            // 
+            // materialRaisedButton4
+            // 
+            this.materialRaisedButton4.Depth = 0;
+            this.materialRaisedButton4.Location = new System.Drawing.Point(734, 632);
+            this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton4.Name = "materialRaisedButton4";
+            this.materialRaisedButton4.Primary = true;
+            this.materialRaisedButton4.Size = new System.Drawing.Size(174, 56);
+            this.materialRaisedButton4.TabIndex = 13;
+            this.materialRaisedButton4.Text = "开始";
+            this.materialRaisedButton4.UseVisualStyleBackColor = true;
+            this.materialRaisedButton4.Click += new System.EventHandler(this.materialRaisedButton4_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -459,6 +505,7 @@
             this.TabPage_Select.ResumeLayout(false);
             this.TabPage_Examination.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -485,6 +532,9 @@
         private System.Windows.Forms.Timer Timer_Clocks;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
+        private MaterialSkin.Controls.MaterialLabel Label_Stats_Time;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Pause_Continue;
+        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton4;
     }
 }
 
