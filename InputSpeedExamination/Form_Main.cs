@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin;
+using System.Threading;
 
 namespace InputSpeedExamination
 {
@@ -26,6 +27,7 @@ namespace InputSpeedExamination
         {
             NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OffLine, NeedCenterControlStyle.Horizontal));
             NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OnLine, NeedCenterControlStyle.Horizontal));
+            NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             Form_Main_Resize(sender, e);
             debug();
@@ -109,8 +111,8 @@ namespace InputSpeedExamination
 
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
-            TabControl_Main.SelectedTab = TabPage_Examination;
             debug();
+            TabControl_Main.SelectedTab = TabPage_Start;
         }
 
         #endregion
@@ -187,6 +189,41 @@ namespace InputSpeedExamination
             {
                 Input_Status = Input_Status_Enum.Input;
             }
+        }
+
+        private void Button_Start_Click(object sender, EventArgs e)
+        {
+            Thread JumpToExaminationThread = new Thread(new ThreadStart(delegate {
+                Invoke((EventHandler)delegate
+                {
+                    ProcessBar_Start.Visible = true;
+                    if (Input_Status == Input_Status_Enum.Stop)
+                    {
+                        Input_Status = Input_Status_Enum.Pause;
+                    }
+                });
+                Thread.Sleep(1500);
+                Invoke((EventHandler)delegate
+                {
+                    if (Input_Status == Input_Status_Enum.Pause)
+                    {
+                        Stats_Time = 0;
+                        TabControl_Main.SelectedTab = TabPage_Examination;
+                    }
+                    ProcessBar_Start.Visible = false;
+                });
+            }));
+            JumpToExaminationThread.Start();
+        }
+
+        private void Button_Previous_Page_Click(object sender, EventArgs e)
+        {
+            LoadPreviousExaminationPage();
+        }
+
+        private void Button_Next_Page_Click(object sender, EventArgs e)
+        {
+            LoadNextExaminationPage();
         }
 
         /// <summary>
@@ -527,6 +564,7 @@ namespace InputSpeedExamination
         #region Debug
 
         string debug_str = @"
+示例文字
 扮演年轻的聪明黑客马可仕．哈洛威（Marcus Holloway），来到技术革命的起源地：旧金山湾区。
 加入最恶名昭彰的黑客团体 DedSec，执行史上最大规模的黑客行动，彻底消灭犯罪首脑用来大规模监视操控市民的侵入性运作系统 ctOS 2.0。 
 
@@ -560,23 +598,8 @@ cba
             //Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
             //Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
         }
-        
+
         #endregion
-
-        private void materialRaisedButton1_Click(object sender, EventArgs e)
-        {
-            LoadPreviousExaminationPage();
-        }
-
-        private void materialRaisedButton2_Click(object sender, EventArgs e)
-        {
-            LoadNextExaminationPage();
-        }
-
-        private void materialRaisedButton4_Click(object sender, EventArgs e)
-        {
-            Input_Status = Input_Status_Enum.Input;
-        }
 
     }
 }

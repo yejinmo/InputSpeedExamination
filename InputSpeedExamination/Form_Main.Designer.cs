@@ -37,10 +37,9 @@
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
             this.Panel_Input_Main = new System.Windows.Forms.Panel();
             this.Button_Pause_Continue = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton4 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Label_Stats_Time = new MaterialSkin.Controls.MaterialLabel();
-            this.materialRaisedButton2 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_Next_Page = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_Previous_Page = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Examination_Lable_1 = new MaterialSkin.Controls.MaterialLabel_Examination();
             this.Examination_TextLine_5 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Examination_Lable_5 = new MaterialSkin.Controls.MaterialLabel_Examination();
@@ -52,10 +51,16 @@
             this.Examination_Lable_3 = new MaterialSkin.Controls.MaterialLabel_Examination();
             this.Examination_TextLine_2 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
+            this.TabPage_Start = new System.Windows.Forms.TabPage();
+            this.Panel_Start = new System.Windows.Forms.Panel();
+            this.ProcessBar_Start = new MaterialSkin.Controls.MaterialProcessBar();
+            this.Button_Start = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
             this.Panel_Input_Main.SuspendLayout();
+            this.TabPage_Start.SuspendLayout();
+            this.Panel_Start.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -65,13 +70,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl_Main.Controls.Add(this.TabPage_Select);
             this.TabControl_Main.Controls.Add(this.TabPage_Examination);
+            this.TabControl_Main.Controls.Add(this.TabPage_Start);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(1, 66);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(1);
             this.TabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(1167, 749);
+            this.TabControl_Main.Size = new System.Drawing.Size(1053, 709);
             this.TabControl_Main.TabIndex = 0;
             // 
             // TabPage_Select
@@ -142,10 +148,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Input_Main.Controls.Add(this.Button_Pause_Continue);
-            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton4);
             this.Panel_Input_Main.Controls.Add(this.Label_Stats_Time);
-            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton2);
-            this.Panel_Input_Main.Controls.Add(this.materialRaisedButton1);
+            this.Panel_Input_Main.Controls.Add(this.Button_Next_Page);
+            this.Panel_Input_Main.Controls.Add(this.Button_Previous_Page);
             this.Panel_Input_Main.Controls.Add(this.Examination_Lable_1);
             this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_5);
             this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_1);
@@ -176,20 +181,6 @@
             this.Button_Pause_Continue.UseVisualStyleBackColor = true;
             this.Button_Pause_Continue.Click += new System.EventHandler(this.Button_Pause_Continue_Click);
             // 
-            // materialRaisedButton4
-            // 
-            this.materialRaisedButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialRaisedButton4.Depth = 0;
-            this.materialRaisedButton4.Location = new System.Drawing.Point(828, 632);
-            this.materialRaisedButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton4.Name = "materialRaisedButton4";
-            this.materialRaisedButton4.Primary = true;
-            this.materialRaisedButton4.Size = new System.Drawing.Size(129, 56);
-            this.materialRaisedButton4.TabIndex = 13;
-            this.materialRaisedButton4.Text = "开始";
-            this.materialRaisedButton4.UseVisualStyleBackColor = true;
-            this.materialRaisedButton4.Click += new System.EventHandler(this.materialRaisedButton4_Click);
-            // 
             // Label_Stats_Time
             // 
             this.Label_Stats_Time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -205,33 +196,33 @@
             this.Label_Stats_Time.Tag = "时间：{0:00}:{1:00} 正确率：{2} 速度：{3}字/分 进度：{4} ";
             this.Label_Stats_Time.Text = "时间： 正确率： 速度： 进度：";
             // 
-            // materialRaisedButton2
+            // Button_Next_Page
             // 
-            this.materialRaisedButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialRaisedButton2.Depth = 0;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(693, 632);
-            this.materialRaisedButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton2.Name = "materialRaisedButton2";
-            this.materialRaisedButton2.Primary = true;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(129, 56);
-            this.materialRaisedButton2.TabIndex = 11;
-            this.materialRaisedButton2.Text = "下一页";
-            this.materialRaisedButton2.UseVisualStyleBackColor = true;
-            this.materialRaisedButton2.Click += new System.EventHandler(this.materialRaisedButton2_Click);
+            this.Button_Next_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Next_Page.Depth = 0;
+            this.Button_Next_Page.Location = new System.Drawing.Point(828, 632);
+            this.Button_Next_Page.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Next_Page.Name = "Button_Next_Page";
+            this.Button_Next_Page.Primary = true;
+            this.Button_Next_Page.Size = new System.Drawing.Size(129, 56);
+            this.Button_Next_Page.TabIndex = 11;
+            this.Button_Next_Page.Text = "下一页";
+            this.Button_Next_Page.UseVisualStyleBackColor = true;
+            this.Button_Next_Page.Click += new System.EventHandler(this.Button_Next_Page_Click);
             // 
-            // materialRaisedButton1
+            // Button_Previous_Page
             // 
-            this.materialRaisedButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(558, 632);
-            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton1.Name = "materialRaisedButton1";
-            this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(129, 56);
-            this.materialRaisedButton1.TabIndex = 10;
-            this.materialRaisedButton1.Text = "上一页";
-            this.materialRaisedButton1.UseVisualStyleBackColor = true;
-            this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
+            this.Button_Previous_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Previous_Page.Depth = 0;
+            this.Button_Previous_Page.Location = new System.Drawing.Point(693, 632);
+            this.Button_Previous_Page.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Previous_Page.Name = "Button_Previous_Page";
+            this.Button_Previous_Page.Primary = true;
+            this.Button_Previous_Page.Size = new System.Drawing.Size(129, 56);
+            this.Button_Previous_Page.TabIndex = 10;
+            this.Button_Previous_Page.Text = "上一页";
+            this.Button_Previous_Page.UseVisualStyleBackColor = true;
+            this.Button_Previous_Page.Click += new System.EventHandler(this.Button_Previous_Page_Click);
             // 
             // Examination_Lable_1
             // 
@@ -494,11 +485,57 @@
             this.Timer_Clocks.Interval = 1000;
             this.Timer_Clocks.Tick += new System.EventHandler(this.Timer_Clocks_Tick);
             // 
+            // TabPage_Start
+            // 
+            this.TabPage_Start.Controls.Add(this.Panel_Start);
+            this.TabPage_Start.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Start.Name = "TabPage_Start";
+            this.TabPage_Start.Size = new System.Drawing.Size(1045, 683);
+            this.TabPage_Start.TabIndex = 2;
+            this.TabPage_Start.Text = "TabPage_Start";
+            this.TabPage_Start.UseVisualStyleBackColor = true;
+            // 
+            // Panel_Start
+            // 
+            this.Panel_Start.Controls.Add(this.ProcessBar_Start);
+            this.Panel_Start.Controls.Add(this.Button_Start);
+            this.Panel_Start.Location = new System.Drawing.Point(435, 270);
+            this.Panel_Start.Name = "Panel_Start";
+            this.Panel_Start.Size = new System.Drawing.Size(211, 75);
+            this.Panel_Start.TabIndex = 16;
+            // 
+            // ProcessBar_Start
+            // 
+            this.ProcessBar_Start.Depth = 0;
+            this.ProcessBar_Start.Interval = 10;
+            this.ProcessBar_Start.LengthValue = 75;
+            this.ProcessBar_Start.Location = new System.Drawing.Point(3, 65);
+            this.ProcessBar_Start.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_Start.Name = "ProcessBar_Start";
+            this.ProcessBar_Start.Processing = true;
+            this.ProcessBar_Start.Size = new System.Drawing.Size(204, 5);
+            this.ProcessBar_Start.StepValue = 7;
+            this.ProcessBar_Start.TabIndex = 17;
+            this.ProcessBar_Start.Visible = false;
+            // 
+            // Button_Start
+            // 
+            this.Button_Start.Depth = 0;
+            this.Button_Start.Location = new System.Drawing.Point(3, 3);
+            this.Button_Start.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Start.Name = "Button_Start";
+            this.Button_Start.Primary = true;
+            this.Button_Start.Size = new System.Drawing.Size(204, 56);
+            this.Button_Start.TabIndex = 16;
+            this.Button_Start.Text = "开始";
+            this.Button_Start.UseVisualStyleBackColor = true;
+            this.Button_Start.Click += new System.EventHandler(this.Button_Start_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1169, 816);
+            this.ClientSize = new System.Drawing.Size(1055, 776);
             this.Controls.Add(this.TabControl_Main);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 480);
@@ -515,6 +552,8 @@
             this.TabPage_Examination.ResumeLayout(false);
             this.Panel_Input_Main.ResumeLayout(false);
             this.Panel_Input_Main.PerformLayout();
+            this.TabPage_Start.ResumeLayout(false);
+            this.Panel_Start.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -539,11 +578,14 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_2;
         private System.Windows.Forms.Panel Panel_Input_Main;
         private System.Windows.Forms.Timer Timer_Clocks;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton2;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Next_Page;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Previous_Page;
         private MaterialSkin.Controls.MaterialLabel Label_Stats_Time;
         private MaterialSkin.Controls.MaterialRaisedButton Button_Pause_Continue;
-        private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton4;
+        private System.Windows.Forms.TabPage TabPage_Start;
+        private System.Windows.Forms.Panel Panel_Start;
+        private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Start;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Start;
     }
 }
 
