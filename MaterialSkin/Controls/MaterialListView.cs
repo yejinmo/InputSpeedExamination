@@ -70,7 +70,6 @@ namespace MaterialSkin.Controls
 			//We draw the current line of items (= item with subitems) on a temp bitmap, then draw the bitmap at once. This is to reduce flickering.
 			var b = new Bitmap(e.Item.Bounds.Width, e.Item.Bounds.Height);
 			var g = Graphics.FromImage(b);
-
 			//always draw default background
 			g.FillRectangle(new SolidBrush(SkinManager.GetApplicationBackgroundColor()), new Rectangle(new Point(e.Bounds.X, 0), e.Bounds.Size));
 			if (e.State.HasFlag(ListViewItemStates.Selected))
@@ -90,6 +89,8 @@ namespace MaterialSkin.Controls
 			
 			foreach (ListViewItem.ListViewSubItem subItem in e.Item.SubItems)
 			{
+                if (subItem.Bounds.Width == 0)
+                    continue;
 				//Draw text
 				g.DrawString(subItem.Text, Font, SkinManager.GetPrimaryTextBrush(),
 								 new Rectangle(subItem.Bounds.Location.X , ITEM_PADDING,

@@ -55,17 +55,18 @@
             this.ProcessBar_Start = new MaterialSkin.Controls.MaterialProcessBar();
             this.Button_Start = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabPage_SelectText = new System.Windows.Forms.TabPage();
+            this.Button_SelectText_Import = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_SelectText_Begin = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_SelectText_Return = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Text_SearchExamination = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.ListView_ExaminationList = new MaterialSkin.Controls.MaterialListView();
-            this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader_ExaminationList_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader_ExaminationList_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader_ExaminationList_Preview = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader_ExaminationList_MD5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
-            this.Button_SelectText_Return = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.Button_SelectText_Begin = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.Button_SelectText_Inport = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -546,7 +547,7 @@
             // TabPage_SelectText
             // 
             this.TabPage_SelectText.BackColor = System.Drawing.Color.White;
-            this.TabPage_SelectText.Controls.Add(this.Button_SelectText_Inport);
+            this.TabPage_SelectText.Controls.Add(this.Button_SelectText_Import);
             this.TabPage_SelectText.Controls.Add(this.Button_SelectText_Begin);
             this.TabPage_SelectText.Controls.Add(this.Button_SelectText_Return);
             this.TabPage_SelectText.Controls.Add(this.Text_SearchExamination);
@@ -557,6 +558,47 @@
             this.TabPage_SelectText.Size = new System.Drawing.Size(1113, 638);
             this.TabPage_SelectText.TabIndex = 3;
             this.TabPage_SelectText.Text = "TabPage_SelectText";
+            // 
+            // Button_SelectText_Import
+            // 
+            this.Button_SelectText_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_SelectText_Import.Depth = 0;
+            this.Button_SelectText_Import.Location = new System.Drawing.Point(752, 575);
+            this.Button_SelectText_Import.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_SelectText_Import.Name = "Button_SelectText_Import";
+            this.Button_SelectText_Import.Primary = true;
+            this.Button_SelectText_Import.Size = new System.Drawing.Size(173, 56);
+            this.Button_SelectText_Import.TabIndex = 13;
+            this.Button_SelectText_Import.Text = "导入文件";
+            this.Button_SelectText_Import.UseVisualStyleBackColor = true;
+            this.Button_SelectText_Import.Click += new System.EventHandler(this.Button_SelectText_Import_Click);
+            // 
+            // Button_SelectText_Begin
+            // 
+            this.Button_SelectText_Begin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_SelectText_Begin.Depth = 0;
+            this.Button_SelectText_Begin.Location = new System.Drawing.Point(931, 575);
+            this.Button_SelectText_Begin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_SelectText_Begin.Name = "Button_SelectText_Begin";
+            this.Button_SelectText_Begin.Primary = true;
+            this.Button_SelectText_Begin.Size = new System.Drawing.Size(173, 56);
+            this.Button_SelectText_Begin.TabIndex = 12;
+            this.Button_SelectText_Begin.Text = "开始";
+            this.Button_SelectText_Begin.UseVisualStyleBackColor = true;
+            // 
+            // Button_SelectText_Return
+            // 
+            this.Button_SelectText_Return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_SelectText_Return.Depth = 0;
+            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 575);
+            this.Button_SelectText_Return.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_SelectText_Return.Name = "Button_SelectText_Return";
+            this.Button_SelectText_Return.Primary = true;
+            this.Button_SelectText_Return.Size = new System.Drawing.Size(173, 56);
+            this.Button_SelectText_Return.TabIndex = 11;
+            this.Button_SelectText_Return.Text = "返回";
+            this.Button_SelectText_Return.UseVisualStyleBackColor = true;
+            this.Button_SelectText_Return.Click += new System.EventHandler(this.Button_SelectText_Return_Click);
             // 
             // Text_SearchExamination
             // 
@@ -594,9 +636,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListView_ExaminationList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListView_ExaminationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
+            this.ColumnHeader_ExaminationList_Title,
+            this.ColumnHeader_ExaminationList_Length,
+            this.ColumnHeader_ExaminationList_Preview,
+            this.ColumnHeader_ExaminationList_MD5});
             this.ListView_ExaminationList.Depth = 0;
             this.ListView_ExaminationList.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.ListView_ExaminationList.FullRowSelect = true;
@@ -611,21 +654,27 @@
             this.ListView_ExaminationList.TabIndex = 0;
             this.ListView_ExaminationList.UseCompatibleStateImageBehavior = false;
             this.ListView_ExaminationList.View = System.Windows.Forms.View.Details;
+            this.ListView_ExaminationList.Resize += new System.EventHandler(this.ListView_ExaminationList_Resize);
             // 
-            // ColumnHeader1
+            // ColumnHeader_ExaminationList_Title
             // 
-            this.ColumnHeader1.Text = "标题";
-            this.ColumnHeader1.Width = 200;
+            this.ColumnHeader_ExaminationList_Title.Text = "标题";
+            this.ColumnHeader_ExaminationList_Title.Width = 200;
             // 
-            // columnHeader2
+            // ColumnHeader_ExaminationList_Length
             // 
-            this.columnHeader2.Text = "长度";
-            this.columnHeader2.Width = 100;
+            this.ColumnHeader_ExaminationList_Length.Text = "长度";
+            this.ColumnHeader_ExaminationList_Length.Width = 100;
             // 
-            // columnHeader3
+            // ColumnHeader_ExaminationList_Preview
             // 
-            this.columnHeader3.Text = "内容预览";
-            this.columnHeader3.Width = 300;
+            this.ColumnHeader_ExaminationList_Preview.Text = "内容预览";
+            this.ColumnHeader_ExaminationList_Preview.Width = 300;
+            // 
+            // ColumnHeader_ExaminationList_MD5
+            // 
+            this.ColumnHeader_ExaminationList_MD5.Text = "MD5";
+            this.ColumnHeader_ExaminationList_MD5.Width = 0;
             // 
             // ProcessBar_SearchExamination
             // 
@@ -652,47 +701,6 @@
             // 
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
-            // 
-            // Button_SelectText_Return
-            // 
-            this.Button_SelectText_Return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_SelectText_Return.Depth = 0;
-            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 575);
-            this.Button_SelectText_Return.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_SelectText_Return.Name = "Button_SelectText_Return";
-            this.Button_SelectText_Return.Primary = true;
-            this.Button_SelectText_Return.Size = new System.Drawing.Size(173, 56);
-            this.Button_SelectText_Return.TabIndex = 11;
-            this.Button_SelectText_Return.Text = "返回";
-            this.Button_SelectText_Return.UseVisualStyleBackColor = true;
-            this.Button_SelectText_Return.Click += new System.EventHandler(this.Button_SelectText_Return_Click);
-            // 
-            // Button_SelectText_Begin
-            // 
-            this.Button_SelectText_Begin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_SelectText_Begin.Depth = 0;
-            this.Button_SelectText_Begin.Location = new System.Drawing.Point(931, 575);
-            this.Button_SelectText_Begin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_SelectText_Begin.Name = "Button_SelectText_Begin";
-            this.Button_SelectText_Begin.Primary = true;
-            this.Button_SelectText_Begin.Size = new System.Drawing.Size(173, 56);
-            this.Button_SelectText_Begin.TabIndex = 12;
-            this.Button_SelectText_Begin.Text = "开始";
-            this.Button_SelectText_Begin.UseVisualStyleBackColor = true;
-            // 
-            // Button_SelectText_Inport
-            // 
-            this.Button_SelectText_Inport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_SelectText_Inport.Depth = 0;
-            this.Button_SelectText_Inport.Location = new System.Drawing.Point(752, 575);
-            this.Button_SelectText_Inport.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_SelectText_Inport.Name = "Button_SelectText_Inport";
-            this.Button_SelectText_Inport.Primary = true;
-            this.Button_SelectText_Inport.Size = new System.Drawing.Size(173, 56);
-            this.Button_SelectText_Inport.TabIndex = 13;
-            this.Button_SelectText_Inport.Text = "导入文件";
-            this.Button_SelectText_Inport.UseVisualStyleBackColor = true;
-            this.Button_SelectText_Inport.Click += new System.EventHandler(this.Button_SelectText_Inport_Click);
             // 
             // Form_Main
             // 
@@ -752,15 +760,16 @@
         private MaterialSkin.Controls.MaterialRaisedButton Button_Start;
         private System.Windows.Forms.TabPage TabPage_SelectText;
         private MaterialSkin.Controls.MaterialListView ListView_ExaminationList;
-        private System.Windows.Forms.ColumnHeader ColumnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_Title;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_Length;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_Preview;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_SearchExamination;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_SearchExamination;
         private System.Windows.Forms.Timer Timer_SearchExamination;
         private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Return;
         private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Begin;
-        private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Inport;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Import;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_MD5;
     }
 }
 

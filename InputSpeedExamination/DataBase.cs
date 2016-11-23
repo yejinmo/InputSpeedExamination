@@ -58,21 +58,28 @@ namespace InputSpeedExamination
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="text">文本内容</param>
-        public void InsertNewContent(string title, string text)
+        public bool InsertNewContent(string title, string text)
         {
             try
             {
+                text = text.Replace("'", "''");
                 CONN.Open();
-
+                string textMD5 = GetMD5Hash(text);
+                string sql_check = string.Format(@"SELECT * FROM ContentTable WHERE [MD5_Value] = '{0}'", textMD5);
+                var cmd_check = new SQLiteCommand(sql_check, CONN);
+                var sda_check = cmd_check.ExecuteReader();
+                if (sda_check.HasRows)
+                    return false;
                 string sql = string.Format
-                    ("INSERT INTO ContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}')",
-                    title, text, text.Length.ToString(), GetMD5Hash(text));
+                    (@"INSERT INTO ContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
+                    title, text, text.Length.ToString(), textMD5);
                 SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
                 cmd.ExecuteNonQuery();
+                return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return;
+                throw e;
             }
             finally
             {
@@ -84,7 +91,7 @@ namespace InputSpeedExamination
         /// 获取全部内容
         /// </summary>
         /// <returns></returns>
-        public DataSet GetAllContent()
+        public DataTable GetAllContent()
         {
             try
             {
@@ -92,12 +99,12 @@ namespace InputSpeedExamination
 
                 var res = new DataSet();
 
-                string sql = @"SELECT * FROM ContentTable";
+                string sql = @"SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM ContentTable";
                 SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, CONN);
                 sda.Fill(res, "ContentTable");
                 sda.Dispose();
 
-                return res;
+                return res.Tables[0];
             }
             catch (Exception e)
             {
@@ -114,27 +121,28 @@ namespace InputSpeedExamination
         /// </summary>
         /// <param name="Keyword"></param>
         /// <returns></returns>
-        public DataSet GetContentByKeyword(string Keyword)
+        public DataTable GetContentByKeyword(string Keyword)
         {
             try
             {
                 CONN.Open();
                 var ds = new DataSet();
-                string sql = string.Format("SELECT * FROM ContentTable WHERE Title LIKE '{0}' OR Text LIKE '{1}'",
+                string sql = string.Format(
+                    "SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM ContentTable WHERE Title LIKE '%{0}%' OR Text LIKE '%{1}%'",
                     Keyword, Keyword);
                 SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, CONN);
                 sda.Fill(ds, "ContentTable");
                 sda.Dispose();
 
-                return ds;
+                return ds.Tables[0];
             }
-            catch
+            catch(Exception e)
             {
-                return null;
+                throw e;
             }
             finally
             {
-                CONN.Clone();
+                CONN.Close();
             }
         }
 

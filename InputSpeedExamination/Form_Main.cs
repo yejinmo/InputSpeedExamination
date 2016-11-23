@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using MaterialSkin;
 using System.Threading;
+using System.IO;
 
 namespace InputSpeedExamination
 {
@@ -114,6 +115,7 @@ namespace InputSpeedExamination
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
             //debug();
+            RefreshExaminationList();
             TabControl_Main.SelectedTab = TabPage_SelectText;
         }
 
@@ -665,7 +667,8 @@ namespace InputSpeedExamination
         {
             try
             {
-                Invoke((EventHandler)delegate {
+                Invoke((EventHandler)delegate
+                {
                     ProcessBar_SearchExamination.Visible = true;
                 });
                 bool needbreak = false;
@@ -679,7 +682,25 @@ namespace InputSpeedExamination
                             needbreak = true;
                     });
                 }
-                Thread.Sleep(3000);
+                var dt = db.GetContentByKeyword(SearchKeyword);
+                Invoke((EventHandler)delegate
+                {
+                    ListView_ExaminationList.Items.Clear();
+                });
+                int dealy = 1000 / (dt.Rows.Count + 1);
+                foreach (DataRow row in dt.Rows)
+                {
+                    Thread.Sleep(dealy);
+                    Invoke((EventHandler)delegate
+                    {
+                        ListViewItem lvi = new ListViewItem(row[0].ToString());
+                        lvi.SubItems.Add(row[2].ToString());
+                        lvi.SubItems.Add(row[1].ToString().Length > 50 ? row[1].ToString().Substring(0, 50) : row[1].ToString());
+                        lvi.SubItems.Add(row[3].ToString());
+                        ListView_ExaminationList.Items.Add(lvi);
+                    });
+                }
+                Thread.Sleep(1000);
             }
             catch
             {
@@ -687,7 +708,8 @@ namespace InputSpeedExamination
             }
             finally
             {
-                Invoke((EventHandler) delegate{
+                Invoke((EventHandler)delegate
+                {
                     ProcessBar_SearchExamination.Visible = false;
                     ProcessBar_SearchExamination.Top = 26;
                 });
@@ -699,14 +721,100 @@ namespace InputSpeedExamination
             TabControl_Main.SelectedTab = TabPage_Select;
         }
 
-        private void Button_SelectText_Inport_Click(object sender, EventArgs e)
+        private void Button_SelectText_Import_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "请选择文本文件";
-            openFile.Filter = "文本文件(*.txt)|*.txt";
-            openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFile.Multiselect = false;
-            openFile.ShowDialog();
+            Thread ImportTextFileThread = new Thread(new ThreadStart(ImportTextFile));
+            ImportTextFileThread.Start();
+        }
+
+        private void ImportTextFile()
+        {
+            try
+            {
+                OpenFileDialog openFile = new OpenFileDialog();
+                string fileName = string.Empty;
+                string title = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    openFile.Title = "请选择文本文件";
+                    openFile.Filter = "文本文件(*.txt)|*.txt";
+                    openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    openFile.Multiselect = false;
+                    if (openFile.ShowDialog() == DialogResult.Cancel)
+                        return;
+                    fileName = openFile.FileName;
+                    title = openFile.SafeFileName;
+                });
+                if (string.IsNullOrEmpty(fileName))
+                    return;
+                var fileContent = ReadFile(fileName);
+                if (db.InsertNewContent(title, fileContent))
+                    Invoke((EventHandler)delegate
+                    {
+                        MessageBox.Show(this, "导入成功\n\n" + fileName + "\n\n共计 " + fileContent.Length + " 字符", "提示");
+                    });
+                else
+                    Invoke((EventHandler)delegate
+                    {
+                        MessageBox.Show(this, "导入失败\n\n" + fileName + "\n\n已包含相同内容文本", "提示");
+                    });
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "导入失败\n\n" + e.Message, "提示");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    RefreshExaminationList();
+                    Enabled = true;
+                });
+            }
+        }
+
+        public string ReadFile(string path)
+        {
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            string line = string.Empty;
+            string res = string.Empty;
+            while ((line = sr.ReadLine()) != null)
+                res += line;
+            sr.Dispose();
+            return res;
+        }
+
+        private void RefreshExaminationList(DataTable dt = null)
+        {
+            if (dt == null)
+                dt = db.GetAllContent();
+            Invoke((EventHandler)delegate
+            {
+                ListView_ExaminationList.Items.Clear();
+                ListView_ExaminationList.BeginUpdate();
+                foreach (DataRow row in dt.Rows)
+                {
+                    ListViewItem lvi = new ListViewItem(row[0].ToString());
+                    lvi.SubItems.Add(row[2].ToString());
+                    lvi.SubItems.Add(row[1].ToString().Length > 50 ? row[1].ToString().Substring(0, 50) : row[1].ToString());
+                    lvi.SubItems.Add(row[3].ToString());
+                    ListView_ExaminationList.Items.Add(lvi);
+                }
+                ListView_ExaminationList.EndUpdate();
+            });
+        }
+
+        private void ListView_ExaminationList_Resize(object sender, EventArgs e)
+        {
+            ColumnHeader_ExaminationList_MD5.Width = 0;
+            ColumnHeader_ExaminationList_Preview.Width =
+                ListView_ExaminationList.Width -
+                ColumnHeader_ExaminationList_Title.Width -
+                ColumnHeader_ExaminationList_Length.Width;
         }
 
         #endregion
