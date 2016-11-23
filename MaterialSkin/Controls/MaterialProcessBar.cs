@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MaterialSkin.Controls
@@ -9,7 +10,7 @@ namespace MaterialSkin.Controls
     /// </summary>
     public partial class MaterialProcessBar : ProgressBar, IMaterialControl
     {
-        private System.Windows.Forms.Timer RenderTimer = new Timer() { };
+        private System.Windows.Forms.Timer RenderTimer = new System.Windows.Forms.Timer() { };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MaterialProcessBar"/> class.
@@ -21,6 +22,7 @@ namespace MaterialSkin.Controls
             RenderTimer.Tick += new EventHandler(RenderTimer_Tick);
             RenderTimer.Interval = Interval;
             RenderTimer.Enabled = Processing;
+            //IsCreated = true;
         }
 
         private void RenderTimer_Tick(object sender, EventArgs e)
@@ -49,7 +51,6 @@ namespace MaterialSkin.Controls
                 Value = value;
             }
         }
-
 
         /// <summary>
         /// Gets or sets the depth.
@@ -159,9 +160,12 @@ namespace MaterialSkin.Controls
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
+            
             //draw background
+            //e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, top_pos, e.ClipRectangle.Width, e.ClipRectangle.Height);
             e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
             //draw process block
+            //e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, top_pos, LengthValue, e.ClipRectangle.Height);
             e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, 0, LengthValue, e.ClipRectangle.Height);
 
             /*
@@ -170,5 +174,82 @@ namespace MaterialSkin.Controls
             e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
             */
         }
+
+        //private bool visible = true;
+        //int top_pos = 0;
+        //public new bool Visible
+        //{
+        //    get
+        //    {
+        //        return visible;
+        //    }
+        //    set
+        //    {
+        //        visible = value;
+        //        if (visible)
+        //        {
+        //            top_pos = -Height;
+        //            Invalidate();
+        //            if (HideThread != null)
+        //                HideThread.Abort();
+        //            if (ShowThread != null)
+        //                ShowThread.Abort();
+        //            ShowThread = new Thread(new ThreadStart(ShowSub));
+        //            ShowThread.Start();
+        //        }
+        //        else
+        //        {
+        //            top_pos = 0;
+        //            Invalidate();
+        //            if (ShowThread != null)
+        //                ShowThread.Abort();
+        //            if (HideThread != null)
+        //                HideThread.Abort();
+        //            HideThread = new Thread(new ThreadStart(HideSub));
+        //            HideThread.Start();
+        //        }
+        //    }
+        //}
+
+        //Thread ShowThread;
+
+        //Thread HideThread;
+
+        //private void ShowSub()
+        //{
+        //    while (true && IsCreated)
+        //    {
+        //        Thread.Sleep(40);
+        //        top_pos++;
+        //        Invoke((EventHandler)delegate {
+        //            Invalidate();
+        //        });
+        //        if (top_pos >= 0)
+        //            break;
+        //    }
+        //    Invoke((EventHandler)delegate {
+        //        base.Visible = true;
+        //    });
+        //}
+
+        //private void HideSub()
+        //{
+        //    while (true && IsCreated)
+        //    {
+        //        Thread.Sleep(40);
+        //        top_pos--;
+        //        Invoke((EventHandler)delegate {
+        //            Invalidate();
+        //        });
+        //        if (top_pos <= -Height)
+        //            break;
+        //    }
+        //    Invoke((EventHandler)delegate {
+        //        base.Visible = false;
+        //    });
+        //}
+
+        //private bool IsCreated = false;
+
     }
 }

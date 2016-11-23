@@ -55,9 +55,14 @@
             this.ProcessBar_Start = new MaterialSkin.Controls.MaterialProcessBar();
             this.Button_Start = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabPage_SelectText = new System.Windows.Forms.TabPage();
-            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.Text_SearchExamination = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.ListView_ExaminationList = new MaterialSkin.Controls.MaterialListView();
             this.ColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
+            this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -82,7 +87,7 @@
             this.TabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(1053, 709);
+            this.TabControl_Main.Size = new System.Drawing.Size(1217, 718);
             this.TabControl_Main.TabIndex = 0;
             // 
             // TabPage_Select
@@ -94,7 +99,7 @@
             this.TabPage_Select.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Select.Name = "TabPage_Select";
             this.TabPage_Select.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Select.Size = new System.Drawing.Size(1045, 683);
+            this.TabPage_Select.Size = new System.Drawing.Size(1209, 692);
             this.TabPage_Select.TabIndex = 0;
             this.TabPage_Select.Text = "tabPage1";
             // 
@@ -133,7 +138,7 @@
             this.WebView_Select_BG.Margin = new System.Windows.Forms.Padding(0);
             this.WebView_Select_BG.MinimumSize = new System.Drawing.Size(20, 20);
             this.WebView_Select_BG.Name = "WebView_Select_BG";
-            this.WebView_Select_BG.Size = new System.Drawing.Size(1039, 677);
+            this.WebView_Select_BG.Size = new System.Drawing.Size(1203, 686);
             this.WebView_Select_BG.TabIndex = 2;
             // 
             // TabPage_Examination
@@ -143,14 +148,13 @@
             this.TabPage_Examination.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Examination.Name = "TabPage_Examination";
             this.TabPage_Examination.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Examination.Size = new System.Drawing.Size(1045, 683);
+            this.TabPage_Examination.Size = new System.Drawing.Size(1209, 692);
             this.TabPage_Examination.TabIndex = 1;
             this.TabPage_Examination.Text = "tabPage2";
             // 
             // Panel_Input_Main
             // 
-            this.Panel_Input_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Panel_Input_Main.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Input_Main.Controls.Add(this.Button_Pause_Continue);
             this.Panel_Input_Main.Controls.Add(this.Label_Stats_Time);
@@ -169,14 +173,14 @@
             this.Panel_Input_Main.Location = new System.Drawing.Point(34, 11);
             this.Panel_Input_Main.Margin = new System.Windows.Forms.Padding(30);
             this.Panel_Input_Main.Name = "Panel_Input_Main";
-            this.Panel_Input_Main.Size = new System.Drawing.Size(981, 651);
+            this.Panel_Input_Main.Size = new System.Drawing.Size(1145, 630);
             this.Panel_Input_Main.TabIndex = 10;
             // 
             // Button_Pause_Continue
             // 
             this.Button_Pause_Continue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Pause_Continue.Depth = 0;
-            this.Button_Pause_Continue.Location = new System.Drawing.Point(849, 592);
+            this.Button_Pause_Continue.Location = new System.Drawing.Point(1013, 571);
             this.Button_Pause_Continue.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Pause_Continue.Name = "Button_Pause_Continue";
             this.Button_Pause_Continue.Primary = true;
@@ -193,7 +197,7 @@
             this.Label_Stats_Time.Depth = 0;
             this.Label_Stats_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Label_Stats_Time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Stats_Time.Location = new System.Drawing.Point(4, 592);
+            this.Label_Stats_Time.Location = new System.Drawing.Point(4, 571);
             this.Label_Stats_Time.MouseState = MaterialSkin.MouseState.HOVER;
             this.Label_Stats_Time.Name = "Label_Stats_Time";
             this.Label_Stats_Time.Size = new System.Drawing.Size(505, 46);
@@ -205,7 +209,7 @@
             // 
             this.Button_Next_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Next_Page.Depth = 0;
-            this.Button_Next_Page.Location = new System.Drawing.Point(714, 592);
+            this.Button_Next_Page.Location = new System.Drawing.Point(878, 571);
             this.Button_Next_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Next_Page.Name = "Button_Next_Page";
             this.Button_Next_Page.Primary = true;
@@ -219,7 +223,7 @@
             // 
             this.Button_Previous_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Previous_Page.Depth = 0;
-            this.Button_Previous_Page.Location = new System.Drawing.Point(579, 592);
+            this.Button_Previous_Page.Location = new System.Drawing.Point(743, 571);
             this.Button_Previous_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Previous_Page.Name = "Button_Previous_Page";
             this.Button_Previous_Page.Primary = true;
@@ -243,7 +247,7 @@
             this.Examination_Lable_1.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.Examination_Lable_1.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_1.Name = "Examination_Lable_1";
-            this.Examination_Lable_1.Size = new System.Drawing.Size(967, 50);
+            this.Examination_Lable_1.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_1.TabIndex = 1;
             this.Examination_Lable_1.TextFieldString = "123   一二三abc   123   一二三abc   123   一二三abc   ";
             this.Examination_Lable_1.TextString = "123   一二三abc   123   一二三abc   123   一二三abc   ";
@@ -274,7 +278,7 @@
             this.Examination_TextLine_5.SelectedText = "";
             this.Examination_TextLine_5.SelectionLength = 0;
             this.Examination_TextLine_5.SelectionStart = 0;
-            this.Examination_TextLine_5.Size = new System.Drawing.Size(967, 51);
+            this.Examination_TextLine_5.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_5.TabIndex = 9;
             this.Examination_TextLine_5.TabStop = false;
             this.Examination_TextLine_5.UseSystemPasswordChar = false;
@@ -295,7 +299,7 @@
             this.Examination_Lable_5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_5.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_5.Name = "Examination_Lable_5";
-            this.Examination_Lable_5.Size = new System.Drawing.Size(967, 50);
+            this.Examination_Lable_5.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_5.TabIndex = 5;
             this.Examination_Lable_5.TextFieldString = "";
             this.Examination_Lable_5.TextString = "";
@@ -326,7 +330,7 @@
             this.Examination_TextLine_1.SelectedText = "";
             this.Examination_TextLine_1.SelectionLength = 0;
             this.Examination_TextLine_1.SelectionStart = 0;
-            this.Examination_TextLine_1.Size = new System.Drawing.Size(967, 51);
+            this.Examination_TextLine_1.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_1.TabIndex = 0;
             this.Examination_TextLine_1.TabStop = false;
             this.Examination_TextLine_1.Text = "123   一二三abc   123   一二三abc   123   一二三abc   ";
@@ -360,7 +364,7 @@
             this.Examination_TextLine_4.SelectedText = "";
             this.Examination_TextLine_4.SelectionLength = 0;
             this.Examination_TextLine_4.SelectionStart = 0;
-            this.Examination_TextLine_4.Size = new System.Drawing.Size(967, 51);
+            this.Examination_TextLine_4.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_4.TabIndex = 8;
             this.Examination_TextLine_4.TabStop = false;
             this.Examination_TextLine_4.UseSystemPasswordChar = false;
@@ -381,7 +385,7 @@
             this.Examination_Lable_4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_4.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_4.Name = "Examination_Lable_4";
-            this.Examination_Lable_4.Size = new System.Drawing.Size(967, 50);
+            this.Examination_Lable_4.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_4.TabIndex = 4;
             this.Examination_Lable_4.TextFieldString = "";
             this.Examination_Lable_4.TextString = "";
@@ -400,7 +404,7 @@
             this.Examination_Lable_2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_2.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_2.Name = "Examination_Lable_2";
-            this.Examination_Lable_2.Size = new System.Drawing.Size(967, 50);
+            this.Examination_Lable_2.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_2.TabIndex = 2;
             this.Examination_Lable_2.TextFieldString = "";
             this.Examination_Lable_2.TextString = "";
@@ -431,7 +435,7 @@
             this.Examination_TextLine_3.SelectedText = "";
             this.Examination_TextLine_3.SelectionLength = 0;
             this.Examination_TextLine_3.SelectionStart = 0;
-            this.Examination_TextLine_3.Size = new System.Drawing.Size(967, 51);
+            this.Examination_TextLine_3.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_3.TabIndex = 7;
             this.Examination_TextLine_3.TabStop = false;
             this.Examination_TextLine_3.UseSystemPasswordChar = false;
@@ -452,7 +456,7 @@
             this.Examination_Lable_3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_3.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_3.Name = "Examination_Lable_3";
-            this.Examination_Lable_3.Size = new System.Drawing.Size(967, 50);
+            this.Examination_Lable_3.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_3.TabIndex = 3;
             this.Examination_Lable_3.TextFieldString = "";
             this.Examination_Lable_3.TextString = "";
@@ -483,7 +487,7 @@
             this.Examination_TextLine_2.SelectedText = "";
             this.Examination_TextLine_2.SelectionLength = 0;
             this.Examination_TextLine_2.SelectionStart = 0;
-            this.Examination_TextLine_2.Size = new System.Drawing.Size(967, 51);
+            this.Examination_TextLine_2.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_2.TabIndex = 6;
             this.Examination_TextLine_2.TabStop = false;
             this.Examination_TextLine_2.UseSystemPasswordChar = false;
@@ -495,7 +499,7 @@
             this.TabPage_Start.Controls.Add(this.Panel_Start);
             this.TabPage_Start.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Start.Name = "TabPage_Start";
-            this.TabPage_Start.Size = new System.Drawing.Size(1045, 683);
+            this.TabPage_Start.Size = new System.Drawing.Size(1209, 692);
             this.TabPage_Start.TabIndex = 2;
             this.TabPage_Start.Text = "TabPage_Start";
             this.TabPage_Start.UseVisualStyleBackColor = true;
@@ -538,47 +542,115 @@
             // 
             // TabPage_SelectText
             // 
-            this.TabPage_SelectText.Controls.Add(this.materialListView1);
+            this.TabPage_SelectText.BackColor = System.Drawing.Color.White;
+            this.TabPage_SelectText.Controls.Add(this.Text_SearchExamination);
+            this.TabPage_SelectText.Controls.Add(this.ListView_ExaminationList);
+            this.TabPage_SelectText.Controls.Add(this.ProcessBar_SearchExamination);
             this.TabPage_SelectText.Location = new System.Drawing.Point(4, 22);
             this.TabPage_SelectText.Name = "TabPage_SelectText";
-            this.TabPage_SelectText.Size = new System.Drawing.Size(1045, 683);
+            this.TabPage_SelectText.Size = new System.Drawing.Size(1209, 692);
             this.TabPage_SelectText.TabIndex = 3;
             this.TabPage_SelectText.Text = "TabPage_SelectText";
-            this.TabPage_SelectText.UseVisualStyleBackColor = true;
             // 
-            // materialListView1
+            // Text_SearchExamination
             // 
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnHeader1});
-            this.materialListView1.Depth = 0;
-            this.materialListView1.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.materialListView1.Location = new System.Drawing.Point(199, 96);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(287, 413);
-            this.materialListView1.TabIndex = 0;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
+            this.Text_SearchExamination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_SearchExamination.Depth = 0;
+            this.Text_SearchExamination.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_SearchExamination.ErrorModeString = "";
+            this.Text_SearchExamination.FollowLabel = null;
+            this.Text_SearchExamination.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_SearchExamination.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_SearchExamination.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Text_SearchExamination.ForeColor = System.Drawing.Color.Black;
+            this.Text_SearchExamination.Hint = "在此键入搜索内容";
+            this.Text_SearchExamination.IsErrorMode = false;
+            this.Text_SearchExamination.Location = new System.Drawing.Point(7, 3);
+            this.Text_SearchExamination.MaxLength = 32767;
+            this.Text_SearchExamination.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_SearchExamination.Name = "Text_SearchExamination";
+            this.Text_SearchExamination.PasswordChar = '\0';
+            this.Text_SearchExamination.ReadOlay = false;
+            this.Text_SearchExamination.SelectedText = "";
+            this.Text_SearchExamination.SelectionLength = 0;
+            this.Text_SearchExamination.SelectionStart = 0;
+            this.Text_SearchExamination.Size = new System.Drawing.Size(1191, 30);
+            this.Text_SearchExamination.TabIndex = 1;
+            this.Text_SearchExamination.TabStop = false;
+            this.Text_SearchExamination.UseSystemPasswordChar = false;
+            this.Text_SearchExamination.TextChanged += new System.EventHandler(this.Text_SearchExamination_TextChanged);
+            // 
+            // ListView_ExaminationList
+            // 
+            this.ListView_ExaminationList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListView_ExaminationList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListView_ExaminationList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.ListView_ExaminationList.Depth = 0;
+            this.ListView_ExaminationList.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.ListView_ExaminationList.FullRowSelect = true;
+            this.ListView_ExaminationList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ListView_ExaminationList.Location = new System.Drawing.Point(5, 42);
+            this.ListView_ExaminationList.Margin = new System.Windows.Forms.Padding(5);
+            this.ListView_ExaminationList.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.ListView_ExaminationList.MouseState = MaterialSkin.MouseState.OUT;
+            this.ListView_ExaminationList.Name = "ListView_ExaminationList";
+            this.ListView_ExaminationList.OwnerDraw = true;
+            this.ListView_ExaminationList.Size = new System.Drawing.Size(1191, 497);
+            this.ListView_ExaminationList.TabIndex = 0;
+            this.ListView_ExaminationList.UseCompatibleStateImageBehavior = false;
+            this.ListView_ExaminationList.View = System.Windows.Forms.View.Details;
             // 
             // ColumnHeader1
             // 
-            this.ColumnHeader1.Text = "类别";
+            this.ColumnHeader1.Text = "标题";
+            this.ColumnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "长度";
+            this.columnHeader2.Width = 100;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "内容预览";
+            this.columnHeader3.Width = 300;
+            // 
+            // ProcessBar_SearchExamination
+            // 
+            this.ProcessBar_SearchExamination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProcessBar_SearchExamination.Depth = 0;
+            this.ProcessBar_SearchExamination.Interval = 10;
+            this.ProcessBar_SearchExamination.LengthValue = 500;
+            this.ProcessBar_SearchExamination.Location = new System.Drawing.Point(7, 34);
+            this.ProcessBar_SearchExamination.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_SearchExamination.Name = "ProcessBar_SearchExamination";
+            this.ProcessBar_SearchExamination.Processing = true;
+            this.ProcessBar_SearchExamination.Size = new System.Drawing.Size(1191, 5);
+            this.ProcessBar_SearchExamination.StepValue = 20;
+            this.ProcessBar_SearchExamination.TabIndex = 2;
+            this.ProcessBar_SearchExamination.Visible = false;
             // 
             // Timer_Clocks
             // 
             this.Timer_Clocks.Interval = 1000;
             this.Timer_Clocks.Tick += new System.EventHandler(this.Timer_Clocks_Tick);
             // 
+            // Timer_SearchExamination
+            // 
+            this.Timer_SearchExamination.Interval = 500;
+            this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 776);
+            this.ClientSize = new System.Drawing.Size(1219, 785);
             this.Controls.Add(this.TabControl_Main);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 480);
@@ -631,8 +703,13 @@
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Start;
         private MaterialSkin.Controls.MaterialRaisedButton Button_Start;
         private System.Windows.Forms.TabPage TabPage_SelectText;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private MaterialSkin.Controls.MaterialListView ListView_ExaminationList;
         private System.Windows.Forms.ColumnHeader ColumnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private MaterialSkin.Controls.MaterialSingleLineTextField Text_SearchExamination;
+        private MaterialSkin.Controls.MaterialProcessBar ProcessBar_SearchExamination;
+        private System.Windows.Forms.Timer Timer_SearchExamination;
     }
 }
 

@@ -985,7 +985,7 @@ namespace MaterialSkin.Controls
             baseTextBox = new BaseTextBox
             {
                 BorderStyle = BorderStyle.None,
-                Font = SkinManager.FONT_SIZE_26,
+                Font = SkinManager.FONT_SIZE_14,
                 ForeColor = ForeColor,
                 Location = new Point(0, 0),
                 Width = Width,
@@ -1179,7 +1179,6 @@ namespace MaterialSkin.Controls
                 });
             }
 
-
             private char useSystemPasswordChar = EmptyChar;
             public new bool UseSystemPasswordChar
             {
@@ -1279,5 +1278,6 @@ namespace MaterialSkin.Controls
                 });
             }
         }
+
     }
 }

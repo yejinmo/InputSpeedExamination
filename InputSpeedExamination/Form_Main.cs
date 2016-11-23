@@ -33,6 +33,8 @@ namespace InputSpeedExamination
             debug();
         }
 
+        DataBase db = new DataBase();
+
         #endregion
 
         #region UI
@@ -111,8 +113,8 @@ namespace InputSpeedExamination
 
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
-            debug();
-            TabControl_Main.SelectedTab = TabPage_Start;
+            //debug();
+            TabControl_Main.SelectedTab = TabPage_SelectText;
         }
 
         #endregion
@@ -607,6 +609,89 @@ namespace InputSpeedExamination
                 (Stats_Char_Current_Total == 0 ? 100 : (int)((float)Stats_Char_Correct_Total / Stats_Char_Current_Total * 100)) + "%",
                 (Stats_Time == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Time * 60.0)),
                 (Stats_Char_Total == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Char_Total * 100)) + "%");
+        }
+
+        #endregion
+
+        #region SelectExamination
+
+        Thread SearchExaminationThread = null;
+
+        string SearchKeyword = "";
+
+        private void Text_SearchExamination_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SearchKeyword = Text_SearchExamination.Text;
+                ProcessBar_SearchExamination.Visible = false;
+                ProcessBar_SearchExamination.Top = 26;
+                if (SearchExaminationThread != null)
+                    SearchExaminationThread.Abort();
+                Timer_SearchExamination.Enabled = false;
+                Timer_SearchExamination.Enabled = true;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void Timer_SearchExamination_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SearchExaminationThread == null)
+                    SearchExaminationThread = new Thread(new ThreadStart(SearchExamination));
+                else
+                {
+                    SearchExaminationThread.Abort();
+                    SearchExaminationThread = new Thread(new ThreadStart(SearchExamination));
+                }
+                SearchExaminationThread.IsBackground = true;
+                SearchExaminationThread.Start();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Timer_SearchExamination.Enabled = false;
+            }
+        }
+
+        private void SearchExamination()
+        {
+            try
+            {
+                Invoke((EventHandler)delegate {
+                    ProcessBar_SearchExamination.Visible = true;
+                });
+                bool needbreak = false;
+                while (!needbreak)
+                {
+                    Thread.Sleep(40);
+                    Invoke((EventHandler)delegate
+                    {
+                        ProcessBar_SearchExamination.Top++;
+                        if (ProcessBar_SearchExamination.Top >= 34)
+                            needbreak = true;
+                    });
+                }
+                Thread.Sleep(3000);
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Invoke((EventHandler) delegate{
+                    ProcessBar_SearchExamination.Visible = false;
+                    ProcessBar_SearchExamination.Top = 26;
+                });
+            }
         }
 
         #endregion
