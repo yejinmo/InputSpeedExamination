@@ -175,5 +175,40 @@ namespace InputSpeedExamination
             return sBuilder.ToString().ToLower();
         }
 
+        /// <summary>
+        /// 根据MD5值获取内容
+        /// </summary>
+        /// <param name="MD5"></param>
+        /// <returns></returns>
+        public string GetContentByMD5(string MD5)
+        {
+            try
+            {
+                CONN.Open();
+                string res = string.Empty;
+                string sql = string.Format("SELECT [Text] FROM ContentTable WHERE [MD5_Value] = '{0}'", MD5);
+                var cmd = new SQLiteCommand(sql, CONN);
+                var sda = cmd.ExecuteReader();
+                if (!sda.Read())
+                {
+                    sda.Close();
+                    return string.Empty;
+                }
+                else
+                {
+                    return sda["Text"].ToString();
+                }
+            }
+            catch
+            {
+                return string.Empty;
+            }
+            finally
+            {
+                CONN.Close();
+            }
+        }
+
     }
+
 }

@@ -120,7 +120,7 @@ namespace InputSpeedExamination
         }
 
         #endregion
-
+        
         #region Examination
 
         private void Examination_TextLine_1_KeyDown(object sender, KeyEventArgs e)
@@ -815,6 +815,26 @@ namespace InputSpeedExamination
                 ListView_ExaminationList.Width -
                 ColumnHeader_ExaminationList_Title.Width -
                 ColumnHeader_ExaminationList_Length.Width;
+        }
+
+        private void Button_SelectText_Begin_Click(object sender, EventArgs e)
+        {
+            if (ListView_ExaminationList.SelectedItems.Count == 0)
+            {
+                MessageBox.Show(this, "请选中一项后再操作", "提示");
+                return;
+            }
+            string md5 = ListView_ExaminationList.SelectedItems[0].SubItems[3].Text;
+            string content = db.GetContentByMD5(md5);
+            if (string.IsNullOrEmpty(content))
+                return;
+            LoadExamination(content);
+            TabControl_Main.SelectedTab = TabPage_Start;
+        }
+
+        private void ListView_ExaminationList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Button_SelectText_Begin.PerformClick();
         }
 
         #endregion
