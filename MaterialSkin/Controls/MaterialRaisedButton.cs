@@ -18,6 +18,7 @@ namespace MaterialSkin.Controls
         public bool Primary { get; set; }
 
         private readonly AnimationManager animationManager;
+        private readonly AnimationManager hoverAnimationManager;
 
         public MaterialRaisedButton()
         {
@@ -29,13 +30,56 @@ namespace MaterialSkin.Controls
                 AnimationType = AnimationType.EaseOut
             };
             animationManager.OnAnimationProgress += sender => Invalidate();
+            hoverAnimationManager = new AnimationManager
+            {
+                Increment = 0.07,
+                AnimationType = AnimationType.Linear
+            };
+
+            hoverAnimationManager.OnAnimationProgress += sender => Invalidate();
         }
 
-        protected override void OnMouseUp(MouseEventArgs mevent)
-        {
-            base.OnMouseUp(mevent);
+        //protected override void OnMouseUp(MouseEventArgs mevent)
+        //{
+        //    base.OnMouseUp(mevent);
 
-            animationManager.StartNewAnimation(AnimationDirection.In, mevent.Location);
+        //    animationManager.StartNewAnimation(AnimationDirection.In, mevent.Location);
+        //}
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+            if (DesignMode) return;
+
+            MouseState = MouseState.OUT;
+            MouseEnter += (sender, args) =>
+            {
+                MouseState = MouseState.HOVER;
+                hoverAnimationManager.StartNewAnimation(AnimationDirection.In);
+                Invalidate();
+            };
+            MouseLeave += (sender, args) =>
+            {
+                MouseState = MouseState.OUT;
+                hoverAnimationManager.StartNewAnimation(AnimationDirection.Out);
+                Invalidate();
+            };
+            MouseDown += (sender, args) =>
+            {
+                if (args.Button == MouseButtons.Left)
+                {
+                    MouseState = MouseState.DOWN;
+
+                    animationManager.StartNewAnimation(AnimationDirection.In, args.Location);
+                    Invalidate();
+                }
+            };
+            MouseUp += (sender, args) =>
+            {
+                MouseState = MouseState.HOVER;
+
+                Invalidate();
+            };
         }
 
         protected override void OnPaint(PaintEventArgs pevent)

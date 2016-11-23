@@ -671,7 +671,7 @@ namespace InputSpeedExamination
                 bool needbreak = false;
                 while (!needbreak)
                 {
-                    Thread.Sleep(40);
+                    Thread.Sleep(50);
                     Invoke((EventHandler)delegate
                     {
                         ProcessBar_SearchExamination.Top++;
@@ -692,6 +692,21 @@ namespace InputSpeedExamination
                     ProcessBar_SearchExamination.Top = 26;
                 });
             }
+        }
+
+        private void Button_SelectText_Return_Click(object sender, EventArgs e)
+        {
+            TabControl_Main.SelectedTab = TabPage_Select;
+        }
+
+        private void Button_SelectText_Inport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = "请选择文本文件";
+            openFile.Filter = "文本文件(*.txt)|*.txt";
+            openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            openFile.Multiselect = false;
+            openFile.ShowDialog();
         }
 
         #endregion
