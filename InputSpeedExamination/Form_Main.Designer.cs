@@ -175,17 +175,17 @@
             this.Panel_Input_Main.Controls.Add(this.Examination_TextLine_2);
             this.Panel_Input_Main.Controls.Add(this.Examination_Lable_4);
             this.Panel_Input_Main.Controls.Add(this.Examination_Lable_5);
-            this.Panel_Input_Main.Location = new System.Drawing.Point(34, 5);
+            this.Panel_Input_Main.Location = new System.Drawing.Point(30, 5);
             this.Panel_Input_Main.Margin = new System.Windows.Forms.Padding(30);
             this.Panel_Input_Main.Name = "Panel_Input_Main";
-            this.Panel_Input_Main.Size = new System.Drawing.Size(1141, 715);
+            this.Panel_Input_Main.Size = new System.Drawing.Size(1145, 715);
             this.Panel_Input_Main.TabIndex = 10;
             // 
             // Button_Pause_Continue
             // 
             this.Button_Pause_Continue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Pause_Continue.Depth = 0;
-            this.Button_Pause_Continue.Location = new System.Drawing.Point(1009, 656);
+            this.Button_Pause_Continue.Location = new System.Drawing.Point(1013, 656);
             this.Button_Pause_Continue.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Pause_Continue.Name = "Button_Pause_Continue";
             this.Button_Pause_Continue.Primary = true;
@@ -214,7 +214,7 @@
             // 
             this.Button_Next_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Next_Page.Depth = 0;
-            this.Button_Next_Page.Location = new System.Drawing.Point(874, 656);
+            this.Button_Next_Page.Location = new System.Drawing.Point(878, 656);
             this.Button_Next_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Next_Page.Name = "Button_Next_Page";
             this.Button_Next_Page.Primary = true;
@@ -228,7 +228,7 @@
             // 
             this.Button_Previous_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Previous_Page.Depth = 0;
-            this.Button_Previous_Page.Location = new System.Drawing.Point(739, 656);
+            this.Button_Previous_Page.Location = new System.Drawing.Point(743, 656);
             this.Button_Previous_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Previous_Page.Name = "Button_Previous_Page";
             this.Button_Previous_Page.Primary = true;
@@ -252,7 +252,7 @@
             this.Examination_Lable_1.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.Examination_Lable_1.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_1.Name = "Examination_Lable_1";
-            this.Examination_Lable_1.Size = new System.Drawing.Size(1127, 50);
+            this.Examination_Lable_1.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_1.TabIndex = 1;
             this.Examination_Lable_1.TextFieldString = "123   一二三abc   123   一二三abc   123   一二三abc   ";
             this.Examination_Lable_1.TextString = "123   一二三abc   123   一二三abc   123   一二三abc   ";
@@ -283,7 +283,7 @@
             this.Examination_TextLine_5.SelectedText = "";
             this.Examination_TextLine_5.SelectionLength = 0;
             this.Examination_TextLine_5.SelectionStart = 0;
-            this.Examination_TextLine_5.Size = new System.Drawing.Size(1127, 51);
+            this.Examination_TextLine_5.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_5.TabIndex = 9;
             this.Examination_TextLine_5.TabStop = false;
             this.Examination_TextLine_5.UseSystemPasswordChar = false;
@@ -304,7 +304,7 @@
             this.Examination_Lable_5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_5.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_5.Name = "Examination_Lable_5";
-            this.Examination_Lable_5.Size = new System.Drawing.Size(1127, 50);
+            this.Examination_Lable_5.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_5.TabIndex = 5;
             this.Examination_Lable_5.TextFieldString = "";
             this.Examination_Lable_5.TextString = "";
@@ -335,7 +335,7 @@
             this.Examination_TextLine_1.SelectedText = "";
             this.Examination_TextLine_1.SelectionLength = 0;
             this.Examination_TextLine_1.SelectionStart = 0;
-            this.Examination_TextLine_1.Size = new System.Drawing.Size(1127, 51);
+            this.Examination_TextLine_1.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_1.TabIndex = 0;
             this.Examination_TextLine_1.TabStop = false;
             this.Examination_TextLine_1.Text = "123   一二三abc   123   一二三abc   123   一二三abc   ";
@@ -369,7 +369,7 @@
             this.Examination_TextLine_4.SelectedText = "";
             this.Examination_TextLine_4.SelectionLength = 0;
             this.Examination_TextLine_4.SelectionStart = 0;
-            this.Examination_TextLine_4.Size = new System.Drawing.Size(1127, 51);
+            this.Examination_TextLine_4.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_4.TabIndex = 8;
             this.Examination_TextLine_4.TabStop = false;
             this.Examination_TextLine_4.UseSystemPasswordChar = false;
@@ -390,7 +390,7 @@
             this.Examination_Lable_4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_4.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_4.Name = "Examination_Lable_4";
-            this.Examination_Lable_4.Size = new System.Drawing.Size(1127, 50);
+            this.Examination_Lable_4.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_4.TabIndex = 4;
             this.Examination_Lable_4.TextFieldString = "";
             this.Examination_Lable_4.TextString = "";
@@ -409,7 +409,7 @@
             this.Examination_Lable_2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_2.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_2.Name = "Examination_Lable_2";
-            this.Examination_Lable_2.Size = new System.Drawing.Size(1127, 50);
+            this.Examination_Lable_2.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_2.TabIndex = 2;
             this.Examination_Lable_2.TextFieldString = "";
             this.Examination_Lable_2.TextString = "";
@@ -440,7 +440,7 @@
             this.Examination_TextLine_3.SelectedText = "";
             this.Examination_TextLine_3.SelectionLength = 0;
             this.Examination_TextLine_3.SelectionStart = 0;
-            this.Examination_TextLine_3.Size = new System.Drawing.Size(1127, 51);
+            this.Examination_TextLine_3.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_3.TabIndex = 7;
             this.Examination_TextLine_3.TabStop = false;
             this.Examination_TextLine_3.UseSystemPasswordChar = false;
@@ -461,7 +461,7 @@
             this.Examination_Lable_3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Examination_Lable_3.MouseState = MaterialSkin.MouseState.HOVER;
             this.Examination_Lable_3.Name = "Examination_Lable_3";
-            this.Examination_Lable_3.Size = new System.Drawing.Size(1127, 50);
+            this.Examination_Lable_3.Size = new System.Drawing.Size(1131, 50);
             this.Examination_Lable_3.TabIndex = 3;
             this.Examination_Lable_3.TextFieldString = "";
             this.Examination_Lable_3.TextString = "";
@@ -492,7 +492,7 @@
             this.Examination_TextLine_2.SelectedText = "";
             this.Examination_TextLine_2.SelectionLength = 0;
             this.Examination_TextLine_2.SelectionStart = 0;
-            this.Examination_TextLine_2.Size = new System.Drawing.Size(1127, 51);
+            this.Examination_TextLine_2.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_2.TabIndex = 6;
             this.Examination_TextLine_2.TabStop = false;
             this.Examination_TextLine_2.UseSystemPasswordChar = false;
@@ -666,7 +666,7 @@
             // 
             // ColumnHeader_ExaminationList_Length
             // 
-            this.ColumnHeader_ExaminationList_Length.Text = "长度";
+            this.ColumnHeader_ExaminationList_Length.Text = "字数";
             this.ColumnHeader_ExaminationList_Length.Width = 100;
             // 
             // ColumnHeader_ExaminationList_Preview

@@ -21,7 +21,18 @@ namespace InputSpeedExamination
 
         public Form_Main()
         {
+            new Thread(new ThreadStart(delegate
+            {
+                Form_Load frmLoading = new Form_Load();
+                Shown += delegate
+                {
+                    frmLoading.Invoke(new EventHandler(frmLoading.KillMe));
+                };
+                Application.Run(frmLoading);
+            })).Start();
+            Thread.Sleep(1500);
             InitializeComponent();
+            Thread.Sleep(1500);
         }
 
         private void Form_Main_Load(object sender, EventArgs e)
@@ -115,8 +126,9 @@ namespace InputSpeedExamination
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
             //debug();
-            RefreshExaminationList();
-            TabControl_Main.SelectedTab = TabPage_SelectText;
+            Thread ThreadLoadExaminationList = new Thread(new ThreadStart(LoadExaminationList));
+            ThreadLoadExaminationList.Start();
+            //TabControl_Main.SelectedTab = TabPage_SelectText;
         }
 
         #endregion
@@ -473,6 +485,8 @@ namespace InputSpeedExamination
             set
             {
                 _Stats_Char_Current_Total = value;
+                if (value == Stats_Char_Total)
+                    Input_Status = Input_Status_Enum.Pause;
             }
         }
 
@@ -687,7 +701,7 @@ namespace InputSpeedExamination
                 {
                     ListView_ExaminationList.Items.Clear();
                 });
-                int dealy = 1000 / (dt.Rows.Count + 1);
+                int dealy = 500 / (dt.Rows.Count + 1);
                 foreach (DataRow row in dt.Rows)
                 {
                     Thread.Sleep(dealy);
@@ -786,6 +800,23 @@ namespace InputSpeedExamination
                 res += line;
             sr.Dispose();
             return res;
+        }
+
+        private void LoadExaminationList()
+        {
+            try
+            {
+                Thread.Sleep(200);
+                RefreshExaminationList();
+                Invoke((EventHandler)delegate
+                {
+                    TabControl_Main.SelectedTab = TabPage_SelectText;
+                });
+            }
+            catch
+            {
+
+            }
         }
 
         private void RefreshExaminationList(DataTable dt = null)
