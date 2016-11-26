@@ -42,7 +42,6 @@ namespace InputSpeedExamination
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             Form_Main_Resize(sender, e);
-            debug();
         }
 
         DataBase db = new DataBase();
@@ -292,6 +291,11 @@ namespace InputSpeedExamination
             LoadNextExaminationPage();
         }
 
+        private void Button_Back_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// 当前页数（每页五行）
         /// </summary>
@@ -445,6 +449,15 @@ namespace InputSpeedExamination
             Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
             Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
             Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
+
+        }
+
+        #endregion
+
+        #region Examination Result
+
+        private void LoadExaminationResult()
+        {
 
         }
 

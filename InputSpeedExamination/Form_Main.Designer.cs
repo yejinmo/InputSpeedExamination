@@ -67,6 +67,8 @@
             this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
+            this.Button_Back = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.TabPage_Result = new System.Windows.Forms.TabPage();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -85,6 +87,7 @@
             this.TabControl_Main.Controls.Add(this.TabPage_Examination);
             this.TabControl_Main.Controls.Add(this.TabPage_Start);
             this.TabControl_Main.Controls.Add(this.TabPage_SelectText);
+            this.TabControl_Main.Controls.Add(this.TabPage_Result);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(1, 66);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(1);
@@ -161,6 +164,7 @@
             this.Panel_Input_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Input_Main.Controls.Add(this.Button_Back);
             this.Panel_Input_Main.Controls.Add(this.Button_Pause_Continue);
             this.Panel_Input_Main.Controls.Add(this.Label_Stats_Time);
             this.Panel_Input_Main.Controls.Add(this.Button_Next_Page);
@@ -705,6 +709,29 @@
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
             // 
+            // Button_Back
+            // 
+            this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Back.Depth = 0;
+            this.Button_Back.Location = new System.Drawing.Point(608, 656);
+            this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Back.Name = "Button_Back";
+            this.Button_Back.Primary = true;
+            this.Button_Back.Size = new System.Drawing.Size(129, 56);
+            this.Button_Back.TabIndex = 15;
+            this.Button_Back.Text = "退出";
+            this.Button_Back.UseVisualStyleBackColor = true;
+            this.Button_Back.Click += new System.EventHandler(this.Button_Back_Click);
+            // 
+            // TabPage_Result
+            // 
+            this.TabPage_Result.BackColor = System.Drawing.Color.White;
+            this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Result.Name = "TabPage_Result";
+            this.TabPage_Result.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Result.TabIndex = 4;
+            this.TabPage_Result.Text = "TabPage_Result";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -773,6 +800,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Begin;
         private MaterialSkin.Controls.MaterialRaisedButton Button_SelectText_Import;
         private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_MD5;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Back;
+        private System.Windows.Forms.TabPage TabPage_Result;
     }
 }
 
