@@ -590,14 +590,12 @@ namespace InputSpeedExamination
         /// </summary>
         private void Count_Stats_Char_Current_Total()
         {
-            Console.WriteLine("Count_Stats_Char_Current_Total Start at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
             int temp = 0;
             foreach (var l in TextLineList)
             {
                 temp += l.UserText.Length;
             }
             Stats_Char_Current_Total = temp;
-            Console.WriteLine("Count_Stats_Char_Current_Total Finish at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
         }
 
         /// <summary>
@@ -605,7 +603,6 @@ namespace InputSpeedExamination
         /// </summary>
         private void Count_Stats_Char_Correct_Total()
         {
-            Console.WriteLine("Count_Stats_Char_Correct_Total Start at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
             int temp = 0;
             foreach (var l in TextLineList)
             {
@@ -618,7 +615,6 @@ namespace InputSpeedExamination
                 }
             }
             Stats_Char_Correct_Total = temp;
-            Console.WriteLine("Count_Stats_Char_Correct_Total Finish at:" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond);
         }
 
         private void Timer_Clocks_Tick(object sender, EventArgs e)
