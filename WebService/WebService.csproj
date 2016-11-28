@@ -119,6 +119,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBHelper.cs" />
     <Compile Include="HelloServer.asmx.cs">
       <DependentUpon>HelloServer.asmx</DependentUpon>
       <SubType>Component</SubType>

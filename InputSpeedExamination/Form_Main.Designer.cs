@@ -812,20 +812,20 @@
             this.ListView_OnLineExamination.Font = new System.Drawing.Font("微软雅黑", 18F);
             this.ListView_OnLineExamination.FullRowSelect = true;
             this.ListView_OnLineExamination.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.ListView_OnLineExamination.Location = new System.Drawing.Point(445, 5);
+            this.ListView_OnLineExamination.Location = new System.Drawing.Point(296, 119);
             this.ListView_OnLineExamination.Margin = new System.Windows.Forms.Padding(5);
             this.ListView_OnLineExamination.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ListView_OnLineExamination.MouseState = MaterialSkin.MouseState.OUT;
             this.ListView_OnLineExamination.Name = "ListView_OnLineExamination";
             this.ListView_OnLineExamination.OwnerDraw = true;
-            this.ListView_OnLineExamination.Size = new System.Drawing.Size(300, 640);
+            this.ListView_OnLineExamination.Size = new System.Drawing.Size(600, 462);
             this.ListView_OnLineExamination.TabIndex = 0;
             this.ListView_OnLineExamination.UseCompatibleStateImageBehavior = false;
             this.ListView_OnLineExamination.View = System.Windows.Forms.View.Details;
             // 
             // ColumnHeader_OnLineExmination
             // 
-            this.ColumnHeader_OnLineExmination.Width = 280;
+            this.ColumnHeader_OnLineExmination.Width = 600;
             // 
             // Label_OnLineTip
             // 
@@ -848,13 +848,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProcessBar_OnLine.Depth = 0;
             this.ProcessBar_OnLine.Interval = 10;
-            this.ProcessBar_OnLine.LengthValue = 300;
+            this.ProcessBar_OnLine.LengthValue = 500;
             this.ProcessBar_OnLine.Location = new System.Drawing.Point(7, 3);
             this.ProcessBar_OnLine.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_OnLine.Name = "ProcessBar_OnLine";
             this.ProcessBar_OnLine.Processing = true;
             this.ProcessBar_OnLine.Size = new System.Drawing.Size(1191, 5);
-            this.ProcessBar_OnLine.StepValue = 10;
+            this.ProcessBar_OnLine.StepValue = 20;
             this.ProcessBar_OnLine.TabIndex = 0;
             // 
             // Timer_Clocks

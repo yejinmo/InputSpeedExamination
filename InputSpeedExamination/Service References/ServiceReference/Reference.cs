@@ -35,10 +35,6 @@ namespace InputSpeedExamination.ServiceReference {
         // CODEGEN: Generating message contract since element name DepartmentID from namespace WebService is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetMajorByDepartment", ReplyAction="*")]
         InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponse GetMajorByDepartment(InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequest request);
-        
-        // CODEGEN: Generating message contract since element name GetCountResult from namespace WebService is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetCount", ReplyAction="*")]
-        InputSpeedExamination.ServiceReference.GetCountResponse GetCount(InputSpeedExamination.ServiceReference.GetCountRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -238,67 +234,6 @@ namespace InputSpeedExamination.ServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetCountRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCount", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetCountRequestBody Body;
-        
-        public GetCountRequest() {
-        }
-        
-        public GetCountRequest(InputSpeedExamination.ServiceReference.GetCountRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class GetCountRequestBody {
-        
-        public GetCountRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetCountResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetCountResponse", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetCountResponseBody Body;
-        
-        public GetCountResponse() {
-        }
-        
-        public GetCountResponse(InputSpeedExamination.ServiceReference.GetCountResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class GetCountResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string GetCountResult;
-        
-        public GetCountResponseBody() {
-        }
-        
-        public GetCountResponseBody(string GetCountResult) {
-            this.GetCountResult = GetCountResult;
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface HelloServerSoapChannel : InputSpeedExamination.ServiceReference.HelloServerSoap, System.ServiceModel.IClientChannel {
     }
@@ -362,18 +297,6 @@ namespace InputSpeedExamination.ServiceReference {
             inValue.Body.DepartmentID = DepartmentID;
             InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponse retVal = ((InputSpeedExamination.ServiceReference.HelloServerSoap)(this)).GetMajorByDepartment(inValue);
             return retVal.Body.GetMajorByDepartmentResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        InputSpeedExamination.ServiceReference.GetCountResponse InputSpeedExamination.ServiceReference.HelloServerSoap.GetCount(InputSpeedExamination.ServiceReference.GetCountRequest request) {
-            return base.Channel.GetCount(request);
-        }
-        
-        public string GetCount() {
-            InputSpeedExamination.ServiceReference.GetCountRequest inValue = new InputSpeedExamination.ServiceReference.GetCountRequest();
-            inValue.Body = new InputSpeedExamination.ServiceReference.GetCountRequestBody();
-            InputSpeedExamination.ServiceReference.GetCountResponse retVal = ((InputSpeedExamination.ServiceReference.HelloServerSoap)(this)).GetCount(inValue);
-            return retVal.Body.GetCountResult;
         }
     }
 }

@@ -38,17 +38,7 @@ namespace WebService
         [WebMethod]
         public List<string> GetAllDepartment()
         {
-            List<string> res = new List<string>();
-            res.Add("计算机科学系");
-            res.Add("经济管理系");
-            res.Add("机械与电气工程系");
-            res.Add("电子信息与控制工程系");
-            res.Add("艺术系");
-            res.Add("交通运输系");
-            res.Add("外语系");
-            res.Add("化学工程系");
-            res.Add("其他");
-            return res;
+            return new DBHelper().GetAllDepartment();
         }
 
         /// <summary>

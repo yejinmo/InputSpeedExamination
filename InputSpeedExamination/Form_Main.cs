@@ -931,6 +931,7 @@ cba
         {
             try
             {
+                OnLineSelectStats = OnLineSelectStatsEnum.Default;
                 Thread.Sleep(250);
                 Invoke((EventHandler)delegate
                 {
@@ -938,7 +939,8 @@ cba
                     ProcessBar_OnLine.Visible = true;
                     TabControl_Main.SelectedTab = TabPage_OnLineExamination;
                 });
-                //Thread.Sleep(1000);
+                Update_Label_OnLineTip("连接服务器");
+                Thread.Sleep(250);
                 ServiceReference.HelloServerSoapClient wc = new ServiceReference.HelloServerSoapClient();
                 var res = wc.SayHello("Hello Server");
                 if (res == "Hello Client")
@@ -950,7 +952,9 @@ cba
                 }
                 var res_department = wc.GetAllDepartment();
                 Update_Label_OnLineTip("获取系别列表");
-                //Thread.Sleep(1000);
+                Thread.Sleep(250);
+                Update_Label_OnLineTip("完成中");
+                Thread.Sleep(500);
                 Invoke((EventHandler)delegate
                 {
                     ListView_OnLineExamination.Items.Clear();
@@ -959,7 +963,7 @@ cba
                         ListView_OnLineExamination.Items.Add(str);
                     }
                 });
-                Update_Label_OnLineTip("完成");
+                OnLineSelectStats = OnLineSelectStatsEnum.SelectDepartment;
             }
             catch (Exception e)
             {
@@ -993,7 +997,77 @@ cba
 
         private void Button_OnLine_Next_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+            if (ListView_OnLineExamination.SelectedItems.Count == 0)
+                MessageBox.Show(this, "请选择一项", "提示");
+            else
+                MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+        }
+
+        /// <summary>
+        /// 在线测试登陆状态
+        /// </summary>
+        enum OnLineSelectStatsEnum
+        {
+            /// <summary>
+            /// 默认状态
+            /// </summary>
+            Default,
+            /// <summary>
+            /// 选择系
+            /// </summary>
+            SelectDepartment,
+            /// <summary>
+            /// 选择专业
+            /// </summary>
+            SelectMajor,
+            /// <summary>
+            /// 输入个人信息（班级，学号，姓名）
+            /// </summary>
+            TypeInformation,
+            /// <summary>
+            /// 选择测试内容
+            /// </summary>
+            SelectContent,
+            /// <summary>
+            /// 完成
+            /// </summary>
+            Finish
+        }
+
+        OnLineSelectStatsEnum onLineSelectStats = OnLineSelectStatsEnum.Default;
+
+        private OnLineSelectStatsEnum OnLineSelectStats
+        {
+            get
+            {
+                return onLineSelectStats;
+            }
+
+            set
+            {
+                onLineSelectStats = value;
+                switch (value)
+                {
+                    case OnLineSelectStatsEnum.Default:
+                        Update_Label_OnLineTip("准备数据中");
+                        break;
+                    case OnLineSelectStatsEnum.SelectDepartment:
+                        Update_Label_OnLineTip("请选择所在系 然后单击下一步");
+                        break;
+                    case OnLineSelectStatsEnum.SelectMajor:
+                        Update_Label_OnLineTip("请选择所在专业 然后单击下一步");
+                        break;
+                    case OnLineSelectStatsEnum.TypeInformation:
+                        Update_Label_OnLineTip("请输入个人信息 然后单击下一步");
+                        break;
+                    case OnLineSelectStatsEnum.SelectContent:
+                        Update_Label_OnLineTip("请选择测试内容 然后单击下一步");
+                        break;
+                    case OnLineSelectStatsEnum.Finish:
+                        Update_Label_OnLineTip("完成");
+                        break;
+                }
+            }
         }
 
         #endregion
