@@ -91,10 +91,10 @@ namespace MaterialSkin.Controls
 			{
                 if (subItem.Bounds.Width == 0)
                     continue;
-				//Draw text
-				g.DrawString(subItem.Text, Font, SkinManager.GetPrimaryTextBrush(),
+                //Draw text
+                g.DrawString(subItem.Text, Font, SkinManager.GetPrimaryTextBrush(),
 								 new Rectangle(subItem.Bounds.Location.X , ITEM_PADDING,
-                                               subItem.Bounds.Width + 14, subItem.Bounds.Height - 2 * ITEM_PADDING),
+                                               subItem.Bounds.Width, subItem.Bounds.Height - 2 * ITEM_PADDING),
 								 getStringFormat());
 			}
 
@@ -121,7 +121,7 @@ namespace MaterialSkin.Controls
 			//This is a hax for the needed padding.
 			//Another way would be intercepting all ListViewItems and changing the sizes, but really, that will be a lot of work
 			//This will do for now.
-			Font = new Font(SkinManager.FONT_SIZE_14.FontFamily, 16);
+			Font = new Font(SkinManager.FONT_SIZE_14.FontFamily, 18);
 		}
 	}
 }

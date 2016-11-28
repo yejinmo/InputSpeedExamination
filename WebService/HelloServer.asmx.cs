@@ -17,28 +17,52 @@ namespace WebService
     public class HelloServer : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public string HelloWorld()
-        {
-            return "Hello World";
-        }
-
+        /// <summary>
+        /// 测试服务器连接
+        /// </summary>
+        /// <param name="data">参数需为 Hello Server </param>
+        /// <returns>连接正常则返回 Hello Client </returns>
         [WebMethod]
         public string SayHello(string data)
         {
-            if(data == "Hello Server")
+            if (data == "Hello Server")
                 return "Hello Client";
             else
                 return "Error";
         }
 
+        /// <summary>
+        /// 获取全部系
+        /// </summary>
+        /// <returns></returns>
         [WebMethod]
-        public int GetSum(int a, int b)
+        public List<string> GetAllDepartment()
         {
-            return a + b;
+            List<string> res = new List<string>();
+            res.Add("计算机科学系");
+            res.Add("经济管理系");
+            res.Add("机械与电气工程系");
+            res.Add("电子信息与控制工程系");
+            res.Add("艺术系");
+            res.Add("交通运输系");
+            res.Add("外语系");
+            res.Add("化学工程系");
+            res.Add("其他");
+            return res;
         }
 
-
+        /// <summary>
+        /// 根据 DepartmentID 获取专业
+        /// </summary>
+        /// <param name="DepartmentID">系别 ID</param>
+        /// <returns></returns>
+        [WebMethod]
+        public List<string> GetMajorByDepartment(string DepartmentID)
+        {
+            List<string> res = new List<string>();
+            res.Add("");
+            return res;
+        }
 
     }
 }

@@ -36,6 +36,7 @@
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
             this.Panel_Input_Main = new System.Windows.Forms.Panel();
+            this.Button_Back = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Button_Pause_Continue = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Label_Stats_Time = new MaterialSkin.Controls.MaterialLabel();
             this.Button_Next_Page = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -65,10 +66,18 @@
             this.ColumnHeader_ExaminationList_Preview = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnHeader_ExaminationList_MD5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
+            this.TabPage_Result = new System.Windows.Forms.TabPage();
+            this.TabPage_OnLineExamination = new System.Windows.Forms.TabPage();
+            this.Panel_OnLine = new System.Windows.Forms.Panel();
+            this.Button_OnLine_Back = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_OnLine_Next = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_OnLineReturn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.ListView_OnLineExamination = new MaterialSkin.Controls.MaterialListView();
+            this.ColumnHeader_OnLineExmination = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Label_OnLineTip = new MaterialSkin.Controls.MaterialLabel();
+            this.ProcessBar_OnLine = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
-            this.Button_Back = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.TabPage_Result = new System.Windows.Forms.TabPage();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -76,6 +85,8 @@
             this.TabPage_Start.SuspendLayout();
             this.Panel_Start.SuspendLayout();
             this.TabPage_SelectText.SuspendLayout();
+            this.TabPage_OnLineExamination.SuspendLayout();
+            this.Panel_OnLine.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -88,6 +99,7 @@
             this.TabControl_Main.Controls.Add(this.TabPage_Start);
             this.TabControl_Main.Controls.Add(this.TabPage_SelectText);
             this.TabControl_Main.Controls.Add(this.TabPage_Result);
+            this.TabControl_Main.Controls.Add(this.TabPage_OnLineExamination);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(1, 66);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(1);
@@ -122,6 +134,7 @@
             this.FlatButton_Select_OnLine.TabIndex = 1;
             this.FlatButton_Select_OnLine.Text = "在线测试模式";
             this.FlatButton_Select_OnLine.UseVisualStyleBackColor = true;
+            this.FlatButton_Select_OnLine.Click += new System.EventHandler(this.FlatButton_Select_OnLine_Click);
             // 
             // FlatButton_Select_OffLine
             // 
@@ -184,6 +197,20 @@
             this.Panel_Input_Main.Name = "Panel_Input_Main";
             this.Panel_Input_Main.Size = new System.Drawing.Size(1145, 715);
             this.Panel_Input_Main.TabIndex = 10;
+            // 
+            // Button_Back
+            // 
+            this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Back.Depth = 0;
+            this.Button_Back.Location = new System.Drawing.Point(608, 656);
+            this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Back.Name = "Button_Back";
+            this.Button_Back.Primary = true;
+            this.Button_Back.Size = new System.Drawing.Size(129, 56);
+            this.Button_Back.TabIndex = 15;
+            this.Button_Back.Text = "退出";
+            this.Button_Back.UseVisualStyleBackColor = true;
+            this.Button_Back.Click += new System.EventHandler(this.Button_Back_Click);
             // 
             // Button_Pause_Continue
             // 
@@ -647,7 +674,7 @@
             this.ColumnHeader_ExaminationList_Preview,
             this.ColumnHeader_ExaminationList_MD5});
             this.ListView_ExaminationList.Depth = 0;
-            this.ListView_ExaminationList.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.ListView_ExaminationList.Font = new System.Drawing.Font("微软雅黑", 18F);
             this.ListView_ExaminationList.FullRowSelect = true;
             this.ListView_ExaminationList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ListView_ExaminationList.Location = new System.Drawing.Point(7, 42);
@@ -666,7 +693,7 @@
             // ColumnHeader_ExaminationList_Title
             // 
             this.ColumnHeader_ExaminationList_Title.Text = "标题";
-            this.ColumnHeader_ExaminationList_Title.Width = 200;
+            this.ColumnHeader_ExaminationList_Title.Width = 300;
             // 
             // ColumnHeader_ExaminationList_Length
             // 
@@ -699,6 +726,137 @@
             this.ProcessBar_SearchExamination.TabIndex = 2;
             this.ProcessBar_SearchExamination.Visible = false;
             // 
+            // TabPage_Result
+            // 
+            this.TabPage_Result.BackColor = System.Drawing.Color.White;
+            this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Result.Name = "TabPage_Result";
+            this.TabPage_Result.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Result.TabIndex = 4;
+            this.TabPage_Result.Text = "TabPage_Result";
+            // 
+            // TabPage_OnLineExamination
+            // 
+            this.TabPage_OnLineExamination.BackColor = System.Drawing.Color.White;
+            this.TabPage_OnLineExamination.Controls.Add(this.Panel_OnLine);
+            this.TabPage_OnLineExamination.Controls.Add(this.Label_OnLineTip);
+            this.TabPage_OnLineExamination.Controls.Add(this.ProcessBar_OnLine);
+            this.TabPage_OnLineExamination.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_OnLineExamination.Name = "TabPage_OnLineExamination";
+            this.TabPage_OnLineExamination.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_OnLineExamination.TabIndex = 5;
+            this.TabPage_OnLineExamination.Text = "TabPage_OnLineExamination";
+            // 
+            // Panel_OnLine
+            // 
+            this.Panel_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_OnLine.Controls.Add(this.Button_OnLine_Back);
+            this.Panel_OnLine.Controls.Add(this.Button_OnLine_Next);
+            this.Panel_OnLine.Controls.Add(this.Button_OnLineReturn);
+            this.Panel_OnLine.Controls.Add(this.ListView_OnLineExamination);
+            this.Panel_OnLine.Location = new System.Drawing.Point(7, 66);
+            this.Panel_OnLine.Name = "Panel_OnLine";
+            this.Panel_OnLine.Size = new System.Drawing.Size(1191, 650);
+            this.Panel_OnLine.TabIndex = 2;
+            // 
+            // Button_OnLine_Back
+            // 
+            this.Button_OnLine_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_OnLine_Back.Depth = 0;
+            this.Button_OnLine_Back.Location = new System.Drawing.Point(836, 589);
+            this.Button_OnLine_Back.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_OnLine_Back.Name = "Button_OnLine_Back";
+            this.Button_OnLine_Back.Primary = true;
+            this.Button_OnLine_Back.Size = new System.Drawing.Size(173, 56);
+            this.Button_OnLine_Back.TabIndex = 14;
+            this.Button_OnLine_Back.Text = "上一步";
+            this.Button_OnLine_Back.UseVisualStyleBackColor = true;
+            // 
+            // Button_OnLine_Next
+            // 
+            this.Button_OnLine_Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_OnLine_Next.Depth = 0;
+            this.Button_OnLine_Next.Location = new System.Drawing.Point(1015, 589);
+            this.Button_OnLine_Next.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_OnLine_Next.Name = "Button_OnLine_Next";
+            this.Button_OnLine_Next.Primary = true;
+            this.Button_OnLine_Next.Size = new System.Drawing.Size(173, 56);
+            this.Button_OnLine_Next.TabIndex = 13;
+            this.Button_OnLine_Next.Text = "下一步";
+            this.Button_OnLine_Next.UseVisualStyleBackColor = true;
+            this.Button_OnLine_Next.Click += new System.EventHandler(this.Button_OnLine_Next_Click);
+            // 
+            // Button_OnLineReturn
+            // 
+            this.Button_OnLineReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_OnLineReturn.Depth = 0;
+            this.Button_OnLineReturn.Location = new System.Drawing.Point(8, 589);
+            this.Button_OnLineReturn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_OnLineReturn.Name = "Button_OnLineReturn";
+            this.Button_OnLineReturn.Primary = true;
+            this.Button_OnLineReturn.Size = new System.Drawing.Size(173, 56);
+            this.Button_OnLineReturn.TabIndex = 12;
+            this.Button_OnLineReturn.Text = "返回";
+            this.Button_OnLineReturn.UseVisualStyleBackColor = true;
+            this.Button_OnLineReturn.Click += new System.EventHandler(this.Button_OnLineReturn_Click);
+            // 
+            // ListView_OnLineExamination
+            // 
+            this.ListView_OnLineExamination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.ListView_OnLineExamination.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListView_OnLineExamination.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ColumnHeader_OnLineExmination});
+            this.ListView_OnLineExamination.Depth = 0;
+            this.ListView_OnLineExamination.Font = new System.Drawing.Font("微软雅黑", 18F);
+            this.ListView_OnLineExamination.FullRowSelect = true;
+            this.ListView_OnLineExamination.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.ListView_OnLineExamination.Location = new System.Drawing.Point(445, 5);
+            this.ListView_OnLineExamination.Margin = new System.Windows.Forms.Padding(5);
+            this.ListView_OnLineExamination.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.ListView_OnLineExamination.MouseState = MaterialSkin.MouseState.OUT;
+            this.ListView_OnLineExamination.Name = "ListView_OnLineExamination";
+            this.ListView_OnLineExamination.OwnerDraw = true;
+            this.ListView_OnLineExamination.Size = new System.Drawing.Size(300, 640);
+            this.ListView_OnLineExamination.TabIndex = 0;
+            this.ListView_OnLineExamination.UseCompatibleStateImageBehavior = false;
+            this.ListView_OnLineExamination.View = System.Windows.Forms.View.Details;
+            // 
+            // ColumnHeader_OnLineExmination
+            // 
+            this.ColumnHeader_OnLineExmination.Width = 280;
+            // 
+            // Label_OnLineTip
+            // 
+            this.Label_OnLineTip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_OnLineTip.Depth = 0;
+            this.Label_OnLineTip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_OnLineTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_OnLineTip.Location = new System.Drawing.Point(7, 11);
+            this.Label_OnLineTip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_OnLineTip.Name = "Label_OnLineTip";
+            this.Label_OnLineTip.Size = new System.Drawing.Size(1191, 52);
+            this.Label_OnLineTip.TabIndex = 1;
+            this.Label_OnLineTip.Text = "连接服务器";
+            this.Label_OnLineTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ProcessBar_OnLine
+            // 
+            this.ProcessBar_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProcessBar_OnLine.Depth = 0;
+            this.ProcessBar_OnLine.Interval = 10;
+            this.ProcessBar_OnLine.LengthValue = 300;
+            this.ProcessBar_OnLine.Location = new System.Drawing.Point(7, 3);
+            this.ProcessBar_OnLine.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_OnLine.Name = "ProcessBar_OnLine";
+            this.ProcessBar_OnLine.Processing = true;
+            this.ProcessBar_OnLine.Size = new System.Drawing.Size(1191, 5);
+            this.ProcessBar_OnLine.StepValue = 10;
+            this.ProcessBar_OnLine.TabIndex = 0;
+            // 
             // Timer_Clocks
             // 
             this.Timer_Clocks.Interval = 1000;
@@ -708,29 +866,6 @@
             // 
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
-            // 
-            // Button_Back
-            // 
-            this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Back.Depth = 0;
-            this.Button_Back.Location = new System.Drawing.Point(608, 656);
-            this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_Back.Name = "Button_Back";
-            this.Button_Back.Primary = true;
-            this.Button_Back.Size = new System.Drawing.Size(129, 56);
-            this.Button_Back.TabIndex = 15;
-            this.Button_Back.Text = "退出";
-            this.Button_Back.UseVisualStyleBackColor = true;
-            this.Button_Back.Click += new System.EventHandler(this.Button_Back_Click);
-            // 
-            // TabPage_Result
-            // 
-            this.TabPage_Result.BackColor = System.Drawing.Color.White;
-            this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_Result.Name = "TabPage_Result";
-            this.TabPage_Result.Size = new System.Drawing.Size(1205, 723);
-            this.TabPage_Result.TabIndex = 4;
-            this.TabPage_Result.Text = "TabPage_Result";
             // 
             // Form_Main
             // 
@@ -756,6 +891,8 @@
             this.TabPage_Start.ResumeLayout(false);
             this.Panel_Start.ResumeLayout(false);
             this.TabPage_SelectText.ResumeLayout(false);
+            this.TabPage_OnLineExamination.ResumeLayout(false);
+            this.Panel_OnLine.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -802,6 +939,15 @@
         private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_MD5;
         private MaterialSkin.Controls.MaterialRaisedButton Button_Back;
         private System.Windows.Forms.TabPage TabPage_Result;
+        private System.Windows.Forms.TabPage TabPage_OnLineExamination;
+        private MaterialSkin.Controls.MaterialProcessBar ProcessBar_OnLine;
+        private MaterialSkin.Controls.MaterialLabel Label_OnLineTip;
+        private System.Windows.Forms.Panel Panel_OnLine;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_OnLineExmination;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLineReturn;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Next;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Back;
+        private MaterialSkin.Controls.MaterialListView ListView_OnLineExamination;
     }
 }
 

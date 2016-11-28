@@ -919,6 +919,85 @@ cba
 
         #endregion
 
+        #region OnLineExamination
+
+        private void FlatButton_Select_OnLine_Click(object sender, EventArgs e)
+        {
+            Thread ThreadConnectToServer = new Thread(new ThreadStart(ConnectToServer));
+            ThreadConnectToServer.Start();
+        }
+
+        private void ConnectToServer()
+        {
+            try
+            {
+                Thread.Sleep(250);
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    ProcessBar_OnLine.Visible = true;
+                    TabControl_Main.SelectedTab = TabPage_OnLineExamination;
+                });
+                //Thread.Sleep(1000);
+                ServiceReference.HelloServerSoapClient wc = new ServiceReference.HelloServerSoapClient();
+                var res = wc.SayHello("Hello Server");
+                if (res == "Hello Client")
+                    Update_Label_OnLineTip("连接成功");
+                else
+                {
+                    Update_Label_OnLineTip("连接失败");
+                    return;
+                }
+                var res_department = wc.GetAllDepartment();
+                Update_Label_OnLineTip("获取系别列表");
+                //Thread.Sleep(1000);
+                Invoke((EventHandler)delegate
+                {
+                    ListView_OnLineExamination.Items.Clear();
+                    foreach (var str in res_department)
+                    {
+                        ListView_OnLineExamination.Items.Add(str);
+                    }
+                });
+                Update_Label_OnLineTip("完成");
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "发生了一个错误\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    ProcessBar_OnLine.Visible = false;
+                    Enabled = true;
+                });
+            }
+        }
+
+        private void Update_Label_OnLineTip(string str)
+        {
+            Invoke((EventHandler)delegate
+            {
+                Label_OnLineTip.Text = str;
+            });
+        }
+
+        private void Button_OnLineReturn_Click(object sender, EventArgs e)
+        {
+            TabControl_Main.SelectedTab = TabPage_Select;
+        }
+
+        private void Button_OnLine_Next_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+        }
+
+        #endregion
+
     }
 }
 
