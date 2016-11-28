@@ -931,14 +931,15 @@ cba
         {
             try
             {
-                OnLineSelectStats = OnLineSelectStatsEnum.Default;
-                Thread.Sleep(250);
                 Invoke((EventHandler)delegate
                 {
+                    ListView_OnLineExamination.Items.Clear();
                     Enabled = false;
                     ProcessBar_OnLine.Visible = true;
                     TabControl_Main.SelectedTab = TabPage_OnLineExamination;
                 });
+                OnLineSelectStats = OnLineSelectStatsEnum.Default;
+                Thread.Sleep(250);
                 Update_Label_OnLineTip("连接服务器");
                 Thread.Sleep(250);
                 ServiceReference.HelloServerSoapClient wc = new ServiceReference.HelloServerSoapClient();
@@ -957,7 +958,6 @@ cba
                 Thread.Sleep(500);
                 Invoke((EventHandler)delegate
                 {
-                    ListView_OnLineExamination.Items.Clear();
                     foreach (var str in res_department)
                     {
                         ListView_OnLineExamination.Items.Add(str);
@@ -997,10 +997,37 @@ cba
 
         private void Button_OnLine_Next_Click(object sender, EventArgs e)
         {
-            if (ListView_OnLineExamination.SelectedItems.Count == 0)
-                MessageBox.Show(this, "请选择一项", "提示");
-            else
-                MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+            switch (OnLineSelectStats)
+            {
+                case OnLineSelectStatsEnum.Default:
+                    break;
+                case OnLineSelectStatsEnum.SelectDepartment:
+                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
+                        MessageBox.Show(this, "请选择一项", "提示");
+                    else
+                    {
+                        UserInformation.Department = ListView_OnLineExamination.SelectedItems[0].Text;
+                        Thread ThreadGetMajorByDepartment = new Thread(new ThreadStart(GetMajorByDepartment));
+                        ThreadGetMajorByDepartment.Start();
+                    }
+                    break;
+                case OnLineSelectStatsEnum.SelectMajor:
+                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
+                        MessageBox.Show(this, "请选择一项", "提示");
+                    else
+                        MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+                    break;
+                case OnLineSelectStatsEnum.TypeInformation:
+                    break;
+                case OnLineSelectStatsEnum.SelectContent:
+                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
+                        MessageBox.Show(this, "请选择一项", "提示");
+                    else
+                        MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+                    break;
+                case OnLineSelectStatsEnum.Finish:
+                    break;
+            }
         }
 
         /// <summary>
@@ -1050,6 +1077,7 @@ cba
                 {
                     case OnLineSelectStatsEnum.Default:
                         Update_Label_OnLineTip("准备数据中");
+                        Button_OnLine_Next.Text = "下一步";
                         break;
                     case OnLineSelectStatsEnum.SelectDepartment:
                         Update_Label_OnLineTip("请选择所在系 然后单击下一步");
@@ -1062,12 +1090,78 @@ cba
                         break;
                     case OnLineSelectStatsEnum.SelectContent:
                         Update_Label_OnLineTip("请选择测试内容 然后单击下一步");
+                        Button_OnLine_Next.Text = "完成";
                         break;
                     case OnLineSelectStatsEnum.Finish:
                         Update_Label_OnLineTip("完成");
                         break;
                 }
             }
+        }
+
+        private void GetMajorByDepartment()
+        {
+            try
+            {
+                string department = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    ProcessBar_OnLine.Visible = true;
+                });
+                OnLineSelectStats = OnLineSelectStatsEnum.SelectMajor;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    ProcessBar_OnLine.Visible = false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        static class UserInformation
+        {
+            /// <summary>
+            /// 系
+            /// </summary>
+            public static string Department = string.Empty;
+            /// <summary>
+            /// 系ID
+            /// </summary>
+            public static string DepartmentID = string.Empty;
+            /// <summary>
+            /// 专业
+            /// </summary>
+            public static string Major = string.Empty;
+            /// <summary>
+            /// 专业ID
+            /// </summary>
+            public static string MajorID = string.Empty;
+            /// <summary>
+            /// 班级
+            /// </summary>
+            public static string Class = string.Empty;
+            /// <summary>
+            /// 姓名
+            /// </summary>
+            public static string Name = string.Empty;
+            /// <summary>
+            /// 学号
+            /// </summary>
+            public static string Number = string.Empty;
+            /// <summary>
+            /// 内容ID
+            /// </summary>
+            public static string ContentID = string.Empty;
         }
 
         #endregion

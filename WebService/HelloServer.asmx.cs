@@ -36,7 +36,7 @@ namespace WebService
         /// </summary>
         /// <returns></returns>
         [WebMethod]
-        public List<string> GetAllDepartment()
+        public SortedList<string, string> GetAllDepartment()
         {
             return new DBHelper().GetAllDepartment();
         }
@@ -47,11 +47,9 @@ namespace WebService
         /// <param name="DepartmentID">系别 ID</param>
         /// <returns></returns>
         [WebMethod]
-        public List<string> GetMajorByDepartment(string DepartmentID)
+        public SortedList<string, string> GetMajorByDepartment(string DepartmentID)
         {
-            List<string> res = new List<string>();
-            res.Add("");
-            return res;
+            return new DBHelper().GetMajorByDepartment(DepartmentID);
         }
 
     }

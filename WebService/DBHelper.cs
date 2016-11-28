@@ -46,17 +46,17 @@ namespace WebService
         /// 获取全部系
         /// </summary>
         /// <returns></returns>
-        public List<string> GetAllDepartment()
+        public SortedList<string, string> GetAllDepartment()
         {
-            List<string> list = new List<string>();
+            SortedList<string, string> list = new SortedList<string, string>();
             try
             {
-                string sql = "SELECT * FROM [Table_Department]";
+                string sql = "SELECT [String], [ID] FROM [Table_Department]";
                 SqlCommand cmd = new SqlCommand(sql, Conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    list.Add(reader[0].ToString());
+                    list.Add(reader[0].ToString(), reader[1].ToString());
                 }
                 reader.Close();
                 cmd.Dispose();
@@ -66,6 +66,28 @@ namespace WebService
 
             }
             return list;
+        }
+
+        public SortedList<string, string> GetMajorByDepartment(string DepartmentID)
+        {
+            SortedList<string, string> res = new SortedList<string, string>();
+            try
+            {
+                string sql = string.Format("SELECT [String], [ID] FROM [Table_Major] WHERE DepartmentID = {0}", DepartmentID);
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    res.Add(reader[0].ToString(), reader[1].ToString());
+                }
+                reader.Close();
+                cmd.Dispose();
+            }
+            catch
+            {
+
+            }
+            return res;
         }
 
     }

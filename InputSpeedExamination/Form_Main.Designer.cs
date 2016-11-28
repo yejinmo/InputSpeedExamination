@@ -69,7 +69,6 @@
             this.TabPage_Result = new System.Windows.Forms.TabPage();
             this.TabPage_OnLineExamination = new System.Windows.Forms.TabPage();
             this.Panel_OnLine = new System.Windows.Forms.Panel();
-            this.Button_OnLine_Back = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Button_OnLine_Next = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Button_OnLineReturn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.ListView_OnLineExamination = new MaterialSkin.Controls.MaterialListView();
@@ -752,7 +751,6 @@
             this.Panel_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_OnLine.Controls.Add(this.Button_OnLine_Back);
             this.Panel_OnLine.Controls.Add(this.Button_OnLine_Next);
             this.Panel_OnLine.Controls.Add(this.Button_OnLineReturn);
             this.Panel_OnLine.Controls.Add(this.ListView_OnLineExamination);
@@ -760,19 +758,6 @@
             this.Panel_OnLine.Name = "Panel_OnLine";
             this.Panel_OnLine.Size = new System.Drawing.Size(1191, 650);
             this.Panel_OnLine.TabIndex = 2;
-            // 
-            // Button_OnLine_Back
-            // 
-            this.Button_OnLine_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OnLine_Back.Depth = 0;
-            this.Button_OnLine_Back.Location = new System.Drawing.Point(836, 589);
-            this.Button_OnLine_Back.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_OnLine_Back.Name = "Button_OnLine_Back";
-            this.Button_OnLine_Back.Primary = true;
-            this.Button_OnLine_Back.Size = new System.Drawing.Size(173, 56);
-            this.Button_OnLine_Back.TabIndex = 14;
-            this.Button_OnLine_Back.Text = "上一步";
-            this.Button_OnLine_Back.UseVisualStyleBackColor = true;
             // 
             // Button_OnLine_Next
             // 
@@ -946,7 +931,6 @@
         private System.Windows.Forms.ColumnHeader ColumnHeader_OnLineExmination;
         private MaterialSkin.Controls.MaterialRaisedButton Button_OnLineReturn;
         private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Next;
-        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Back;
         private MaterialSkin.Controls.MaterialListView ListView_OnLineExamination;
     }
 }
