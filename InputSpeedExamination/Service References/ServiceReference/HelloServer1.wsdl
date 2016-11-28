@@ -22,15 +22,17 @@
       <s:element name="GetAllDepartmentResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllDepartmentResult" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDepartmentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="GetMajorByDepartment">
         <s:complexType>
           <s:sequence>
@@ -41,7 +43,14 @@
       <s:element name="GetMajorByDepartmentResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetMajorByDepartmentResult" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetMajorByDepartmentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>

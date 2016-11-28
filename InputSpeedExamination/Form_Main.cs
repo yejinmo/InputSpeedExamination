@@ -958,9 +958,11 @@ cba
                 Thread.Sleep(500);
                 Invoke((EventHandler)delegate
                 {
-                    foreach (var str in res_department)
+                    foreach (DataRow row in res_department.Tables[0].Rows)
                     {
-                        ListView_OnLineExamination.Items.Add(str);
+                        ListViewItem lvi = new ListViewItem(row[0].ToString());
+                        lvi.SubItems.Add(row[1].ToString());
+                        ListView_OnLineExamination.Items.Add(lvi);
                     }
                 });
                 OnLineSelectStats = OnLineSelectStatsEnum.SelectDepartment;
@@ -1007,6 +1009,7 @@ cba
                     else
                     {
                         UserInformation.Department = ListView_OnLineExamination.SelectedItems[0].Text;
+                        UserInformation.DepartmentID = ListView_OnLineExamination.SelectedItems[0].SubItems[1].Text;
                         Thread ThreadGetMajorByDepartment = new Thread(new ThreadStart(GetMajorByDepartment));
                         ThreadGetMajorByDepartment.Start();
                     }
@@ -1015,7 +1018,10 @@ cba
                     if (ListView_OnLineExamination.SelectedItems.Count == 0)
                         MessageBox.Show(this, "请选择一项", "提示");
                     else
-                        MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
+                    {
+                        UserInformation.Major = ListView_OnLineExamination.SelectedItems[0].Text;
+                        UserInformation.MajorID = ListView_OnLineExamination.SelectedItems[0].SubItems[1].Text;
+                    }
                     break;
                 case OnLineSelectStatsEnum.TypeInformation:
                     break;
@@ -1109,6 +1115,20 @@ cba
                     Enabled = false;
                     ProcessBar_OnLine.Visible = true;
                 });
+                Update_Label_OnLineTip("正在获取 " + UserInformation.Department + " 包含专业");
+                Thread.Sleep(1000);
+                var res_major = new ServiceReference.HelloServerSoapClient().GetMajorByDepartment(UserInformation.DepartmentID);
+                Invoke((EventHandler)delegate
+                {
+                    ListView_OnLineExamination.Items.Clear();
+                        foreach (DataRow row in res_major.Tables[0].Rows)
+                        {
+                            ListViewItem lvi = new ListViewItem(row[0].ToString());
+                            lvi.SubItems.Add(row[1].ToString());
+                            ListView_OnLineExamination.Items.Add(lvi);
+                        }
+                });
+
                 OnLineSelectStats = OnLineSelectStatsEnum.SelectMajor;
             }
             catch

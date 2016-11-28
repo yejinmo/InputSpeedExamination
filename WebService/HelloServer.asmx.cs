@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -36,7 +37,7 @@ namespace WebService
         /// </summary>
         /// <returns></returns>
         [WebMethod]
-        public SortedList<string, string> GetAllDepartment()
+        public DataSet GetAllDepartment()
         {
             return new DBHelper().GetAllDepartment();
         }
@@ -47,7 +48,7 @@ namespace WebService
         /// <param name="DepartmentID">系别 ID</param>
         /// <returns></returns>
         [WebMethod]
-        public SortedList<string, string> GetMajorByDepartment(string DepartmentID)
+        public DataSet GetMajorByDepartment(string DepartmentID)
         {
             return new DBHelper().GetMajorByDepartment(DepartmentID);
         }

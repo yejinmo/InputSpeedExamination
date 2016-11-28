@@ -46,48 +46,38 @@ namespace WebService
         /// 获取全部系
         /// </summary>
         /// <returns></returns>
-        public SortedList<string, string> GetAllDepartment()
+        public DataSet GetAllDepartment()
         {
-            SortedList<string, string> list = new SortedList<string, string>();
+            DataSet ds = new DataSet();
             try
             {
                 string sql = "SELECT [String], [ID] FROM [Table_Department]";
-                SqlCommand cmd = new SqlCommand(sql, Conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    list.Add(reader[0].ToString(), reader[1].ToString());
-                }
-                reader.Close();
-                cmd.Dispose();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
             }
             catch
             {
 
             }
-            return list;
+            return ds;
         }
 
-        public SortedList<string, string> GetMajorByDepartment(string DepartmentID)
+        public DataSet GetMajorByDepartment(string DepartmentID)
         {
-            SortedList<string, string> res = new SortedList<string, string>();
+            DataSet ds = new DataSet();
             try
             {
                 string sql = string.Format("SELECT [String], [ID] FROM [Table_Major] WHERE DepartmentID = {0}", DepartmentID);
-                SqlCommand cmd = new SqlCommand(sql, Conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    res.Add(reader[0].ToString(), reader[1].ToString());
-                }
-                reader.Close();
-                cmd.Dispose();
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
             }
             catch
             {
 
             }
-            return res;
+            return ds;
         }
 
     }

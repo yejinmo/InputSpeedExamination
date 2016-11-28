@@ -9,229 +9,24 @@
 //------------------------------------------------------------------------------
 
 namespace InputSpeedExamination.ServiceReference {
-    using System.Runtime.Serialization;
-    using System;
+    using System.Data;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfString", Namespace="WebService", ItemName="string")]
-    [System.SerializableAttribute()]
-    public class ArrayOfString : System.Collections.Generic.List<string> {
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.HelloServerSoap")]
     public interface HelloServerSoap {
         
-        // CODEGEN: Generating message contract since element name data from namespace WebService is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WebService/SayHello", ReplyAction="*")]
-        InputSpeedExamination.ServiceReference.SayHelloResponse SayHello(InputSpeedExamination.ServiceReference.SayHelloRequest request);
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string SayHello(string data);
         
-        // CODEGEN: Generating message contract since element name GetAllDepartmentResult from namespace WebService is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllDepartment", ReplyAction="*")]
-        InputSpeedExamination.ServiceReference.GetAllDepartmentResponse GetAllDepartment(InputSpeedExamination.ServiceReference.GetAllDepartmentRequest request);
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllDepartment();
         
-        // CODEGEN: Generating message contract since element name DepartmentID from namespace WebService is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetMajorByDepartment", ReplyAction="*")]
-        InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponse GetMajorByDepartment(InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SayHelloRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SayHello", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.SayHelloRequestBody Body;
-        
-        public SayHelloRequest() {
-        }
-        
-        public SayHelloRequest(InputSpeedExamination.ServiceReference.SayHelloRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class SayHelloRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string data;
-        
-        public SayHelloRequestBody() {
-        }
-        
-        public SayHelloRequestBody(string data) {
-            this.data = data;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class SayHelloResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="SayHelloResponse", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.SayHelloResponseBody Body;
-        
-        public SayHelloResponse() {
-        }
-        
-        public SayHelloResponse(InputSpeedExamination.ServiceReference.SayHelloResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class SayHelloResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string SayHelloResult;
-        
-        public SayHelloResponseBody() {
-        }
-        
-        public SayHelloResponseBody(string SayHelloResult) {
-            this.SayHelloResult = SayHelloResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetAllDepartmentRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllDepartment", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetAllDepartmentRequestBody Body;
-        
-        public GetAllDepartmentRequest() {
-        }
-        
-        public GetAllDepartmentRequest(InputSpeedExamination.ServiceReference.GetAllDepartmentRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class GetAllDepartmentRequestBody {
-        
-        public GetAllDepartmentRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetAllDepartmentResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetAllDepartmentResponse", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetAllDepartmentResponseBody Body;
-        
-        public GetAllDepartmentResponse() {
-        }
-        
-        public GetAllDepartmentResponse(InputSpeedExamination.ServiceReference.GetAllDepartmentResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class GetAllDepartmentResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public InputSpeedExamination.ServiceReference.ArrayOfString GetAllDepartmentResult;
-        
-        public GetAllDepartmentResponseBody() {
-        }
-        
-        public GetAllDepartmentResponseBody(InputSpeedExamination.ServiceReference.ArrayOfString GetAllDepartmentResult) {
-            this.GetAllDepartmentResult = GetAllDepartmentResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetMajorByDepartmentRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMajorByDepartment", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequestBody Body;
-        
-        public GetMajorByDepartmentRequest() {
-        }
-        
-        public GetMajorByDepartmentRequest(InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class GetMajorByDepartmentRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string DepartmentID;
-        
-        public GetMajorByDepartmentRequestBody() {
-        }
-        
-        public GetMajorByDepartmentRequestBody(string DepartmentID) {
-            this.DepartmentID = DepartmentID;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class GetMajorByDepartmentResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetMajorByDepartmentResponse", Namespace="WebService", Order=0)]
-        public InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponseBody Body;
-        
-        public GetMajorByDepartmentResponse() {
-        }
-        
-        public GetMajorByDepartmentResponse(InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="WebService")]
-    public partial class GetMajorByDepartmentResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public InputSpeedExamination.ServiceReference.ArrayOfString GetMajorByDepartmentResult;
-        
-        public GetMajorByDepartmentResponseBody() {
-        }
-        
-        public GetMajorByDepartmentResponseBody(InputSpeedExamination.ServiceReference.ArrayOfString GetMajorByDepartmentResult) {
-            this.GetMajorByDepartmentResult = GetMajorByDepartmentResult;
-        }
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetMajorByDepartment(string DepartmentID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -261,42 +56,16 @@ namespace InputSpeedExamination.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        InputSpeedExamination.ServiceReference.SayHelloResponse InputSpeedExamination.ServiceReference.HelloServerSoap.SayHello(InputSpeedExamination.ServiceReference.SayHelloRequest request) {
-            return base.Channel.SayHello(request);
-        }
-        
         public string SayHello(string data) {
-            InputSpeedExamination.ServiceReference.SayHelloRequest inValue = new InputSpeedExamination.ServiceReference.SayHelloRequest();
-            inValue.Body = new InputSpeedExamination.ServiceReference.SayHelloRequestBody();
-            inValue.Body.data = data;
-            InputSpeedExamination.ServiceReference.SayHelloResponse retVal = ((InputSpeedExamination.ServiceReference.HelloServerSoap)(this)).SayHello(inValue);
-            return retVal.Body.SayHelloResult;
+            return base.Channel.SayHello(data);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        InputSpeedExamination.ServiceReference.GetAllDepartmentResponse InputSpeedExamination.ServiceReference.HelloServerSoap.GetAllDepartment(InputSpeedExamination.ServiceReference.GetAllDepartmentRequest request) {
-            return base.Channel.GetAllDepartment(request);
+        public System.Data.DataSet GetAllDepartment() {
+            return base.Channel.GetAllDepartment();
         }
         
-        public InputSpeedExamination.ServiceReference.ArrayOfString GetAllDepartment() {
-            InputSpeedExamination.ServiceReference.GetAllDepartmentRequest inValue = new InputSpeedExamination.ServiceReference.GetAllDepartmentRequest();
-            inValue.Body = new InputSpeedExamination.ServiceReference.GetAllDepartmentRequestBody();
-            InputSpeedExamination.ServiceReference.GetAllDepartmentResponse retVal = ((InputSpeedExamination.ServiceReference.HelloServerSoap)(this)).GetAllDepartment(inValue);
-            return retVal.Body.GetAllDepartmentResult;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponse InputSpeedExamination.ServiceReference.HelloServerSoap.GetMajorByDepartment(InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequest request) {
-            return base.Channel.GetMajorByDepartment(request);
-        }
-        
-        public InputSpeedExamination.ServiceReference.ArrayOfString GetMajorByDepartment(string DepartmentID) {
-            InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequest inValue = new InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequest();
-            inValue.Body = new InputSpeedExamination.ServiceReference.GetMajorByDepartmentRequestBody();
-            inValue.Body.DepartmentID = DepartmentID;
-            InputSpeedExamination.ServiceReference.GetMajorByDepartmentResponse retVal = ((InputSpeedExamination.ServiceReference.HelloServerSoap)(this)).GetMajorByDepartment(inValue);
-            return retVal.Body.GetMajorByDepartmentResult;
+        public System.Data.DataSet GetMajorByDepartment(string DepartmentID) {
+            return base.Channel.GetMajorByDepartment(DepartmentID);
         }
     }
 }

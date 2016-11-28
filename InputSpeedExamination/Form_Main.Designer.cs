@@ -77,6 +77,7 @@
             this.ProcessBar_OnLine = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
+            this.ColumnHeader_OnLineExminationHint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
@@ -792,7 +793,8 @@
             this.ListView_OnLineExamination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.ListView_OnLineExamination.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListView_OnLineExamination.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnHeader_OnLineExmination});
+            this.ColumnHeader_OnLineExmination,
+            this.ColumnHeader_OnLineExminationHint});
             this.ListView_OnLineExamination.Depth = 0;
             this.ListView_OnLineExamination.Font = new System.Drawing.Font("微软雅黑", 18F);
             this.ListView_OnLineExamination.FullRowSelect = true;
@@ -851,6 +853,11 @@
             // 
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
+            // 
+            // ColumnHeader_OnLineExminationHint
+            // 
+            this.ColumnHeader_OnLineExminationHint.Text = "Hint";
+            this.ColumnHeader_OnLineExminationHint.Width = 0;
             // 
             // Form_Main
             // 
@@ -932,6 +939,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton Button_OnLineReturn;
         private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Next;
         private MaterialSkin.Controls.MaterialListView ListView_OnLineExamination;
+        private System.Windows.Forms.ColumnHeader ColumnHeader_OnLineExminationHint;
     }
 }
 
