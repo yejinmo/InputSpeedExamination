@@ -931,6 +931,7 @@ cba
         {
             try
             {
+                Thread.Sleep(250);
                 Invoke((EventHandler)delegate
                 {
                     ListView_OnLineExamination.Items.Clear();
@@ -945,10 +946,10 @@ cba
                 ServiceReference.HelloServerSoapClient wc = new ServiceReference.HelloServerSoapClient();
                 var res = wc.SayHello("Hello Server");
                 if (res == "Hello Client")
-                    Update_Label_OnLineTip("连接成功");
+                    Update_Label_OnLineTip("连接服务器成功");
                 else
                 {
-                    Update_Label_OnLineTip("连接失败");
+                    Update_Label_OnLineTip("连接服务器失败");
                     return;
                 }
                 var res_department = wc.GetAllDepartment();
@@ -967,11 +968,22 @@ cba
                 });
                 OnLineSelectStats = OnLineSelectStatsEnum.SelectDepartment;
             }
+            catch (System.Net.WebException)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Update_Label_OnLineTip("连接服务器失败");
+                    MessageBox.Show(this, "连接服务器失败\n\n请检查网络连接", "错误");
+                    return;
+                });
+            }
             catch (Exception e)
             {
                 Invoke((EventHandler)delegate
                 {
-                    MessageBox.Show(this, "发生了一个错误\n\n" + e.Message, "错误");
+                    Update_Label_OnLineTip("连接服务器失败");
+                    MessageBox.Show(this, "连接服务器失败\n\n发生了一个不可预知的错误\n\n" + e.InnerException, "错误");
+                    return;
                 });
             }
             finally
