@@ -27,6 +27,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetMajorByDepartment", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetMajorByDepartment(string DepartmentID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetUpdateList();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -66,6 +70,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public System.Data.DataSet GetMajorByDepartment(string DepartmentID) {
             return base.Channel.GetMajorByDepartment(DepartmentID);
+        }
+        
+        public System.Data.DataSet GetUpdateList() {
+            return base.Channel.GetUpdateList();
         }
     }
 }

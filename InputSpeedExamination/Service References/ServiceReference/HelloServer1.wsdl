@@ -54,6 +54,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUpdateList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUpdateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUpdateListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="SayHelloSoapIn">
@@ -74,6 +91,12 @@
   <wsdl:message name="GetMajorByDepartmentSoapOut">
     <wsdl:part name="parameters" element="tns:GetMajorByDepartmentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUpdateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdateList" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdateListResponse" />
+  </wsdl:message>
   <wsdl:portType name="HelloServerSoap">
     <wsdl:operation name="SayHello">
       <wsdl:input message="tns:SayHelloSoapIn" />
@@ -86,6 +109,10 @@
     <wsdl:operation name="GetMajorByDepartment">
       <wsdl:input message="tns:GetMajorByDepartmentSoapIn" />
       <wsdl:output message="tns:GetMajorByDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <wsdl:input message="tns:GetUpdateListSoapIn" />
+      <wsdl:output message="tns:GetUpdateListSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
@@ -117,6 +144,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <soap:operation soapAction="WebService/GetUpdateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerSoap12" type="tns:HelloServerSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -140,6 +176,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
       <soap12:operation soapAction="WebService/GetMajorByDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <soap12:operation soapAction="WebService/GetUpdateList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

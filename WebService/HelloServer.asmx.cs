@@ -53,5 +53,15 @@ namespace WebService
             return new DBHelper().GetMajorByDepartment(DepartmentID);
         }
 
+        /// <summary>
+        /// 获取更新列表
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public DataSet GetUpdateList()
+        {
+            return new DataSet();
+        }
+
     }
 }

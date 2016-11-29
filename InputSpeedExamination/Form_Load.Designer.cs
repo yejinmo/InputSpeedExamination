@@ -40,11 +40,12 @@
             this.materialProcessBar1.Depth = 0;
             this.materialProcessBar1.Interval = 10;
             this.materialProcessBar1.LengthValue = 300;
-            this.materialProcessBar1.Location = new System.Drawing.Point(12, 60);
+            this.materialProcessBar1.Location = new System.Drawing.Point(16, 75);
+            this.materialProcessBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.materialProcessBar1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialProcessBar1.Name = "materialProcessBar1";
             this.materialProcessBar1.Processing = true;
-            this.materialProcessBar1.Size = new System.Drawing.Size(630, 5);
+            this.materialProcessBar1.Size = new System.Drawing.Size(840, 5);
             this.materialProcessBar1.StepValue = 7;
             this.materialProcessBar1.TabIndex = 0;
             // 
@@ -53,10 +54,11 @@
             this.Label_Tip.Depth = 0;
             this.Label_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Label_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Tip.Location = new System.Drawing.Point(12, 9);
+            this.Label_Tip.Location = new System.Drawing.Point(16, 11);
+            this.Label_Tip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Label_Tip.MouseState = MaterialSkin.MouseState.HOVER;
             this.Label_Tip.Name = "Label_Tip";
-            this.Label_Tip.Size = new System.Drawing.Size(630, 46);
+            this.Label_Tip.Size = new System.Drawing.Size(840, 58);
             this.Label_Tip.TabIndex = 1;
             this.Label_Tip.Text = "正在载入中 请稍等片刻";
             this.Label_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -73,14 +75,15 @@
             // 
             // Form_Load
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(654, 74);
+            this.ClientSize = new System.Drawing.Size(872, 92);
             this.ControlBox = false;
             this.Controls.Add(this.Label_Tip);
             this.Controls.Add(this.materialProcessBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_Load";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
