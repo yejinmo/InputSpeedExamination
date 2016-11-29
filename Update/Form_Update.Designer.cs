@@ -34,9 +34,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(572, 353);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form_Update";
-            this.Text = "Form_Update";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "检查更新";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Form_Update_Load);
             this.ResumeLayout(false);
 
         }
