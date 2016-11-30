@@ -58,7 +58,7 @@ namespace MaterialSkin.Controls
             var g = pevent.Graphics;
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
-            g.Clear(Parent.BackColor);
+            g.Clear(Parent.BackColor == Color.Transparent ? Color.White : Parent.BackColor);
 
             //Hover
             Color c = SkinManager.GetFlatButtonHoverBackgroundColor();

@@ -985,7 +985,7 @@ namespace MaterialSkin.Controls
             baseTextBox = new BaseTextBox
             {
                 BorderStyle = BorderStyle.None,
-                Font = SkinManager.FONT_SIZE_14,
+                Font = SkinManager.FONT_SIZE_18,
                 ForeColor = ForeColor,
                 Location = new Point(0, 0),
                 Width = Width,
@@ -1021,7 +1021,7 @@ namespace MaterialSkin.Controls
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
-            g.Clear(Parent.BackColor);
+            g.Clear(Parent.BackColor == Color.Transparent ? Color.White : Parent.BackColor);
 
             int lineY = baseTextBox.Bottom + 3;
 
@@ -1059,7 +1059,7 @@ namespace MaterialSkin.Controls
         {
             base.OnCreateControl();
 
-            baseTextBox.BackColor = Parent.BackColor;
+            baseTextBox.BackColor = Parent.BackColor == Color.Transparent ? Color.White : Parent.BackColor;
             baseTextBox.ForeColor = ForeColor;
         }
 
@@ -1277,6 +1277,11 @@ namespace MaterialSkin.Controls
                     selectAll
                 });
             }
+        }
+
+        public new void Focus()
+        {
+            baseTextBox.Focus();
         }
 
     }

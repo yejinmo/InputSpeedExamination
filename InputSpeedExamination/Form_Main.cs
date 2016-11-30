@@ -17,6 +17,45 @@ namespace InputSpeedExamination
     public partial class Form_Main : MaterialForm
     {
 
+        #region User Information
+
+        /// <summary>
+        /// 用户信息
+        /// </summary>
+        static class UserInformation
+        {
+            /// <summary>
+            /// 系
+            /// </summary>
+            public static string Department = string.Empty;
+            /// <summary>
+            /// 专业
+            /// </summary>
+            public static string Major = string.Empty;
+            /// <summary>
+            /// 班级
+            /// </summary>
+            public static string Class = string.Empty;
+            /// <summary>
+            /// 姓名
+            /// </summary>
+            public static string Name = string.Empty;
+            /// <summary>
+            /// 学号
+            /// </summary>
+            public static string Number = string.Empty;
+            /// <summary>
+            /// 密码
+            /// </summary>
+            public static string Password = string.Empty;
+            /// <summary>
+            /// 内容ID
+            /// </summary>
+            public static string ContentID = string.Empty;
+        }
+
+        #endregion
+
         #region Load
 
         public Form_Main()
@@ -37,8 +76,7 @@ namespace InputSpeedExamination
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OffLine, NeedCenterControlStyle.Horizontal));
-            NeedCenterControlList.Add(new NeedCenterControl(FlatButton_Select_OnLine, NeedCenterControlStyle.Horizontal));
+            NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             Form_Main_Resize(sender, e);
@@ -919,133 +957,11 @@ cba
 
         #endregion
 
-        #region OnLineExamination
-
-        private void FlatButton_Select_OnLine_Click(object sender, EventArgs e)
-        {
-            Thread ThreadConnectToServer = new Thread(new ThreadStart(ConnectToServer));
-            ThreadConnectToServer.Start();
-        }
-
-        private void ConnectToServer()
-        {
-            try
-            {
-                Thread.Sleep(250);
-                Invoke((EventHandler)delegate
-                {
-                    ListView_OnLineExamination.Items.Clear();
-                    Enabled = false;
-                    ProcessBar_OnLine.Visible = true;
-                    TabControl_Main.SelectedTab = TabPage_OnLineExamination;
-                });
-                OnLineSelectStats = OnLineSelectStatsEnum.Default;
-                Thread.Sleep(250);
-                Update_Label_OnLineTip("连接服务器");
-                Thread.Sleep(250);
-                ServiceReference.HelloServerSoapClient wc = new ServiceReference.HelloServerSoapClient();
-                var res = wc.SayHello("Hello Server");
-                if (res == "Hello Client")
-                    Update_Label_OnLineTip("连接服务器成功");
-                else
-                {
-                    Update_Label_OnLineTip("连接服务器失败");
-                    return;
-                }
-                var res_department = wc.GetAllDepartment();
-                Update_Label_OnLineTip("获取系别列表");
-                Thread.Sleep(250);
-                Update_Label_OnLineTip("完成中");
-                Thread.Sleep(500);
-                Invoke((EventHandler)delegate
-                {
-                    foreach (DataRow row in res_department.Tables[0].Rows)
-                    {
-                        ListViewItem lvi = new ListViewItem(row[0].ToString());
-                        lvi.SubItems.Add(row[1].ToString());
-                        ListView_OnLineExamination.Items.Add(lvi);
-                    }
-                });
-                OnLineSelectStats = OnLineSelectStatsEnum.SelectDepartment;
-            }
-            catch (System.Net.WebException)
-            {
-                Invoke((EventHandler)delegate
-                {
-                    Update_Label_OnLineTip("连接服务器失败");
-                    MessageBox.Show(this, "连接服务器失败\n\n请检查网络连接", "错误");
-                    return;
-                });
-            }
-            catch (Exception e)
-            {
-                Invoke((EventHandler)delegate
-                {
-                    Update_Label_OnLineTip("连接服务器失败");
-                    MessageBox.Show(this, "连接服务器失败\n\n发生了一个不可预知的错误\n\n" + e.InnerException, "错误");
-                    return;
-                });
-            }
-            finally
-            {
-                Invoke((EventHandler)delegate
-                {
-                    ProcessBar_OnLine.Visible = false;
-                    Enabled = true;
-                });
-            }
-        }
-
-        private void Update_Label_OnLineTip(string str)
-        {
-            Invoke((EventHandler)delegate
-            {
-                Label_OnLineTip.Text = str;
-            });
-        }
+        #region Login
 
         private void Button_OnLineReturn_Click(object sender, EventArgs e)
         {
             TabControl_Main.SelectedTab = TabPage_Select;
-        }
-
-        private void Button_OnLine_Next_Click(object sender, EventArgs e)
-        {
-            switch (OnLineSelectStats)
-            {
-                case OnLineSelectStatsEnum.Default:
-                    break;
-                case OnLineSelectStatsEnum.SelectDepartment:
-                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
-                        MessageBox.Show(this, "请选择一项", "提示");
-                    else
-                    {
-                        UserInformation.Department = ListView_OnLineExamination.SelectedItems[0].Text;
-                        UserInformation.DepartmentID = ListView_OnLineExamination.SelectedItems[0].SubItems[1].Text;
-                        Thread ThreadGetMajorByDepartment = new Thread(new ThreadStart(GetMajorByDepartment));
-                        ThreadGetMajorByDepartment.Start();
-                    }
-                    break;
-                case OnLineSelectStatsEnum.SelectMajor:
-                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
-                        MessageBox.Show(this, "请选择一项", "提示");
-                    else
-                    {
-                        UserInformation.Major = ListView_OnLineExamination.SelectedItems[0].Text;
-                        UserInformation.MajorID = ListView_OnLineExamination.SelectedItems[0].SubItems[1].Text;
-                    }
-                    break;
-                case OnLineSelectStatsEnum.TypeInformation:
-                    break;
-                case OnLineSelectStatsEnum.SelectContent:
-                    if (ListView_OnLineExamination.SelectedItems.Count == 0)
-                        MessageBox.Show(this, "请选择一项", "提示");
-                    else
-                        MessageBox.Show(ListView_OnLineExamination.SelectedItems[0].Text);
-                    break;
-                case OnLineSelectStatsEnum.Finish:
-                    break;
-            }
         }
 
         /// <summary>
@@ -1058,17 +974,9 @@ cba
             /// </summary>
             Default,
             /// <summary>
-            /// 选择系
+            /// 登陆教务
             /// </summary>
-            SelectDepartment,
-            /// <summary>
-            /// 选择专业
-            /// </summary>
-            SelectMajor,
-            /// <summary>
-            /// 输入个人信息（班级，学号，姓名）
-            /// </summary>
-            TypeInformation,
+            Login,
             /// <summary>
             /// 选择测试内容
             /// </summary>
@@ -1091,109 +999,122 @@ cba
             set
             {
                 onLineSelectStats = value;
-                switch (value)
-                {
-                    case OnLineSelectStatsEnum.Default:
-                        Update_Label_OnLineTip("准备数据中");
-                        Button_OnLine_Next.Text = "下一步";
-                        break;
-                    case OnLineSelectStatsEnum.SelectDepartment:
-                        Update_Label_OnLineTip("请选择所在系 然后单击下一步");
-                        break;
-                    case OnLineSelectStatsEnum.SelectMajor:
-                        Update_Label_OnLineTip("请选择所在专业 然后单击下一步");
-                        break;
-                    case OnLineSelectStatsEnum.TypeInformation:
-                        Update_Label_OnLineTip("请输入个人信息 然后单击下一步");
-                        break;
-                    case OnLineSelectStatsEnum.SelectContent:
-                        Update_Label_OnLineTip("请选择测试内容 然后单击下一步");
-                        Button_OnLine_Next.Text = "完成";
-                        break;
-                    case OnLineSelectStatsEnum.Finish:
-                        Update_Label_OnLineTip("完成");
-                        break;
-                }
             }
         }
 
-        private void GetMajorByDepartment()
+        private void FlatButton_Select_Login_Click(object sender, EventArgs e)
+        {
+            UserInformation.Number = TextField_UserName.Text;
+            UserInformation.Password = TextField_PassWord.Text;
+            if (string.IsNullOrEmpty(UserInformation.Number))
+            {
+                Update_Label_Login_Tip(Color.Red, "请输入用户名");
+                return;
+            }
+            if (string.IsNullOrEmpty(UserInformation.Password))
+            {
+                Update_Label_Login_Tip(Color.Red, "请输入密码");
+                return;
+            }
+            Thread ThreadLogin = new Thread(new ThreadStart(Login));
+            ThreadLogin.Start();
+        }
+
+        /// <summary>
+        /// 更新 Label_Login_Tip.Text
+        /// </summary>
+        /// <param name="str"></param>
+        private void Update_Label_Login_Tip(Color ForeColor, string str = "使用教务系统账号登录")
+        {
+           Invoke((EventHandler)delegate
+           {
+               Label_Login_Tip.ForeColor = ForeColor;
+               Label_Login_Tip.Text = str;
+           });
+        }
+
+        private void Login()
         {
             try
             {
-                string department = string.Empty;
-                Invoke((EventHandler)delegate
-                {
-                    Enabled = false;
-                    ProcessBar_OnLine.Visible = true;
-                });
-                Update_Label_OnLineTip("正在获取 " + UserInformation.Department + " 包含专业");
-                Thread.Sleep(1000);
-                var res_major = new ServiceReference.HelloServerSoapClient().GetMajorByDepartment(UserInformation.DepartmentID);
-                Invoke((EventHandler)delegate
-                {
-                    ListView_OnLineExamination.Items.Clear();
-                        foreach (DataRow row in res_major.Tables[0].Rows)
-                        {
-                            ListViewItem lvi = new ListViewItem(row[0].ToString());
-                            lvi.SubItems.Add(row[1].ToString());
-                            ListView_OnLineExamination.Items.Add(lvi);
-                        }
-                });
 
-                OnLineSelectStats = OnLineSelectStatsEnum.SelectMajor;
+                Invoke((EventHandler)delegate
+                {
+                    ProcessBar_Login.Visible = true;
+                });
+                Update_Label_Login_Tip(Color.Black, "连接服务器");
+                Thread.Sleep(250);
+                string str = new ServiceReference.HelloServerSoapClient().SayHello("Hello Server");
+                if (str != "Hello Client")
+                {
+                    Update_Label_Login_Tip(Color.Red, "连接服务器失败");
+                    return;
+                }
+                Update_Label_Login_Tip(Color.Black, "验证账户信息");
+                Thread.Sleep(250);
+                var res = new ServiceReference.HelloServerSoapClient().GetUserInfo(UserInformation.Number, UserInformation.Password);
+                if (res == "password error")
+                {
+                    Update_Label_Login_Tip(Color.Red, "密码错误");
+                    return;
+                }
+                else if (res == "username error")
+                {
+                    Update_Label_Login_Tip(Color.Red, "用户名错误");
+                    return;
+                }
+                else if (res == "checkcode error")
+                {
+                    Update_Label_Login_Tip(Color.Red, "未知错误");
+                    return;
+                }
+                else if (res.Split(',').Length != 5)
+                {
+                    Update_Label_Login_Tip(Color.Red, "未知错误");
+                    Invoke((EventHandler)delegate
+                    {
+                        MessageBox.Show(this, res, "错误");
+                    });
+                    return;
+                }
+                else
+                {
+                    Update_Label_Login_Tip(Color.Black, "获取账户信息");
+                    Thread.Sleep(250);
+                    var res_array = res.Split(',');
+                    UserInformation.Department = res_array[0];
+                    UserInformation.Major = res_array[1];
+                    UserInformation.Class = res_array[2];
+                    UserInformation.Name = res_array[3];
+                    UserInformation.Number = res_array[4];
+                    Update_Label_Login_Tip(Color.Black, "登录成功");
+                    Thread.Sleep(250);
+                    Update_Label_Login_Tip(Color.Black);
+                }
             }
-            catch
+            catch(System.ServiceModel.CommunicationException)
             {
-
+                Update_Label_Login_Tip(Color.Red, "连接服务器失败");
             }
             finally
             {
                 Invoke((EventHandler)delegate
                 {
-                    Enabled = true;
-                    ProcessBar_OnLine.Visible = false;
+                    ProcessBar_Login.Visible = false;
                 });
             }
         }
 
-        /// <summary>
-        /// 用户信息
-        /// </summary>
-        static class UserInformation
+        private void TextField_PassWord_KeyDown(object sender, KeyEventArgs e)
         {
-            /// <summary>
-            /// 系
-            /// </summary>
-            public static string Department = string.Empty;
-            /// <summary>
-            /// 系ID
-            /// </summary>
-            public static string DepartmentID = string.Empty;
-            /// <summary>
-            /// 专业
-            /// </summary>
-            public static string Major = string.Empty;
-            /// <summary>
-            /// 专业ID
-            /// </summary>
-            public static string MajorID = string.Empty;
-            /// <summary>
-            /// 班级
-            /// </summary>
-            public static string Class = string.Empty;
-            /// <summary>
-            /// 姓名
-            /// </summary>
-            public static string Name = string.Empty;
-            /// <summary>
-            /// 学号
-            /// </summary>
-            public static string Number = string.Empty;
-            /// <summary>
-            /// 内容ID
-            /// </summary>
-            public static string ContentID = string.Empty;
+            if (e.KeyCode == Keys.Enter)
+                FlatButton_Select_Login.PerformClick();
+        }
+
+        private void TextField_UserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                TextField_PassWord.Focus();
         }
 
         #endregion

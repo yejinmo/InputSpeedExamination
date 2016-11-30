@@ -160,19 +160,22 @@ namespace MaterialSkin.Controls
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            
-            //draw background
-            //e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, top_pos, e.ClipRectangle.Width, e.ClipRectangle.Height);
-            e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-            //draw process block
-            //e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, top_pos, LengthValue, e.ClipRectangle.Height);
-            e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, 0, LengthValue, e.ClipRectangle.Height);
 
-            /*
-            var doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
-            e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, 0, 0, doneProgress, e.ClipRectangle.Height);
-            e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-            */
+            try
+            {
+                //draw background
+                //e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, top_pos, e.ClipRectangle.Width, e.ClipRectangle.Height);
+                e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
+                //draw process block
+                //e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, top_pos, LengthValue, e.ClipRectangle.Height);
+                e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, 0, LengthValue, e.ClipRectangle.Height);
+                /*
+                var doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
+                e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, 0, 0, doneProgress, e.ClipRectangle.Height);
+                e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
+                */
+            }
+            catch { }
         }
 
         //private bool visible = true;

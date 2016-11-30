@@ -31,7 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Select = new System.Windows.Forms.TabPage();
-            this.FlatButton_Select_OnLine = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Panel_Login = new System.Windows.Forms.Panel();
+            this.ProcessBar_Login = new MaterialSkin.Controls.MaterialProcessBar();
+            this.Label_Login_Tip = new System.Windows.Forms.Label();
+            this.TextField_PassWord = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.TextField_UserName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.FlatButton_Select_Login = new MaterialSkin.Controls.MaterialFlatButton();
             this.FlatButton_Select_OffLine = new MaterialSkin.Controls.MaterialFlatButton();
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Examination = new System.Windows.Forms.TabPage();
@@ -69,17 +74,14 @@
             this.TabPage_Result = new System.Windows.Forms.TabPage();
             this.TabPage_OnLineExamination = new System.Windows.Forms.TabPage();
             this.Panel_OnLine = new System.Windows.Forms.Panel();
-            this.Button_OnLine_Next = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Button_OnLineReturn = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.ListView_OnLineExamination = new MaterialSkin.Controls.MaterialListView();
-            this.ColumnHeader_OnLineExmination = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Label_OnLineTip = new MaterialSkin.Controls.MaterialLabel();
             this.ProcessBar_OnLine = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
-            this.ColumnHeader_OnLineExminationHint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
+            this.Panel_Login.SuspendLayout();
             this.TabPage_Examination.SuspendLayout();
             this.Panel_Input_Main.SuspendLayout();
             this.TabPage_Start.SuspendLayout();
@@ -112,8 +114,7 @@
             // TabPage_Select
             // 
             this.TabPage_Select.BackColor = System.Drawing.Color.White;
-            this.TabPage_Select.Controls.Add(this.FlatButton_Select_OnLine);
-            this.TabPage_Select.Controls.Add(this.FlatButton_Select_OffLine);
+            this.TabPage_Select.Controls.Add(this.Panel_Login);
             this.TabPage_Select.Controls.Add(this.WebView_Select_BG);
             this.TabPage_Select.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Select.Name = "TabPage_Select";
@@ -122,34 +123,127 @@
             this.TabPage_Select.TabIndex = 0;
             this.TabPage_Select.Text = "tabPage1";
             // 
-            // FlatButton_Select_OnLine
+            // Panel_Login
             // 
-            this.FlatButton_Select_OnLine.Depth = 0;
-            this.FlatButton_Select_OnLine.Location = new System.Drawing.Point(335, 273);
-            this.FlatButton_Select_OnLine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.FlatButton_Select_OnLine.MouseState = MaterialSkin.MouseState.HOVER;
-            this.FlatButton_Select_OnLine.Name = "FlatButton_Select_OnLine";
-            this.FlatButton_Select_OnLine.Primary = false;
-            this.FlatButton_Select_OnLine.Size = new System.Drawing.Size(222, 58);
-            this.FlatButton_Select_OnLine.TabIndex = 1;
-            this.FlatButton_Select_OnLine.Text = "在线测试模式";
-            this.FlatButton_Select_OnLine.UseVisualStyleBackColor = true;
-            this.FlatButton_Select_OnLine.Click += new System.EventHandler(this.FlatButton_Select_OnLine_Click);
+            this.Panel_Login.BackColor = System.Drawing.Color.White;
+            this.Panel_Login.Controls.Add(this.ProcessBar_Login);
+            this.Panel_Login.Controls.Add(this.Label_Login_Tip);
+            this.Panel_Login.Controls.Add(this.TextField_PassWord);
+            this.Panel_Login.Controls.Add(this.TextField_UserName);
+            this.Panel_Login.Controls.Add(this.FlatButton_Select_Login);
+            this.Panel_Login.Controls.Add(this.FlatButton_Select_OffLine);
+            this.Panel_Login.Location = new System.Drawing.Point(375, 129);
+            this.Panel_Login.Name = "Panel_Login";
+            this.Panel_Login.Size = new System.Drawing.Size(400, 204);
+            this.Panel_Login.TabIndex = 3;
+            // 
+            // ProcessBar_Login
+            // 
+            this.ProcessBar_Login.Depth = 0;
+            this.ProcessBar_Login.Interval = 15;
+            this.ProcessBar_Login.LengthValue = 200;
+            this.ProcessBar_Login.Location = new System.Drawing.Point(5, 126);
+            this.ProcessBar_Login.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_Login.Name = "ProcessBar_Login";
+            this.ProcessBar_Login.Processing = true;
+            this.ProcessBar_Login.Size = new System.Drawing.Size(392, 5);
+            this.ProcessBar_Login.StepValue = 10;
+            this.ProcessBar_Login.TabIndex = 7;
+            this.ProcessBar_Login.Visible = false;
+            // 
+            // Label_Login_Tip
+            // 
+            this.Label_Login_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Login_Tip.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_Login_Tip.ForeColor = System.Drawing.Color.Black;
+            this.Label_Login_Tip.Location = new System.Drawing.Point(3, 3);
+            this.Label_Login_Tip.Margin = new System.Windows.Forms.Padding(3);
+            this.Label_Login_Tip.Name = "Label_Login_Tip";
+            this.Label_Login_Tip.Size = new System.Drawing.Size(394, 31);
+            this.Label_Login_Tip.TabIndex = 6;
+            this.Label_Login_Tip.Text = "使用教务系统账号登录";
+            this.Label_Login_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TextField_PassWord
+            // 
+            this.TextField_PassWord.Depth = 0;
+            this.TextField_PassWord.ErrorModeColor = System.Drawing.Color.Red;
+            this.TextField_PassWord.ErrorModeString = "";
+            this.TextField_PassWord.FollowLabel = null;
+            this.TextField_PassWord.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TextField_PassWord.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.TextField_PassWord.ForeColor = System.Drawing.Color.Black;
+            this.TextField_PassWord.Hint = "密码";
+            this.TextField_PassWord.IsErrorMode = false;
+            this.TextField_PassWord.Location = new System.Drawing.Point(5, 83);
+            this.TextField_PassWord.MaxLength = 32767;
+            this.TextField_PassWord.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TextField_PassWord.Name = "TextField_PassWord";
+            this.TextField_PassWord.PasswordChar = '\0';
+            this.TextField_PassWord.ReadOlay = false;
+            this.TextField_PassWord.SelectedText = "";
+            this.TextField_PassWord.SelectionLength = 0;
+            this.TextField_PassWord.SelectionStart = 0;
+            this.TextField_PassWord.Size = new System.Drawing.Size(392, 37);
+            this.TextField_PassWord.TabIndex = 5;
+            this.TextField_PassWord.TabStop = false;
+            this.TextField_PassWord.UseSystemPasswordChar = true;
+            this.TextField_PassWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextField_PassWord_KeyDown);
+            // 
+            // TextField_UserName
+            // 
+            this.TextField_UserName.Depth = 0;
+            this.TextField_UserName.ErrorModeColor = System.Drawing.Color.Red;
+            this.TextField_UserName.ErrorModeString = "";
+            this.TextField_UserName.FollowLabel = null;
+            this.TextField_UserName.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TextField_UserName.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.TextField_UserName.ForeColor = System.Drawing.Color.Black;
+            this.TextField_UserName.Hint = "用户名";
+            this.TextField_UserName.IsErrorMode = false;
+            this.TextField_UserName.Location = new System.Drawing.Point(5, 40);
+            this.TextField_UserName.MaxLength = 32767;
+            this.TextField_UserName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TextField_UserName.Name = "TextField_UserName";
+            this.TextField_UserName.PasswordChar = '\0';
+            this.TextField_UserName.ReadOlay = false;
+            this.TextField_UserName.SelectedText = "";
+            this.TextField_UserName.SelectionLength = 0;
+            this.TextField_UserName.SelectionStart = 0;
+            this.TextField_UserName.Size = new System.Drawing.Size(392, 37);
+            this.TextField_UserName.TabIndex = 4;
+            this.TextField_UserName.TabStop = false;
+            this.TextField_UserName.UseSystemPasswordChar = false;
+            this.TextField_UserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextField_UserName_KeyDown);
+            // 
+            // FlatButton_Select_Login
+            // 
+            this.FlatButton_Select_Login.Depth = 0;
+            this.FlatButton_Select_Login.Location = new System.Drawing.Point(204, 140);
+            this.FlatButton_Select_Login.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.FlatButton_Select_Login.MouseState = MaterialSkin.MouseState.HOVER;
+            this.FlatButton_Select_Login.Name = "FlatButton_Select_Login";
+            this.FlatButton_Select_Login.Primary = false;
+            this.FlatButton_Select_Login.Size = new System.Drawing.Size(192, 58);
+            this.FlatButton_Select_Login.TabIndex = 3;
+            this.FlatButton_Select_Login.Text = "登录";
+            this.FlatButton_Select_Login.UseVisualStyleBackColor = true;
+            this.FlatButton_Select_Login.Click += new System.EventHandler(this.FlatButton_Select_Login_Click);
             // 
             // FlatButton_Select_OffLine
             // 
             this.FlatButton_Select_OffLine.Depth = 0;
-            this.FlatButton_Select_OffLine.Location = new System.Drawing.Point(335, 162);
+            this.FlatButton_Select_OffLine.Location = new System.Drawing.Point(5, 140);
             this.FlatButton_Select_OffLine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.FlatButton_Select_OffLine.MouseState = MaterialSkin.MouseState.HOVER;
             this.FlatButton_Select_OffLine.Name = "FlatButton_Select_OffLine";
             this.FlatButton_Select_OffLine.Primary = false;
-            this.FlatButton_Select_OffLine.Size = new System.Drawing.Size(222, 58);
-            this.FlatButton_Select_OffLine.TabIndex = 0;
-            this.FlatButton_Select_OffLine.Text = "自由练习模式";
+            this.FlatButton_Select_OffLine.Size = new System.Drawing.Size(192, 58);
+            this.FlatButton_Select_OffLine.TabIndex = 2;
+            this.FlatButton_Select_OffLine.Text = "离线模式";
             this.FlatButton_Select_OffLine.UseVisualStyleBackColor = true;
             this.FlatButton_Select_OffLine.Click += new System.EventHandler(this.FlatButton_Select_OffLine_Click);
-            this.FlatButton_Select_OffLine.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FlatButton_Select_OffLine_MouseMove);
             // 
             // WebView_Select_BG
             // 
@@ -656,7 +750,7 @@
             this.Text_SearchExamination.SelectedText = "";
             this.Text_SearchExamination.SelectionLength = 0;
             this.Text_SearchExamination.SelectionStart = 0;
-            this.Text_SearchExamination.Size = new System.Drawing.Size(1191, 30);
+            this.Text_SearchExamination.Size = new System.Drawing.Size(1191, 37);
             this.Text_SearchExamination.TabIndex = 1;
             this.Text_SearchExamination.TabStop = false;
             this.Text_SearchExamination.UseSystemPasswordChar = false;
@@ -752,27 +846,11 @@
             this.Panel_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_OnLine.Controls.Add(this.Button_OnLine_Next);
             this.Panel_OnLine.Controls.Add(this.Button_OnLineReturn);
-            this.Panel_OnLine.Controls.Add(this.ListView_OnLineExamination);
             this.Panel_OnLine.Location = new System.Drawing.Point(7, 66);
             this.Panel_OnLine.Name = "Panel_OnLine";
             this.Panel_OnLine.Size = new System.Drawing.Size(1191, 650);
             this.Panel_OnLine.TabIndex = 2;
-            // 
-            // Button_OnLine_Next
-            // 
-            this.Button_OnLine_Next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OnLine_Next.Depth = 0;
-            this.Button_OnLine_Next.Location = new System.Drawing.Point(1015, 589);
-            this.Button_OnLine_Next.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_OnLine_Next.Name = "Button_OnLine_Next";
-            this.Button_OnLine_Next.Primary = true;
-            this.Button_OnLine_Next.Size = new System.Drawing.Size(173, 56);
-            this.Button_OnLine_Next.TabIndex = 13;
-            this.Button_OnLine_Next.Text = "下一步";
-            this.Button_OnLine_Next.UseVisualStyleBackColor = true;
-            this.Button_OnLine_Next.Click += new System.EventHandler(this.Button_OnLine_Next_Click);
             // 
             // Button_OnLineReturn
             // 
@@ -787,32 +865,6 @@
             this.Button_OnLineReturn.Text = "返回";
             this.Button_OnLineReturn.UseVisualStyleBackColor = true;
             this.Button_OnLineReturn.Click += new System.EventHandler(this.Button_OnLineReturn_Click);
-            // 
-            // ListView_OnLineExamination
-            // 
-            this.ListView_OnLineExamination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.ListView_OnLineExamination.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListView_OnLineExamination.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnHeader_OnLineExmination,
-            this.ColumnHeader_OnLineExminationHint});
-            this.ListView_OnLineExamination.Depth = 0;
-            this.ListView_OnLineExamination.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.ListView_OnLineExamination.FullRowSelect = true;
-            this.ListView_OnLineExamination.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.ListView_OnLineExamination.Location = new System.Drawing.Point(296, 119);
-            this.ListView_OnLineExamination.Margin = new System.Windows.Forms.Padding(5);
-            this.ListView_OnLineExamination.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.ListView_OnLineExamination.MouseState = MaterialSkin.MouseState.OUT;
-            this.ListView_OnLineExamination.Name = "ListView_OnLineExamination";
-            this.ListView_OnLineExamination.OwnerDraw = true;
-            this.ListView_OnLineExamination.Size = new System.Drawing.Size(600, 462);
-            this.ListView_OnLineExamination.TabIndex = 0;
-            this.ListView_OnLineExamination.UseCompatibleStateImageBehavior = false;
-            this.ListView_OnLineExamination.View = System.Windows.Forms.View.Details;
-            // 
-            // ColumnHeader_OnLineExmination
-            // 
-            this.ColumnHeader_OnLineExmination.Width = 600;
             // 
             // Label_OnLineTip
             // 
@@ -854,11 +906,6 @@
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
             // 
-            // ColumnHeader_OnLineExminationHint
-            // 
-            this.ColumnHeader_OnLineExminationHint.Text = "Hint";
-            this.ColumnHeader_OnLineExminationHint.Width = 0;
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -877,6 +924,7 @@
             this.Resize += new System.EventHandler(this.Form_Main_Resize);
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Select.ResumeLayout(false);
+            this.Panel_Login.ResumeLayout(false);
             this.TabPage_Examination.ResumeLayout(false);
             this.Panel_Input_Main.ResumeLayout(false);
             this.Panel_Input_Main.PerformLayout();
@@ -894,8 +942,6 @@
         private MaterialSkin.Controls.MaterialTabControl TabControl_Main;
         private System.Windows.Forms.TabPage TabPage_Select;
         private System.Windows.Forms.TabPage TabPage_Examination;
-        private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_OffLine;
-        private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_OnLine;
         private System.Windows.Forms.WebBrowser WebView_Select_BG;
         private MaterialSkin.Controls.MaterialLabel_Examination Examination_Lable_1;
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Examination_TextLine_1;
@@ -935,11 +981,14 @@
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_OnLine;
         private MaterialSkin.Controls.MaterialLabel Label_OnLineTip;
         private System.Windows.Forms.Panel Panel_OnLine;
-        private System.Windows.Forms.ColumnHeader ColumnHeader_OnLineExmination;
         private MaterialSkin.Controls.MaterialRaisedButton Button_OnLineReturn;
-        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLine_Next;
-        private MaterialSkin.Controls.MaterialListView ListView_OnLineExamination;
-        private System.Windows.Forms.ColumnHeader ColumnHeader_OnLineExminationHint;
+        private System.Windows.Forms.Panel Panel_Login;
+        private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_Login;
+        private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_OffLine;
+        private MaterialSkin.Controls.MaterialSingleLineTextField TextField_PassWord;
+        private MaterialSkin.Controls.MaterialSingleLineTextField TextField_UserName;
+        private System.Windows.Forms.Label Label_Login_Tip;
+        private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Login;
     }
 }
 
