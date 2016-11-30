@@ -11,11 +11,13 @@ namespace Update
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Update());
+            foreach (var str in args)
+                Console.WriteLine(str);
+            Application.Run(new Form_Update(args));
         }
     }
 }

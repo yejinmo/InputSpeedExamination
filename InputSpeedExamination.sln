@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Update", "Update\Update.csproj", "{F3BD3870-B43C-4D35-882F-B0890E6BA145}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformationEngine", "InformationEngine\InformationEngine.csproj", "{39573934-33A4-4884-B367-14C2048A7B83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F3BD3870-B43C-4D35-882F-B0890E6BA145}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BD3870-B43C-4D35-882F-B0890E6BA145}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BD3870-B43C-4D35-882F-B0890E6BA145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39573934-33A4-4884-B367-14C2048A7B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39573934-33A4-4884-B367-14C2048A7B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39573934-33A4-4884-B367-14C2048A7B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39573934-33A4-4884-B367-14C2048A7B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

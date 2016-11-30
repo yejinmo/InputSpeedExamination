@@ -16,10 +16,18 @@ namespace Update
     public partial class Form_Update : Form
     {
 
+        string[] ARGS;
+
         #region UI 
 
         public Form_Update()
         {
+            InitializeComponent();
+        }
+
+        public Form_Update(string[] args)
+        {
+            ARGS = args;
             InitializeComponent();
         }
 
@@ -173,6 +181,10 @@ namespace Update
         /// </summary>
         private void CheckUpdate()
         {
+            if (ARGS != null && ARGS.Length != 0)
+            {
+                
+            }
             var ds = new ServiceReference.HelloServerSoapClient().GetUpdateList();
             Update(ds);
         }
