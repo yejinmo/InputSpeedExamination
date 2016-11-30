@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using InformationEngine;
 
 namespace WebService
 {
@@ -61,6 +62,26 @@ namespace WebService
         public DataSet GetUpdateList()
         {
             return new DataSet();
+        }
+
+        [WebMethod]
+        public string GetEdu(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username))
+                return "username is empty.";
+            if (string.IsNullOrEmpty(password))
+                return "password is empty.";
+            return new EducationSystem().Get(username, password);
+        }
+
+        [WebMethod]
+        public string GetUserInfo(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username))
+                return "username empty";
+            if (string.IsNullOrEmpty(password))
+                return "password empty";
+            return new EducationSystem().GetUserInformation(username, password);
         }
 
     }

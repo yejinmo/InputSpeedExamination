@@ -16,9 +16,224 @@ namespace InformationEngine
         string username;
         string password;
 
+        public string GetUserInformation(string USERNAME, string PASSWORD)
+        {
+            try
+            {
+                username = USERNAME;
+                password = PASSWORD;
+                string cookie = string.Empty;
+                string __VIEWSTATE = string.Empty;
+                string __VIEWSTATEGENERATOR = string.Empty;
+                string html = string.Empty;
+                string check_code = string.Empty;
+                EducationSystemCheckCodeOCR ocr = new EducationSystemCheckCodeOCR();
+                ocr.loadTrainData();
+
+                #region 首页获取 cookie 、 __VIEWSTATE 及 __VIEWSTATEGENERATOR
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.10.8.68/default2.aspx");
+                    request.CookieContainer = new CookieContainer();
+                    request.Referer = "http://10.10.8.68/default2.aspx";
+                    request.Accept = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                    request.Headers["Accept-Language"] = "zh-CN,zh;q=0.";
+                    request.Headers["Accept-Charset"] = "GBK,utf-8;q=0.7,*;q=0.3";
+                    request.UserAgent = "User-Agent:Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1";
+                    request.KeepAlive = true;
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.Method = "GET";
+                    request.AllowAutoRedirect = false;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    Stream myResponseStream = response.GetResponseStream();
+                    StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+                    string retString = myStreamReader.ReadToEnd();
+
+                    Regex regResult__VIEWSTATE = new Regex("name=\"__VIEWSTATE\" value=\"(.+?)\"");
+                    MatchCollection mcResul__VIEWSTATEt = regResult__VIEWSTATE.Matches(retString);
+                    Match mc__VIEWSTATEt = mcResul__VIEWSTATEt[0];
+                    __VIEWSTATE = mc__VIEWSTATEt.Groups[1].Value;
+
+                    Regex regResult__VIEWSTATEGENERATOR = new Regex("name=\"__VIEWSTATEGENERATOR\" value=\"(.+?)\"");
+                    //MatchCollection mcResul__VIEWSTATEGENERATOR = regResult__VIEWSTATEGENERATOR.Matches(retString);
+                    //Match mc__VIEWSTATEGENERATOR = mcResul__VIEWSTATEGENERATOR[0];
+                    //__VIEWSTATEGENERATOR = mc__VIEWSTATEGENERATOR.Groups[1].Value;
+
+                    cookie = "ASP.NET_SessionId=" + response.Headers["Set-Cookie"];
+                    Regex regResultSessionId = new Regex("ASP.NET_SessionId=(.+?); path=/");
+                    MatchCollection mcResulSessionId = regResultSessionId.Matches(cookie);
+                    Match mc = mcResulSessionId[0];
+                    cookie = mc.Groups[1].Value;
+                    myStreamReader.Close();
+                    myResponseStream.Close();
+                }
+                #endregion
+
+                bool flag_login = false;
+                for (int code_err = 0; code_err < 5; code_err++)
+                {
+                    #region 获取并识别验证码
+                    {
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.10.8.68/CheckCode.aspx");
+                        request.Referer = "http://10.10.8.68/";
+                        request.Accept = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                        request.Headers["Accept-Language"] = "zh-CN,zh;q=0.";
+                        request.Headers["Accept-Charset"] = "GBK,utf-8;q=0.7,*;q=0.3";
+                        request.Headers["Cookie"] = cookie;
+                        request.UserAgent = "User-Agent:Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1";
+                        request.KeepAlive = true;
+                        request.ContentType = "application/x-www-form-urlencoded";
+                        request.Method = "GET";
+
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        Stream resStream = response.GetResponseStream();//得到验证码数据流
+                        Bitmap bt = new Bitmap(resStream);//初始化Bitmap图片
+
+                        string bt_path = @"temp\" + username + ".png";
+
+                        //本地OCR识别
+                        check_code = ocr.Get(bt);
+
+                        //bt.Save(bt_path);
+                        bt.Dispose();
+                        //resStream.Dispose();
+
+
+                        WebClient wc = new WebClient();
+                        //check_code = wc.DownloadString("http://10.10.56.204:8080/WhxyJw/yzm.jsp?c=312fz&url=http://10.10.9.131/hbxy/temp/" + username + ".png").Replace("\r\n", "");
+                        //check_code = wc.DownloadString("http://10.10.56.204:8080/WhxyJw/yzm.jsp?c=312fz&url=http://10.10.151.229/hbxy/temp/" + username + ".png").Replace("\r\n", "");
+                        //wc.Dispose();
+
+                        //if (File.Exists(bt_path))
+                        //{
+                        //    File.Delete(bt_path);
+                        //}
+                    }
+                    #endregion
+
+                    #region 模拟登陆操作
+                    {
+                        //string postDataStr = string.Format("__VIEWSTATE={0}&__VIEWSTATEGENERATOR={1}&txtUserName={2}&TextBox2={3}&txtSecretCode={4}&RadioButtonList1=%D1%A7%C9%FA&Button1=&lbLanguage=&hidPdrs=&hidsc=",
+                        //    __VIEWSTATE.Replace("+", "%2B").Replace("=", "%3D").Replace("/", "%2F"),
+                        //    __VIEWSTATEGENERATOR.Replace("+", "%2B").Replace("=", "%3D").Replace("/", "%2F"),
+                        //    username, password, check_code);
+                        string postDataStr = string.Format("__VIEWSTATE={0}&txtUserName={1}&TextBox2={2}&txtSecretCode={3}&RadioButtonList1=%D1%A7%C9%FA&Button1=&lbLanguage=&hidPdrs=&hidsc=",
+                            __VIEWSTATE.Replace("+", "%2B").Replace("=", "%3D").Replace("/", "%2F"),
+                            username, password, check_code);
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.10.8.68/default2.aspx");
+                        request.Method = "POST";
+                        request.Referer = "http://10.10.8.68/default2.aspx";
+                        request.Host = "10.10.8.68";
+                        request.Headers["Origin"] = "http://10.10.8.68";
+                        request.Headers["Upgrade-Insecure-Requests"] = "1";
+                        request.Accept = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+                        request.Headers["Accept-Language"] = "zh-CN,zh;q=0.8";
+                        request.Headers["Accept-Charset"] = "GBK,utf-8;q=0.7,*;q=0.3";
+                        request.Headers["Cookie"] = cookie;
+                        request.UserAgent = "User-Agent:Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1";
+                        request.KeepAlive = true;
+                        request.ContentType = "application/x-www-form-urlencoded";
+                        request.ContentLength = postDataStr.Length;
+                        Stream myRequestStream = request.GetRequestStream();
+                        StreamWriter myStreamWriter = new StreamWriter(myRequestStream, Encoding.GetEncoding("gb2312"));
+                        myStreamWriter.Write(postDataStr);
+                        myStreamWriter.Close();
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        Stream myResponseStream = response.GetResponseStream();
+                        StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("gb2312"));
+                        string retString = myStreamReader.ReadToEnd();
+                        myStreamReader.Close();
+                        myResponseStream.Close();
+                        if (retString.IndexOf("用户名不存在") > 0)
+                            return ("username error");
+                        if (retString.IndexOf("密码错误") > 0)
+                            return ("password error");
+                        if (retString.IndexOf("验证码不正确") > 0)
+                            continue;
+                        else
+                        {
+                            flag_login = true;
+                            break;
+                        }
+                    }
+                    #endregion
+                }
+
+                if (!flag_login)
+                    return ("checkcode error");
+
+                #region 模拟获取课表操作
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.10.8.68/xskbcx.aspx?xh=" + username);
+                    request.Referer = "http://10.10.8.68/xs_main.aspx?xh=" + username;
+                    request.Accept = "Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                    request.Headers["Accept-Language"] = "zh-CN,zh;q=0.";
+                    request.Headers["Accept-Charset"] = "GBK,utf-8;q=0.7,*;q=0.3";
+                    request.Headers["Upgrade-Insecure-Requests"] = "1";
+                    request.UserAgent = "User-Agent:Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.202 Safari/535.1";
+                    request.Headers["Cookie"] = cookie;
+                    request.Host = "10.10.8.68";
+                    request.KeepAlive = true;
+                    request.ContentType = "application/x-www-form-urlencoded";
+                    request.Method = "GET";
+                    request.AllowAutoRedirect = false;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    Stream myResponseStream = response.GetResponseStream();
+                    StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("gb2312"));
+                    string retString = myStreamReader.ReadToEnd();
+                    myStreamReader.Close();
+                    myResponseStream.Close();
+                    html = retString;
+                }
+                #endregion
+
+                #region 解析个人信息
+                string res = html;
+                res = res.Replace("\r", "").Replace("\n", "");
+                string final = string.Empty;
+                {
+                    Regex reg = new Regex("<span id=\"Label7\">学院：(.*?)</span>");
+                    MatchCollection mc = reg.Matches(res);
+                    if (mc.Count == 1)
+                        final += mc[0].Groups[1].ToString() + ",";
+                }
+                {
+                    Regex reg = new Regex("<span id=\"Label8\">专业：(.*?)</span>");
+                    MatchCollection mc = reg.Matches(res);
+                    if (mc.Count == 1)
+                        final += mc[0].Groups[1].ToString() + ",";
+                }
+                {
+                    Regex reg = new Regex("<span id=\"Label9\">行政班：(.*?)</span>");
+                    MatchCollection mc = reg.Matches(res);
+                    if (mc.Count == 1)
+                        final += mc[0].Groups[1].ToString() + ",";
+                }
+                {
+                    Regex reg = new Regex("<span id=\"Label6\">姓名：(.*?)</span>");
+                    MatchCollection mc = reg.Matches(res);
+                    if (mc.Count == 1)
+                        final += mc[0].Groups[1].ToString() + ",";
+                }
+                {
+                    Regex reg = new Regex("<span id=\"Label5\">学号：(.*?)</span>");
+                    MatchCollection mc = reg.Matches(res);
+                    if (mc.Count == 1)
+                        final += mc[0].Groups[1].ToString();
+                }
+
+                #endregion
+
+                return final;
+
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
         public string Get(string USERNAME, string PASSWORD)
         {
-
             try
             {
                 username = USERNAME;
@@ -495,8 +710,8 @@ namespace InformationEngine
             {
                 return ReturnResult(e.Message);
             }
-
         }
+
         private string ReturnResult(string Status = "OK")
         {
             res_struct.Session = username;

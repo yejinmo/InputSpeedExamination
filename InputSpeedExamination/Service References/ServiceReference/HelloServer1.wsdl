@@ -71,6 +71,30 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetEdu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEduResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEduResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="SayHelloSoapIn">
@@ -97,6 +121,66 @@
   <wsdl:message name="GetUpdateListSoapOut">
     <wsdl:part name="parameters" element="tns:GetUpdateListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetEduSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEdu" />
+  </wsdl:message>
+  <wsdl:message name="GetEduSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEduResponse" />
+  </wsdl:message>
+  <wsdl:message name="SayHelloHttpGetIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SayHelloHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepartmentHttpGetIn" />
+  <wsdl:message name="GetAllDepartmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetMajorByDepartmentHttpGetIn">
+    <wsdl:part name="DepartmentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMajorByDepartmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdateListHttpGetIn" />
+  <wsdl:message name="GetUpdateListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetEduHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEduHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SayHelloHttpPostIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SayHelloHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepartmentHttpPostIn" />
+  <wsdl:message name="GetAllDepartmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetMajorByDepartmentHttpPostIn">
+    <wsdl:part name="DepartmentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMajorByDepartmentHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdateListHttpPostIn" />
+  <wsdl:message name="GetUpdateListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetEduHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEduHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="HelloServerSoap">
     <wsdl:operation name="SayHello">
       <wsdl:input message="tns:SayHelloSoapIn" />
@@ -113,6 +197,54 @@
     <wsdl:operation name="GetUpdateList">
       <wsdl:input message="tns:GetUpdateListSoapIn" />
       <wsdl:output message="tns:GetUpdateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <wsdl:input message="tns:GetEduSoapIn" />
+      <wsdl:output message="tns:GetEduSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HelloServerHttpGet">
+    <wsdl:operation name="SayHello">
+      <wsdl:input message="tns:SayHelloHttpGetIn" />
+      <wsdl:output message="tns:SayHelloHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartment">
+      <wsdl:input message="tns:GetAllDepartmentHttpGetIn" />
+      <wsdl:output message="tns:GetAllDepartmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMajorByDepartment">
+      <wsdl:input message="tns:GetMajorByDepartmentHttpGetIn" />
+      <wsdl:output message="tns:GetMajorByDepartmentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <wsdl:input message="tns:GetUpdateListHttpGetIn" />
+      <wsdl:output message="tns:GetUpdateListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <wsdl:input message="tns:GetEduHttpGetIn" />
+      <wsdl:output message="tns:GetEduHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HelloServerHttpPost">
+    <wsdl:operation name="SayHello">
+      <wsdl:input message="tns:SayHelloHttpPostIn" />
+      <wsdl:output message="tns:SayHelloHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartment">
+      <wsdl:input message="tns:GetAllDepartmentHttpPostIn" />
+      <wsdl:output message="tns:GetAllDepartmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMajorByDepartment">
+      <wsdl:input message="tns:GetMajorByDepartmentHttpPostIn" />
+      <wsdl:output message="tns:GetMajorByDepartmentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <wsdl:input message="tns:GetUpdateListHttpPostIn" />
+      <wsdl:output message="tns:GetUpdateListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <wsdl:input message="tns:GetEduHttpPostIn" />
+      <wsdl:output message="tns:GetEduHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
@@ -146,6 +278,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
       <soap:operation soapAction="WebService/GetUpdateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <soap:operation soapAction="WebService/GetEdu" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -192,6 +333,111 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <soap12:operation soapAction="WebService/GetEdu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HelloServerHttpGet" type="tns:HelloServerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SayHello">
+      <http:operation location="/SayHello" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartment">
+      <http:operation location="/GetAllDepartment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMajorByDepartment">
+      <http:operation location="/GetMajorByDepartment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <http:operation location="/GetUpdateList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <http:operation location="/GetEdu" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HelloServerHttpPost" type="tns:HelloServerHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SayHello">
+      <http:operation location="/SayHello" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartment">
+      <http:operation location="/GetAllDepartment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMajorByDepartment">
+      <http:operation location="/GetMajorByDepartment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdateList">
+      <http:operation location="/GetUpdateList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEdu">
+      <http:operation location="/GetEdu" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="HelloServer">
     <wsdl:port name="HelloServerSoap" binding="tns:HelloServerSoap">
@@ -199,6 +445,12 @@
     </wsdl:port>
     <wsdl:port name="HelloServerSoap12" binding="tns:HelloServerSoap12">
       <soap12:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HelloServerHttpGet" binding="tns:HelloServerHttpGet">
+      <http:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HelloServerHttpPost" binding="tns:HelloServerHttpPost">
+      <http:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

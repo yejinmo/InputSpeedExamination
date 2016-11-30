@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.IO;
+using System.Reflection;
 
 namespace InformationEngine
 {
@@ -14,6 +15,19 @@ namespace InformationEngine
         static bool IsLoadTrainMap = false;
 
         string TrainPath = "TrainIamge\\";
+
+        /// <summary>  
+        /// 获取这个动态链接库的位置  
+        /// </summary>  
+        /// <returns></returns>  
+        private static string GetPath()
+        {
+            string str = Assembly.GetExecutingAssembly().CodeBase;
+            int start = 8;
+            int end = str.LastIndexOf('/');
+            str = str.Substring(start, end - start);
+            return str;
+        }
 
         bool IsBlue(Color color)
         {
@@ -109,7 +123,7 @@ namespace InformationEngine
             {
                 TrainMap = new Dictionary<Bitmap, string>();
 
-                DirectoryInfo dir = new DirectoryInfo(TrainPath);
+                DirectoryInfo dir = new DirectoryInfo(GetPath() + "\\" + TrainPath);
                 FileInfo[] files = dir.GetFiles();
 
                 foreach (FileInfo file in files)
