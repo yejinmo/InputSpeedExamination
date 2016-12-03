@@ -39,6 +39,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUserInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetUserInfo(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetClientIP", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetClientIP();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -90,6 +94,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string GetUserInfo(string username, string password) {
             return base.Channel.GetUserInfo(username, password);
+        }
+        
+        public string GetClientIP() {
+            return base.Channel.GetClientIP();
         }
     }
 }

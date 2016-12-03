@@ -52,6 +52,14 @@ namespace InputSpeedExamination
             /// 内容ID
             /// </summary>
             public static string ContentID = string.Empty;
+            /// <summary>
+            /// 当前GUID
+            /// </summary>
+            public static string GUID = string.Empty;
+            /// <summary>
+            /// 在线状态
+            /// </summary>
+            public static bool OnLine = false;
         }
 
         #endregion
@@ -1050,8 +1058,8 @@ cba
                     Update_Label_Login_Tip(Color.Red, "连接服务器失败");
                     return;
                 }
-                Update_Label_Login_Tip(Color.Black, "验证账户信息");
                 Thread.Sleep(250);
+                Update_Label_Login_Tip(Color.Black, "验证账户信息");
                 var res = new ServiceReference.HelloServerSoapClient().GetUserInfo(UserInformation.Number, UserInformation.Password);
                 if (res == "password error")
                 {
@@ -1080,21 +1088,26 @@ cba
                 else
                 {
                     Update_Label_Login_Tip(Color.Black, "获取账户信息");
-                    Thread.Sleep(250);
+                    Thread.Sleep(300);
                     var res_array = res.Split(',');
                     UserInformation.Department = res_array[0];
                     UserInformation.Major = res_array[1];
                     UserInformation.Class = res_array[2];
                     UserInformation.Name = res_array[3];
                     UserInformation.Number = res_array[4];
+                    UserInformation.GUID = Guid.NewGuid().ToString();
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black);
                 }
             }
-            catch(System.ServiceModel.CommunicationException)
+            catch (System.ServiceModel.CommunicationException)
             {
                 Update_Label_Login_Tip(Color.Red, "连接服务器失败");
+            }
+            catch (TimeoutException)
+            {
+                Update_Label_Login_Tip(Color.Red, "连接服务器超时");
             }
             finally
             {

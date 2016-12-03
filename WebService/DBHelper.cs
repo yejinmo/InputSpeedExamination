@@ -80,5 +80,16 @@ namespace WebService
             return ds;
         }
 
+        public string HeartBeat(string Number, string GUID, string UpdateTime,string IPAddress)
+        {
+            string sql_update = string.Format("UPDATE [Table_UserOnLineInfo] SET [UpdateTime] = '{0}'", UpdateTime);
+            string sql_check_online = string.Format("SELECT * FROM [Table_UserOnLineInfo] WHERE [GUID] = '{0}' AND [Number] = '{1}'",
+                GUID, Number);
+            string sql_insert = string.Format(
+                "INSERT INTO [Table_UserOnLineInfo] ([Number], [GUID], [UpdateTime], [IPAddress]) VALUES ('{0}', '{1}', '{2}', '{3}')"
+                , Number, GUID, UpdateTime, IPAddress);
+            return "";
+        }
+
     }
 }

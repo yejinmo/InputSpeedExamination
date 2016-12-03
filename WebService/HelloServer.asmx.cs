@@ -84,5 +84,30 @@ namespace WebService
             return new EducationSystem().GetUserInformation(username, password);
         }
 
+        [WebMethod]
+        public string GetClientIP()
+        {
+            if (Context.Request.IsLocal)
+                return "0.0.0.0";
+            else
+                return Context.Request.UserHostAddress.ToString();
+        }
+
+        [WebMethod]
+        public string HeartBeat(string Number, string GUID)
+        {
+            //更新时间
+            string UpdateTime = DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + " "
+                + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond;
+            //IP地址
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+
+            return "ok";
+        }
+
     }
 }

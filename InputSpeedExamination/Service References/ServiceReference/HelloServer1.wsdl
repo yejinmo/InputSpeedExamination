@@ -101,6 +101,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetClientIP">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientIPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -148,6 +158,12 @@
   <wsdl:message name="GetUserInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetClientIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientIP" />
+  </wsdl:message>
+  <wsdl:message name="GetClientIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientIPResponse" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -180,6 +196,10 @@
     <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetUserInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClientIPHttpGetIn" />
+  <wsdl:message name="GetClientIPHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -216,6 +236,10 @@
   <wsdl:message name="GetUserInfoHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetClientIPHttpPostIn" />
+  <wsdl:message name="GetClientIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="HelloServerSoap">
     <wsdl:operation name="SayHello">
       <wsdl:input message="tns:SayHelloSoapIn" />
@@ -240,6 +264,10 @@
     <wsdl:operation name="GetUserInfo">
       <wsdl:input message="tns:GetUserInfoSoapIn" />
       <wsdl:output message="tns:GetUserInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <wsdl:input message="tns:GetClientIPSoapIn" />
+      <wsdl:output message="tns:GetClientIPSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpGet">
@@ -267,6 +295,10 @@
       <wsdl:input message="tns:GetUserInfoHttpGetIn" />
       <wsdl:output message="tns:GetUserInfoHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <wsdl:input message="tns:GetClientIPHttpGetIn" />
+      <wsdl:output message="tns:GetClientIPHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpPost">
     <wsdl:operation name="SayHello">
@@ -292,6 +324,10 @@
     <wsdl:operation name="GetUserInfo">
       <wsdl:input message="tns:GetUserInfoHttpPostIn" />
       <wsdl:output message="tns:GetUserInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <wsdl:input message="tns:GetClientIPHttpPostIn" />
+      <wsdl:output message="tns:GetClientIPHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
@@ -343,6 +379,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserInfo">
       <soap:operation soapAction="WebService/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <soap:operation soapAction="WebService/GetClientIP" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -407,6 +452,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <soap12:operation soapAction="WebService/GetClientIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpGet" type="tns:HelloServerHttpGet">
     <http:binding verb="GET" />
@@ -464,6 +518,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <http:operation location="/GetClientIP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpPost" type="tns:HelloServerHttpPost">
     <http:binding verb="POST" />
@@ -514,6 +577,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUserInfo">
       <http:operation location="/GetUserInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIP">
+      <http:operation location="/GetClientIP" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
