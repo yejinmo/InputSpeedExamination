@@ -111,6 +111,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="HeartBeat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HeartBeatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HeartBeatResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -164,6 +179,12 @@
   <wsdl:message name="GetClientIPSoapOut">
     <wsdl:part name="parameters" element="tns:GetClientIPResponse" />
   </wsdl:message>
+  <wsdl:message name="HeartBeatSoapIn">
+    <wsdl:part name="parameters" element="tns:HeartBeat" />
+  </wsdl:message>
+  <wsdl:message name="HeartBeatSoapOut">
+    <wsdl:part name="parameters" element="tns:HeartBeatResponse" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -200,6 +221,13 @@
   </wsdl:message>
   <wsdl:message name="GetClientIPHttpGetIn" />
   <wsdl:message name="GetClientIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="HeartBeatHttpGetIn">
+    <wsdl:part name="Number" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HeartBeatHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -240,94 +268,137 @@
   <wsdl:message name="GetClientIPHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="HeartBeatHttpPostIn">
+    <wsdl:part name="Number" type="s:string" />
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HeartBeatHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="HelloServerSoap">
     <wsdl:operation name="SayHello">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloSoapIn" />
       <wsdl:output message="tns:SayHelloSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部系</wsdl:documentation>
       <wsdl:input message="tns:GetAllDepartmentSoapIn" />
       <wsdl:output message="tns:GetAllDepartmentSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentSoapIn" />
       <wsdl:output message="tns:GetMajorByDepartmentSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListSoapIn" />
       <wsdl:output message="tns:GetUpdateListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetEdu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取课表</wsdl:documentation>
       <wsdl:input message="tns:GetEduSoapIn" />
       <wsdl:output message="tns:GetEduSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUserInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取教务信息</wsdl:documentation>
       <wsdl:input message="tns:GetUserInfoSoapIn" />
       <wsdl:output message="tns:GetUserInfoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetClientIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取客户端IP</wsdl:documentation>
       <wsdl:input message="tns:GetClientIPSoapIn" />
       <wsdl:output message="tns:GetClientIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳</wsdl:documentation>
+      <wsdl:input message="tns:HeartBeatSoapIn" />
+      <wsdl:output message="tns:HeartBeatSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpGet">
     <wsdl:operation name="SayHello">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloHttpGetIn" />
       <wsdl:output message="tns:SayHelloHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部系</wsdl:documentation>
       <wsdl:input message="tns:GetAllDepartmentHttpGetIn" />
       <wsdl:output message="tns:GetAllDepartmentHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentHttpGetIn" />
       <wsdl:output message="tns:GetMajorByDepartmentHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListHttpGetIn" />
       <wsdl:output message="tns:GetUpdateListHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetEdu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取课表</wsdl:documentation>
       <wsdl:input message="tns:GetEduHttpGetIn" />
       <wsdl:output message="tns:GetEduHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUserInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取教务信息</wsdl:documentation>
       <wsdl:input message="tns:GetUserInfoHttpGetIn" />
       <wsdl:output message="tns:GetUserInfoHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetClientIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取客户端IP</wsdl:documentation>
       <wsdl:input message="tns:GetClientIPHttpGetIn" />
       <wsdl:output message="tns:GetClientIPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳</wsdl:documentation>
+      <wsdl:input message="tns:HeartBeatHttpGetIn" />
+      <wsdl:output message="tns:HeartBeatHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpPost">
     <wsdl:operation name="SayHello">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloHttpPostIn" />
       <wsdl:output message="tns:SayHelloHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部系</wsdl:documentation>
       <wsdl:input message="tns:GetAllDepartmentHttpPostIn" />
       <wsdl:output message="tns:GetAllDepartmentHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentHttpPostIn" />
       <wsdl:output message="tns:GetMajorByDepartmentHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListHttpPostIn" />
       <wsdl:output message="tns:GetUpdateListHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetEdu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取课表</wsdl:documentation>
       <wsdl:input message="tns:GetEduHttpPostIn" />
       <wsdl:output message="tns:GetEduHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUserInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取教务信息</wsdl:documentation>
       <wsdl:input message="tns:GetUserInfoHttpPostIn" />
       <wsdl:output message="tns:GetUserInfoHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetClientIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取客户端IP</wsdl:documentation>
       <wsdl:input message="tns:GetClientIPHttpPostIn" />
       <wsdl:output message="tns:GetClientIPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳</wsdl:documentation>
+      <wsdl:input message="tns:HeartBeatHttpPostIn" />
+      <wsdl:output message="tns:HeartBeatHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
@@ -388,6 +459,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetClientIP">
       <soap:operation soapAction="WebService/GetClientIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <soap:operation soapAction="WebService/HeartBeat" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -461,6 +541,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <soap12:operation soapAction="WebService/HeartBeat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpGet" type="tns:HelloServerHttpGet">
     <http:binding verb="GET" />
@@ -527,6 +616,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <http:operation location="/HeartBeat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpPost" type="tns:HelloServerHttpPost">
     <http:binding verb="POST" />
@@ -586,6 +684,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetClientIP">
       <http:operation location="/GetClientIP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <http:operation location="/HeartBeat" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

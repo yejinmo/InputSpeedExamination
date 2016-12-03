@@ -43,6 +43,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetClientIP", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetClientIP();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/HeartBeat", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string HeartBeat(string Number, string GUID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -98,6 +102,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string GetClientIP() {
             return base.Channel.GetClientIP();
+        }
+        
+        public string HeartBeat(string Number, string GUID) {
+            return base.Channel.HeartBeat(Number, GUID);
         }
     }
 }

@@ -1045,7 +1045,6 @@ cba
         {
             try
             {
-
                 Invoke((EventHandler)delegate
                 {
                     ProcessBar_Login.Visible = true;
@@ -1055,7 +1054,10 @@ cba
                 string str = new ServiceReference.HelloServerSoapClient().SayHello("Hello Server");
                 if (str != "Hello Client")
                 {
-                    Update_Label_Login_Tip(Color.Red, "连接服务器失败");
+                    if(str == "Error")
+                        Update_Label_Login_Tip(Color.Red, "连接服务器失败");
+                    else
+                        Update_Label_Login_Tip(Color.Red, str);
                     return;
                 }
                 Thread.Sleep(250);
@@ -1096,6 +1098,7 @@ cba
                     UserInformation.Name = res_array[3];
                     UserInformation.Number = res_array[4];
                     UserInformation.GUID = Guid.NewGuid().ToString();
+                    UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black);

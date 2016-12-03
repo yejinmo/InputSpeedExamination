@@ -91,5 +91,43 @@ namespace WebService
             return "";
         }
 
+        /// <summary>
+        /// 更新或插入教务信息
+        /// </summary>
+        /// <param name="str">教务信息字符串</param>
+        /// <param name="password">教务密码</param>
+        /// <returns></returns>
+        public bool UpdateUserInfo(string str, string password)
+        {
+            var res_array = str.Split(',');
+            if (res_array.Length != 5)
+                return false;
+            try
+            {
+                string sql_update = string.Format(
+"UPDATE [Table_UserInfo] SET [Department] = '{0}', [Major] = '{1}', [Class] = '{2}', [Name] = '{3}', [Password] = '{4}'"
+                    , res_array[0], res_array[1], res_array[2], res_array[3], password);
+                string sql_insert = string.Format(
+"INSERT INTO [Table_UserInfo] ([Department], [Major], [Class], [Name], [Number], [Password]) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')"
+                    , res_array[0], res_array[1], res_array[2], res_array[3], res_array[4], password);
+                string sql_check = string.Format("SELECT * FROM [Table_UserInfo] WHERE [Number] = '{0}'", res_array[4]);
+                SqlCommand cmd = new SqlCommand(sql_check, Conn);
+                if (cmd.ExecuteNonQuery() <= 0)
+                {
+                    cmd = new SqlCommand(sql_insert, Conn);
+                    return (cmd.ExecuteNonQuery() == 0 ? false : true);
+                }
+                else
+                {
+                    cmd = new SqlCommand(sql_update, Conn);
+                    return (cmd.ExecuteNonQuery() == 0 ? false : true);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -19,12 +19,7 @@ namespace WebService
     public class HelloServer : System.Web.Services.WebService
     {
 
-        /// <summary>
-        /// 测试服务器连接
-        /// </summary>
-        /// <param name="data">参数需为 Hello Server </param>
-        /// <returns>连接正常则返回 Hello Client </returns>
-        [WebMethod]
+        [WebMethod(Description = "测试服务器连接")]
         public string SayHello(string data)
         {
             if (data == "Hello Server")
@@ -33,38 +28,25 @@ namespace WebService
                 return "Error";
         }
 
-        /// <summary>
-        /// 获取全部系
-        /// </summary>
-        /// <returns></returns>
-        [WebMethod]
+        [WebMethod(Description = "获取全部系")]
         public DataSet GetAllDepartment()
         {
             return new DBHelper().GetAllDepartment();
         }
 
-        /// <summary>
-        /// 根据 DepartmentID 获取专业
-        /// </summary>
-        /// <param name="DepartmentID">系别 ID</param>
-        /// <returns></returns>
-        [WebMethod]
+        [WebMethod(Description = "根据 DepartmentID 获取专业")]
         public DataSet GetMajorByDepartment(string DepartmentID)
         {
             return new DBHelper().GetMajorByDepartment(DepartmentID);
         }
 
-        /// <summary>
-        /// 获取更新列表
-        /// </summary>
-        /// <returns></returns>
-        [WebMethod]
+        [WebMethod(Description = "获取更新列表")]
         public DataSet GetUpdateList()
         {
             return new DataSet();
         }
 
-        [WebMethod]
+        [WebMethod(Description = "获取课表")]
         public string GetEdu(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
@@ -74,17 +56,19 @@ namespace WebService
             return new EducationSystem().Get(username, password);
         }
 
-        [WebMethod]
+        [WebMethod(Description = "获取教务信息")]
         public string GetUserInfo(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
                 return "username empty";
             if (string.IsNullOrEmpty(password))
                 return "password empty";
-            return new EducationSystem().GetUserInformation(username, password);
+            var res = new EducationSystem().GetUserInformation(username, password);
+            new DBHelper().UpdateUserInfo(res, password);
+            return res;
         }
 
-        [WebMethod]
+        [WebMethod(Description = "获取客户端IP")]
         public string GetClientIP()
         {
             if (Context.Request.IsLocal)
@@ -93,7 +77,7 @@ namespace WebService
                 return Context.Request.UserHostAddress.ToString();
         }
 
-        [WebMethod]
+        [WebMethod(Description = "心跳")]
         public string HeartBeat(string Number, string GUID)
         {
             //更新时间

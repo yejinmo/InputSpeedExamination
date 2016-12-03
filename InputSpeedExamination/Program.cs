@@ -16,6 +16,7 @@ namespace InputSpeedExamination
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            string g1 = Guid.NewGuid().ToString("N");
             Application.Run(new Form_Main());
         }
     }
