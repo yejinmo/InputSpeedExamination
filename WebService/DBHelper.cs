@@ -129,5 +129,54 @@ namespace WebService
             }
         }
 
+        /// <summary>
+        /// 判断内容MD5是否存在
+        /// </summary>
+        /// <param name="ContentMD5"></param>
+        /// <returns></returns>
+        public bool CheckContentMD5(string ContentMD5)
+        {
+            string sql_check = string.Format("SELECT * FROM [Table_Content] WHERE [MD5] = '{0}'", ContentMD5);
+            if (new SqlCommand(sql_check, Conn).ExecuteNonQuery() > 0)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 插入一条新的GUID
+        /// </summary>
+        /// <param name="Number"></param>
+        /// <param name="Department"></param>
+        /// <param name="Major"></param>
+        /// <param name="Class"></param>
+        /// <param name="Name"></param>
+        /// <param name="ContentMD5"></param>
+        /// <param name="ContentTitle"></param>
+        /// <param name="IPAddress"></param>
+        /// <param name="GUID"></param>
+        /// <param name="BeginTime"></param>
+        /// <returns></returns>
+        public bool InsertExaminationGUID(string Number, string Department, string Major, string Class,
+            string Name, string ContentMD5, string ContentTitle, string IPAddress, string GUID, string BeginTime)
+        {
+            try
+            {
+                string Stats = "开始";
+                string sql_insert = string.Format(
+    "INSERT INTO [Table_ExaminationStats] ([Number], [Department], [Major], [Class], [Name], [ContentMD5], [ContentTitle], [IPAddress], [GUID], [BeginTime], [Stats]) " +
+    "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')"
+                    , Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, BeginTime, Stats);
+                if (new SqlCommand(sql_insert, Conn).ExecuteNonQuery() > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -116,31 +116,8 @@ namespace MaterialSkin.Controls
             while (true)
             {
                 #region char using GDI+
-                char chr = AnswerStringArray[i];
-                var size = GetStringWidth(chr.ToString());
-                if (DrawNextCharHint && i == Len_UserStringArray)
-                    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
-                else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
-                    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ForeColor), new PointF(pos_left, 0));
-                else
-                {
-                    if (AnswerStringArray[i] == UserStringArray[i])
-                        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(CorrectForeColor), new PointF(pos_left, 0));
-                    else
-                        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ErrorForeColor), new PointF(pos_left, 0));
-                }
-                pos_left += size.Width;
-                ++i;
-                if (i >= Len_AnswerStringArray)
-                    break;
-                #endregion
-
-                #region string using GDI+
                 //char chr = AnswerStringArray[i];
-                //temp_str += chr;
-                //var sizeChr = GetStringWidth(chr.ToString());
-                //var sizeStr = GetStringWidth(temp_str);
-                //pos_left = sizeStr.Width - sizeChr.Width;
+                //var size = GetStringWidth(chr.ToString());
                 //if (DrawNextCharHint && i == Len_UserStringArray)
                 //    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
                 //else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
@@ -152,9 +129,32 @@ namespace MaterialSkin.Controls
                 //    else
                 //        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ErrorForeColor), new PointF(pos_left, 0));
                 //}
+                //pos_left += size.Width;
                 //++i;
                 //if (i >= Len_AnswerStringArray)
                 //    break;
+                #endregion
+
+                #region string using GDI+
+                char chr = AnswerStringArray[i];
+                temp_str += chr;
+                var sizeChr = GetStringWidth(chr.ToString());
+                var sizeStr = GetStringWidth(temp_str);
+                pos_left = sizeStr.Width - sizeChr.Width;
+                if (DrawNextCharHint && i == Len_UserStringArray)
+                    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(Color.Lime), new PointF(pos_left, 0));
+                else if (i > Len_UserStringArray || (!DrawNextCharHint && i >= Len_UserStringArray))
+                    g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ForeColor), new PointF(pos_left, 0));
+                else
+                {
+                    if (AnswerStringArray[i] == UserStringArray[i])
+                        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(CorrectForeColor), new PointF(pos_left, 0));
+                    else
+                        g.DrawString(chr.ToString(), SkinManager.FONT_SIZE_26, new SolidBrush(ErrorForeColor), new PointF(pos_left, 0));
+                }
+                ++i;
+                if (i >= Len_AnswerStringArray)
+                    break;
                 #endregion
 
                 #region char using GDI

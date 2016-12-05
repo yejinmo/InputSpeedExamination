@@ -81,16 +81,37 @@ namespace WebService
         public string HeartBeat(string Number, string GUID)
         {
             //更新时间
-            string UpdateTime = DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + " "
-                + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond;
+            string UpdateTime = GetNowDateTime();
             //IP地址
             string IPAddress = string.Empty;
             if (Context.Request.IsLocal)
                 IPAddress = "0.0.0.0";
             else
                 IPAddress = Context.Request.UserHostAddress.ToString();
-
             return "ok";
+        }
+
+        [WebMethod(Description = "获取一个测试GUID")]
+        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle)
+        {
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+            if (!new DBHelper().CheckContentMD5(ContentMD5))
+                return "md5 error";
+            string GUID = Guid.NewGuid().ToString("N");
+            if (new DBHelper().InsertExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, GetNowDateTime()))
+                return GUID;
+            else
+                return "database error";
+        }
+
+        public string GetNowDateTime()
+        {
+            return DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + " "
+                + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond;
         }
 
     }

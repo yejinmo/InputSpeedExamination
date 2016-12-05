@@ -80,7 +80,7 @@
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
             this.Label_UserName = new System.Windows.Forms.Label();
-            this.LinkLabel1_LoginOrOut = new System.Windows.Forms.LinkLabel();
+            this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -743,7 +743,7 @@
             this.Text_SearchExamination.ForeColor = System.Drawing.Color.Black;
             this.Text_SearchExamination.Hint = "在此键入搜索内容";
             this.Text_SearchExamination.IsErrorMode = false;
-            this.Text_SearchExamination.Location = new System.Drawing.Point(7, 4);
+            this.Text_SearchExamination.Location = new System.Drawing.Point(7, 3);
             this.Text_SearchExamination.MaxLength = 32767;
             this.Text_SearchExamination.MouseState = MaterialSkin.MouseState.HOVER;
             this.Text_SearchExamination.Name = "Text_SearchExamination";
@@ -773,13 +773,13 @@
             this.ListView_ExaminationList.Font = new System.Drawing.Font("微软雅黑", 18F);
             this.ListView_ExaminationList.FullRowSelect = true;
             this.ListView_ExaminationList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.ListView_ExaminationList.Location = new System.Drawing.Point(7, 42);
+            this.ListView_ExaminationList.Location = new System.Drawing.Point(7, 48);
             this.ListView_ExaminationList.Margin = new System.Windows.Forms.Padding(5);
             this.ListView_ExaminationList.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ListView_ExaminationList.MouseState = MaterialSkin.MouseState.OUT;
             this.ListView_ExaminationList.Name = "ListView_ExaminationList";
             this.ListView_ExaminationList.OwnerDraw = true;
-            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 610);
+            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 604);
             this.ListView_ExaminationList.TabIndex = 0;
             this.ListView_ExaminationList.UseCompatibleStateImageBehavior = false;
             this.ListView_ExaminationList.View = System.Windows.Forms.View.Details;
@@ -813,7 +813,7 @@
             this.ProcessBar_SearchExamination.Depth = 0;
             this.ProcessBar_SearchExamination.Interval = 10;
             this.ProcessBar_SearchExamination.LengthValue = 500;
-            this.ProcessBar_SearchExamination.Location = new System.Drawing.Point(7, 35);
+            this.ProcessBar_SearchExamination.Location = new System.Drawing.Point(7, 40);
             this.ProcessBar_SearchExamination.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_SearchExamination.Name = "ProcessBar_SearchExamination";
             this.ProcessBar_SearchExamination.Processing = true;
@@ -922,30 +922,31 @@
             this.Label_UserName.Tag = "以作为 {0} - {1} 登录";
             this.Label_UserName.Text = "以作为 {0} - {1} 登录";
             // 
-            // LinkLabel1_LoginOrOut
+            // LinkLabel_LoginOrOut
             // 
-            this.LinkLabel1_LoginOrOut.ActiveLinkColor = System.Drawing.Color.White;
-            this.LinkLabel1_LoginOrOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LinkLabel1_LoginOrOut.AutoSize = true;
-            this.LinkLabel1_LoginOrOut.BackColor = System.Drawing.Color.Transparent;
-            this.LinkLabel1_LoginOrOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LinkLabel1_LoginOrOut.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LinkLabel1_LoginOrOut.ForeColor = System.Drawing.Color.White;
-            this.LinkLabel1_LoginOrOut.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.LinkLabel1_LoginOrOut.LinkColor = System.Drawing.Color.White;
-            this.LinkLabel1_LoginOrOut.Location = new System.Drawing.Point(1153, 33);
-            this.LinkLabel1_LoginOrOut.Name = "LinkLabel1_LoginOrOut";
-            this.LinkLabel1_LoginOrOut.Size = new System.Drawing.Size(50, 25);
-            this.LinkLabel1_LoginOrOut.TabIndex = 2;
-            this.LinkLabel1_LoginOrOut.TabStop = true;
-            this.LinkLabel1_LoginOrOut.Text = "注销";
+            this.LinkLabel_LoginOrOut.ActiveLinkColor = System.Drawing.Color.White;
+            this.LinkLabel_LoginOrOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LinkLabel_LoginOrOut.AutoSize = true;
+            this.LinkLabel_LoginOrOut.BackColor = System.Drawing.Color.Transparent;
+            this.LinkLabel_LoginOrOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LinkLabel_LoginOrOut.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LinkLabel_LoginOrOut.ForeColor = System.Drawing.Color.White;
+            this.LinkLabel_LoginOrOut.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LinkLabel_LoginOrOut.LinkColor = System.Drawing.Color.White;
+            this.LinkLabel_LoginOrOut.Location = new System.Drawing.Point(1153, 32);
+            this.LinkLabel_LoginOrOut.Name = "LinkLabel_LoginOrOut";
+            this.LinkLabel_LoginOrOut.Size = new System.Drawing.Size(50, 25);
+            this.LinkLabel_LoginOrOut.TabIndex = 2;
+            this.LinkLabel_LoginOrOut.TabStop = true;
+            this.LinkLabel_LoginOrOut.Text = "注销";
+            this.LinkLabel_LoginOrOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LoginOrOut_LinkClicked);
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 816);
-            this.Controls.Add(this.LinkLabel1_LoginOrOut);
+            this.Controls.Add(this.LinkLabel_LoginOrOut);
             this.Controls.Add(this.Label_UserName);
             this.Controls.Add(this.TabControl_Main);
             this.MaximizeBox = false;
@@ -1027,7 +1028,7 @@
         private System.Windows.Forms.Label Label_Login_Tip;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Login;
         private System.Windows.Forms.Label Label_UserName;
-        private System.Windows.Forms.LinkLabel LinkLabel1_LoginOrOut;
+        private System.Windows.Forms.LinkLabel LinkLabel_LoginOrOut;
     }
 }
 

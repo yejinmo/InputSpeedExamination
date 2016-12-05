@@ -81,11 +81,30 @@ namespace InputSpeedExamination
 
         private void OnLineStatsChange(bool OnLine)
         {
-            if(OnLine)
+            Invoke((EventHandler)delegate
             {
-                Label_UserName.Text = string.Format("{0}({1}) | ", UserInformation.Name, UserInformation.Number);
-                LinkLabel1_LoginOrOut.Text = "zhuxiao"
+                if (OnLine)
+                {
+                    Label_UserName.Text = string.Format("{0}[{1}]   | ", UserInformation.Name, UserInformation.Number);
+                    LinkLabel_LoginOrOut.Text = "注销";
+                }
+                else
+                {
+                    Label_UserName.Text = "离线模式   | ";
+                    LinkLabel_LoginOrOut.Text = "登录";
+                }
+                Label_UserName.Left = 
+                LinkLabel_LoginOrOut.Left - Label_UserName.Width;
+            });
+        }
+
+        private void LinkLabel_LoginOrOut_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (UserInformation.OnLine)
+            {
+                UserInformation.OnLine = false;
             }
+            TabControl_Main.SelectedTab = TabPage_Select;
         }
 
         #endregion
@@ -114,6 +133,7 @@ namespace InputSpeedExamination
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             UserInformation.OnLineStatsChange = OnLineStatsChange;
+            UserInformation.OnLine = false;
             Form_Main_Resize(sender, e);
         }
 
@@ -197,10 +217,8 @@ namespace InputSpeedExamination
 
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
-            //debug();
             Thread ThreadLoadExaminationList = new Thread(new ThreadStart(LoadExaminationList));
             ThreadLoadExaminationList.Start();
-            //TabControl_Main.SelectedTab = TabPage_SelectText;
         }
 
         #endregion
@@ -723,7 +741,7 @@ namespace InputSpeedExamination
             {
                 SearchKeyword = Text_SearchExamination.Text;
                 ProcessBar_SearchExamination.Visible = false;
-                ProcessBar_SearchExamination.Top = 26;
+                ProcessBar_SearchExamination.Top = 37;
                 if (SearchExaminationThread != null)
                     SearchExaminationThread.Abort();
                 Timer_SearchExamination.Enabled = false;
@@ -774,7 +792,7 @@ namespace InputSpeedExamination
                     Invoke((EventHandler)delegate
                     {
                         ProcessBar_SearchExamination.Top++;
-                        if (ProcessBar_SearchExamination.Top >= 34)
+                        if (ProcessBar_SearchExamination.Top >= 41)
                             needbreak = true;
                     });
                 }
@@ -807,7 +825,7 @@ namespace InputSpeedExamination
                 Invoke((EventHandler)delegate
                 {
                     ProcessBar_SearchExamination.Visible = false;
-                    ProcessBar_SearchExamination.Top = 26;
+                    ProcessBar_SearchExamination.Top = 37;
                 });
             }
         }
@@ -1128,6 +1146,10 @@ cba
                     UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
+                    Invoke((EventHandler)delegate
+                    {
+                        FlatButton_Select_OffLine.PerformClick();
+                    });
                     Update_Label_Login_Tip(Color.Black);
                 }
             }

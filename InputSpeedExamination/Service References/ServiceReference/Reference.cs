@@ -47,6 +47,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/HeartBeat", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string HeartBeat(string Number, string GUID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExaminationGUID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -106,6 +110,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string HeartBeat(string Number, string GUID) {
             return base.Channel.HeartBeat(Number, GUID);
+        }
+        
+        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle) {
+            return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle);
         }
     }
 }

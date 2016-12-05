@@ -126,6 +126,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetExaminationGUID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Major" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Class" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContentMD5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContentTitle" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExaminationGUIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExaminationGUIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -185,6 +205,12 @@
   <wsdl:message name="HeartBeatSoapOut">
     <wsdl:part name="parameters" element="tns:HeartBeatResponse" />
   </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExaminationGUID" />
+  </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExaminationGUIDResponse" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -228,6 +254,18 @@
     <wsdl:part name="GUID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="HeartBeatHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDHttpGetIn">
+    <wsdl:part name="Number" type="s:string" />
+    <wsdl:part name="Department" type="s:string" />
+    <wsdl:part name="Major" type="s:string" />
+    <wsdl:part name="Class" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="ContentMD5" type="s:string" />
+    <wsdl:part name="ContentTitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -275,6 +313,18 @@
   <wsdl:message name="HeartBeatHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDHttpPostIn">
+    <wsdl:part name="Number" type="s:string" />
+    <wsdl:part name="Department" type="s:string" />
+    <wsdl:part name="Major" type="s:string" />
+    <wsdl:part name="Class" type="s:string" />
+    <wsdl:part name="Name" type="s:string" />
+    <wsdl:part name="ContentMD5" type="s:string" />
+    <wsdl:part name="ContentTitle" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExaminationGUIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="HelloServerSoap">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
@@ -315,6 +365,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳</wsdl:documentation>
       <wsdl:input message="tns:HeartBeatSoapIn" />
       <wsdl:output message="tns:HeartBeatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取一个测试GUID</wsdl:documentation>
+      <wsdl:input message="tns:GetExaminationGUIDSoapIn" />
+      <wsdl:output message="tns:GetExaminationGUIDSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpGet">
@@ -358,6 +413,11 @@
       <wsdl:input message="tns:HeartBeatHttpGetIn" />
       <wsdl:output message="tns:HeartBeatHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取一个测试GUID</wsdl:documentation>
+      <wsdl:input message="tns:GetExaminationGUIDHttpGetIn" />
+      <wsdl:output message="tns:GetExaminationGUIDHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="HelloServerHttpPost">
     <wsdl:operation name="SayHello">
@@ -399,6 +459,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">心跳</wsdl:documentation>
       <wsdl:input message="tns:HeartBeatHttpPostIn" />
       <wsdl:output message="tns:HeartBeatHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取一个测试GUID</wsdl:documentation>
+      <wsdl:input message="tns:GetExaminationGUIDHttpPostIn" />
+      <wsdl:output message="tns:GetExaminationGUIDHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
@@ -468,6 +533,15 @@
     </wsdl:operation>
     <wsdl:operation name="HeartBeat">
       <soap:operation soapAction="WebService/HeartBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <soap:operation soapAction="WebService/GetExaminationGUID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -550,6 +624,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <soap12:operation soapAction="WebService/GetExaminationGUID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpGet" type="tns:HelloServerHttpGet">
     <http:binding verb="GET" />
@@ -625,6 +708,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <http:operation location="/GetExaminationGUID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="HelloServerHttpPost" type="tns:HelloServerHttpPost">
     <http:binding verb="POST" />
@@ -693,6 +785,15 @@
     </wsdl:operation>
     <wsdl:operation name="HeartBeat">
       <http:operation location="/HeartBeat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminationGUID">
+      <http:operation location="/GetExaminationGUID" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
