@@ -115,13 +115,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HelloServer.asmx" />
+    <Content Include="ControllerService.asmx" />
+    <Content Include="ClientService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerService.asmx.cs">
+      <DependentUpon>ControllerService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DBHelper.cs" />
-    <Compile Include="HelloServer.asmx.cs">
-      <DependentUpon>HelloServer.asmx</DependentUpon>
+    <Compile Include="ClientService.asmx.cs">
+      <DependentUpon>ClientService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

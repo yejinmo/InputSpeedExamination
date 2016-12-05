@@ -325,7 +325,7 @@
   <wsdl:message name="GetExaminationGUIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:portType name="HelloServerSoap">
+  <wsdl:portType name="ClientServiceSoap">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloSoapIn" />
@@ -372,7 +372,7 @@
       <wsdl:output message="tns:GetExaminationGUIDSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="HelloServerHttpGet">
+  <wsdl:portType name="ClientServiceHttpGet">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloHttpGetIn" />
@@ -419,7 +419,7 @@
       <wsdl:output message="tns:GetExaminationGUIDHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="HelloServerHttpPost">
+  <wsdl:portType name="ClientServiceHttpPost">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
       <wsdl:input message="tns:SayHelloHttpPostIn" />
@@ -466,7 +466,7 @@
       <wsdl:output message="tns:GetExaminationGUIDHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="HelloServerSoap" type="tns:HelloServerSoap">
+  <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="SayHello">
       <soap:operation soapAction="WebService/SayHello" style="document" />
@@ -550,7 +550,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="HelloServerSoap12" type="tns:HelloServerSoap">
+  <wsdl:binding name="ClientServiceSoap12" type="tns:ClientServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="SayHello">
       <soap12:operation soapAction="WebService/SayHello" style="document" />
@@ -634,7 +634,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="HelloServerHttpGet" type="tns:HelloServerHttpGet">
+  <wsdl:binding name="ClientServiceHttpGet" type="tns:ClientServiceHttpGet">
     <http:binding verb="GET" />
     <wsdl:operation name="SayHello">
       <http:operation location="/SayHello" />
@@ -718,7 +718,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="HelloServerHttpPost" type="tns:HelloServerHttpPost">
+  <wsdl:binding name="ClientServiceHttpPost" type="tns:ClientServiceHttpPost">
     <http:binding verb="POST" />
     <wsdl:operation name="SayHello">
       <http:operation location="/SayHello" />
@@ -802,18 +802,18 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="HelloServer">
-    <wsdl:port name="HelloServerSoap" binding="tns:HelloServerSoap">
-      <soap:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+  <wsdl:service name="ClientService">
+    <wsdl:port name="ClientServiceSoap" binding="tns:ClientServiceSoap">
+      <soap:address location="http://keyboard.hcs.ac.cn/ClientService.asmx" />
     </wsdl:port>
-    <wsdl:port name="HelloServerSoap12" binding="tns:HelloServerSoap12">
-      <soap12:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+    <wsdl:port name="ClientServiceSoap12" binding="tns:ClientServiceSoap12">
+      <soap12:address location="http://keyboard.hcs.ac.cn/ClientService.asmx" />
     </wsdl:port>
-    <wsdl:port name="HelloServerHttpGet" binding="tns:HelloServerHttpGet">
-      <http:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+    <wsdl:port name="ClientServiceHttpGet" binding="tns:ClientServiceHttpGet">
+      <http:address location="http://keyboard.hcs.ac.cn/ClientService.asmx" />
     </wsdl:port>
-    <wsdl:port name="HelloServerHttpPost" binding="tns:HelloServerHttpPost">
-      <http:address location="http://keyboard.hcs.ac.cn/HelloServer.asmx" />
+    <wsdl:port name="ClientServiceHttpPost" binding="tns:ClientServiceHttpPost">
+      <http:address location="http://keyboard.hcs.ac.cn/ClientService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

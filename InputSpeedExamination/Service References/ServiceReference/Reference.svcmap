@@ -18,11 +18,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://keyboard.hcs.ac.cn/HelloServer.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://keyboard.hcs.ac.cn/ClientService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HelloServer1.disco" MetadataType="Disco" ID="a2a6d8dd-fcb9-49a3-a69d-bf9f77740980" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/HelloServer.asmx?disco" />
-    <MetadataFile FileName="HelloServer1.wsdl" MetadataType="Wsdl" ID="2bb482be-717b-4d03-b057-38a440042259" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/HelloServer.asmx?wsdl" />
+    <MetadataFile FileName="ClientService.disco" MetadataType="Disco" ID="13fa6a05-e1e6-44ab-a788-9f4a60b41006" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ClientService.asmx?disco" />
+    <MetadataFile FileName="ClientService.wsdl" MetadataType="Wsdl" ID="12d9b544-176e-4d8f-b437-93fa1c70ac77" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ClientService.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

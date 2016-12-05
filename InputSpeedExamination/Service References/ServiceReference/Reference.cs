@@ -13,8 +13,8 @@ namespace InputSpeedExamination.ServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.HelloServerSoap")]
-    public interface HelloServerSoap {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.ClientServiceSoap")]
+    public interface ClientServiceSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/SayHello", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -54,29 +54,29 @@ namespace InputSpeedExamination.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface HelloServerSoapChannel : InputSpeedExamination.ServiceReference.HelloServerSoap, System.ServiceModel.IClientChannel {
+    public interface ClientServiceSoapChannel : InputSpeedExamination.ServiceReference.ClientServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class HelloServerSoapClient : System.ServiceModel.ClientBase<InputSpeedExamination.ServiceReference.HelloServerSoap>, InputSpeedExamination.ServiceReference.HelloServerSoap {
+    public partial class ClientServiceSoapClient : System.ServiceModel.ClientBase<InputSpeedExamination.ServiceReference.ClientServiceSoap>, InputSpeedExamination.ServiceReference.ClientServiceSoap {
         
-        public HelloServerSoapClient() {
+        public ClientServiceSoapClient() {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName) : 
+        public ClientServiceSoapClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public ClientServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClientServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public HelloServerSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClientServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

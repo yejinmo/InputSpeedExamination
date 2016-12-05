@@ -9,14 +9,14 @@ using InformationEngine;
 namespace WebService
 {
     /// <summary>
-    /// HelloServer 的摘要说明
+    /// ClientService 的摘要说明
     /// </summary>
     [WebService(Namespace = "WebService")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消注释以下行。 
     // [System.Web.Script.Services.ScriptService]
-    public class HelloServer : System.Web.Services.WebService
+    public class ClientService : System.Web.Services.WebService
     {
 
         [WebMethod(Description = "测试服务器连接")]

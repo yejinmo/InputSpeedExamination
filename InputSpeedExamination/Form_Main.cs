@@ -1106,7 +1106,7 @@ cba
                 });
                 Update_Label_Login_Tip(Color.Black, "连接服务器");
                 Thread.Sleep(250);
-                string str = new ServiceReference.HelloServerSoapClient().SayHello("Hello Server");
+                string str = new ServiceReference.ClientServiceSoapClient().SayHello("Hello Server");
                 if (str != "Hello Client")
                 {
                     if(str == "Error")
@@ -1117,7 +1117,7 @@ cba
                 }
                 Thread.Sleep(250);
                 Update_Label_Login_Tip(Color.Black, "验证账户信息");
-                var res = new ServiceReference.HelloServerSoapClient().GetUserInfo(UserInformation.Number, UserInformation.Password);
+                var res = new ServiceReference.ClientServiceSoapClient().GetUserInfo(UserInformation.Number, UserInformation.Password);
                 if (res == "password error")
                 {
                     Update_Label_Login_Tip(Color.Red, "密码错误");
