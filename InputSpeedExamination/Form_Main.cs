@@ -227,51 +227,61 @@ namespace InputSpeedExamination
 
         private void Examination_TextLine_1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (Stats_Char_Current_Total == Stats_Char_Total)
+                return;
             if (Input_Status == Input_Status_Enum.SystemUpdate || Input_Status == Input_Status_Enum.PauseAndSystemUpdate)
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
-            if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length)
+            if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_2.Focus();
         }
 
         private void Examination_TextLine_2_KeyDown(object sender, KeyEventArgs e)
         {
+            if (Stats_Char_Current_Total == Stats_Char_Total)
+                return;
             if (Input_Status == Input_Status_Enum.SystemUpdate || Input_Status == Input_Status_Enum.PauseAndSystemUpdate)
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
-            if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length)
+            if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_3.Focus();
         }
 
         private void Examination_TextLine_3_KeyDown(object sender, KeyEventArgs e)
         {
+            if (Stats_Char_Current_Total == Stats_Char_Total)
+                return;
             if (Input_Status == Input_Status_Enum.SystemUpdate || Input_Status == Input_Status_Enum.PauseAndSystemUpdate)
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
-            if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length)
+            if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_4.Focus();
         }
 
         private void Examination_TextLine_4_KeyDown(object sender, KeyEventArgs e)
         {
+            if (Stats_Char_Current_Total == Stats_Char_Total)
+                return;
             if (Input_Status == Input_Status_Enum.SystemUpdate || Input_Status == Input_Status_Enum.PauseAndSystemUpdate)
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
-            if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length)
+            if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_5.Focus();
         }
 
         private void Examination_TextLine_5_KeyDown(object sender, KeyEventArgs e)
         {
+            if (Stats_Char_Current_Total == Stats_Char_Total)
+                return;
             if (Input_Status == Input_Status_Enum.SystemUpdate || Input_Status == Input_Status_Enum.PauseAndSystemUpdate)
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
-            if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length)
+            if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 LoadNextExaminationPage();
         }
 
@@ -649,7 +659,7 @@ namespace InputSpeedExamination
             /// <summary>
             /// 暂停且状态更新
             /// </summary>
-            PauseAndSystemUpdate
+            PauseAndSystemUpdate,
         }
         Input_Status_Enum _Input_Status = Input_Status_Enum.Stop;
         /// <summary>

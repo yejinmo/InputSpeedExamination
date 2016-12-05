@@ -112,14 +112,17 @@ namespace WebService
                     , res_array[0], res_array[1], res_array[2], res_array[3], res_array[4], password);
                 string sql_check = string.Format("SELECT * FROM [Table_UserInfo] WHERE [Number] = '{0}'", res_array[4]);
                 SqlCommand cmd = new SqlCommand(sql_check, Conn);
-                if (cmd.ExecuteNonQuery() <= 0)
+                var res = cmd.ExecuteReader();
+                if (res.Read())
                 {
-                    cmd = new SqlCommand(sql_insert, Conn);
+                    res.Close();
+                    cmd = new SqlCommand(sql_update, Conn);
                     return (cmd.ExecuteNonQuery() == 0 ? false : true);
                 }
                 else
                 {
-                    cmd = new SqlCommand(sql_update, Conn);
+                    res.Close();
+                    cmd = new SqlCommand(sql_insert, Conn);
                     return (cmd.ExecuteNonQuery() == 0 ? false : true);
                 }
             }
@@ -136,11 +139,25 @@ namespace WebService
         /// <returns></returns>
         public bool CheckContentMD5(string ContentMD5)
         {
-            string sql_check = string.Format("SELECT * FROM [Table_Content] WHERE [MD5] = '{0}'", ContentMD5);
-            if (new SqlCommand(sql_check, Conn).ExecuteNonQuery() > 0)
-                return true;
-            else
+            try
+            {
+                string sql_check = string.Format("SELECT * FROM [Table_Content] WHERE [MD5] = '{0}'", ContentMD5);
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    sdr.Close();
+                    return true;
+                }
+                else
+                {
+                    sdr.Close();
+                    return false;
+                }
+            }
+            catch
+            {
                 return false;
+            }
         }
 
         /// <summary>
