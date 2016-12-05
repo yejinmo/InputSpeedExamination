@@ -79,6 +79,8 @@
             this.ProcessBar_OnLine = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
+            this.Label_UserName = new System.Windows.Forms.Label();
+            this.LinkLabel1_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -906,11 +908,45 @@
             this.Timer_SearchExamination.Interval = 500;
             this.Timer_SearchExamination.Tick += new System.EventHandler(this.Timer_SearchExamination_Tick);
             // 
+            // Label_UserName
+            // 
+            this.Label_UserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_UserName.AutoSize = true;
+            this.Label_UserName.BackColor = System.Drawing.Color.Transparent;
+            this.Label_UserName.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_UserName.ForeColor = System.Drawing.Color.White;
+            this.Label_UserName.Location = new System.Drawing.Point(962, 32);
+            this.Label_UserName.Name = "Label_UserName";
+            this.Label_UserName.Size = new System.Drawing.Size(185, 25);
+            this.Label_UserName.TabIndex = 1;
+            this.Label_UserName.Tag = "以作为 {0} - {1} 登录";
+            this.Label_UserName.Text = "以作为 {0} - {1} 登录";
+            // 
+            // LinkLabel1_LoginOrOut
+            // 
+            this.LinkLabel1_LoginOrOut.ActiveLinkColor = System.Drawing.Color.White;
+            this.LinkLabel1_LoginOrOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LinkLabel1_LoginOrOut.AutoSize = true;
+            this.LinkLabel1_LoginOrOut.BackColor = System.Drawing.Color.Transparent;
+            this.LinkLabel1_LoginOrOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LinkLabel1_LoginOrOut.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LinkLabel1_LoginOrOut.ForeColor = System.Drawing.Color.White;
+            this.LinkLabel1_LoginOrOut.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.LinkLabel1_LoginOrOut.LinkColor = System.Drawing.Color.White;
+            this.LinkLabel1_LoginOrOut.Location = new System.Drawing.Point(1153, 33);
+            this.LinkLabel1_LoginOrOut.Name = "LinkLabel1_LoginOrOut";
+            this.LinkLabel1_LoginOrOut.Size = new System.Drawing.Size(50, 25);
+            this.LinkLabel1_LoginOrOut.TabIndex = 2;
+            this.LinkLabel1_LoginOrOut.TabStop = true;
+            this.LinkLabel1_LoginOrOut.Text = "注销";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 816);
+            this.Controls.Add(this.LinkLabel1_LoginOrOut);
+            this.Controls.Add(this.Label_UserName);
             this.Controls.Add(this.TabControl_Main);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 480);
@@ -934,6 +970,7 @@
             this.TabPage_OnLineExamination.ResumeLayout(false);
             this.Panel_OnLine.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -989,6 +1026,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField TextField_UserName;
         private System.Windows.Forms.Label Label_Login_Tip;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Login;
+        private System.Windows.Forms.Label Label_UserName;
+        private System.Windows.Forms.LinkLabel LinkLabel1_LoginOrOut;
     }
 }
 

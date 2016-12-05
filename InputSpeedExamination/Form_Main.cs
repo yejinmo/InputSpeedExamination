@@ -56,10 +56,36 @@ namespace InputSpeedExamination
             /// 当前GUID
             /// </summary>
             public static string GUID = string.Empty;
+
+            private static bool onLine = false;
             /// <summary>
             /// 在线状态
             /// </summary>
-            public static bool OnLine = false;
+            public static bool OnLine
+            {
+                get
+                {
+                    return onLine;
+                }
+
+                set
+                {
+                    onLine = value;
+                    OnLineStatsChange(value);
+                }
+            }
+
+            public delegate void OnLineChange(bool OnLine);
+            public static OnLineChange OnLineStatsChange;
+        }
+
+        private void OnLineStatsChange(bool OnLine)
+        {
+            if(OnLine)
+            {
+                Label_UserName.Text = string.Format("{0}({1}) | ", UserInformation.Name, UserInformation.Number);
+                LinkLabel1_LoginOrOut.Text = "zhuxiao"
+            }
         }
 
         #endregion
@@ -87,6 +113,7 @@ namespace InputSpeedExamination
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
+            UserInformation.OnLineStatsChange = OnLineStatsChange;
             Form_Main_Resize(sender, e);
         }
 
