@@ -51,6 +51,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExaminationGUID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateExaminationStats", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -114,6 +118,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle) {
             return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle);
+        }
+        
+        public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent) {
+            return base.Channel.UpdateExaminationStats(GUID, Stats, Speed, Process, CorrectPercent);
         }
     }
 }

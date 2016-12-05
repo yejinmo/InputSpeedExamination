@@ -108,6 +108,17 @@ namespace WebService
                 return "database error";
         }
 
+        [WebMethod(Description = "更新状态信息")]
+        public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent)
+        {
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+            return new DBHelper().UpdateExaminationStats(GUID, Stats, Speed, Process, CorrectPercent, IPAddress);
+        }
+
         public string GetNowDateTime()
         {
             return DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + " "

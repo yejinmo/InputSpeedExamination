@@ -63,6 +63,11 @@ namespace WebService
             return ds;
         }
 
+        /// <summary>
+        /// 根据系ID获取全部专业
+        /// </summary>
+        /// <param name="DepartmentID"></param>
+        /// <returns></returns>
         public DataSet GetMajorByDepartment(string DepartmentID)
         {
             DataSet ds = new DataSet();
@@ -80,6 +85,14 @@ namespace WebService
             return ds;
         }
 
+        /// <summary>
+        /// 心跳
+        /// </summary>
+        /// <param name="Number"></param>
+        /// <param name="GUID"></param>
+        /// <param name="UpdateTime"></param>
+        /// <param name="IPAddress"></param>
+        /// <returns></returns>
         public string HeartBeat(string Number, string GUID, string UpdateTime,string IPAddress)
         {
             string sql_update = string.Format("UPDATE [Table_UserOnLineInfo] SET [UpdateTime] = '{0}'", UpdateTime);
@@ -195,5 +208,22 @@ namespace WebService
             }
         }
 
+        public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent, string IPAddress)
+        {
+            try
+            {
+                string sql_update = string.Format(
+"UPDATE [Table_ExaminationStats] SET [Stats] = '{0}', [Speed] = '{1}', [Process] = '{2}', [CorrectPercent] = '{3}', [IPAddress] = '{4}' WHERE [GUID] = '{5}'"
+, Stats, Speed, Process, CorrectPercent, IPAddress, GUID);
+                if (new SqlCommand(sql_update, Conn).ExecuteNonQuery() > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

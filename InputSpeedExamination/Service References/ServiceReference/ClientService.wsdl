@@ -146,6 +146,24 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateExaminationStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Stats" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Speed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Process" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CorrectPercent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExaminationStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateExaminationStatsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -155,6 +173,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="boolean" type="s:boolean" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="SayHelloSoapIn">
@@ -210,6 +229,12 @@
   </wsdl:message>
   <wsdl:message name="GetExaminationGUIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetExaminationGUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExaminationStats" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExaminationStatsResponse" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
@@ -268,6 +293,16 @@
   <wsdl:message name="GetExaminationGUIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsHttpGetIn">
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Stats" type="s:string" />
+    <wsdl:part name="Speed" type="s:string" />
+    <wsdl:part name="Process" type="s:string" />
+    <wsdl:part name="CorrectPercent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -325,6 +360,16 @@
   <wsdl:message name="GetExaminationGUIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsHttpPostIn">
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Stats" type="s:string" />
+    <wsdl:part name="Speed" type="s:string" />
+    <wsdl:part name="Process" type="s:string" />
+    <wsdl:part name="CorrectPercent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExaminationStatsHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:portType name="ClientServiceSoap">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
@@ -370,6 +415,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取一个测试GUID</wsdl:documentation>
       <wsdl:input message="tns:GetExaminationGUIDSoapIn" />
       <wsdl:output message="tns:GetExaminationGUIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新状态信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateExaminationStatsSoapIn" />
+      <wsdl:output message="tns:UpdateExaminationStatsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpGet">
@@ -418,6 +468,11 @@
       <wsdl:input message="tns:GetExaminationGUIDHttpGetIn" />
       <wsdl:output message="tns:GetExaminationGUIDHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新状态信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateExaminationStatsHttpGetIn" />
+      <wsdl:output message="tns:UpdateExaminationStatsHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpPost">
     <wsdl:operation name="SayHello">
@@ -464,6 +519,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取一个测试GUID</wsdl:documentation>
       <wsdl:input message="tns:GetExaminationGUIDHttpPostIn" />
       <wsdl:output message="tns:GetExaminationGUIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新状态信息</wsdl:documentation>
+      <wsdl:input message="tns:UpdateExaminationStatsHttpPostIn" />
+      <wsdl:output message="tns:UpdateExaminationStatsHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
@@ -542,6 +602,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetExaminationGUID">
       <soap:operation soapAction="WebService/GetExaminationGUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <soap:operation soapAction="WebService/UpdateExaminationStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -633,6 +702,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <soap12:operation soapAction="WebService/UpdateExaminationStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpGet" type="tns:ClientServiceHttpGet">
     <http:binding verb="GET" />
@@ -717,6 +795,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <http:operation location="/UpdateExaminationStats" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpPost" type="tns:ClientServiceHttpPost">
     <http:binding verb="POST" />
@@ -794,6 +881,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetExaminationGUID">
       <http:operation location="/GetExaminationGUID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExaminationStats">
+      <http:operation location="/UpdateExaminationStats" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
