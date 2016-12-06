@@ -208,6 +208,16 @@ namespace WebService
             }
         }
 
+        /// <summary>
+        /// 更新测试状态
+        /// </summary>
+        /// <param name="GUID"></param>
+        /// <param name="Stats"></param>
+        /// <param name="Speed"></param>
+        /// <param name="Process"></param>
+        /// <param name="CorrectPercent"></param>
+        /// <param name="IPAddress"></param>
+        /// <returns></returns>
         public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent, string IPAddress)
         {
             try
@@ -215,7 +225,8 @@ namespace WebService
                 string sql_update = string.Format(
 "UPDATE [Table_ExaminationStats] SET [Stats] = '{0}', [Speed] = '{1}', [Process] = '{2}', [CorrectPercent] = '{3}', [IPAddress] = '{4}' WHERE [GUID] = '{5}'"
 , Stats, Speed, Process, CorrectPercent, IPAddress, GUID);
-                if (new SqlCommand(sql_update, Conn).ExecuteNonQuery() > 0)
+                int res = new SqlCommand(sql_update, Conn).ExecuteNonQuery();
+                if (res > 0)
                     return true;
                 else
                     return false;
@@ -225,5 +236,6 @@ namespace WebService
                 return false;
             }
         }
+
     }
 }
