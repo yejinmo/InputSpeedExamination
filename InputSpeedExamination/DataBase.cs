@@ -15,6 +15,8 @@ namespace InputSpeedExamination
         private string DatabaseRootPath;
         private SQLiteConnection CONN;
 
+        //
+
         public DataBase()
         {
             try
