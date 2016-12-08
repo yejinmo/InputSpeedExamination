@@ -13,6 +13,9 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace WebService
 {
@@ -41,6 +44,8 @@ namespace WebService
                 Conn = null;
             }
         }
+
+        #region Client
 
         /// <summary>
         /// 获取全部系
@@ -236,6 +241,330 @@ namespace WebService
                 return false;
             }
         }
+
+        /// <summary>
+        /// 根据客户机IP获取考场ID
+        /// </summary>
+        /// <param name="IPAddress"></param>
+        /// <returns></returns>
+        public string GetBatchID(string IPAddress)
+        {
+            try
+            {
+                string sql = string.Format("SELECT [ID] FROM [Table_Batch] WHERE [IncludeIP] LIKE '{0}'", IPAddress);
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (!sdr.Read())
+                    return "1";
+                return sdr[0].ToString();
+            }
+            catch
+            {
+                return "1";
+            }
+        }
+
+        #endregion
+
+        #region Server
+
+        /// <summary>
+        /// 根据考场ID获取状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public DataSet GetStats(string ID)
+        {
+            DataSet ds = null;
+            try
+            {
+                string sql = string.Format("SELECT * FROM [Table_Stats] WHERE [BatchID] = '{0}'", ID);
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
+                return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        /// <summary>
+        /// 获取考场列表
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetBatchList()
+        {
+            DataSet ds = null;
+            try
+            {
+                string sql = "SELECT * FROM [Table_Batch]";
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
+                return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        /// <summary>
+        /// 创建新考场
+        /// </summary>
+        /// <param name="BatchTitle"></param>
+        /// <param name="IncludeIP"></param>
+        /// <param name="IncludePaper"></param>
+        /// <returns></returns>
+        public string CreateNewBatch(string BatchTitle, string IncludeIP, string IncludePaper)
+        {
+            try
+            {
+                var IncludeIP_array = IncludeIP.Split(',');
+                foreach (var ip in IncludeIP_array)
+                {
+                    IPAddress temp;
+                    if (!IPAddress.TryParse(ip, out temp))
+                        return string.Format("IP地址 {0} 不合法", ip);
+                }
+                var IncludePaper_array = IncludePaper.Split(',');
+                foreach (var id in IncludePaper_array)
+                {
+                    int temp;
+                    if (int.TryParse(id, out temp))
+                        return string.Format("内容ID {0} 不合法", id);
+                }
+                string sql = string.Format(
+                    "INSERT INTO [Table_Batch] ([BatchTitle], [IncludeIP], [IncludePaper]) VALUES ('{0}', '{1}', '{2}')",
+                    BatchTitle, IncludeIP, IncludePaper);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 编辑考场
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <param name="BatchTitle"></param>
+        /// <param name="IncludeIP"></param>
+        /// <param name="IncludePaper"></param>
+        /// <returns></returns>
+        public string UpdateBatch(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper)
+        {
+            try
+            {
+                var IncludeIP_array = IncludeIP.Split(',');
+                foreach (var ip in IncludeIP_array)
+                {
+                    IPAddress temp;
+                    if (!IPAddress.TryParse(ip, out temp))
+                        return string.Format("IP地址 {0} 不合法", ip);
+                }
+                var IncludePaper_array = IncludePaper.Split(',');
+                foreach (var id in IncludePaper_array)
+                {
+                    int temp;
+                    if (!int.TryParse(id, out temp))
+                        return string.Format("内容ID {0} 不合法", id);
+                }
+                int temp_id;
+                if(!int.TryParse(BatchID,out temp_id))
+                    return string.Format("ID {0} 不合法", BatchID);
+                string sql = string.Format(
+                    "UPDATE [Table_Batch] SET [BatchTitle] = '{0}', [IncludeIP] = '{1}', [IncludePaper] = '{2}' WHERE [ID] = {}",
+                    BatchTitle, IncludeIP, IncludePaper, BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 删除指定考场
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <returns></returns>
+        public bool DeleteBatch(string BatchID)
+        {
+            try
+            {
+                int batchID;
+                if (!int.TryParse(BatchID, out batchID))
+                    return false;
+                if (batchID == 1)
+                    return false;
+                string sql = string.Format("DELETE [Table_Batch] WHERE [ID] = '{0}'", BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 获取全部内容
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetAllContent()
+        {
+            DataSet ds = null;
+            try
+            {
+                string sql = "SELECT * FROM [Table_Content]";
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
+                return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        /// <summary>
+        /// 添加新内容
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <param name="Content"></param>
+        /// <returns></returns>
+        public string CreateNewContent(string Title, string Content)
+        {
+            try
+            {
+                string MD5_str = GetMD5Hash(Content);
+                string sql_check = string.Format("SELECT * FROM [Table_Content] WHERE [MD5] = '{0}'", MD5_str);
+                string sql = string.Format(
+                    "INSERT INTO [Table_Content] ([Title], [String], [MD5]) VALUES ('{0}', '{1}', '{2}')",
+                    Title, Content, MD5_str);
+                SqlCommand cmd = new SqlCommand(sql_check, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (sdr.Read())
+                    return "已包含相同内容";
+                cmd = new SqlCommand(sql, Conn);
+                cmd.ExecuteNonQuery();
+                return "ok";
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 更新内容
+        /// </summary>
+        /// <param name="ContentID"></param>
+        /// <param name="Title"></param>
+        /// <param name="Content"></param>
+        /// <returns></returns>
+        public string UpdateContent(string ContentID, string Title, string Content)
+        {
+            try
+            {
+                string MD5_str = GetMD5Hash(Content);
+                string sql = string.Format("UPDATE [Table_Content] SET [Title] = '{0}', [String] = '{1}', [MD5] = '{2}' WHERE [ID] = '{3}'",
+                    Title, Content, MD5_str, ContentID);
+                string sql_check = string.Format("SELECT * FROM [Table_Content] WHERE [MD5] = '{0}'", MD5_str);
+                SqlCommand cmd = new SqlCommand(sql_check, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (sdr.Read())
+                    if (sdr["MD5"].ToString() == MD5_str)
+                        return "已包含相同内容";
+                cmd = new SqlCommand(sql, Conn);
+                cmd.ExecuteNonQuery();
+                return "ok";
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 删除指定内容
+        /// </summary>
+        /// <param name="ContentID"></param>
+        /// <returns></returns>
+        public bool DeleteContent(string ContentID)
+        {
+            try
+            {
+                string sql = string.Format("DELTET [Table_Content] WHERER [ID] = '{0}'", ContentID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public DataSet GetContentByBatchID(string IncludePaper)
+        {
+            DataSet ds = null;
+            try
+            {
+                var IncludePaper_array = IncludePaper.Split(',');
+                foreach (var id in IncludePaper_array)
+                {
+                    int temp;
+                    if (!int.TryParse(id, out temp))
+                        return null;
+                }
+                string sql = string.Format("SELECT * FROM [Table_Content] WHERE ");
+
+                return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 返回字符串小写形式的MD5值
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private string GetMD5Hash(string input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+            MD5 md5Hash = MD5.Create();
+
+            // 将输入字符串转换为字节数组并计算哈希数据  
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // 创建一个 Stringbuilder 来收集字节并创建字符串  
+            StringBuilder sBuilder = new StringBuilder();
+
+            // 循环遍历哈希数据的每一个字节并格式化为十六进制字符串  
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // 返回十六进制字符串  
+            return sBuilder.ToString().ToLower();
+        }
+
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -17,7 +18,12 @@ namespace WebService
     public class ControllerService : System.Web.Services.WebService
     {
 
-
+        [WebMethod(Description = "获取指定考场状态表")]
+        public DataSet GetStats(string ID)
+        {
+            DataSet ds = null;
+            return ds;
+        }
 
     }
 }
