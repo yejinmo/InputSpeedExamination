@@ -81,6 +81,7 @@
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
             this.Label_UserName = new System.Windows.Forms.Label();
             this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
+            this.Timer_UpdateStats = new System.Windows.Forms.Timer(this.components);
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -110,7 +111,7 @@
             this.TabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(1213, 749);
+            this.TabControl_Main.Size = new System.Drawing.Size(1213, 713);
             this.TabControl_Main.TabIndex = 0;
             // 
             // TabPage_Select
@@ -121,7 +122,7 @@
             this.TabPage_Select.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Select.Name = "TabPage_Select";
             this.TabPage_Select.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Select.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Select.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Select.TabIndex = 0;
             this.TabPage_Select.Text = "tabPage1";
             // 
@@ -254,7 +255,7 @@
             this.WebView_Select_BG.Margin = new System.Windows.Forms.Padding(0);
             this.WebView_Select_BG.MinimumSize = new System.Drawing.Size(20, 20);
             this.WebView_Select_BG.Name = "WebView_Select_BG";
-            this.WebView_Select_BG.Size = new System.Drawing.Size(1199, 717);
+            this.WebView_Select_BG.Size = new System.Drawing.Size(1199, 681);
             this.WebView_Select_BG.TabIndex = 2;
             // 
             // TabPage_Examination
@@ -941,11 +942,17 @@
             this.LinkLabel_LoginOrOut.Text = "注销";
             this.LinkLabel_LoginOrOut.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LoginOrOut_LinkClicked);
             // 
+            // Timer_UpdateStats
+            // 
+            this.Timer_UpdateStats.Enabled = true;
+            this.Timer_UpdateStats.Interval = 5000;
+            this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1215, 816);
+            this.ClientSize = new System.Drawing.Size(1215, 780);
             this.Controls.Add(this.LinkLabel_LoginOrOut);
             this.Controls.Add(this.Label_UserName);
             this.Controls.Add(this.TabControl_Main);
@@ -1029,6 +1036,7 @@
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Login;
         private System.Windows.Forms.Label Label_UserName;
         private System.Windows.Forms.LinkLabel LinkLabel_LoginOrOut;
+        private System.Windows.Forms.Timer Timer_UpdateStats;
     }
 }
 

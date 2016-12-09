@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="WebService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="WebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="WebService">
+      <s:element name="GetStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBatchListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BatchTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteBatchResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllContent">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllContentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewContentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ContentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateContentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ContentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteContentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentByBatchID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentByBatchIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentByBatchIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStats" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchList" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewBatch" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBatch" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBatch" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllContent" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewContent" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateContent" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteContent" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentByBatchID" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentByBatchIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsHttpGetIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListHttpGetIn" />
+  <wsdl:message name="GetBatchListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpGetIn">
+    <wsdl:part name="BatchTitle" type="s:string" />
+    <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="BatchTitle" type="s:string" />
+    <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentHttpGetIn" />
+  <wsdl:message name="GetAllContentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentHttpGetIn">
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Content" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentHttpGetIn">
+    <wsdl:part name="ContentID" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Content" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentHttpGetIn">
+    <wsdl:part name="ContentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpGetIn">
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsHttpPostIn">
+    <wsdl:part name="ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStatsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListHttpPostIn" />
+  <wsdl:message name="GetBatchListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpPostIn">
+    <wsdl:part name="BatchTitle" type="s:string" />
+    <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="BatchTitle" type="s:string" />
+    <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentHttpPostIn" />
+  <wsdl:message name="GetAllContentHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentHttpPostIn">
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Content" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewContentHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentHttpPostIn">
+    <wsdl:part name="ContentID" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Content" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateContentHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentHttpPostIn">
+    <wsdl:part name="ContentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContentHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpPostIn">
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:portType name="ControllerServiceSoap">
+    <wsdl:operation name="GetStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsSoapIn" />
+      <wsdl:output message="tns:GetStatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListSoapIn" />
+      <wsdl:output message="tns:GetBatchListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchSoapIn" />
+      <wsdl:output message="tns:CreateNewBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
+      <wsdl:input message="tns:UpdateBatchSoapIn" />
+      <wsdl:output message="tns:UpdateBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchSoapIn" />
+      <wsdl:output message="tns:DeleteBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentSoapIn" />
+      <wsdl:output message="tns:GetAllContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加新内容</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewContentSoapIn" />
+      <wsdl:output message="tns:CreateNewContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新内容</wsdl:documentation>
+      <wsdl:input message="tns:UpdateContentSoapIn" />
+      <wsdl:output message="tns:UpdateContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定内容</wsdl:documentation>
+      <wsdl:input message="tns:DeleteContentSoapIn" />
+      <wsdl:output message="tns:DeleteContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDSoapIn" />
+      <wsdl:output message="tns:GetContentByBatchIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControllerServiceHttpGet">
+    <wsdl:operation name="GetStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsHttpGetIn" />
+      <wsdl:output message="tns:GetStatsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListHttpGetIn" />
+      <wsdl:output message="tns:GetBatchListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchHttpGetIn" />
+      <wsdl:output message="tns:CreateNewBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
+      <wsdl:input message="tns:UpdateBatchHttpGetIn" />
+      <wsdl:output message="tns:UpdateBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchHttpGetIn" />
+      <wsdl:output message="tns:DeleteBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentHttpGetIn" />
+      <wsdl:output message="tns:GetAllContentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加新内容</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewContentHttpGetIn" />
+      <wsdl:output message="tns:CreateNewContentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新内容</wsdl:documentation>
+      <wsdl:input message="tns:UpdateContentHttpGetIn" />
+      <wsdl:output message="tns:UpdateContentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定内容</wsdl:documentation>
+      <wsdl:input message="tns:DeleteContentHttpGetIn" />
+      <wsdl:output message="tns:DeleteContentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDHttpGetIn" />
+      <wsdl:output message="tns:GetContentByBatchIDHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControllerServiceHttpPost">
+    <wsdl:operation name="GetStats">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
+      <wsdl:input message="tns:GetStatsHttpPostIn" />
+      <wsdl:output message="tns:GetStatsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListHttpPostIn" />
+      <wsdl:output message="tns:GetBatchListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchHttpPostIn" />
+      <wsdl:output message="tns:CreateNewBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
+      <wsdl:input message="tns:UpdateBatchHttpPostIn" />
+      <wsdl:output message="tns:UpdateBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchHttpPostIn" />
+      <wsdl:output message="tns:DeleteBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentHttpPostIn" />
+      <wsdl:output message="tns:GetAllContentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">添加新内容</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewContentHttpPostIn" />
+      <wsdl:output message="tns:CreateNewContentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">更新内容</wsdl:documentation>
+      <wsdl:input message="tns:UpdateContentHttpPostIn" />
+      <wsdl:output message="tns:UpdateContentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定内容</wsdl:documentation>
+      <wsdl:input message="tns:DeleteContentHttpPostIn" />
+      <wsdl:output message="tns:DeleteContentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDHttpPostIn" />
+      <wsdl:output message="tns:GetContentByBatchIDHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControllerServiceSoap" type="tns:ControllerServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStats">
+      <soap:operation soapAction="WebService/GetStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <soap:operation soapAction="WebService/GetBatchList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <soap:operation soapAction="WebService/CreateNewBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <soap:operation soapAction="WebService/UpdateBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <soap:operation soapAction="WebService/DeleteBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <soap:operation soapAction="WebService/GetAllContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <soap:operation soapAction="WebService/CreateNewContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <soap:operation soapAction="WebService/UpdateContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <soap:operation soapAction="WebService/DeleteContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <soap:operation soapAction="WebService/GetContentByBatchID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControllerServiceSoap12" type="tns:ControllerServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStats">
+      <soap12:operation soapAction="WebService/GetStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <soap12:operation soapAction="WebService/GetBatchList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <soap12:operation soapAction="WebService/CreateNewBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <soap12:operation soapAction="WebService/UpdateBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <soap12:operation soapAction="WebService/DeleteBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <soap12:operation soapAction="WebService/GetAllContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <soap12:operation soapAction="WebService/CreateNewContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <soap12:operation soapAction="WebService/UpdateContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <soap12:operation soapAction="WebService/DeleteContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <soap12:operation soapAction="WebService/GetContentByBatchID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControllerServiceHttpGet" type="tns:ControllerServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetStats">
+      <http:operation location="/GetStats" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <http:operation location="/GetBatchList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <http:operation location="/CreateNewBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <http:operation location="/UpdateBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <http:operation location="/DeleteBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <http:operation location="/GetAllContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <http:operation location="/CreateNewContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <http:operation location="/UpdateContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <http:operation location="/DeleteContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <http:operation location="/GetContentByBatchID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControllerServiceHttpPost" type="tns:ControllerServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetStats">
+      <http:operation location="/GetStats" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <http:operation location="/GetBatchList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <http:operation location="/CreateNewBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBatch">
+      <http:operation location="/UpdateBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <http:operation location="/DeleteBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <http:operation location="/GetAllContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewContent">
+      <http:operation location="/CreateNewContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateContent">
+      <http:operation location="/UpdateContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <http:operation location="/DeleteContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <http:operation location="/GetContentByBatchID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControllerService">
+    <wsdl:port name="ControllerServiceSoap" binding="tns:ControllerServiceSoap">
+      <soap:address location="http://localhost:30721/ControllerService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControllerServiceSoap12" binding="tns:ControllerServiceSoap12">
+      <soap12:address location="http://localhost:30721/ControllerService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControllerServiceHttpGet" binding="tns:ControllerServiceHttpGet">
+      <http:address location="http://localhost:30721/ControllerService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControllerServiceHttpPost" binding="tns:ControllerServiceHttpPost">
+      <http:address location="http://localhost:30721/ControllerService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSpeedExamination_Server", "InputSpeedExamination_Server\InputSpeedExamination_Server.csproj", "{BD1621A7-B2DE-41B8-A761-0641F0F32964}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputSpeedExamination_Controller", "InputSpeedExamination_Controller\InputSpeedExamination_Controller.csproj", "{C859B013-3ED0-4C9E-B84E-7572645ED743}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2B24DCB7-ADB7-49B1-9736-D74116F4459F} = {2B24DCB7-ADB7-49B1-9736-D74116F4459F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialSkin", "MaterialSkin\MaterialSkin.csproj", "{8EB7611B-68CD-4B8B-987A-11717E2B250C}"
 EndProject

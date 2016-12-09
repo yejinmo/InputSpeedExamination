@@ -91,25 +91,6 @@ namespace WebService
         }
 
         /// <summary>
-        /// 心跳
-        /// </summary>
-        /// <param name="Number"></param>
-        /// <param name="GUID"></param>
-        /// <param name="UpdateTime"></param>
-        /// <param name="IPAddress"></param>
-        /// <returns></returns>
-        public string HeartBeat(string Number, string GUID, string UpdateTime,string IPAddress)
-        {
-            string sql_update = string.Format("UPDATE [Table_UserOnLineInfo] SET [UpdateTime] = '{0}'", UpdateTime);
-            string sql_check_online = string.Format("SELECT * FROM [Table_UserOnLineInfo] WHERE [GUID] = '{0}' AND [Number] = '{1}'",
-                GUID, Number);
-            string sql_insert = string.Format(
-                "INSERT INTO [Table_UserOnLineInfo] ([Number], [GUID], [UpdateTime], [IPAddress]) VALUES ('{0}', '{1}', '{2}', '{3}')"
-                , Number, GUID, UpdateTime, IPAddress);
-            return "";
-        }
-
-        /// <summary>
         /// 更新或插入教务信息
         /// </summary>
         /// <param name="str">教务信息字符串</param>
@@ -275,7 +256,7 @@ namespace WebService
         /// <returns></returns>
         public DataSet GetStats(string ID)
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 string sql = string.Format("SELECT * FROM [Table_Stats] WHERE [BatchID] = '{0}'", ID);
@@ -296,7 +277,7 @@ namespace WebService
         /// <returns></returns>
         public DataSet GetBatchList()
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 string sql = "SELECT * FROM [Table_Batch]";
@@ -419,7 +400,7 @@ namespace WebService
         /// <returns></returns>
         public DataSet GetAllContent()
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 string sql = "SELECT * FROM [Table_Content]";
@@ -453,6 +434,7 @@ namespace WebService
                 var sdr = cmd.ExecuteReader();
                 if (sdr.Read())
                     return "已包含相同内容";
+                sdr.Close();
                 cmd = new SqlCommand(sql, Conn);
                 cmd.ExecuteNonQuery();
                 return "ok";
@@ -519,7 +501,7 @@ namespace WebService
         /// <returns></returns>
         public DataSet GetContentByBatchID(string IncludePaper)
         {
-            DataSet ds = null;
+            DataSet ds = new DataSet();
             try
             {
                 var IncludePaper_array = IncludePaper.Split(',');
@@ -573,7 +555,6 @@ namespace WebService
             // 返回十六进制字符串  
             return sBuilder.ToString().ToLower();
         }
-
 
     }
 }

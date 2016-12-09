@@ -1152,7 +1152,7 @@ cba
                     UserInformation.Class = res_array[2];
                     UserInformation.Name = res_array[3];
                     UserInformation.Number = res_array[4];
-                    UserInformation.GUID = Guid.NewGuid().ToString();
+                    UserInformation.GUID = string.Empty;
                     UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
@@ -1190,6 +1190,39 @@ cba
         {
             if (e.KeyCode == Keys.Enter)
                 TextField_PassWord.Focus();
+        }
+
+        #endregion
+
+        #region UpdateStats
+
+        private void Timer_UpdateStats_Tick(object sender, EventArgs e)
+        {
+            string str_Input_Status = string.Empty;
+            switch (Input_Status)
+            {
+                case Input_Status_Enum.Input:
+                    str_Input_Status = "输入中";
+                    break;
+                case Input_Status_Enum.Pause:
+                    str_Input_Status = "暂停";
+                    break;
+                case Input_Status_Enum.PauseAndSystemUpdate:
+                    str_Input_Status = "暂停";
+                    break;
+                case Input_Status_Enum.Stop:
+                    str_Input_Status = "停止";
+                    break;
+                case Input_Status_Enum.SystemUpdate:
+                    str_Input_Status = "输入中";
+                    break;
+            }
+            new ServiceReference.ClientServiceSoapClient().UpdateExaminationStats(
+                UserInformation.GUID,
+                str_Input_Status,
+                (Stats_Time == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Time * 60.0)).ToString(),
+                ((Stats_Char_Total == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Char_Total * 100)) + "%"),
+                (Stats_Char_Current_Total == 0 ? 100 : (int)((float)Stats_Char_Correct_Total / Stats_Char_Current_Total * 100)) + "%");
         }
 
         #endregion

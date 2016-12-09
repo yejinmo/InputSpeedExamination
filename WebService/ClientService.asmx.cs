@@ -77,20 +77,6 @@ namespace WebService
                 return Context.Request.UserHostAddress.ToString();
         }
 
-        [WebMethod(Description = "心跳")]
-        public string HeartBeat(string Number, string GUID)
-        {
-            //更新时间
-            string UpdateTime = GetNowDateTime();
-            //IP地址
-            string IPAddress = string.Empty;
-            if (Context.Request.IsLocal)
-                IPAddress = "0.0.0.0";
-            else
-                IPAddress = Context.Request.UserHostAddress.ToString();
-            return "ok";
-        }
-
         [WebMethod(Description = "获取一个测试GUID")]
         public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle)
         {
@@ -117,6 +103,29 @@ namespace WebService
             else
                 IPAddress = Context.Request.UserHostAddress.ToString();
             return new DBHelper().UpdateExaminationStats(GUID, Stats, Speed, Process, CorrectPercent, IPAddress);
+        }
+
+        [WebMethod(Description = "获取更新间隔")]
+        public int GetUpdateInterVal()
+        {
+            return 5000;
+        }
+
+        [WebMethod(Description = "根据IP归属获取考场ID")]
+        public string GetBatchID()
+        {
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+            return new DBHelper().GetBatchID(IPAddress);
+        }
+
+        [WebMethod(Description = "获取全部内容")]
+        public DataSet GetAllContent()
+        {
+            return new DBHelper().GetAllContent();
         }
 
         public string GetNowDateTime()
