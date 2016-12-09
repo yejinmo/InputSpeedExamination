@@ -130,6 +130,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityHeader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

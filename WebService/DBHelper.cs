@@ -512,20 +512,29 @@ namespace WebService
             }
         }
 
+        /// <summary>
+        /// 根据考场号获取内容
+        /// </summary>
+        /// <param name="IncludePaper"></param>
+        /// <returns></returns>
         public DataSet GetContentByBatchID(string IncludePaper)
         {
             DataSet ds = null;
             try
             {
                 var IncludePaper_array = IncludePaper.Split(',');
+                string sql = string.Format("SELECT * FROM [Table_Content] WHERE [ID] = ''");
                 foreach (var id in IncludePaper_array)
                 {
                     int temp;
                     if (!int.TryParse(id, out temp))
                         return null;
+                    string sql_append = string.Format(" OR [ID] = '{0}'", id);
+                    sql += sql_append;
                 }
-                string sql = string.Format("SELECT * FROM [Table_Content] WHERE ");
-
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
                 return ds;
             }
             catch
