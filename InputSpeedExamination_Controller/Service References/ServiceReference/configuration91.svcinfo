@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="mG3wNrK2xNG9l6G6a2YIMmFvhhE=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="M3UbnF3ScigEtNjGIYkvzbII3YY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="ControllerServiceSoap">
       <properties>
@@ -263,10 +263,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="ControllerServiceSoap" contract="ServiceReference.ControllerServiceSoap" bindingType="basicHttpBinding" address="http://localhost:30721/ControllerService.asmx" bindingConfiguration="ControllerServiceSoap">
+    <endpoint name="ControllerServiceSoap" contract="ServiceReference.ControllerServiceSoap" bindingType="basicHttpBinding" address="http://keyboard.hcs.ac.cn/ControllerService.asmx" bindingConfiguration="ControllerServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:30721/ControllerService.asmx</serializedValue>
+          <serializedValue>http://keyboard.hcs.ac.cn/ControllerService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -348,10 +348,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="ControllerServiceSoap12" contract="ServiceReference.ControllerServiceSoap" bindingType="customBinding" address="http://localhost:30721/ControllerService.asmx" bindingConfiguration="ControllerServiceSoap12">
+    <endpoint name="ControllerServiceSoap12" contract="ServiceReference.ControllerServiceSoap" bindingType="customBinding" address="http://keyboard.hcs.ac.cn/ControllerService.asmx" bindingConfiguration="ControllerServiceSoap12">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:30721/ControllerService.asmx</serializedValue>
+          <serializedValue>http://keyboard.hcs.ac.cn/ControllerService.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

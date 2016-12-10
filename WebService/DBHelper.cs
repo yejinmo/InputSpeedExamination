@@ -433,7 +433,10 @@ namespace WebService
                 SqlCommand cmd = new SqlCommand(sql_check, Conn);
                 var sdr = cmd.ExecuteReader();
                 if (sdr.Read())
+                {
+                    sdr.Close();
                     return "已包含相同内容";
+                }
                 sdr.Close();
                 cmd = new SqlCommand(sql, Conn);
                 cmd.ExecuteNonQuery();
@@ -463,8 +466,14 @@ namespace WebService
                 SqlCommand cmd = new SqlCommand(sql_check, Conn);
                 var sdr = cmd.ExecuteReader();
                 if (sdr.Read())
+                {
                     if (sdr["MD5"].ToString() == MD5_str)
+                    {
+                        sdr.Close();
                         return "已包含相同内容";
+                    }
+                }
+                sdr.Close();
                 cmd = new SqlCommand(sql, Conn);
                 cmd.ExecuteNonQuery();
                 return "ok";
@@ -484,7 +493,7 @@ namespace WebService
         {
             try
             {
-                string sql = string.Format("DELTET [Table_Content] WHERER [ID] = '{0}'", ContentID);
+                string sql = string.Format("DELETE [Table_Content] WHERE [ID] = '{0}'", ContentID);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return true;
             }

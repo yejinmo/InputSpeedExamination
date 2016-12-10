@@ -265,7 +265,7 @@
             this.TabPage_Examination.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Examination.Name = "TabPage_Examination";
             this.TabPage_Examination.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Examination.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Examination.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Examination.TabIndex = 1;
             this.TabPage_Examination.Text = "tabPage2";
             // 
@@ -292,14 +292,14 @@
             this.Panel_Input_Main.Location = new System.Drawing.Point(30, 5);
             this.Panel_Input_Main.Margin = new System.Windows.Forms.Padding(30);
             this.Panel_Input_Main.Name = "Panel_Input_Main";
-            this.Panel_Input_Main.Size = new System.Drawing.Size(1145, 715);
+            this.Panel_Input_Main.Size = new System.Drawing.Size(1145, 682);
             this.Panel_Input_Main.TabIndex = 10;
             // 
             // Button_Back
             // 
             this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Back.Depth = 0;
-            this.Button_Back.Location = new System.Drawing.Point(608, 656);
+            this.Button_Back.Location = new System.Drawing.Point(608, 622);
             this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Back.Name = "Button_Back";
             this.Button_Back.Primary = true;
@@ -313,7 +313,7 @@
             // 
             this.Button_Pause_Continue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Pause_Continue.Depth = 0;
-            this.Button_Pause_Continue.Location = new System.Drawing.Point(1013, 656);
+            this.Button_Pause_Continue.Location = new System.Drawing.Point(1013, 622);
             this.Button_Pause_Continue.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Pause_Continue.Name = "Button_Pause_Continue";
             this.Button_Pause_Continue.Primary = true;
@@ -330,7 +330,7 @@
             this.Label_Stats_Time.Depth = 0;
             this.Label_Stats_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Label_Stats_Time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Stats_Time.Location = new System.Drawing.Point(4, 656);
+            this.Label_Stats_Time.Location = new System.Drawing.Point(3, 632);
             this.Label_Stats_Time.MouseState = MaterialSkin.MouseState.HOVER;
             this.Label_Stats_Time.Name = "Label_Stats_Time";
             this.Label_Stats_Time.Size = new System.Drawing.Size(505, 46);
@@ -342,7 +342,7 @@
             // 
             this.Button_Next_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Next_Page.Depth = 0;
-            this.Button_Next_Page.Location = new System.Drawing.Point(878, 656);
+            this.Button_Next_Page.Location = new System.Drawing.Point(878, 622);
             this.Button_Next_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Next_Page.Name = "Button_Next_Page";
             this.Button_Next_Page.Primary = true;
@@ -356,7 +356,7 @@
             // 
             this.Button_Previous_Page.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_Previous_Page.Depth = 0;
-            this.Button_Previous_Page.Location = new System.Drawing.Point(743, 656);
+            this.Button_Previous_Page.Location = new System.Drawing.Point(743, 622);
             this.Button_Previous_Page.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Previous_Page.Name = "Button_Previous_Page";
             this.Button_Previous_Page.Primary = true;
@@ -632,7 +632,7 @@
             this.TabPage_Start.Controls.Add(this.Panel_Start);
             this.TabPage_Start.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Start.Name = "TabPage_Start";
-            this.TabPage_Start.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Start.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Start.TabIndex = 2;
             this.TabPage_Start.Text = "TabPage_Start";
             this.TabPage_Start.UseVisualStyleBackColor = true;
@@ -684,7 +684,7 @@
             this.TabPage_SelectText.Controls.Add(this.ProcessBar_SearchExamination);
             this.TabPage_SelectText.Location = new System.Drawing.Point(4, 22);
             this.TabPage_SelectText.Name = "TabPage_SelectText";
-            this.TabPage_SelectText.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_SelectText.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_SelectText.TabIndex = 3;
             this.TabPage_SelectText.Text = "TabPage_SelectText";
             // 
@@ -692,7 +692,7 @@
             // 
             this.Button_SelectText_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_SelectText_Import.Depth = 0;
-            this.Button_SelectText_Import.Location = new System.Drawing.Point(844, 660);
+            this.Button_SelectText_Import.Location = new System.Drawing.Point(844, 628);
             this.Button_SelectText_Import.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Import.Name = "Button_SelectText_Import";
             this.Button_SelectText_Import.Primary = true;
@@ -706,7 +706,7 @@
             // 
             this.Button_SelectText_Begin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_SelectText_Begin.Depth = 0;
-            this.Button_SelectText_Begin.Location = new System.Drawing.Point(1023, 660);
+            this.Button_SelectText_Begin.Location = new System.Drawing.Point(1023, 628);
             this.Button_SelectText_Begin.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Begin.Name = "Button_SelectText_Begin";
             this.Button_SelectText_Begin.Primary = true;
@@ -720,7 +720,7 @@
             // 
             this.Button_SelectText_Return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_SelectText_Return.Depth = 0;
-            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 660);
+            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 628);
             this.Button_SelectText_Return.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Return.Name = "Button_SelectText_Return";
             this.Button_SelectText_Return.Primary = true;
@@ -780,7 +780,7 @@
             this.ListView_ExaminationList.MouseState = MaterialSkin.MouseState.OUT;
             this.ListView_ExaminationList.Name = "ListView_ExaminationList";
             this.ListView_ExaminationList.OwnerDraw = true;
-            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 604);
+            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 572);
             this.ListView_ExaminationList.TabIndex = 0;
             this.ListView_ExaminationList.UseCompatibleStateImageBehavior = false;
             this.ListView_ExaminationList.View = System.Windows.Forms.View.Details;
@@ -828,7 +828,7 @@
             this.TabPage_Result.BackColor = System.Drawing.Color.White;
             this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Result.Name = "TabPage_Result";
-            this.TabPage_Result.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_Result.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Result.TabIndex = 4;
             this.TabPage_Result.Text = "TabPage_Result";
             // 
@@ -840,7 +840,7 @@
             this.TabPage_OnLineExamination.Controls.Add(this.ProcessBar_OnLine);
             this.TabPage_OnLineExamination.Location = new System.Drawing.Point(4, 22);
             this.TabPage_OnLineExamination.Name = "TabPage_OnLineExamination";
-            this.TabPage_OnLineExamination.Size = new System.Drawing.Size(1205, 723);
+            this.TabPage_OnLineExamination.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_OnLineExamination.TabIndex = 5;
             this.TabPage_OnLineExamination.Text = "TabPage_OnLineExamination";
             // 
@@ -852,14 +852,14 @@
             this.Panel_OnLine.Controls.Add(this.Button_OnLineReturn);
             this.Panel_OnLine.Location = new System.Drawing.Point(7, 66);
             this.Panel_OnLine.Name = "Panel_OnLine";
-            this.Panel_OnLine.Size = new System.Drawing.Size(1191, 650);
+            this.Panel_OnLine.Size = new System.Drawing.Size(1191, 623);
             this.Panel_OnLine.TabIndex = 2;
             // 
             // Button_OnLineReturn
             // 
             this.Button_OnLineReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_OnLineReturn.Depth = 0;
-            this.Button_OnLineReturn.Location = new System.Drawing.Point(8, 589);
+            this.Button_OnLineReturn.Location = new System.Drawing.Point(8, 564);
             this.Button_OnLineReturn.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_OnLineReturn.Name = "Button_OnLineReturn";
             this.Button_OnLineReturn.Primary = true;
@@ -944,7 +944,6 @@
             // 
             // Timer_UpdateStats
             // 
-            this.Timer_UpdateStats.Enabled = true;
             this.Timer_UpdateStats.Interval = 5000;
             this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
             // 
@@ -956,6 +955,7 @@
             this.Controls.Add(this.LinkLabel_LoginOrOut);
             this.Controls.Add(this.Label_UserName);
             this.Controls.Add(this.TabControl_Main);
+            this.Font = new System.Drawing.Font("宋体", 9F);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 480);
             this.Name = "Form_Main";

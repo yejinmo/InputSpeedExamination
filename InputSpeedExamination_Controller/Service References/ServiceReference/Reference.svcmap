@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:30721/ControllerService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://Keyboard.hcs.ac.cn/ControllerService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ControllerService.wsdl" MetadataType="Wsdl" ID="d77c32d6-e5f5-45ca-9420-4de44ac72b11" SourceId="1" SourceUrl="http://localhost:30721/ControllerService.asmx?wsdl" />
-    <MetadataFile FileName="ControllerService.disco" MetadataType="Disco" ID="4526d8b9-2988-4b17-b103-81a939329e4e" SourceId="1" SourceUrl="http://localhost:30721/ControllerService.asmx?disco" />
+    <MetadataFile FileName="ControllerService1.wsdl" MetadataType="Wsdl" ID="07eaf115-8887-4877-93ed-87ce0d72e54f" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?wsdl" />
+    <MetadataFile FileName="ControllerService1.disco" MetadataType="Disco" ID="a206830a-35d1-47a1-b001-70428884cceb" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

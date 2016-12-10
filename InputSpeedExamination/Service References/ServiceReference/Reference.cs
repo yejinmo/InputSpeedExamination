@@ -44,10 +44,6 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetClientIP();
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/HeartBeat", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string HeartBeat(string Number, string GUID);
-        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExaminationGUID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle);
@@ -55,6 +51,18 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateExaminationStats", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateInterVal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int GetUpdateInterVal();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetBatchID();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllContent();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -112,16 +120,24 @@ namespace InputSpeedExamination.ServiceReference {
             return base.Channel.GetClientIP();
         }
         
-        public string HeartBeat(string Number, string GUID) {
-            return base.Channel.HeartBeat(Number, GUID);
-        }
-        
         public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle) {
             return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle);
         }
         
         public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent) {
             return base.Channel.UpdateExaminationStats(GUID, Stats, Speed, Process, CorrectPercent);
+        }
+        
+        public int GetUpdateInterVal() {
+            return base.Channel.GetUpdateInterVal();
+        }
+        
+        public string GetBatchID() {
+            return base.Channel.GetBatchID();
+        }
+        
+        public System.Data.DataSet GetAllContent() {
+            return base.Channel.GetAllContent();
         }
     }
 }

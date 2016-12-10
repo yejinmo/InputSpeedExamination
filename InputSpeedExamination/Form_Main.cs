@@ -1067,6 +1067,8 @@ cba
 
         private void FlatButton_Select_Login_Click(object sender, EventArgs e)
         {
+            if (ProcessBar_Login.Visible == true)
+                return;
             UserInformation.Number = TextField_UserName.Text;
             UserInformation.Password = TextField_PassWord.Text;
             if (string.IsNullOrEmpty(UserInformation.Number))
@@ -1156,10 +1158,21 @@ cba
                     UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
+                    Update_Label_Login_Tip(Color.Black, "正在获取试题库");
+                    var ds = new ServiceReference.ClientServiceSoapClient().GetAllContent();
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        string title = dr["Title"].ToString();
+                        string content = dr["String"].ToString();
+                        db.InsertNewContent(title, content);
+                    }
+                    Thread.Sleep(250);
+                    Update_Label_Login_Tip(Color.Black, "正在加载界面");
                     Invoke((EventHandler)delegate
                     {
                         FlatButton_Select_OffLine.PerformClick();
                     });
+                    Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black);
                 }
             }
