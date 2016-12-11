@@ -151,5 +151,147 @@ namespace InputSpeedExamination_Controller
 
         #endregion
 
+        #region 考场
+
+        private void Button_RefreshExamRoom_Click(object sender, EventArgs e)
+        {
+            Thread ThreadRefreshExamRoom = new Thread(new ThreadStart(RefreshExamRoom));
+            ThreadRefreshExamRoom.Start();
+        }
+
+        private void RefreshExamRoom()
+        {
+            try
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    ListView_ExamRoom.SuspendLayout();
+                    ListView_ExamRoom.Items.Clear();
+                    ListView_ExamRoom_IPList.Items.Clear();
+                });
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetExamRoomList();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    string id = dr["ID"].ToString();
+                    string title = dr["RoomTitle"].ToString();
+                    string IncludeIP = dr["IncludeIP"].ToString();
+                    Invoke((EventHandler)delegate
+                    {
+                        ListViewItem lvi = new ListViewItem(id);
+                        lvi.SubItems.Add(title);
+                        lvi.SubItems.Add(IncludeIP);
+                        ListView_ExamRoom.Items.Add(lvi);
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "内容刷新失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    ListView_ExamRoom.ResumeLayout();
+                });
+            }
+        }
+
+        private void ListView_ExamRoom_Click(object sender, EventArgs e)
+        {
+            if (ListView_ExamRoom.SelectedItems.Count == 1)
+                ListExamRoomIPList(ListView_ExamRoom.SelectedItems[0].SubItems[2].Text);
+        }
+
+        private void ListExamRoomIPList(string IncludeIP)
+        {
+            ListView_ExamRoom_IPList.Items.Clear();
+            var IncludeIP_array = IncludeIP.Split(',');
+            foreach (var ip in IncludeIP_array)
+            {
+                ListView_ExamRoom_IPList.Items.Add(ip);
+            }
+        }
+
+        private void Button_DeleteExamRoom_Click(object sender, EventArgs e)
+        {
+            if (ListView_ExamRoom.SelectedItems.Count != 1)
+            {
+                MessageBox.Show(this, "请选中一项", "提示");
+                return;
+            }
+            Thread ThreadDeleteExamRoom = new Thread(new ThreadStart(DeleteExamRoom));
+            ThreadDeleteExamRoom.Start();
+        }
+
+        private void DeleteExamRoom()
+        {
+            try
+            {
+                string id = string.Empty;
+                bool needreturn = false;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    id = ListView_ExamRoom.SelectedItems[0].SubItems[0].Text;
+                    DialogResult dr = MessageBox.Show(
+                        string.Format("确定要删除？\n\nID:{0}\n标题:{1}", id, ListView_ExamRoom.SelectedItems[0].SubItems[1].Text),
+                        "删除确认", MessageBoxButtons.YesNo);
+                    if (dr != DialogResult.Yes)
+                        needreturn = true;
+                });
+                if (needreturn)
+                    return;
+                var res = new ServiceReference.ControllerServiceSoapClient().DeleteExamRoom(id);
+                Invoke((EventHandler)delegate
+                {
+                    if (res)
+                        MessageBox.Show(this, "删除成功", "提示");
+                    else
+                        MessageBox.Show(this, "删除失败", "提示");
+                });
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "内容删除失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    Button_RefreshExamRoom.PerformClick();
+                });
+            }
+        }
+
+        private void Button_AddExamRoom_Click(object sender, EventArgs e)
+        {
+            new Form_AddExamRoom().ShowDialog();
+            Button_RefreshExamRoom.PerformClick();
+        }
+
+        #endregion
+
+        private void Button_EditExamRoom_Click(object sender, EventArgs e)
+        {
+            if (ListView_ExamRoom.SelectedItems.Count != 1)
+            {
+                MessageBox.Show(this, "请选中一项", "提示");
+                return;
+            }
+            new Form_EditExamRoom(ListView_ExamRoom.SelectedItems[0].SubItems[0].Text,
+                ListView_ExamRoom.SelectedItems[0].SubItems[1].Text,
+                ListView_ExamRoom.SelectedItems[0].SubItems[2].Text).ShowDialog();
+            Button_RefreshExamRoom.PerformClick();
+        }
     }
 }

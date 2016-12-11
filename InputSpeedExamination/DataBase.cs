@@ -279,5 +279,4 @@ namespace InputSpeedExamination
         }
 
     }
-
 }

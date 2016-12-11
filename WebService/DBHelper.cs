@@ -327,9 +327,20 @@ namespace WebService
                 var IncludeIP_array = IncludeIP.Split(',');
                 foreach (var ip in IncludeIP_array)
                 {
+                    if (string.IsNullOrEmpty(ip))
+                        return "IP地址不能为空";
                     IPAddress temp;
                     if (!IPAddress.TryParse(ip, out temp))
                         return string.Format("IP地址 {0} 不合法", ip);
+                    string sql_check = string.Format("SELECT * FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '%{0}%'", ip);
+                    var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                    if (sdr.Read())
+                    {
+                        string roomTilte = sdr["RoomTitle"].ToString();
+                        sdr.Close();
+                        return ip + " 已存在于考场 " + roomTilte;
+                    }
+                    sdr.Close();
                 }
                 string sql = string.Format(
                     "INSERT INTO [Table_ExamRoom] ([RoomTitle], [IncludeIP]) VALUES ('{0}', '{1}')",
@@ -354,16 +365,29 @@ namespace WebService
         {
             try
             {
+                int temp_id;
+                if (!int.TryParse(RoomID, out temp_id))
+                    return string.Format("ID {0} 不合法", RoomID);
+                if (temp_id == 1)
+                    return "不能修改默认考场";
                 var IncludeIP_array = IncludeIP.Split(',');
                 foreach (var ip in IncludeIP_array)
                 {
+                    if (string.IsNullOrEmpty(ip))
+                        return "IP地址不能为空";
                     IPAddress temp;
                     if (!IPAddress.TryParse(ip, out temp))
                         return string.Format("IP地址 {0} 不合法", ip);
+                    string sql_check = string.Format("SELECT * FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '%{0}%' AND NOT [ID] = '{1}'", ip, RoomID);
+                    var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                    if (sdr.Read())
+                    {
+                        string roomTilte = sdr["RoomTitle"].ToString();
+                        sdr.Close();
+                        return ip + " 已存在于考场 " + roomTilte;
+                    }
+                    sdr.Close();
                 }
-                int temp_id;
-                if(!int.TryParse(RoomID, out temp_id))
-                    return string.Format("ID {0} 不合法", RoomID);
                 string sql = string.Format(
                     "UPDATE [Table_ExamRoom] SET [RoomTitle] = '{0}', [IncludeIP] = '{1}' WHERE [ID] = '{2}'",
                     Title, IncludeIP, RoomID);

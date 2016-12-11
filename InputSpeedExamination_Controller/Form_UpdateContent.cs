@@ -22,7 +22,7 @@ namespace InputSpeedExamination_Controller
             ID = id;
             Text_Content.Text = content;
             Text_Title.Text = title;
-            Text = string.Format("修改内容 [ID:{0}, MD5:{1}]", id, md5);
+            Text = string.Format("编辑内容 [ID:{0}, MD5:{1}]", id, md5);
         }
 
         private void Button_Edit_Click(object sender, EventArgs e)
@@ -48,11 +48,11 @@ namespace InputSpeedExamination_Controller
                 {
                     if (res == "ok")
                     {
-                        MessageBox.Show(this, "内容修改成功", "提示");
+                        MessageBox.Show(this, "内容编辑成功", "提示");
                     }
                     else
                     {
-                        MessageBox.Show(this, "内容修改失败\n\n" + res, "错误");
+                        MessageBox.Show(this, "内容编辑失败\n\n" + res, "错误");
                     }
                 });
             }
@@ -60,7 +60,7 @@ namespace InputSpeedExamination_Controller
             {
                 Invoke((EventHandler)delegate
                 {
-                    MessageBox.Show(this, "内容修改失败\n\n" + e.Message, "错误");
+                    MessageBox.Show(this, "内容编辑失败\n\n" + e.Message, "错误");
                 });
             }
             finally

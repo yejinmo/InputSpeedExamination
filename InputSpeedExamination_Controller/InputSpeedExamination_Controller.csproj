@@ -57,6 +57,18 @@
     <Compile Include="Form_AddContent.Designer.cs">
       <DependentUpon>Form_AddContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_AddExamRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddExamRoom.Designer.cs">
+      <DependentUpon>Form_AddExamRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_EditExamRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EditExamRoom.Designer.cs">
+      <DependentUpon>Form_EditExamRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,12 @@
     </Compile>
     <EmbeddedResource Include="Form_AddContent.resx">
       <DependentUpon>Form_AddContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddExamRoom.resx">
+      <DependentUpon>Form_AddExamRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_EditExamRoom.resx">
+      <DependentUpon>Form_EditExamRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>

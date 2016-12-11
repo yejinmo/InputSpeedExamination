@@ -13,6 +13,7 @@ namespace InputSpeedExamination_Controller
 {
     public partial class Form_AddContent : Form
     {
+
         public Form_AddContent()
         {
             InitializeComponent();
