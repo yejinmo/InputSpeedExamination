@@ -34,7 +34,7 @@ namespace WebService
             return new DBHelper().GetAllDepartment();
         }
 
-        [WebMethod(Description = "根据 DepartmentID 获取专业")]
+        [WebMethod(Description = "根据 DepartmentID 获取下属专业")]
         public DataSet GetMajorByDepartment(string DepartmentID)
         {
             return new DBHelper().GetMajorByDepartment(DepartmentID);
@@ -59,6 +59,7 @@ namespace WebService
         [WebMethod(Description = "获取教务信息")]
         public string GetUserInfo(string username, string password)
         {
+
             if (string.IsNullOrEmpty(username))
                 return "username empty";
             if (string.IsNullOrEmpty(password))
