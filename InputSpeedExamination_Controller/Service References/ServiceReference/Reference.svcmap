@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1bedddcf-5620-407a-8098-dc71eb73ab60" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="db3efe41-5c98-43d2-83b8-c26df4a45b54" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
-    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -19,11 +18,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://Keyboard.hcs.ac.cn/ControllerService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://keyboard.hcs.ac.cn/ControllerService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ControllerService1.wsdl" MetadataType="Wsdl" ID="07eaf115-8887-4877-93ed-87ce0d72e54f" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?wsdl" />
-    <MetadataFile FileName="ControllerService1.disco" MetadataType="Disco" ID="a206830a-35d1-47a1-b001-70428884cceb" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?disco" />
+    <MetadataFile FileName="ControllerService.wsdl" MetadataType="Wsdl" ID="c194703e-aba3-48ae-b15a-3ef1650080de" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?wsdl" />
+    <MetadataFile FileName="ControllerService.disco" MetadataType="Disco" ID="53108988-fa49-4d8a-ba8e-c85e26c4f6c7" SourceId="1" SourceUrl="http://keyboard.hcs.ac.cn/ControllerService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

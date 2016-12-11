@@ -13,10 +13,37 @@ namespace InputSpeedExamination_Controller
 {
     public partial class Form_Main : Form
     {
+
+        #region UI
+
         public Form_Main()
         {
             InitializeComponent();
         }
+
+        private void Form_Main_Load(object sender, EventArgs e)
+        {
+            Thread ThreadRefreshContent = new Thread(new ThreadStart(RefreshContent));
+            ThreadRefreshContent.Start();
+        }
+
+        private void TabControl_Main_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabControl_Main.SelectedTab == TabPage_Content)
+            {
+                Thread ThreadRefreshContent = new Thread(new ThreadStart(RefreshContent));
+                ThreadRefreshContent.Start();
+                return;
+            }
+            if (TabControl_Main.SelectedTab == TabPage_ExamRoom)
+            {
+                Thread ThreadRefreshExamRoom = new Thread(new ThreadStart(RefreshExamRoom));
+                ThreadRefreshExamRoom.Start();
+                return;
+            }
+        }
+
+        #endregion
 
         #region 内容
 
@@ -279,8 +306,6 @@ namespace InputSpeedExamination_Controller
             Button_RefreshExamRoom.PerformClick();
         }
 
-        #endregion
-
         private void Button_EditExamRoom_Click(object sender, EventArgs e)
         {
             if (ListView_ExamRoom.SelectedItems.Count != 1)
@@ -293,5 +318,8 @@ namespace InputSpeedExamination_Controller
                 ListView_ExamRoom.SelectedItems[0].SubItems[2].Text).ShowDialog();
             Button_RefreshExamRoom.PerformClick();
         }
+
+        #endregion
+
     }
 }

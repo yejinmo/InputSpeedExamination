@@ -78,13 +78,14 @@
             // 
             // GroupBox_IncludeIP
             // 
-            this.GroupBox_IncludeIP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.GroupBox_IncludeIP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox_IncludeIP.Controls.Add(this.ListView_ExamRoom_IPList);
             this.GroupBox_IncludeIP.Location = new System.Drawing.Point(10, 57);
-            this.GroupBox_IncludeIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_IncludeIP.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_IncludeIP.Name = "GroupBox_IncludeIP";
-            this.GroupBox_IncludeIP.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_IncludeIP.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_IncludeIP.Size = new System.Drawing.Size(451, 456);
             this.GroupBox_IncludeIP.TabIndex = 2;
             this.GroupBox_IncludeIP.TabStop = false;
@@ -98,7 +99,7 @@
             this.ListView_ExamRoom_IPList.FullRowSelect = true;
             this.ListView_ExamRoom_IPList.HideSelection = false;
             this.ListView_ExamRoom_IPList.Location = new System.Drawing.Point(2, 16);
-            this.ListView_ExamRoom_IPList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ListView_ExamRoom_IPList.Margin = new System.Windows.Forms.Padding(2);
             this.ListView_ExamRoom_IPList.MultiSelect = false;
             this.ListView_ExamRoom_IPList.Name = "ListView_ExamRoom_IPList";
             this.ListView_ExamRoom_IPList.Size = new System.Drawing.Size(447, 438);
@@ -151,9 +152,9 @@
             this.GroupBox_AddIPs.Controls.Add(this.GroupBox_End);
             this.GroupBox_AddIPs.Controls.Add(this.GroupBox_Start);
             this.GroupBox_AddIPs.Location = new System.Drawing.Point(463, 57);
-            this.GroupBox_AddIPs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_AddIPs.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_AddIPs.Name = "GroupBox_AddIPs";
-            this.GroupBox_AddIPs.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_AddIPs.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_AddIPs.Size = new System.Drawing.Size(183, 142);
             this.GroupBox_AddIPs.TabIndex = 8;
             this.GroupBox_AddIPs.TabStop = false;
@@ -162,7 +163,7 @@
             // Button_AddIPs
             // 
             this.Button_AddIPs.Location = new System.Drawing.Point(4, 108);
-            this.Button_AddIPs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Button_AddIPs.Margin = new System.Windows.Forms.Padding(2);
             this.Button_AddIPs.Name = "Button_AddIPs";
             this.Button_AddIPs.Size = new System.Drawing.Size(174, 30);
             this.Button_AddIPs.TabIndex = 2;
@@ -174,9 +175,9 @@
             // 
             this.GroupBox_End.Controls.Add(this.Text_IPEnd);
             this.GroupBox_End.Location = new System.Drawing.Point(4, 62);
-            this.GroupBox_End.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_End.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_End.Name = "GroupBox_End";
-            this.GroupBox_End.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_End.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_End.Size = new System.Drawing.Size(174, 41);
             this.GroupBox_End.TabIndex = 1;
             this.GroupBox_End.TabStop = false;
@@ -185,7 +186,7 @@
             // Text_IPEnd
             // 
             this.Text_IPEnd.Location = new System.Drawing.Point(4, 16);
-            this.Text_IPEnd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Text_IPEnd.Margin = new System.Windows.Forms.Padding(2);
             this.Text_IPEnd.Name = "Text_IPEnd";
             this.Text_IPEnd.Size = new System.Drawing.Size(166, 21);
             this.Text_IPEnd.TabIndex = 0;
@@ -194,9 +195,9 @@
             // 
             this.GroupBox_Start.Controls.Add(this.Text_IPStart);
             this.GroupBox_Start.Location = new System.Drawing.Point(4, 17);
-            this.GroupBox_Start.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_Start.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_Start.Name = "GroupBox_Start";
-            this.GroupBox_Start.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_Start.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_Start.Size = new System.Drawing.Size(174, 41);
             this.GroupBox_Start.TabIndex = 0;
             this.GroupBox_Start.TabStop = false;
@@ -205,7 +206,7 @@
             // Text_IPStart
             // 
             this.Text_IPStart.Location = new System.Drawing.Point(4, 16);
-            this.Text_IPStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Text_IPStart.Margin = new System.Windows.Forms.Padding(2);
             this.Text_IPStart.Name = "Text_IPStart";
             this.Text_IPStart.Size = new System.Drawing.Size(166, 21);
             this.Text_IPStart.TabIndex = 0;
@@ -216,9 +217,9 @@
             this.GroupBox_AddIP.Controls.Add(this.BUtton_AddIP);
             this.GroupBox_AddIP.Controls.Add(this.GroupBox_SingleIP);
             this.GroupBox_AddIP.Location = new System.Drawing.Point(463, 204);
-            this.GroupBox_AddIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_AddIP.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_AddIP.Name = "GroupBox_AddIP";
-            this.GroupBox_AddIP.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_AddIP.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_AddIP.Size = new System.Drawing.Size(183, 98);
             this.GroupBox_AddIP.TabIndex = 9;
             this.GroupBox_AddIP.TabStop = false;
@@ -227,7 +228,7 @@
             // BUtton_AddIP
             // 
             this.BUtton_AddIP.Location = new System.Drawing.Point(4, 65);
-            this.BUtton_AddIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BUtton_AddIP.Margin = new System.Windows.Forms.Padding(2);
             this.BUtton_AddIP.Name = "BUtton_AddIP";
             this.BUtton_AddIP.Size = new System.Drawing.Size(174, 30);
             this.BUtton_AddIP.TabIndex = 2;
@@ -239,9 +240,9 @@
             // 
             this.GroupBox_SingleIP.Controls.Add(this.Text_SingleIP);
             this.GroupBox_SingleIP.Location = new System.Drawing.Point(4, 19);
-            this.GroupBox_SingleIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_SingleIP.Margin = new System.Windows.Forms.Padding(2);
             this.GroupBox_SingleIP.Name = "GroupBox_SingleIP";
-            this.GroupBox_SingleIP.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GroupBox_SingleIP.Padding = new System.Windows.Forms.Padding(2);
             this.GroupBox_SingleIP.Size = new System.Drawing.Size(174, 41);
             this.GroupBox_SingleIP.TabIndex = 1;
             this.GroupBox_SingleIP.TabStop = false;
@@ -250,7 +251,7 @@
             // Text_SingleIP
             // 
             this.Text_SingleIP.Location = new System.Drawing.Point(4, 16);
-            this.Text_SingleIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Text_SingleIP.Margin = new System.Windows.Forms.Padding(2);
             this.Text_SingleIP.Name = "Text_SingleIP";
             this.Text_SingleIP.Size = new System.Drawing.Size(166, 21);
             this.Text_SingleIP.TabIndex = 0;
@@ -280,7 +281,7 @@
             this.Controls.Add(this.GroupBox_IncludeIP);
             this.Controls.Add(this.GroupBox_Title);
             this.Font = new System.Drawing.Font("宋体", 9F);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form_AddExamRoom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加考场";

@@ -565,7 +565,7 @@ namespace WebService
         }
 
         /// <summary>
-        /// 根据考场ID获取内容
+        /// 根据批次ID获取内容ID
         /// </summary>
         /// <param name="BatchID"></param>
         /// <returns></returns>
@@ -592,6 +592,53 @@ namespace WebService
             }
         }
 
+        /// <summary>
+        /// 创建新批次
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <param name="Remark"></param>
+        /// <param name="IncludePaper"></param>
+        /// <returns></returns>
+        public string CreateNewBatch(string Title, string Remark, string IncludePaper)
+        {
+            try
+            {
+                string sql = string.Format(
+"INSERT INTO [Table_Batch] ([Title], [IsOpen], [IncludePaper], [Remark], [BeginTime], [FinishTime]) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                    Title, "-1", IncludePaper, Remark, "-", "-");
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                cmd.ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string StartBatch(string BatchID)
+        {
+            try
+            {
+                string sql_check = string.Format("SELECT * FROM [Table_Batch] WHERE [IsOpen] = '1'");
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["Title"].ToString() + "[ID:" + sdr["ID"].ToString() + "] 处于开启状态\n\n不能同时启动";
+                    sdr.Close();
+                    return res;
+                }
+                sdr.Close();
+                string sql = string.Format("UPDATE [Table_Batch] SET [IsOpen] = '1' WHERE [ID] = '{0}'", BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+        
         #endregion
 
         /// <summary>

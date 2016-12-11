@@ -39,7 +39,7 @@
             this.ColumnHeader_Content_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnHeader_Content_Content = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnHeader_Content_MD5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TabPage_Batch = new System.Windows.Forms.TabPage();
+            this.TabPage_ExamRoom = new System.Windows.Forms.TabPage();
             this.TabPage_Stats = new System.Windows.Forms.TabPage();
             this.ListView_ExamRoom = new System.Windows.Forms.ListView();
             this.ColumnHeader_ExamRoomID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,14 +50,16 @@
             this.Button_RefreshExamRoom = new System.Windows.Forms.Button();
             this.Button_DeleteExamRoom = new System.Windows.Forms.Button();
             this.Button_EditExamRoom = new System.Windows.Forms.Button();
+            this.TabPage_Batch = new System.Windows.Forms.TabPage();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Content.SuspendLayout();
-            this.TabPage_Batch.SuspendLayout();
+            this.TabPage_ExamRoom.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
             // 
             this.TabControl_Main.Controls.Add(this.TabPage_Content);
+            this.TabControl_Main.Controls.Add(this.TabPage_ExamRoom);
             this.TabControl_Main.Controls.Add(this.TabPage_Batch);
             this.TabControl_Main.Controls.Add(this.TabPage_Stats);
             this.TabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,6 +68,7 @@
             this.TabControl_Main.SelectedIndex = 0;
             this.TabControl_Main.Size = new System.Drawing.Size(862, 618);
             this.TabControl_Main.TabIndex = 0;
+            this.TabControl_Main.SelectedIndexChanged += new System.EventHandler(this.TabControl_Main_SelectedIndexChanged);
             // 
             // TabPage_Content
             // 
@@ -149,34 +152,38 @@
             // ColumnHeader_Content_ID
             // 
             this.ColumnHeader_Content_ID.Text = "ID";
+            this.ColumnHeader_Content_ID.Width = 80;
             // 
             // ColumnHeader_Content_Title
             // 
             this.ColumnHeader_Content_Title.Text = "标题";
+            this.ColumnHeader_Content_Title.Width = 179;
             // 
             // ColumnHeader_Content_Content
             // 
             this.ColumnHeader_Content_Content.Text = "内容";
+            this.ColumnHeader_Content_Content.Width = 203;
             // 
             // ColumnHeader_Content_MD5
             // 
             this.ColumnHeader_Content_MD5.Text = "MD5值";
+            this.ColumnHeader_Content_MD5.Width = 325;
             // 
-            // TabPage_Batch
+            // TabPage_ExamRoom
             // 
-            this.TabPage_Batch.Controls.Add(this.Button_RefreshExamRoom);
-            this.TabPage_Batch.Controls.Add(this.Button_DeleteExamRoom);
-            this.TabPage_Batch.Controls.Add(this.Button_EditExamRoom);
-            this.TabPage_Batch.Controls.Add(this.Button_AddExamRoom);
-            this.TabPage_Batch.Controls.Add(this.ListView_ExamRoom_IPList);
-            this.TabPage_Batch.Controls.Add(this.ListView_ExamRoom);
-            this.TabPage_Batch.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_Batch.Name = "TabPage_Batch";
-            this.TabPage_Batch.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_Batch.Size = new System.Drawing.Size(854, 592);
-            this.TabPage_Batch.TabIndex = 1;
-            this.TabPage_Batch.Text = "考场";
-            this.TabPage_Batch.UseVisualStyleBackColor = true;
+            this.TabPage_ExamRoom.Controls.Add(this.Button_RefreshExamRoom);
+            this.TabPage_ExamRoom.Controls.Add(this.Button_DeleteExamRoom);
+            this.TabPage_ExamRoom.Controls.Add(this.Button_EditExamRoom);
+            this.TabPage_ExamRoom.Controls.Add(this.Button_AddExamRoom);
+            this.TabPage_ExamRoom.Controls.Add(this.ListView_ExamRoom_IPList);
+            this.TabPage_ExamRoom.Controls.Add(this.ListView_ExamRoom);
+            this.TabPage_ExamRoom.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_ExamRoom.Name = "TabPage_ExamRoom";
+            this.TabPage_ExamRoom.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_ExamRoom.Size = new System.Drawing.Size(854, 592);
+            this.TabPage_ExamRoom.TabIndex = 1;
+            this.TabPage_ExamRoom.Text = "考场";
+            this.TabPage_ExamRoom.UseVisualStyleBackColor = true;
             // 
             // TabPage_Stats
             // 
@@ -280,6 +287,15 @@
             this.Button_EditExamRoom.UseVisualStyleBackColor = true;
             this.Button_EditExamRoom.Click += new System.EventHandler(this.Button_EditExamRoom_Click);
             // 
+            // TabPage_Batch
+            // 
+            this.TabPage_Batch.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Batch.Name = "TabPage_Batch";
+            this.TabPage_Batch.Size = new System.Drawing.Size(854, 592);
+            this.TabPage_Batch.TabIndex = 3;
+            this.TabPage_Batch.Text = "批次";
+            this.TabPage_Batch.UseVisualStyleBackColor = true;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -290,9 +306,10 @@
             this.Name = "Form_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "控制端";
+            this.Load += new System.EventHandler(this.Form_Main_Load);
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Content.ResumeLayout(false);
-            this.TabPage_Batch.ResumeLayout(false);
+            this.TabPage_ExamRoom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -301,7 +318,7 @@
 
         private System.Windows.Forms.TabControl TabControl_Main;
         private System.Windows.Forms.TabPage TabPage_Content;
-        private System.Windows.Forms.TabPage TabPage_Batch;
+        private System.Windows.Forms.TabPage TabPage_ExamRoom;
         private System.Windows.Forms.TabPage TabPage_Stats;
         private System.Windows.Forms.ListView ListView_AllContent;
         private System.Windows.Forms.Button Button_AddContent;
@@ -321,6 +338,7 @@
         private System.Windows.Forms.Button Button_RefreshExamRoom;
         private System.Windows.Forms.Button Button_DeleteExamRoom;
         private System.Windows.Forms.Button Button_EditExamRoom;
+        private System.Windows.Forms.TabPage TabPage_Batch;
     }
 }
 
