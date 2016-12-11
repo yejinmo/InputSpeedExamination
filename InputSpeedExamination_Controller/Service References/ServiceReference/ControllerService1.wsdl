@@ -5,7 +5,8 @@
       <s:element name="GetStats">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -23,13 +24,13 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetBatchList">
+      <s:element name="GetExamRoomList">
         <s:complexType />
       </s:element>
-      <s:element name="GetBatchListResponse">
+      <s:element name="GetExamRoomListResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetBatchListResult">
+            <s:element minOccurs="0" maxOccurs="1" name="GetExamRoomListResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -40,50 +41,48 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CreateNewBatch">
+      <s:element name="CreateNewExamRoom">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="BatchTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CreateNewBatchResponse">
+      <s:element name="CreateNewExamRoomResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CreateNewBatchResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewExamRoomResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UpdateBatch">
+      <s:element name="EditExamRoom">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="BatchTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="UpdateBatchResponse">
+      <s:element name="EditExamRoomResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UpdateBatchResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EditExamRoomResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DeleteBatch">
+      <s:element name="DeleteExamRoom">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DeleteBatchResponse">
+      <s:element name="DeleteExamRoomResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="DeleteBatchResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteExamRoomResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -149,10 +148,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetContentByBatchID">
+      <s:element name="GetContentByPaperID">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentByPaperIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentByPaperIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentByBatchID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -188,29 +208,29 @@
   <wsdl:message name="GetStatsSoapOut">
     <wsdl:part name="parameters" element="tns:GetStatsResponse" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListSoapIn">
-    <wsdl:part name="parameters" element="tns:GetBatchList" />
+  <wsdl:message name="GetExamRoomListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExamRoomList" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListSoapOut">
-    <wsdl:part name="parameters" element="tns:GetBatchListResponse" />
+  <wsdl:message name="GetExamRoomListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExamRoomListResponse" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchSoapIn">
-    <wsdl:part name="parameters" element="tns:CreateNewBatch" />
+  <wsdl:message name="CreateNewExamRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewExamRoom" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchSoapOut">
-    <wsdl:part name="parameters" element="tns:CreateNewBatchResponse" />
+  <wsdl:message name="CreateNewExamRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewExamRoomResponse" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchSoapIn">
-    <wsdl:part name="parameters" element="tns:UpdateBatch" />
+  <wsdl:message name="EditExamRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:EditExamRoom" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchSoapOut">
-    <wsdl:part name="parameters" element="tns:UpdateBatchResponse" />
+  <wsdl:message name="EditExamRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:EditExamRoomResponse" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchSoapIn">
-    <wsdl:part name="parameters" element="tns:DeleteBatch" />
+  <wsdl:message name="DeleteExamRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteExamRoom" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchSoapOut">
-    <wsdl:part name="parameters" element="tns:DeleteBatchResponse" />
+  <wsdl:message name="DeleteExamRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteExamRoomResponse" />
   </wsdl:message>
   <wsdl:message name="GetAllContentSoapIn">
     <wsdl:part name="parameters" element="tns:GetAllContent" />
@@ -236,6 +256,12 @@
   <wsdl:message name="DeleteContentSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteContentResponse" />
   </wsdl:message>
+  <wsdl:message name="GetContentByPaperIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentByPaperID" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByPaperIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentByPaperIDResponse" />
+  </wsdl:message>
   <wsdl:message name="GetContentByBatchIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetContentByBatchID" />
   </wsdl:message>
@@ -243,36 +269,35 @@
     <wsdl:part name="parameters" element="tns:GetContentByBatchIDResponse" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpGetIn">
-    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListHttpGetIn" />
-  <wsdl:message name="GetBatchListHttpGetOut">
+  <wsdl:message name="GetExamRoomListHttpGetIn" />
+  <wsdl:message name="GetExamRoomListHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchHttpGetIn">
-    <wsdl:part name="BatchTitle" type="s:string" />
+  <wsdl:message name="CreateNewExamRoomHttpGetIn">
+    <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
-    <wsdl:part name="IncludePaper" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchHttpGetOut">
+  <wsdl:message name="CreateNewExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchHttpGetIn">
-    <wsdl:part name="BatchID" type="s:string" />
-    <wsdl:part name="BatchTitle" type="s:string" />
+  <wsdl:message name="EditExamRoomHttpGetIn">
+    <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
-    <wsdl:part name="IncludePaper" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchHttpGetOut">
+  <wsdl:message name="EditExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchHttpGetIn">
-    <wsdl:part name="BatchID" type="s:string" />
+  <wsdl:message name="DeleteExamRoomHttpGetIn">
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchHttpGetOut">
+  <wsdl:message name="DeleteExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
   <wsdl:message name="GetAllContentHttpGetIn" />
@@ -300,43 +325,48 @@
   <wsdl:message name="DeleteContentHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="GetContentByBatchIDHttpGetIn">
+  <wsdl:message name="GetContentByPaperIDHttpGetIn">
     <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByPaperIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpPostIn">
-    <wsdl:part name="ID" type="s:string" />
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListHttpPostIn" />
-  <wsdl:message name="GetBatchListHttpPostOut">
+  <wsdl:message name="GetExamRoomListHttpPostIn" />
+  <wsdl:message name="GetExamRoomListHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchHttpPostIn">
-    <wsdl:part name="BatchTitle" type="s:string" />
+  <wsdl:message name="CreateNewExamRoomHttpPostIn">
+    <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
-    <wsdl:part name="IncludePaper" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="CreateNewBatchHttpPostOut">
+  <wsdl:message name="CreateNewExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchHttpPostIn">
-    <wsdl:part name="BatchID" type="s:string" />
-    <wsdl:part name="BatchTitle" type="s:string" />
+  <wsdl:message name="EditExamRoomHttpPostIn">
+    <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
-    <wsdl:part name="IncludePaper" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="UpdateBatchHttpPostOut">
+  <wsdl:message name="EditExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchHttpPostIn">
-    <wsdl:part name="BatchID" type="s:string" />
+  <wsdl:message name="DeleteExamRoomHttpPostIn">
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
-  <wsdl:message name="DeleteBatchHttpPostOut">
+  <wsdl:message name="DeleteExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
   <wsdl:message name="GetAllContentHttpPostIn" />
@@ -364,8 +394,14 @@
   <wsdl:message name="DeleteContentHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="GetContentByBatchIDHttpPostIn">
+  <wsdl:message name="GetContentByPaperIDHttpPostIn">
     <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByPaperIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
@@ -376,25 +412,25 @@
       <wsdl:input message="tns:GetStatsSoapIn" />
       <wsdl:output message="tns:GetStatsSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
+    <wsdl:operation name="GetExamRoomList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchListSoapIn" />
-      <wsdl:output message="tns:GetBatchListSoapOut" />
+      <wsdl:input message="tns:GetExamRoomListSoapIn" />
+      <wsdl:output message="tns:GetExamRoomListSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
+    <wsdl:operation name="CreateNewExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
-      <wsdl:input message="tns:CreateNewBatchSoapIn" />
-      <wsdl:output message="tns:CreateNewBatchSoapOut" />
+      <wsdl:input message="tns:CreateNewExamRoomSoapIn" />
+      <wsdl:output message="tns:CreateNewExamRoomSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
+    <wsdl:operation name="EditExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
-      <wsdl:input message="tns:UpdateBatchSoapIn" />
-      <wsdl:output message="tns:UpdateBatchSoapOut" />
+      <wsdl:input message="tns:EditExamRoomSoapIn" />
+      <wsdl:output message="tns:EditExamRoomSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
+    <wsdl:operation name="DeleteExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
-      <wsdl:input message="tns:DeleteBatchSoapIn" />
-      <wsdl:output message="tns:DeleteBatchSoapOut" />
+      <wsdl:input message="tns:DeleteExamRoomSoapIn" />
+      <wsdl:output message="tns:DeleteExamRoomSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
@@ -416,8 +452,13 @@
       <wsdl:input message="tns:DeleteContentSoapIn" />
       <wsdl:output message="tns:DeleteContentSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据内容ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByPaperIDSoapIn" />
+      <wsdl:output message="tns:GetContentByPaperIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDSoapIn" />
       <wsdl:output message="tns:GetContentByBatchIDSoapOut" />
     </wsdl:operation>
@@ -428,25 +469,25 @@
       <wsdl:input message="tns:GetStatsHttpGetIn" />
       <wsdl:output message="tns:GetStatsHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
+    <wsdl:operation name="GetExamRoomList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchListHttpGetIn" />
-      <wsdl:output message="tns:GetBatchListHttpGetOut" />
+      <wsdl:input message="tns:GetExamRoomListHttpGetIn" />
+      <wsdl:output message="tns:GetExamRoomListHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
+    <wsdl:operation name="CreateNewExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
-      <wsdl:input message="tns:CreateNewBatchHttpGetIn" />
-      <wsdl:output message="tns:CreateNewBatchHttpGetOut" />
+      <wsdl:input message="tns:CreateNewExamRoomHttpGetIn" />
+      <wsdl:output message="tns:CreateNewExamRoomHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
+    <wsdl:operation name="EditExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
-      <wsdl:input message="tns:UpdateBatchHttpGetIn" />
-      <wsdl:output message="tns:UpdateBatchHttpGetOut" />
+      <wsdl:input message="tns:EditExamRoomHttpGetIn" />
+      <wsdl:output message="tns:EditExamRoomHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
+    <wsdl:operation name="DeleteExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
-      <wsdl:input message="tns:DeleteBatchHttpGetIn" />
-      <wsdl:output message="tns:DeleteBatchHttpGetOut" />
+      <wsdl:input message="tns:DeleteExamRoomHttpGetIn" />
+      <wsdl:output message="tns:DeleteExamRoomHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
@@ -468,8 +509,13 @@
       <wsdl:input message="tns:DeleteContentHttpGetIn" />
       <wsdl:output message="tns:DeleteContentHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据内容ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByPaperIDHttpGetIn" />
+      <wsdl:output message="tns:GetContentByPaperIDHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDHttpGetIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpGetOut" />
     </wsdl:operation>
@@ -480,25 +526,25 @@
       <wsdl:input message="tns:GetStatsHttpPostIn" />
       <wsdl:output message="tns:GetStatsHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
+    <wsdl:operation name="GetExamRoomList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场列表</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchListHttpPostIn" />
-      <wsdl:output message="tns:GetBatchListHttpPostOut" />
+      <wsdl:input message="tns:GetExamRoomListHttpPostIn" />
+      <wsdl:output message="tns:GetExamRoomListHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
+    <wsdl:operation name="CreateNewExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新考场</wsdl:documentation>
-      <wsdl:input message="tns:CreateNewBatchHttpPostIn" />
-      <wsdl:output message="tns:CreateNewBatchHttpPostOut" />
+      <wsdl:input message="tns:CreateNewExamRoomHttpPostIn" />
+      <wsdl:output message="tns:CreateNewExamRoomHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
+    <wsdl:operation name="EditExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑考场</wsdl:documentation>
-      <wsdl:input message="tns:UpdateBatchHttpPostIn" />
-      <wsdl:output message="tns:UpdateBatchHttpPostOut" />
+      <wsdl:input message="tns:EditExamRoomHttpPostIn" />
+      <wsdl:output message="tns:EditExamRoomHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
+    <wsdl:operation name="DeleteExamRoom">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除指定考场</wsdl:documentation>
-      <wsdl:input message="tns:DeleteBatchHttpPostIn" />
-      <wsdl:output message="tns:DeleteBatchHttpPostOut" />
+      <wsdl:input message="tns:DeleteExamRoomHttpPostIn" />
+      <wsdl:output message="tns:DeleteExamRoomHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
@@ -520,8 +566,13 @@
       <wsdl:input message="tns:DeleteContentHttpPostIn" />
       <wsdl:output message="tns:DeleteContentHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据内容ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByPaperIDHttpPostIn" />
+      <wsdl:output message="tns:GetContentByPaperIDHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场号获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDHttpPostIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpPostOut" />
     </wsdl:operation>
@@ -537,8 +588,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
-      <soap:operation soapAction="WebService/GetBatchList" style="document" />
+    <wsdl:operation name="GetExamRoomList">
+      <soap:operation soapAction="WebService/GetExamRoomList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -546,8 +597,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
-      <soap:operation soapAction="WebService/CreateNewBatch" style="document" />
+    <wsdl:operation name="CreateNewExamRoom">
+      <soap:operation soapAction="WebService/CreateNewExamRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -555,8 +606,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
-      <soap:operation soapAction="WebService/UpdateBatch" style="document" />
+    <wsdl:operation name="EditExamRoom">
+      <soap:operation soapAction="WebService/EditExamRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -564,8 +615,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
-      <soap:operation soapAction="WebService/DeleteBatch" style="document" />
+    <wsdl:operation name="DeleteExamRoom">
+      <soap:operation soapAction="WebService/DeleteExamRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -609,6 +660,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <soap:operation soapAction="WebService/GetContentByPaperID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <soap:operation soapAction="WebService/GetContentByBatchID" style="document" />
       <wsdl:input>
@@ -630,8 +690,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
-      <soap12:operation soapAction="WebService/GetBatchList" style="document" />
+    <wsdl:operation name="GetExamRoomList">
+      <soap12:operation soapAction="WebService/GetExamRoomList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -639,8 +699,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
-      <soap12:operation soapAction="WebService/CreateNewBatch" style="document" />
+    <wsdl:operation name="CreateNewExamRoom">
+      <soap12:operation soapAction="WebService/CreateNewExamRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -648,8 +708,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
-      <soap12:operation soapAction="WebService/UpdateBatch" style="document" />
+    <wsdl:operation name="EditExamRoom">
+      <soap12:operation soapAction="WebService/EditExamRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -657,8 +717,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
-      <soap12:operation soapAction="WebService/DeleteBatch" style="document" />
+    <wsdl:operation name="DeleteExamRoom">
+      <soap12:operation soapAction="WebService/DeleteExamRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -702,6 +762,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <soap12:operation soapAction="WebService/GetContentByPaperID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <soap12:operation soapAction="WebService/GetContentByBatchID" style="document" />
       <wsdl:input>
@@ -723,8 +792,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
-      <http:operation location="/GetBatchList" />
+    <wsdl:operation name="GetExamRoomList">
+      <http:operation location="/GetExamRoomList" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -732,8 +801,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
-      <http:operation location="/CreateNewBatch" />
+    <wsdl:operation name="CreateNewExamRoom">
+      <http:operation location="/CreateNewExamRoom" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -741,8 +810,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
-      <http:operation location="/UpdateBatch" />
+    <wsdl:operation name="EditExamRoom">
+      <http:operation location="/EditExamRoom" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -750,8 +819,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
-      <http:operation location="/DeleteBatch" />
+    <wsdl:operation name="DeleteExamRoom">
+      <http:operation location="/DeleteExamRoom" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -788,6 +857,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteContent">
       <http:operation location="/DeleteContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <http:operation location="/GetContentByPaperID" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -816,8 +894,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetBatchList">
-      <http:operation location="/GetBatchList" />
+    <wsdl:operation name="GetExamRoomList">
+      <http:operation location="/GetExamRoomList" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -825,8 +903,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CreateNewBatch">
-      <http:operation location="/CreateNewBatch" />
+    <wsdl:operation name="CreateNewExamRoom">
+      <http:operation location="/CreateNewExamRoom" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -834,8 +912,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateBatch">
-      <http:operation location="/UpdateBatch" />
+    <wsdl:operation name="EditExamRoom">
+      <http:operation location="/EditExamRoom" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -843,8 +921,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DeleteBatch">
-      <http:operation location="/DeleteBatch" />
+    <wsdl:operation name="DeleteExamRoom">
+      <http:operation location="/DeleteExamRoom" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -881,6 +959,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteContent">
       <http:operation location="/DeleteContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByPaperID">
+      <http:operation location="/GetContentByPaperID" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

@@ -46,7 +46,7 @@ namespace InputSpeedExamination.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExaminationGUID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle);
+        string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle, string BatchID, string RoomID);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateExaminationStats", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -56,13 +56,21 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         int GetUpdateInterVal();
         
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllContent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExamRoomID();
+        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetBatchID();
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetAllContent();
+        System.Data.DataSet GetContentByBatchID(string BatchID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -120,8 +128,8 @@ namespace InputSpeedExamination.ServiceReference {
             return base.Channel.GetClientIP();
         }
         
-        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle) {
-            return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle);
+        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle, string BatchID, string RoomID) {
+            return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, BatchID, RoomID);
         }
         
         public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent) {
@@ -132,12 +140,20 @@ namespace InputSpeedExamination.ServiceReference {
             return base.Channel.GetUpdateInterVal();
         }
         
+        public System.Data.DataSet GetAllContent() {
+            return base.Channel.GetAllContent();
+        }
+        
+        public string GetExamRoomID() {
+            return base.Channel.GetExamRoomID();
+        }
+        
         public string GetBatchID() {
             return base.Channel.GetBatchID();
         }
         
-        public System.Data.DataSet GetAllContent() {
-            return base.Channel.GetAllContent();
+        public System.Data.DataSet GetContentByBatchID(string BatchID) {
+            return base.Channel.GetContentByBatchID(BatchID);
         }
     }
 }

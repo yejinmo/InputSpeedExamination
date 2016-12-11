@@ -78,7 +78,7 @@ namespace WebService
         }
 
         [WebMethod(Description = "获取一个测试GUID")]
-        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle)
+        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle, string BatchID, string RoomID)
         {
             string IPAddress = string.Empty;
             if (Context.Request.IsLocal)
@@ -88,7 +88,7 @@ namespace WebService
             if (!new DBHelper().CheckContentMD5(ContentMD5))
                 return "md5 error";
             string GUID = Guid.NewGuid().ToString("N");
-            if (new DBHelper().InsertExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, GetNowDateTime()))
+            if (new DBHelper().InsertExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, GetNowDateTime(), BatchID, RoomID))
                 return GUID;
             else
                 return "database error";
@@ -111,21 +111,33 @@ namespace WebService
             return 5000;
         }
 
-        [WebMethod(Description = "根据IP归属获取考场ID")]
-        public string GetBatchID()
+        [WebMethod(Description = "获取全部内容")]
+        public DataSet GetAllContent()
+        {
+            return new DBHelper().GetAllContent();
+        }
+
+        [WebMethod(Description = "获取考场号")]
+        public string GetExamRoomID()
         {
             string IPAddress = string.Empty;
             if (Context.Request.IsLocal)
                 IPAddress = "0.0.0.0";
             else
                 IPAddress = Context.Request.UserHostAddress.ToString();
-            return new DBHelper().GetBatchID(IPAddress);
+            return new DBHelper().GetExamRoomID(IPAddress);
         }
 
-        [WebMethod(Description = "获取全部内容")]
-        public DataSet GetAllContent()
+        [WebMethod(Description = "获取批次号")]
+        public string GetBatchID()
         {
-            return new DBHelper().GetAllContent();
+            return new DBHelper().GetBatchID();
+        }
+
+        [WebMethod(Description = "根据考场ID获取内容")]
+        public DataSet GetContentByBatchID(string BatchID)
+        {
+            return new DBHelper().GetContentByBatchID(BatchID);
         }
 
         public string GetNowDateTime()

@@ -121,6 +121,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ContentMD5" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ContentTitle" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -159,6 +161,33 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetAllContent">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllContentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExamRoomID">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetExamRoomIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExamRoomIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetBatchID">
         <s:complexType />
       </s:element>
@@ -169,13 +198,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetAllContent">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetAllContentResponse">
+      <s:element name="GetContentByBatchID">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllContentResult">
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentByBatchIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentByBatchIDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -259,17 +292,29 @@
   <wsdl:message name="GetUpdateInterValSoapOut">
     <wsdl:part name="parameters" element="tns:GetUpdateInterValResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllContentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllContent" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExamRoomIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExamRoomID" />
+  </wsdl:message>
+  <wsdl:message name="GetExamRoomIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExamRoomIDResponse" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetBatchID" />
   </wsdl:message>
   <wsdl:message name="GetBatchIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetBatchIDResponse" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentSoapIn">
-    <wsdl:part name="parameters" element="tns:GetAllContent" />
+  <wsdl:message name="GetContentByBatchIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentByBatchID" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentSoapOut">
-    <wsdl:part name="parameters" element="tns:GetAllContentResponse" />
+  <wsdl:message name="GetContentByBatchIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentByBatchIDResponse" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
@@ -317,6 +362,8 @@
     <wsdl:part name="Name" type="s:string" />
     <wsdl:part name="ContentMD5" type="s:string" />
     <wsdl:part name="ContentTitle" type="s:string" />
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetExaminationGUIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -335,12 +382,22 @@
   <wsdl:message name="GetUpdateInterValHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="GetAllContentHttpGetIn" />
+  <wsdl:message name="GetAllContentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetExamRoomIDHttpGetIn" />
+  <wsdl:message name="GetExamRoomIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDHttpGetIn" />
   <wsdl:message name="GetBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentHttpGetIn" />
-  <wsdl:message name="GetAllContentHttpGetOut">
+  <wsdl:message name="GetContentByBatchIDHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -389,6 +446,8 @@
     <wsdl:part name="Name" type="s:string" />
     <wsdl:part name="ContentMD5" type="s:string" />
     <wsdl:part name="ContentTitle" type="s:string" />
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="RoomID" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetExaminationGUIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -407,12 +466,22 @@
   <wsdl:message name="GetUpdateInterValHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
+  <wsdl:message name="GetAllContentHttpPostIn" />
+  <wsdl:message name="GetAllContentHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetExamRoomIDHttpPostIn" />
+  <wsdl:message name="GetExamRoomIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDHttpPostIn" />
   <wsdl:message name="GetBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentHttpPostIn" />
-  <wsdl:message name="GetAllContentHttpPostOut">
+  <wsdl:message name="GetContentByBatchIDHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetContentByBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:portType name="ClientServiceSoap">
@@ -466,15 +535,25 @@
       <wsdl:input message="tns:GetUpdateInterValSoapIn" />
       <wsdl:output message="tns:GetUpdateInterValSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据IP归属获取考场ID</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchIDSoapIn" />
-      <wsdl:output message="tns:GetBatchIDSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
       <wsdl:input message="tns:GetAllContentSoapIn" />
       <wsdl:output message="tns:GetAllContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场号</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomIDSoapIn" />
+      <wsdl:output message="tns:GetExamRoomIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchIDSoapIn" />
+      <wsdl:output message="tns:GetBatchIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDSoapIn" />
+      <wsdl:output message="tns:GetContentByBatchIDSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpGet">
@@ -528,15 +607,25 @@
       <wsdl:input message="tns:GetUpdateInterValHttpGetIn" />
       <wsdl:output message="tns:GetUpdateInterValHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据IP归属获取考场ID</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchIDHttpGetIn" />
-      <wsdl:output message="tns:GetBatchIDHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
       <wsdl:input message="tns:GetAllContentHttpGetIn" />
       <wsdl:output message="tns:GetAllContentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场号</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomIDHttpGetIn" />
+      <wsdl:output message="tns:GetExamRoomIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchIDHttpGetIn" />
+      <wsdl:output message="tns:GetBatchIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDHttpGetIn" />
+      <wsdl:output message="tns:GetContentByBatchIDHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpPost">
@@ -590,15 +679,25 @@
       <wsdl:input message="tns:GetUpdateInterValHttpPostIn" />
       <wsdl:output message="tns:GetUpdateInterValHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据IP归属获取考场ID</wsdl:documentation>
-      <wsdl:input message="tns:GetBatchIDHttpPostIn" />
-      <wsdl:output message="tns:GetBatchIDHttpPostOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetAllContent">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取全部内容</wsdl:documentation>
       <wsdl:input message="tns:GetAllContentHttpPostIn" />
       <wsdl:output message="tns:GetAllContentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场号</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomIDHttpPostIn" />
+      <wsdl:output message="tns:GetExamRoomIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchIDHttpPostIn" />
+      <wsdl:output message="tns:GetBatchIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContentByBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:input message="tns:GetContentByBatchIDHttpPostIn" />
+      <wsdl:output message="tns:GetContentByBatchIDHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
@@ -693,6 +792,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <soap:operation soapAction="WebService/GetAllContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <soap:operation soapAction="WebService/GetExamRoomID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <soap:operation soapAction="WebService/GetBatchID" style="document" />
       <wsdl:input>
@@ -702,8 +819,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllContent">
-      <soap:operation soapAction="WebService/GetAllContent" style="document" />
+    <wsdl:operation name="GetContentByBatchID">
+      <soap:operation soapAction="WebService/GetContentByBatchID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -804,6 +921,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <soap12:operation soapAction="WebService/GetAllContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <soap12:operation soapAction="WebService/GetExamRoomID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <soap12:operation soapAction="WebService/GetBatchID" style="document" />
       <wsdl:input>
@@ -813,8 +948,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllContent">
-      <soap12:operation soapAction="WebService/GetAllContent" style="document" />
+    <wsdl:operation name="GetContentByBatchID">
+      <soap12:operation soapAction="WebService/GetContentByBatchID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -915,6 +1050,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <http:operation location="/GetAllContent" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <http:operation location="/GetExamRoomID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <http:operation location="/GetBatchID" />
       <wsdl:input>
@@ -924,8 +1077,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllContent">
-      <http:operation location="/GetAllContent" />
+    <wsdl:operation name="GetContentByBatchID">
+      <http:operation location="/GetContentByBatchID" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1026,6 +1179,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllContent">
+      <http:operation location="/GetAllContent" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExamRoomID">
+      <http:operation location="/GetExamRoomID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <http:operation location="/GetBatchID" />
       <wsdl:input>
@@ -1035,8 +1206,8 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllContent">
-      <http:operation location="/GetAllContent" />
+    <wsdl:operation name="GetContentByBatchID">
+      <http:operation location="/GetContentByBatchID" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

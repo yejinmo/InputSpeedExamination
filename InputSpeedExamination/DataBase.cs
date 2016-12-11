@@ -44,6 +44,18 @@ namespace InputSpeedExamination
                 SQLiteCommand cmd = new SQLiteCommand(SQL_CreateContentTable, CONN);
                 cmd.ExecuteNonQuery();
 
+                string SQL_CreateOnlineContentTable = @"CREATE TABLE IF NOT EXISTS OnlineContentTable(
+	Title nvarchar(20), 
+	Text nvarchar(4000),
+    Length_Value nvarchar(20),
+    MD5_Value nvarchar(20),
+	ID integer AUTO_INCREMENT,
+	primary key (id)
+	);";
+
+                cmd = new SQLiteCommand(SQL_CreateOnlineContentTable, CONN);
+                cmd.ExecuteNonQuery();
+
             }
             catch
             {
@@ -75,6 +87,63 @@ namespace InputSpeedExamination
                 string sql = string.Format
                     (@"INSERT INTO ContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
                     title, text, text.Length.ToString(), textMD5);
+                SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                CONN.Close();
+            }
+        }
+
+        /// <summary>
+        /// 插入一条新在线测试输入文本内容
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="text">文本内容</param>
+        public bool InsertNewOnlineContent(string title, string text)
+        {
+            try
+            {
+                text = text.Replace("'", "''");
+                CONN.Open();
+                string textMD5 = GetMD5Hash(text);
+                string sql_check = string.Format(@"SELECT * FROM OnlineContentTable WHERE [MD5_Value] = '{0}'", textMD5);
+                var cmd_check = new SQLiteCommand(sql_check, CONN);
+                var sda_check = cmd_check.ExecuteReader();
+                if (sda_check.HasRows)
+                    return false;
+                string sql = string.Format
+                    (@"INSERT INTO OnlineContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
+                    title, text, text.Length.ToString(), textMD5);
+                SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                CONN.Close();
+            }
+        }
+
+        /// <summary>
+        /// 清空在线测试输入文本内容
+        /// </summary>
+        /// <returns></returns>
+        public bool ClearOnlineContent()
+        {
+            try
+            {
+                string sql = "TRUNCATE TABLE OnlineContentTable";
                 SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
                 cmd.ExecuteNonQuery();
                 return true;

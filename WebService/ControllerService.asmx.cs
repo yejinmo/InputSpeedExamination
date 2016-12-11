@@ -19,33 +19,33 @@ namespace WebService
     {
 
         [WebMethod(Description = "获取指定考场状态表")]
-        public DataSet GetStats(string ID)
+        public DataSet GetStats(string BatchID,string RoomID)
         {
-            return new DBHelper().GetStats(ID);
+            return new DBHelper().GetStats(BatchID, RoomID);
         }
 
         [WebMethod(Description = "获取考场列表")]
-        public DataSet GetBatchList()
+        public DataSet GetExamRoomList()
         {
-            return new DBHelper().GetBatchList();
+            return new DBHelper().GetExamRoomList();
         }
 
         [WebMethod(Description = "创建新考场")]
-        public string CreateNewBatch(string BatchTitle, string IncludeIP, string IncludePaper)
+        public string CreateNewExamRoom(string RoomTitle, string IncludeIP)
         {
-            return new DBHelper().CreateNewBatch(BatchTitle, IncludeIP, IncludePaper);
+            return new DBHelper().CreateNewExamRoom(RoomTitle, IncludeIP);
         }
 
         [WebMethod(Description = "编辑考场")]
-        public string UpdateBatch(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper)
+        public string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP)
         {
-            return new DBHelper().UpdateBatch(BatchID, BatchTitle, IncludeIP, IncludePaper);
+            return new DBHelper().EditExamRoom(RoomID, RoomTitle, IncludeIP);
         }
 
         [WebMethod(Description = "删除指定考场")]
-        public bool DeleteBatch(string BatchID)
+        public bool DeleteExamRoom(string RoomID)
         {
-            return new DBHelper().DeleteBatch(BatchID);
+            return new DBHelper().DeleteExamRoom(RoomID);
         }
 
         [WebMethod(Description = "获取全部内容")]
@@ -72,10 +72,16 @@ namespace WebService
             return new DBHelper().DeleteContent(ContentID);
         }
 
-        [WebMethod(Description = "根据考场号获取内容")]
-        public DataSet GetContentByBatchID(string IncludePaper)
+        [WebMethod(Description = "根据内容ID获取内容")]
+        public DataSet GetContentByPaperID(string IncludePaper)
         {
-            return new DBHelper().GetContentByBatchID(IncludePaper);
+            return new DBHelper().GetContentByPaperID(IncludePaper);
+        }
+
+        [WebMethod(Description = "根据考场ID获取内容")]
+        public DataSet GetContentByBatchID(string BatchID)
+        {
+            return new DBHelper().GetContentByBatchID(BatchID);
         }
 
     }

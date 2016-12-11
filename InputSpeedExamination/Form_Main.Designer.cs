@@ -72,16 +72,17 @@
             this.ColumnHeader_ExaminationList_MD5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Result = new System.Windows.Forms.TabPage();
-            this.TabPage_OnLineExamination = new System.Windows.Forms.TabPage();
-            this.Panel_OnLine = new System.Windows.Forms.Panel();
-            this.Button_OnLineReturn = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.Label_OnLineTip = new MaterialSkin.Controls.MaterialLabel();
-            this.ProcessBar_OnLine = new MaterialSkin.Controls.MaterialProcessBar();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
             this.Label_UserName = new System.Windows.Forms.Label();
             this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.Timer_UpdateStats = new System.Windows.Forms.Timer(this.components);
+            this.TabPage_Main = new System.Windows.Forms.TabPage();
+            this.PictureBox_UserImage = new System.Windows.Forms.PictureBox();
+            this.Label_Main_Welcome = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Main_Department = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Main_Major = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Main_Class = new MaterialSkin.Controls.MaterialLabel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -90,8 +91,8 @@
             this.TabPage_Start.SuspendLayout();
             this.Panel_Start.SuspendLayout();
             this.TabPage_SelectText.SuspendLayout();
-            this.TabPage_OnLineExamination.SuspendLayout();
-            this.Panel_OnLine.SuspendLayout();
+            this.TabPage_Result.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -104,7 +105,7 @@
             this.TabControl_Main.Controls.Add(this.TabPage_Start);
             this.TabControl_Main.Controls.Add(this.TabPage_SelectText);
             this.TabControl_Main.Controls.Add(this.TabPage_Result);
-            this.TabControl_Main.Controls.Add(this.TabPage_OnLineExamination);
+            this.TabControl_Main.Controls.Add(this.TabPage_Main);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(1, 66);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(1);
@@ -826,78 +827,16 @@
             // TabPage_Result
             // 
             this.TabPage_Result.BackColor = System.Drawing.Color.White;
+            this.TabPage_Result.Controls.Add(this.Label_Main_Class);
+            this.TabPage_Result.Controls.Add(this.Label_Main_Major);
+            this.TabPage_Result.Controls.Add(this.Label_Main_Department);
+            this.TabPage_Result.Controls.Add(this.Label_Main_Welcome);
+            this.TabPage_Result.Controls.Add(this.PictureBox_UserImage);
             this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Result.Name = "TabPage_Result";
             this.TabPage_Result.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Result.TabIndex = 4;
             this.TabPage_Result.Text = "TabPage_Result";
-            // 
-            // TabPage_OnLineExamination
-            // 
-            this.TabPage_OnLineExamination.BackColor = System.Drawing.Color.White;
-            this.TabPage_OnLineExamination.Controls.Add(this.Panel_OnLine);
-            this.TabPage_OnLineExamination.Controls.Add(this.Label_OnLineTip);
-            this.TabPage_OnLineExamination.Controls.Add(this.ProcessBar_OnLine);
-            this.TabPage_OnLineExamination.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_OnLineExamination.Name = "TabPage_OnLineExamination";
-            this.TabPage_OnLineExamination.Size = new System.Drawing.Size(1205, 687);
-            this.TabPage_OnLineExamination.TabIndex = 5;
-            this.TabPage_OnLineExamination.Text = "TabPage_OnLineExamination";
-            // 
-            // Panel_OnLine
-            // 
-            this.Panel_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_OnLine.Controls.Add(this.Button_OnLineReturn);
-            this.Panel_OnLine.Location = new System.Drawing.Point(7, 66);
-            this.Panel_OnLine.Name = "Panel_OnLine";
-            this.Panel_OnLine.Size = new System.Drawing.Size(1191, 623);
-            this.Panel_OnLine.TabIndex = 2;
-            // 
-            // Button_OnLineReturn
-            // 
-            this.Button_OnLineReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_OnLineReturn.Depth = 0;
-            this.Button_OnLineReturn.Location = new System.Drawing.Point(8, 564);
-            this.Button_OnLineReturn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_OnLineReturn.Name = "Button_OnLineReturn";
-            this.Button_OnLineReturn.Primary = true;
-            this.Button_OnLineReturn.Size = new System.Drawing.Size(173, 56);
-            this.Button_OnLineReturn.TabIndex = 12;
-            this.Button_OnLineReturn.Text = "返回";
-            this.Button_OnLineReturn.UseVisualStyleBackColor = true;
-            this.Button_OnLineReturn.Click += new System.EventHandler(this.Button_OnLineReturn_Click);
-            // 
-            // Label_OnLineTip
-            // 
-            this.Label_OnLineTip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_OnLineTip.Depth = 0;
-            this.Label_OnLineTip.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_OnLineTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_OnLineTip.Location = new System.Drawing.Point(7, 11);
-            this.Label_OnLineTip.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_OnLineTip.Name = "Label_OnLineTip";
-            this.Label_OnLineTip.Size = new System.Drawing.Size(1191, 52);
-            this.Label_OnLineTip.TabIndex = 1;
-            this.Label_OnLineTip.Text = "连接服务器";
-            this.Label_OnLineTip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ProcessBar_OnLine
-            // 
-            this.ProcessBar_OnLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProcessBar_OnLine.Depth = 0;
-            this.ProcessBar_OnLine.Interval = 10;
-            this.ProcessBar_OnLine.LengthValue = 500;
-            this.ProcessBar_OnLine.Location = new System.Drawing.Point(7, 3);
-            this.ProcessBar_OnLine.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ProcessBar_OnLine.Name = "ProcessBar_OnLine";
-            this.ProcessBar_OnLine.Processing = true;
-            this.ProcessBar_OnLine.Size = new System.Drawing.Size(1191, 5);
-            this.ProcessBar_OnLine.StepValue = 20;
-            this.ProcessBar_OnLine.TabIndex = 0;
             // 
             // Timer_Clocks
             // 
@@ -947,6 +886,81 @@
             this.Timer_UpdateStats.Interval = 5000;
             this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
             // 
+            // TabPage_Main
+            // 
+            this.TabPage_Main.BackColor = System.Drawing.Color.White;
+            this.TabPage_Main.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Main.Name = "TabPage_Main";
+            this.TabPage_Main.Size = new System.Drawing.Size(1205, 687);
+            this.TabPage_Main.TabIndex = 5;
+            this.TabPage_Main.Text = "TabPage_Main";
+            // 
+            // PictureBox_UserImage
+            // 
+            this.PictureBox_UserImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PictureBox_UserImage.Image = global::InputSpeedExamination.Properties.Resources.avatar;
+            this.PictureBox_UserImage.Location = new System.Drawing.Point(298, 69);
+            this.PictureBox_UserImage.Name = "PictureBox_UserImage";
+            this.PictureBox_UserImage.Size = new System.Drawing.Size(150, 210);
+            this.PictureBox_UserImage.TabIndex = 0;
+            this.PictureBox_UserImage.TabStop = false;
+            // 
+            // Label_Main_Welcome
+            // 
+            this.Label_Main_Welcome.AutoSize = true;
+            this.Label_Main_Welcome.Depth = 0;
+            this.Label_Main_Welcome.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Main_Welcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Main_Welcome.Location = new System.Drawing.Point(601, 69);
+            this.Label_Main_Welcome.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
+            this.Label_Main_Welcome.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Main_Welcome.Name = "Label_Main_Welcome";
+            this.Label_Main_Welcome.Size = new System.Drawing.Size(170, 46);
+            this.Label_Main_Welcome.TabIndex = 1;
+            this.Label_Main_Welcome.Text = "欢迎，{0}";
+            // 
+            // Label_Main_Department
+            // 
+            this.Label_Main_Department.AutoSize = true;
+            this.Label_Main_Department.Depth = 0;
+            this.Label_Main_Department.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Main_Department.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Main_Department.Location = new System.Drawing.Point(601, 115);
+            this.Label_Main_Department.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
+            this.Label_Main_Department.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Main_Department.Name = "Label_Main_Department";
+            this.Label_Main_Department.Size = new System.Drawing.Size(100, 46);
+            this.Label_Main_Department.TabIndex = 2;
+            this.Label_Main_Department.Text = "{0}系";
+            // 
+            // Label_Main_Major
+            // 
+            this.Label_Main_Major.AutoSize = true;
+            this.Label_Main_Major.Depth = 0;
+            this.Label_Main_Major.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Main_Major.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Main_Major.Location = new System.Drawing.Point(601, 161);
+            this.Label_Main_Major.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
+            this.Label_Main_Major.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Main_Major.Name = "Label_Main_Major";
+            this.Label_Main_Major.Size = new System.Drawing.Size(135, 46);
+            this.Label_Main_Major.TabIndex = 3;
+            this.Label_Main_Major.Text = "{0}专业";
+            // 
+            // Label_Main_Class
+            // 
+            this.Label_Main_Class.AutoSize = true;
+            this.Label_Main_Class.Depth = 0;
+            this.Label_Main_Class.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Main_Class.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Main_Class.Location = new System.Drawing.Point(601, 207);
+            this.Label_Main_Class.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
+            this.Label_Main_Class.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Main_Class.Name = "Label_Main_Class";
+            this.Label_Main_Class.Size = new System.Drawing.Size(100, 46);
+            this.Label_Main_Class.TabIndex = 4;
+            this.Label_Main_Class.Text = "{0}班";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -975,8 +989,9 @@
             this.TabPage_Start.ResumeLayout(false);
             this.Panel_Start.ResumeLayout(false);
             this.TabPage_SelectText.ResumeLayout(false);
-            this.TabPage_OnLineExamination.ResumeLayout(false);
-            this.Panel_OnLine.ResumeLayout(false);
+            this.TabPage_Result.ResumeLayout(false);
+            this.TabPage_Result.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1022,11 +1037,6 @@
         private System.Windows.Forms.ColumnHeader ColumnHeader_ExaminationList_MD5;
         private MaterialSkin.Controls.MaterialRaisedButton Button_Back;
         private System.Windows.Forms.TabPage TabPage_Result;
-        private System.Windows.Forms.TabPage TabPage_OnLineExamination;
-        private MaterialSkin.Controls.MaterialProcessBar ProcessBar_OnLine;
-        private MaterialSkin.Controls.MaterialLabel Label_OnLineTip;
-        private System.Windows.Forms.Panel Panel_OnLine;
-        private MaterialSkin.Controls.MaterialRaisedButton Button_OnLineReturn;
         private System.Windows.Forms.Panel Panel_Login;
         private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_Login;
         private MaterialSkin.Controls.MaterialFlatButton FlatButton_Select_OffLine;
@@ -1037,6 +1047,12 @@
         private System.Windows.Forms.Label Label_UserName;
         private System.Windows.Forms.LinkLabel LinkLabel_LoginOrOut;
         private System.Windows.Forms.Timer Timer_UpdateStats;
+        private System.Windows.Forms.TabPage TabPage_Main;
+        private System.Windows.Forms.PictureBox PictureBox_UserImage;
+        private MaterialSkin.Controls.MaterialLabel Label_Main_Welcome;
+        private MaterialSkin.Controls.MaterialLabel Label_Main_Department;
+        private MaterialSkin.Controls.MaterialLabel Label_Main_Class;
+        private MaterialSkin.Controls.MaterialLabel Label_Main_Major;
     }
 }
 

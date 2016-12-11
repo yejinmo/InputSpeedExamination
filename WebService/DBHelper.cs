@@ -174,15 +174,15 @@ namespace WebService
         /// <param name="BeginTime"></param>
         /// <returns></returns>
         public bool InsertExaminationGUID(string Number, string Department, string Major, string Class,
-            string Name, string ContentMD5, string ContentTitle, string IPAddress, string GUID, string BeginTime)
+            string Name, string ContentMD5, string ContentTitle, string IPAddress, string GUID, string BeginTime, string BatchID, string RoomID)
         {
             try
             {
                 string Stats = "开始";
                 string sql_insert = string.Format(
-    "INSERT INTO [Table_ExaminationStats] ([Number], [Department], [Major], [Class], [Name], [ContentMD5], [ContentTitle], [IPAddress], [GUID], [BeginTime], [Stats]) " +
+    "INSERT INTO [Table_ExaminationStats] ([Number], [Department], [Major], [Class], [Name], [ContentMD5], [ContentTitle], [IPAddress], [GUID], [BeginTime], [Stats], [BatchID], [RoomID]) " +
     "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')"
-                    , Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, BeginTime, Stats);
+                    , Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, BeginTime, Stats, BatchID, RoomID);
                 if (new SqlCommand(sql_insert, Conn).ExecuteNonQuery() > 0)
                     return true;
                 else
@@ -224,15 +224,36 @@ namespace WebService
         }
 
         /// <summary>
+        /// 获取批次号
+        /// </summary>
+        /// <returns></returns>
+        public string GetBatchID()
+        {
+            try
+            {
+                string sql = string.Format("SELECT [ID] FROM [Table_Batch] WHERE [IsOpen] = '{0}'", 1);
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (!sdr.Read())
+                    return "";
+                return sdr[0].ToString();
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
         /// 根据客户机IP获取考场ID
         /// </summary>
         /// <param name="IPAddress"></param>
         /// <returns></returns>
-        public string GetBatchID(string IPAddress)
+        public string GetExamRoomID(string IPAddress)
         {
             try
             {
-                string sql = string.Format("SELECT [ID] FROM [Table_Batch] WHERE [IncludeIP] LIKE '{0}'", IPAddress);
+                string sql = string.Format("SELECT [ID] FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '{0}'", IPAddress);
                 SqlCommand cmd = new SqlCommand(sql, Conn);
                 var sdr = cmd.ExecuteReader();
                 if (!sdr.Read())
@@ -250,16 +271,17 @@ namespace WebService
         #region Server
 
         /// <summary>
-        /// 根据考场ID获取状态
+        /// 根据考场号及批次号获取状态
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="BatchID"></param>
+        /// <param name="RoomID"></param>
         /// <returns></returns>
-        public DataSet GetStats(string ID)
+        public DataSet GetStats(string BatchID, string RoomID)
         {
             DataSet ds = new DataSet();
             try
             {
-                string sql = string.Format("SELECT * FROM [Table_Stats] WHERE [BatchID] = '{0}'", ID);
+                string sql = string.Format("SELECT * FROM [Table_Stats] WHERE [BatchID] = '{0}' AND [RoomID] = '{1}'", BatchID, RoomID);
                 SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
                 sda.Fill(ds);
                 sda.Dispose();
@@ -275,12 +297,12 @@ namespace WebService
         /// 获取考场列表
         /// </summary>
         /// <returns></returns>
-        public DataSet GetBatchList()
+        public DataSet GetExamRoomList()
         {
             DataSet ds = new DataSet();
             try
             {
-                string sql = "SELECT * FROM [Table_Batch]";
+                string sql = "SELECT * FROM [Table_ExamRoom]";
                 SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
                 sda.Fill(ds);
                 sda.Dispose();
@@ -295,11 +317,10 @@ namespace WebService
         /// <summary>
         /// 创建新考场
         /// </summary>
-        /// <param name="BatchTitle"></param>
+        /// <param name="Title"></param>
         /// <param name="IncludeIP"></param>
-        /// <param name="IncludePaper"></param>
         /// <returns></returns>
-        public string CreateNewBatch(string BatchTitle, string IncludeIP, string IncludePaper)
+        public string CreateNewExamRoom(string Title, string IncludeIP)
         {
             try
             {
@@ -310,16 +331,9 @@ namespace WebService
                     if (!IPAddress.TryParse(ip, out temp))
                         return string.Format("IP地址 {0} 不合法", ip);
                 }
-                var IncludePaper_array = IncludePaper.Split(',');
-                foreach (var id in IncludePaper_array)
-                {
-                    int temp;
-                    if (int.TryParse(id, out temp))
-                        return string.Format("内容ID {0} 不合法", id);
-                }
                 string sql = string.Format(
-                    "INSERT INTO [Table_Batch] ([BatchTitle], [IncludeIP], [IncludePaper]) VALUES ('{0}', '{1}', '{2}')",
-                    BatchTitle, IncludeIP, IncludePaper);
+                    "INSERT INTO [Table_ExamRoom] ([RoomTitle], [IncludeIP]) VALUES ('{0}', '{1}')",
+                    Title, IncludeIP);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return "ok";
             }
@@ -332,12 +346,11 @@ namespace WebService
         /// <summary>
         /// 编辑考场
         /// </summary>
-        /// <param name="BatchID"></param>
-        /// <param name="BatchTitle"></param>
+        /// <param name="RoomID"></param>
+        /// <param name="Title"></param>
         /// <param name="IncludeIP"></param>
-        /// <param name="IncludePaper"></param>
         /// <returns></returns>
-        public string UpdateBatch(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper)
+        public string EditExamRoom(string RoomID, string Title, string IncludeIP)
         {
             try
             {
@@ -348,19 +361,12 @@ namespace WebService
                     if (!IPAddress.TryParse(ip, out temp))
                         return string.Format("IP地址 {0} 不合法", ip);
                 }
-                var IncludePaper_array = IncludePaper.Split(',');
-                foreach (var id in IncludePaper_array)
-                {
-                    int temp;
-                    if (!int.TryParse(id, out temp))
-                        return string.Format("内容ID {0} 不合法", id);
-                }
                 int temp_id;
-                if(!int.TryParse(BatchID,out temp_id))
-                    return string.Format("ID {0} 不合法", BatchID);
+                if(!int.TryParse(RoomID, out temp_id))
+                    return string.Format("ID {0} 不合法", RoomID);
                 string sql = string.Format(
-                    "UPDATE [Table_Batch] SET [BatchTitle] = '{0}', [IncludeIP] = '{1}', [IncludePaper] = '{2}' WHERE [ID] = {}",
-                    BatchTitle, IncludeIP, IncludePaper, BatchID);
+                    "UPDATE [Table_ExamRoom] SET [RoomTitle] = '{0}', [IncludeIP] = '{1}' WHERE [ID] = '{2}'",
+                    Title, IncludeIP, RoomID);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return "ok";
             }
@@ -373,18 +379,18 @@ namespace WebService
         /// <summary>
         /// 删除指定考场
         /// </summary>
-        /// <param name="BatchID"></param>
+        /// <param name="RoomID"></param>
         /// <returns></returns>
-        public bool DeleteBatch(string BatchID)
+        public bool DeleteExamRoom(string RoomID)
         {
             try
             {
-                int batchID;
-                if (!int.TryParse(BatchID, out batchID))
+                int roomID;
+                if (!int.TryParse(RoomID, out roomID))
                     return false;
-                if (batchID == 1)
+                if (roomID == 1)
                     return false;
-                string sql = string.Format("DELETE [Table_Batch] WHERE [ID] = '{0}'", BatchID);
+                string sql = string.Format("DELETE [Table_ExamRoom] WHERE [ID] = '{0}'", roomID);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return true;
             }
@@ -504,11 +510,11 @@ namespace WebService
         }
 
         /// <summary>
-        /// 根据考场号获取内容
+        /// 根据内容ID获取内容
         /// </summary>
         /// <param name="IncludePaper"></param>
         /// <returns></returns>
-        public DataSet GetContentByBatchID(string IncludePaper)
+        public DataSet GetContentByPaperID(string IncludePaper)
         {
             DataSet ds = new DataSet();
             try
@@ -527,6 +533,34 @@ namespace WebService
                 sda.Fill(ds);
                 sda.Dispose();
                 return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        /// <summary>
+        /// 根据考场ID获取内容
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <returns></returns>
+        public DataSet GetContentByBatchID(string BatchID)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                string sql_getIncludePaper = string.Format("SELECT [IncludePaper] FROM [Table_Batch] WHERE [ID] = '{0}'", BatchID);
+                SqlCommand cmd = new SqlCommand(sql_getIncludePaper, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (!sdr.Read())
+                {
+                    sdr.Close();
+                    return ds;
+                }
+                string IncludePaper = sdr[0].ToString();
+                sdr.Close();
+                return GetContentByPaperID(IncludePaper);
             }
             catch
             {

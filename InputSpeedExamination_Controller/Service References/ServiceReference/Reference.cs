@@ -18,38 +18,38 @@ namespace InputSpeedExamination_Controller.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetStats", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetStats(string ID);
+        System.Data.DataSet GetStats(string BatchID, string RoomID);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetStats", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> GetStatsAsync(string ID);
+        System.Threading.Tasks.Task<System.Data.DataSet> GetStatsAsync(string BatchID, string RoomID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchList", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetBatchList();
+        System.Data.DataSet GetExamRoomList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchList", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> GetBatchListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomList", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> GetExamRoomListAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewBatch", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CreateNewBatch(string BatchTitle, string IncludeIP, string IncludePaper);
+        string CreateNewExamRoom(string RoomTitle, string IncludeIP);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewBatch", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> CreateNewBatchAsync(string BatchTitle, string IncludeIP, string IncludePaper);
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewExamRoom", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> CreateNewExamRoomAsync(string RoomTitle, string IncludeIP);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateBatch", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/EditExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string UpdateBatch(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper);
+        string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateBatch", ReplyAction="*")]
-        System.Threading.Tasks.Task<string> UpdateBatchAsync(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper);
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/EditExamRoom", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> EditExamRoomAsync(string RoomID, string RoomTitle, string IncludeIP);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteBatch", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        bool DeleteBatch(string BatchID);
+        bool DeleteExamRoom(string RoomID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteBatch", ReplyAction="*")]
-        System.Threading.Tasks.Task<bool> DeleteBatchAsync(string BatchID);
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteExamRoom", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> DeleteExamRoomAsync(string RoomID);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -79,12 +79,19 @@ namespace InputSpeedExamination_Controller.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteContent", ReplyAction="*")]
         System.Threading.Tasks.Task<bool> DeleteContentAsync(string ContentID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByPaperID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetContentByBatchID(string IncludePaper);
+        System.Data.DataSet GetContentByPaperID(string IncludePaper);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByPaperID", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> GetContentByPaperIDAsync(string IncludePaper);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
-        System.Threading.Tasks.Task<System.Data.DataSet> GetContentByBatchIDAsync(string IncludePaper);
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetContentByBatchID(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
+        System.Threading.Tasks.Task<System.Data.DataSet> GetContentByBatchIDAsync(string BatchID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -114,44 +121,44 @@ namespace InputSpeedExamination_Controller.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public System.Data.DataSet GetStats(string ID) {
-            return base.Channel.GetStats(ID);
+        public System.Data.DataSet GetStats(string BatchID, string RoomID) {
+            return base.Channel.GetStats(BatchID, RoomID);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> GetStatsAsync(string ID) {
-            return base.Channel.GetStatsAsync(ID);
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetStatsAsync(string BatchID, string RoomID) {
+            return base.Channel.GetStatsAsync(BatchID, RoomID);
         }
         
-        public System.Data.DataSet GetBatchList() {
-            return base.Channel.GetBatchList();
+        public System.Data.DataSet GetExamRoomList() {
+            return base.Channel.GetExamRoomList();
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> GetBatchListAsync() {
-            return base.Channel.GetBatchListAsync();
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetExamRoomListAsync() {
+            return base.Channel.GetExamRoomListAsync();
         }
         
-        public string CreateNewBatch(string BatchTitle, string IncludeIP, string IncludePaper) {
-            return base.Channel.CreateNewBatch(BatchTitle, IncludeIP, IncludePaper);
+        public string CreateNewExamRoom(string RoomTitle, string IncludeIP) {
+            return base.Channel.CreateNewExamRoom(RoomTitle, IncludeIP);
         }
         
-        public System.Threading.Tasks.Task<string> CreateNewBatchAsync(string BatchTitle, string IncludeIP, string IncludePaper) {
-            return base.Channel.CreateNewBatchAsync(BatchTitle, IncludeIP, IncludePaper);
+        public System.Threading.Tasks.Task<string> CreateNewExamRoomAsync(string RoomTitle, string IncludeIP) {
+            return base.Channel.CreateNewExamRoomAsync(RoomTitle, IncludeIP);
         }
         
-        public string UpdateBatch(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper) {
-            return base.Channel.UpdateBatch(BatchID, BatchTitle, IncludeIP, IncludePaper);
+        public string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP) {
+            return base.Channel.EditExamRoom(RoomID, RoomTitle, IncludeIP);
         }
         
-        public System.Threading.Tasks.Task<string> UpdateBatchAsync(string BatchID, string BatchTitle, string IncludeIP, string IncludePaper) {
-            return base.Channel.UpdateBatchAsync(BatchID, BatchTitle, IncludeIP, IncludePaper);
+        public System.Threading.Tasks.Task<string> EditExamRoomAsync(string RoomID, string RoomTitle, string IncludeIP) {
+            return base.Channel.EditExamRoomAsync(RoomID, RoomTitle, IncludeIP);
         }
         
-        public bool DeleteBatch(string BatchID) {
-            return base.Channel.DeleteBatch(BatchID);
+        public bool DeleteExamRoom(string RoomID) {
+            return base.Channel.DeleteExamRoom(RoomID);
         }
         
-        public System.Threading.Tasks.Task<bool> DeleteBatchAsync(string BatchID) {
-            return base.Channel.DeleteBatchAsync(BatchID);
+        public System.Threading.Tasks.Task<bool> DeleteExamRoomAsync(string RoomID) {
+            return base.Channel.DeleteExamRoomAsync(RoomID);
         }
         
         public System.Data.DataSet GetAllContent() {
@@ -186,12 +193,20 @@ namespace InputSpeedExamination_Controller.ServiceReference {
             return base.Channel.DeleteContentAsync(ContentID);
         }
         
-        public System.Data.DataSet GetContentByBatchID(string IncludePaper) {
-            return base.Channel.GetContentByBatchID(IncludePaper);
+        public System.Data.DataSet GetContentByPaperID(string IncludePaper) {
+            return base.Channel.GetContentByPaperID(IncludePaper);
         }
         
-        public System.Threading.Tasks.Task<System.Data.DataSet> GetContentByBatchIDAsync(string IncludePaper) {
-            return base.Channel.GetContentByBatchIDAsync(IncludePaper);
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetContentByPaperIDAsync(string IncludePaper) {
+            return base.Channel.GetContentByPaperIDAsync(IncludePaper);
+        }
+        
+        public System.Data.DataSet GetContentByBatchID(string BatchID) {
+            return base.Channel.GetContentByBatchID(BatchID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> GetContentByBatchIDAsync(string BatchID) {
+            return base.Channel.GetContentByBatchIDAsync(BatchID);
         }
     }
 }
