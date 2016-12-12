@@ -78,10 +78,40 @@ namespace WebService
             return new DBHelper().GetContentByPaperID(IncludePaper);
         }
 
-        [WebMethod(Description = "根据考场ID获取内容")]
+        [WebMethod(Description = "根据批次ID获取内容")]
         public DataSet GetContentByBatchID(string BatchID)
         {
             return new DBHelper().GetContentByBatchID(BatchID);
+        }
+
+        [WebMethod(Description = "创建新批次")]
+        public string CreateNewBatch(string Title, string Remark, string IncludePaper)
+        {
+            return new DBHelper().CreateNewBatch(Title, Remark, IncludePaper);
+        }
+
+        [WebMethod(Description = "开启一个批次")]
+        public string StartBatch(string BatchID)
+        {
+            return new DBHelper().StartBatch(BatchID);
+        }
+
+        [WebMethod(Description = "终止一个批次")]
+        public string StopBatch(string BatchID)
+        {
+            return new DBHelper().StopBatch(BatchID);
+        }
+
+        [WebMethod(Description = "删除一个批次")]
+        public string DeleteBatch(string BatchID)
+        {
+            return new DBHelper().DeleteBatch(BatchID);
+        }
+
+        [WebMethod(Description = "编辑一个批次")]
+        public string EditBatch(string BatchID, string Title, string Remark, string IncludePaper)
+        {
+            return new DBHelper().EditBatch(BatchID, Title, Remark, IncludePaper);
         }
 
     }

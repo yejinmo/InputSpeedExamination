@@ -141,9 +141,13 @@ namespace WebService
             return new DBHelper().GetContentByBatchID(BatchID);
         }
 
+        /// <summary>
+        /// 获取当前时间 2016-12-12 10:35:42.000
+        /// </summary>
+        /// <returns></returns>
         public string GetNowDateTime()
         {
-            return DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + " "
+            return DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " "
                 + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond;
         }
 

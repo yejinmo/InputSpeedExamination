@@ -104,8 +104,8 @@ namespace WebService
             try
             {
                 string sql_update = string.Format(
-"UPDATE [Table_UserInfo] SET [Department] = '{0}', [Major] = '{1}', [Class] = '{2}', [Name] = '{3}', [Password] = '{4}'"
-                    , res_array[0], res_array[1], res_array[2], res_array[3], password);
+"UPDATE [Table_UserInfo] SET [Department] = '{0}', [Major] = '{1}', [Class] = '{2}', [Name] = '{3}', [Password] = '{4}' WHERE [Number] = '{5}'"
+                    , res_array[0], res_array[1], res_array[2], res_array[3], password, res_array[4]);
                 string sql_insert = string.Format(
 "INSERT INTO [Table_UserInfo] ([Department], [Major], [Class], [Name], [Number], [Password]) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')"
                     , res_array[0], res_array[1], res_array[2], res_array[3], res_array[4], password);
@@ -116,13 +116,15 @@ namespace WebService
                 {
                     res.Close();
                     cmd = new SqlCommand(sql_update, Conn);
-                    return (cmd.ExecuteNonQuery() == 0 ? false : true);
+                    cmd.ExecuteNonQuery();
+                    return true;
                 }
                 else
                 {
                     res.Close();
                     cmd = new SqlCommand(sql_insert, Conn);
-                    return (cmd.ExecuteNonQuery() == 0 ? false : true);
+                    cmd.ExecuteNonQuery();
+                    return true;
                 }
             }
             catch
@@ -615,7 +617,12 @@ namespace WebService
                 return e.Message;
             }
         }
-
+        
+        /// <summary>
+        /// 开启一个批次
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <returns></returns>
         public string StartBatch(string BatchID)
         {
             try
@@ -629,7 +636,7 @@ namespace WebService
                     return res;
                 }
                 sdr.Close();
-                string sql = string.Format("UPDATE [Table_Batch] SET [IsOpen] = '1' WHERE [ID] = '{0}'", BatchID);
+                string sql = string.Format("UPDATE [Table_Batch] SET [IsOpen] = '1', [BeginTime] = '{0}' WHERE [ID] = '{1}'", GetNowDateTime(), BatchID);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return "ok";
             }
@@ -638,7 +645,97 @@ namespace WebService
                 return e.Message;
             }
         }
-        
+
+        /// <summary>
+        /// 终止一个批次
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <returns></returns>
+        public string StopBatch(string BatchID)
+        {
+            try
+            {
+                string sql_check = string.Format("SELECT * FROM [Table_Batch] WHERE ([IsOpen] = '0' OR [IsOpen] = '-1') AND [ID] = '{0}'", BatchID);
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["Title"].ToString() + "[ID:" + sdr["ID"].ToString() + "] 处于未开启状态\n\n不能停止";
+                    sdr.Close();
+                    return res;
+                }
+                sdr.Close();
+                string sql = string.Format("UPDATE [Table_Batch] SET [IsOpen] = '0', [FinishTime] = '{0}' WHERE [ID] = '{1}' AND [IsOpen] = '1'",
+                    GetNowDateTime(), BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 删除一个批次
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <returns></returns>
+        public string DeleteBatch(string BatchID)
+        {
+            try
+            {
+                string sql_check = string.Format("SELECT * FROM [Table_Batch] WHERE ([IsOpen] = '0' OR [IsOpen] = '1') AND [ID] = '{0}'", BatchID);
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["Title"].ToString() + "[ID:" + sdr["ID"].ToString() + "] 处于开启状态或使用过\n\n不能删除";
+                    sdr.Close();
+                    return res;
+                }
+                sdr.Close();
+                string sql = string.Format("DELETE [Table_Batch] WHERE [ID] = '{0}' AND [IsOpen] = '-1'", BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        /// <summary>
+        /// 编辑一个批次
+        /// </summary>
+        /// <param name="BatchID"></param>
+        /// <param name="Title"></param>
+        /// <param name="Remark"></param>
+        /// <param name="IncludePaper"></param>
+        /// <returns></returns>
+        public string EditBatch(string BatchID, string Title, string Remark, string IncludePaper)
+        {
+            try
+            {
+                string sql_check = string.Format("SELECT * FROM [Table_Batch] WHERE ([IsOpen] = '0' OR [IsOpen] = '1') AND [ID] = '{0}'", BatchID);
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["Title"].ToString() + "[ID:" + sdr["ID"].ToString() + "] 处于开启状态或使用过\n\n不能编辑";
+                    sdr.Close();
+                    return res;
+                }
+                sdr.Close();
+                string sql = string.Format(
+                "UPDATE [Table_Batch] SET [Title] = '{0}', [Remark] = '{1}', [IncludePaper] = '{2}' WHERE [ID] = '{3}' AND [IsOpen] = '-1'",
+                Title, Remark, IncludePaper, BatchID);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return "ok";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -668,6 +765,16 @@ namespace WebService
 
             // 返回十六进制字符串  
             return sBuilder.ToString().ToLower();
+        }
+
+        /// <summary>
+        /// 获取当前时间 2016-12-12 10:35:42.000
+        /// </summary>
+        /// <returns></returns>
+        public string GetNowDateTime()
+        {
+            return DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + " "
+                + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + DateTime.Now.Millisecond;
         }
 
     }
