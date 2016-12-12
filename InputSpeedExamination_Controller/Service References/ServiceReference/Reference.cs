@@ -59,6 +59,30 @@ namespace InputSpeedExamination_Controller.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetContentByBatchID(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetBatchList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string CreateNewBatch(string Title, string Remark, string IncludePaper);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/StartBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string StartBatch(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/StopBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string StopBatch(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string DeleteBatch(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/EditBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string EditBatch(string BatchID, string Title, string Remark, string IncludePaper);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -130,6 +154,30 @@ namespace InputSpeedExamination_Controller.ServiceReference {
         
         public System.Data.DataSet GetContentByBatchID(string BatchID) {
             return base.Channel.GetContentByBatchID(BatchID);
+        }
+        
+        public System.Data.DataSet GetBatchList() {
+            return base.Channel.GetBatchList();
+        }
+        
+        public string CreateNewBatch(string Title, string Remark, string IncludePaper) {
+            return base.Channel.CreateNewBatch(Title, Remark, IncludePaper);
+        }
+        
+        public string StartBatch(string BatchID) {
+            return base.Channel.StartBatch(BatchID);
+        }
+        
+        public string StopBatch(string BatchID) {
+            return base.Channel.StopBatch(BatchID);
+        }
+        
+        public string DeleteBatch(string BatchID) {
+            return base.Channel.DeleteBatch(BatchID);
+        }
+        
+        public string EditBatch(string BatchID, string Title, string Remark, string IncludePaper) {
+            return base.Channel.EditBatch(BatchID, Title, Remark, IncludePaper);
         }
     }
 }

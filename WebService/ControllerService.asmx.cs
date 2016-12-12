@@ -84,6 +84,12 @@ namespace WebService
             return new DBHelper().GetContentByBatchID(BatchID);
         }
 
+        [WebMethod(Description = "获取批次列表")]
+        public DataSet GetBatchList()
+        {
+            return new DBHelper().GetBatchList();
+        }
+
         [WebMethod(Description = "创建新批次")]
         public string CreateNewBatch(string Title, string Remark, string IncludePaper)
         {

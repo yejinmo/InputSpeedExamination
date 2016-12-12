@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_AddBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddBatch.Designer.cs">
+      <DependentUpon>Form_AddBatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_AddContent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +94,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form_AddBatch.resx">
+      <DependentUpon>Form_AddBatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_AddContent.resx">
       <DependentUpon>Form_AddContent.cs</DependentUpon>
     </EmbeddedResource>

@@ -595,6 +595,27 @@ namespace WebService
         }
 
         /// <summary>
+        /// 获取批次列表
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetBatchList()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                string sql = "SELECT * FROM [Table_Batch]";
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
+                return ds;
+            }
+            catch
+            {
+                return ds;
+            }
+        }
+
+        /// <summary>
         /// 创建新批次
         /// </summary>
         /// <param name="Title"></param>
@@ -636,6 +657,17 @@ namespace WebService
                     return res;
                 }
                 sdr.Close();
+
+                string sql_check2 = string.Format("SELECT * FROM [Table_Batch] WHERE [IsOpen] = '-1' AND [ID] = '{0}'", BatchID);
+                sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (!sdr.Read())
+                {
+                    string res = "[ID:" + BatchID + "] 已使用过\n\n不能再次开启";
+                    sdr.Close();
+                    return res;
+                }
+                sdr.Close();
+
                 string sql = string.Format("UPDATE [Table_Batch] SET [IsOpen] = '1', [BeginTime] = '{0}' WHERE [ID] = '{1}'", GetNowDateTime(), BatchID);
                 new SqlCommand(sql, Conn).ExecuteNonQuery();
                 return "ok";

@@ -41,6 +41,12 @@ namespace InputSpeedExamination_Controller
                 ThreadRefreshExamRoom.Start();
                 return;
             }
+            if (TabControl_Main.SelectedTab == TabPage_Batch)
+            {
+                Thread ThreadRefreshBatch = new Thread(new ThreadStart(RefreshBatch));
+                ThreadRefreshBatch.Start();
+                return;
+            }
         }
 
         #endregion
@@ -317,6 +323,272 @@ namespace InputSpeedExamination_Controller
                 ListView_ExamRoom.SelectedItems[0].SubItems[1].Text,
                 ListView_ExamRoom.SelectedItems[0].SubItems[2].Text).ShowDialog();
             Button_RefreshExamRoom.PerformClick();
+        }
+
+        #endregion
+
+        #region 批次
+
+        private void Button_Batch_Refresh_Click(object sender, EventArgs e)
+        {
+            Thread ThreadRefreshBatch = new Thread(new ThreadStart(RefreshBatch));
+            ThreadRefreshBatch.Start();
+        }
+
+        private void RefreshBatch()
+        {
+            try
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    ListView_BatchList.SuspendLayout();
+                    ListView_BatchList.Items.Clear();
+                    ListView_Batch_IncludePaperList.Items.Clear();
+                });
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetBatchList();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    string id = dr["ID"].ToString();
+                    string title = dr["Title"].ToString();
+                    string remark = dr["Remark"].ToString();
+                    string isOpen = dr["IsOpen"].ToString();
+                    string startTime = dr["BeginTime"].ToString();
+                    string finishTime = dr["FinishTime"].ToString();
+                    string includePaper = dr["IncludePaper"].ToString();
+                    Invoke((EventHandler)delegate
+                    {
+                        ListViewItem lvi = new ListViewItem(id);
+                        lvi.SubItems.Add(title);
+                        lvi.SubItems.Add(isOpen == "1" ? "正在进行" : isOpen == "0" ? "已关闭" : "未激活");
+                        lvi.SubItems.Add(startTime);
+                        lvi.SubItems.Add(finishTime);
+                        lvi.SubItems.Add(remark);
+                        lvi.SubItems.Add(includePaper);
+                        ListView_BatchList.Items.Add(lvi);
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "内容刷新失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    ListView_BatchList.ResumeLayout();
+                });
+            }
+        }
+
+        private void ListView_BatchList_Click(object sender, EventArgs e)
+        {
+            if (ListView_BatchList.SelectedItems.Count != 1)
+                return;
+            Thread ThreadListIncludePaper = new Thread(new ThreadStart(ListIncludePaper));
+            ThreadListIncludePaper.Start();
+        }
+
+        private void ListIncludePaper()
+        {
+            try
+            {
+                string includePaper = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    includePaper = ListView_BatchList.SelectedItems[0].SubItems[6].Text;
+                    ListView_Batch_IncludePaperList.SuspendLayout();
+                    ListView_Batch_IncludePaperList.Items.Clear();
+                });
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetContentByPaperID(includePaper);
+                Invoke((EventHandler)delegate
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        ListViewItem lvi = new ListViewItem(dr["Title"].ToString());
+                        lvi.SubItems.Add(dr["String"].ToString());
+                        lvi.SubItems.Add(dr["MD5"].ToString());
+                        ListView_Batch_IncludePaperList.Items.Add(lvi);
+                    }
+                });
+            }
+            catch(Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "内容获取失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    ListView_Batch_IncludePaperList.ResumeLayout();
+                });
+            }
+        }
+
+        private void Button_Batch_Delete_Click(object sender, EventArgs e)
+        {
+            if (ListView_BatchList.SelectedItems.Count != 1)
+            {
+                MessageBox.Show(this, "请选中一项", "提示");
+                return;
+            }
+            Thread ThreadDeleteBatch = new Thread(new ThreadStart(DeleteBatch));
+            ThreadDeleteBatch.Start();
+        }
+
+        private void DeleteBatch()
+        {
+            try
+            {
+                string id = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
+                });
+                var res = new ServiceReference.ControllerServiceSoapClient().DeleteBatch(id);
+                Invoke((EventHandler)delegate
+                {
+                    if (res == "ok")
+                        MessageBox.Show(this, "删除成功", "提示");
+                    else
+                        MessageBox.Show(this, "删除失败\n\n" + res, "提示");
+                });
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "删除失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    Button_Batch_Refresh.PerformClick();
+                });
+            }
+        }
+
+        private void Button_Batch_Start_Click(object sender, EventArgs e)
+        {
+            if (ListView_BatchList.SelectedItems.Count != 1)
+            {
+                MessageBox.Show(this, "请选中一项", "提示");
+                return;
+            }
+            Thread ThreadStartBatch = new Thread(new ThreadStart(StartBatch));
+            ThreadStartBatch.Start();
+        }
+
+        private void StartBatch()
+        {
+            try
+            {
+                string id = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
+                });
+                var res = new ServiceReference.ControllerServiceSoapClient().StartBatch(id);
+                Invoke((EventHandler)delegate
+                {
+                    if (res == "ok")
+                        MessageBox.Show(this, "开启成功", "提示");
+                    else
+                        MessageBox.Show(this, "开启失败\n\n" + res, "提示");
+                });
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "开启失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    Button_Batch_Refresh.PerformClick();
+                });
+            }
+        }
+
+        private void Button_Batch_Stop_Click(object sender, EventArgs e)
+        {
+            if (ListView_BatchList.SelectedItems.Count != 1)
+            {
+                MessageBox.Show(this, "请选中一项", "提示");
+                return;
+            }
+            Thread ThreadStopBatch = new Thread(new ThreadStart(StopBatch));
+            ThreadStopBatch.Start();
+        }
+
+        private void StopBatch()
+        {
+            try
+            {
+                string id = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                    id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
+                });
+                var res = new ServiceReference.ControllerServiceSoapClient().StopBatch(id);
+                Invoke((EventHandler)delegate
+                {
+                    if (res == "ok")
+                        MessageBox.Show(this, "关闭成功", "提示");
+                    else
+                        MessageBox.Show(this, "关闭失败\n\n" + res, "提示");
+                });
+            }
+            catch (Exception e)
+            {
+                Invoke((EventHandler)delegate
+                {
+                    MessageBox.Show(this, "关闭失败\n\n" + e.Message, "错误");
+                });
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = true;
+                    Button_Batch_Refresh.PerformClick();
+                });
+            }
+        }
+
+        private void Button_Batch_Add_Click(object sender, EventArgs e)
+        {
+            new Form_AddBatch().ShowDialog();
+            Button_Batch_Refresh.PerformClick();
+        }
+
+        #endregion
+
+        #region 状态
+
+        private void LoadStatsData()
+        {
+
         }
 
         #endregion

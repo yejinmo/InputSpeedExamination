@@ -190,6 +190,98 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetBatchList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBatchListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StopBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StopBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StopBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditBatchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DataSet" nillable="true">
         <s:complexType>
           <s:sequence>
@@ -268,6 +360,42 @@
   <wsdl:message name="GetContentByBatchIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetContentByBatchIDResponse" />
   </wsdl:message>
+  <wsdl:message name="GetBatchListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchList" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewBatch" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:StartBatch" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:StartBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:StopBatch" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:StopBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteBatch" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:EditBatch" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:EditBatchResponse" />
+  </wsdl:message>
   <wsdl:message name="GetStatsHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
     <wsdl:part name="RoomID" type="s:string" />
@@ -336,6 +464,45 @@
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchListHttpGetIn" />
+  <wsdl:message name="GetBatchListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpGetIn">
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchHttpGetIn">
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
@@ -406,6 +573,45 @@
   <wsdl:message name="GetContentByBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
+  <wsdl:message name="GetBatchListHttpPostIn" />
+  <wsdl:message name="GetBatchListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpPostIn">
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StartBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StopBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchHttpPostIn">
+    <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="Title" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+    <wsdl:part name="IncludePaper" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EditBatchHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="ControllerServiceSoap">
     <wsdl:operation name="GetStats">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
@@ -458,9 +664,39 @@
       <wsdl:output message="tns:GetContentByPaperIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据批次ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDSoapIn" />
       <wsdl:output message="tns:GetContentByBatchIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListSoapIn" />
+      <wsdl:output message="tns:GetBatchListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新批次</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchSoapIn" />
+      <wsdl:output message="tns:CreateNewBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开启一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StartBatchSoapIn" />
+      <wsdl:output message="tns:StartBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">终止一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StopBatchSoapIn" />
+      <wsdl:output message="tns:StopBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除一个批次</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchSoapIn" />
+      <wsdl:output message="tns:DeleteBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑一个批次</wsdl:documentation>
+      <wsdl:input message="tns:EditBatchSoapIn" />
+      <wsdl:output message="tns:EditBatchSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ControllerServiceHttpGet">
@@ -515,9 +751,39 @@
       <wsdl:output message="tns:GetContentByPaperIDHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据批次ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDHttpGetIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListHttpGetIn" />
+      <wsdl:output message="tns:GetBatchListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新批次</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchHttpGetIn" />
+      <wsdl:output message="tns:CreateNewBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开启一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StartBatchHttpGetIn" />
+      <wsdl:output message="tns:StartBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">终止一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StopBatchHttpGetIn" />
+      <wsdl:output message="tns:StopBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除一个批次</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchHttpGetIn" />
+      <wsdl:output message="tns:DeleteBatchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑一个批次</wsdl:documentation>
+      <wsdl:input message="tns:EditBatchHttpGetIn" />
+      <wsdl:output message="tns:EditBatchHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ControllerServiceHttpPost">
@@ -572,9 +838,39 @@
       <wsdl:output message="tns:GetContentByPaperIDHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据批次ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDHttpPostIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次列表</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchListHttpPostIn" />
+      <wsdl:output message="tns:GetBatchListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">创建新批次</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewBatchHttpPostIn" />
+      <wsdl:output message="tns:CreateNewBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">开启一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StartBatchHttpPostIn" />
+      <wsdl:output message="tns:StartBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">终止一个批次</wsdl:documentation>
+      <wsdl:input message="tns:StopBatchHttpPostIn" />
+      <wsdl:output message="tns:StopBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">删除一个批次</wsdl:documentation>
+      <wsdl:input message="tns:DeleteBatchHttpPostIn" />
+      <wsdl:output message="tns:DeleteBatchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">编辑一个批次</wsdl:documentation>
+      <wsdl:input message="tns:EditBatchHttpPostIn" />
+      <wsdl:output message="tns:EditBatchHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ControllerServiceSoap" type="tns:ControllerServiceSoap">
@@ -671,6 +967,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <soap:operation soapAction="WebService/GetContentByBatchID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <soap:operation soapAction="WebService/GetBatchList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <soap:operation soapAction="WebService/CreateNewBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <soap:operation soapAction="WebService/StartBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <soap:operation soapAction="WebService/StopBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <soap:operation soapAction="WebService/DeleteBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <soap:operation soapAction="WebService/EditBatch" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -780,6 +1130,60 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <soap12:operation soapAction="WebService/GetBatchList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <soap12:operation soapAction="WebService/CreateNewBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <soap12:operation soapAction="WebService/StartBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <soap12:operation soapAction="WebService/StopBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <soap12:operation soapAction="WebService/DeleteBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <soap12:operation soapAction="WebService/EditBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ControllerServiceHttpGet" type="tns:ControllerServiceHttpGet">
     <http:binding verb="GET" />
@@ -882,6 +1286,60 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <http:operation location="/GetBatchList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <http:operation location="/CreateNewBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <http:operation location="/StartBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <http:operation location="/StopBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <http:operation location="/DeleteBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <http:operation location="/EditBatch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ControllerServiceHttpPost" type="tns:ControllerServiceHttpPost">
     <http:binding verb="POST" />
@@ -977,6 +1435,60 @@
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <http:operation location="/GetContentByBatchID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchList">
+      <http:operation location="/GetBatchList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewBatch">
+      <http:operation location="/CreateNewBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartBatch">
+      <http:operation location="/StartBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopBatch">
+      <http:operation location="/StopBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBatch">
+      <http:operation location="/DeleteBatch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditBatch">
+      <http:operation location="/EditBatch" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
