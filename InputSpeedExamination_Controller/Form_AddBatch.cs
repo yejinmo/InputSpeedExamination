@@ -12,6 +12,8 @@ namespace InputSpeedExamination_Controller
 {
     public partial class Form_AddBatch : Form
     {
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
 
         public Form_AddBatch()
         {
@@ -50,7 +52,7 @@ namespace InputSpeedExamination_Controller
                     if (includePaper.EndsWith(","))
                         includePaper = includePaper.Substring(0, includePaper.Length - 1);
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().CreateNewBatch(title, remark, includePaper);
+                var res = new ServiceReference.ControllerServiceSoapClient().CreateNewBatch(title, remark, includePaper, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
@@ -95,7 +97,7 @@ namespace InputSpeedExamination_Controller
                     ListView_AllContent.SuspendLayout();
                     ListView_AllContent.Items.Clear();
                 });
-                var ds = new ServiceReference.ControllerServiceSoapClient().GetAllContent();
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetAllContent(USERNAME, PASSWORD);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string id = dr["ID"].ToString();

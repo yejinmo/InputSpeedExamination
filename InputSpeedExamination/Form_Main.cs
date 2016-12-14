@@ -1317,9 +1317,9 @@ namespace InputSpeedExamination
             {
                 Invoke((EventHandler)delegate
                 {
-                    Text_Result_CorrectPercent.Text = (CorrectPercent * 100) + " % ";
-                    Text_Result_FinalScore.Text = FinalScore.ToString() + " 分 ";
-                    Text_Result_Speed.Text = Speed.ToString() + " 字/分 ";
+                    Text_Result_CorrectPercent.Text = (CorrectPercent * 100).ToString("N2") + " % ";
+                    Text_Result_FinalScore.Text = FinalScore.ToString("N2") + " 分 ";
+                    Text_Result_Speed.Text = Speed.ToString("N2") + " 字/分 ";
                     Text_Result_Time.Text = Time / 60 + " 分 " + Time % 60 + " 秒 ";
                     Text_Result_Total.Text = Total.ToString() + " 字 ";
                     Label_Result_Tip_Percent.Visible = false;
@@ -1338,9 +1338,9 @@ namespace InputSpeedExamination
                 if (UserInformation.OnLine)
                 {
                     Thread.Sleep(5000);
+                    string res = "提交成绩失败";
                     Invoke((EventHandler)delegate
                     {
-                        string res = "提交成绩失败";
                         try
                         {
                             res = new ServiceReference.ClientServiceSoapClient().UpdateFinallyScore(
@@ -1351,10 +1351,34 @@ namespace InputSpeedExamination
 
                         }
                         if (res == "ok")
+                        {
                             Label_Result_Tip_SendResult.Text = "成绩已成功提交至服务器";
+                            Label_Result_Tip_Percent.Text = "正在获取线上排名";
+                            Label_Result_Tip_Percent.Visible = true;
+                        }
                         else
+                        {
+                            Process_Result_SendResult.Visible = false;
                             Label_Result_Tip_SendResult.Text = res;
+                        }
+                    });
+                    if (res != "ok")
+                        return;
+                    Thread.Sleep(3000);
+                    var rank = new ServiceReference.ClientServiceSoapClient().GetOnlineRank(UserInformation.GUID);
+                    Invoke((EventHandler)delegate
+                    {
                         Process_Result_SendResult.Visible = false;
+                        double d_rank = 0;
+                        if (rank.IndexOf("error") > 0 || !double.TryParse(rank, out d_rank))
+                        {
+                            Label_Result_Tip_Percent.Text = "线上排名获取失败";
+                        }
+                        else
+                        {
+                            Label_Result_Tip_Percent.Text = string.Format("您的成绩已超过{0:N2}%的人", d_rank * 100);
+                            //Progress_Result_Percent.Value = 
+                        }
                     });
                 };
             }

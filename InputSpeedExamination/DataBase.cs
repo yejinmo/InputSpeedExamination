@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace InputSpeedExamination
 {
@@ -112,9 +113,9 @@ namespace InputSpeedExamination
         {
             try
             {
+                string textMD5 = GetMD5Hash(text);
                 text = text.Replace("'", "''");
                 CONN.Open();
-                string textMD5 = GetMD5Hash(text);
                 string sql_check = string.Format(@"SELECT * FROM OnlineContentTable WHERE [MD5_Value] = '{0}'", textMD5);
                 var cmd_check = new SQLiteCommand(sql_check, CONN);
                 var sda_check = cmd_check.ExecuteReader();
@@ -220,35 +221,6 @@ namespace InputSpeedExamination
         }
 
         /// <summary>
-        /// 返回字符串小写形式的MD5值
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        private string GetMD5Hash(string input)
-        {
-            if (input == null)
-            {
-                return null;
-            }
-            MD5 md5Hash = MD5.Create();
-
-            // 将输入字符串转换为字节数组并计算哈希数据  
-            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            // 创建一个 Stringbuilder 来收集字节并创建字符串  
-            StringBuilder sBuilder = new StringBuilder();
-
-            // 循环遍历哈希数据的每一个字节并格式化为十六进制字符串  
-            for (int i = 0; i < data.Length; i++)
-            {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-
-            // 返回十六进制字符串  
-            return sBuilder.ToString().ToLower();
-        }
-
-        /// <summary>
         /// 根据MD5值获取内容
         /// </summary>
         /// <param name="MD5"></param>
@@ -280,6 +252,35 @@ namespace InputSpeedExamination
             {
                 CONN.Close();
             }
+        }
+
+        /// <summary>
+        /// 返回字符串小写形式的MD5值
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private string GetMD5Hash(string input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+            MD5 md5Hash = MD5.Create();
+
+            // 将输入字符串转换为字节数组并计算哈希数据  
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // 创建一个 Stringbuilder 来收集字节并创建字符串  
+            StringBuilder sBuilder = new StringBuilder();
+
+            // 循环遍历哈希数据的每一个字节并格式化为十六进制字符串  
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // 返回十六进制字符串  
+            return sBuilder.ToString().ToLower();
         }
 
     }

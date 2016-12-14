@@ -42,10 +42,9 @@
             // Button_Clear
             // 
             this.Button_Clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Clear.Location = new System.Drawing.Point(316, 515);
-            this.Button_Clear.Margin = new System.Windows.Forms.Padding(4);
+            this.Button_Clear.Location = new System.Drawing.Point(237, 412);
             this.Button_Clear.Name = "Button_Clear";
-            this.Button_Clear.Size = new System.Drawing.Size(240, 46);
+            this.Button_Clear.Size = new System.Drawing.Size(180, 37);
             this.Button_Clear.TabIndex = 10;
             this.Button_Clear.Text = "清空";
             this.Button_Clear.UseVisualStyleBackColor = true;
@@ -54,20 +53,19 @@
             // Text_Content
             // 
             this.Text_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Text_Content.Location = new System.Drawing.Point(4, 22);
-            this.Text_Content.Margin = new System.Windows.Forms.Padding(4);
+            this.Text_Content.Location = new System.Drawing.Point(3, 17);
             this.Text_Content.Multiline = true;
             this.Text_Content.Name = "Text_Content";
-            this.Text_Content.Size = new System.Drawing.Size(780, 412);
+            this.Text_Content.Size = new System.Drawing.Size(585, 330);
             this.Text_Content.TabIndex = 0;
+            this.Text_Content.TextChanged += new System.EventHandler(this.Text_Content_TextChanged);
             // 
             // Button_Edit
             // 
             this.Button_Edit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Edit.Location = new System.Drawing.Point(564, 515);
-            this.Button_Edit.Margin = new System.Windows.Forms.Padding(4);
+            this.Button_Edit.Location = new System.Drawing.Point(423, 412);
             this.Button_Edit.Name = "Button_Edit";
-            this.Button_Edit.Size = new System.Drawing.Size(240, 46);
+            this.Button_Edit.Size = new System.Drawing.Size(180, 37);
             this.Button_Edit.TabIndex = 9;
             this.Button_Edit.Text = "提交";
             this.Button_Edit.UseVisualStyleBackColor = true;
@@ -76,10 +74,9 @@
             // Button_Close
             // 
             this.Button_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Button_Close.Location = new System.Drawing.Point(16, 515);
-            this.Button_Close.Margin = new System.Windows.Forms.Padding(4);
+            this.Button_Close.Location = new System.Drawing.Point(12, 412);
             this.Button_Close.Name = "Button_Close";
-            this.Button_Close.Size = new System.Drawing.Size(240, 46);
+            this.Button_Close.Size = new System.Drawing.Size(180, 37);
             this.Button_Close.TabIndex = 8;
             this.Button_Close.Text = "关闭";
             this.Button_Close.UseVisualStyleBackColor = true;
@@ -91,11 +88,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox_Content.Controls.Add(this.Text_Content);
-            this.GroupBox_Content.Location = new System.Drawing.Point(16, 70);
-            this.GroupBox_Content.Margin = new System.Windows.Forms.Padding(4);
+            this.GroupBox_Content.Location = new System.Drawing.Point(12, 56);
             this.GroupBox_Content.Name = "GroupBox_Content";
-            this.GroupBox_Content.Padding = new System.Windows.Forms.Padding(4);
-            this.GroupBox_Content.Size = new System.Drawing.Size(788, 438);
+            this.GroupBox_Content.Size = new System.Drawing.Size(591, 350);
             this.GroupBox_Content.TabIndex = 7;
             this.GroupBox_Content.TabStop = false;
             this.GroupBox_Content.Text = "内容";
@@ -105,11 +100,9 @@
             this.GroupBox_Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox_Title.Controls.Add(this.Text_Title);
-            this.GroupBox_Title.Location = new System.Drawing.Point(16, 15);
-            this.GroupBox_Title.Margin = new System.Windows.Forms.Padding(4);
+            this.GroupBox_Title.Location = new System.Drawing.Point(12, 12);
             this.GroupBox_Title.Name = "GroupBox_Title";
-            this.GroupBox_Title.Padding = new System.Windows.Forms.Padding(4);
-            this.GroupBox_Title.Size = new System.Drawing.Size(788, 51);
+            this.GroupBox_Title.Size = new System.Drawing.Size(591, 41);
             this.GroupBox_Title.TabIndex = 6;
             this.GroupBox_Title.TabStop = false;
             this.GroupBox_Title.Text = "标题";
@@ -117,23 +110,21 @@
             // Text_Title
             // 
             this.Text_Title.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Text_Title.Location = new System.Drawing.Point(4, 22);
-            this.Text_Title.Margin = new System.Windows.Forms.Padding(4);
+            this.Text_Title.Location = new System.Drawing.Point(3, 17);
             this.Text_Title.Name = "Text_Title";
-            this.Text_Title.Size = new System.Drawing.Size(780, 25);
+            this.Text_Title.Size = new System.Drawing.Size(585, 21);
             this.Text_Title.TabIndex = 0;
             // 
             // Form_UpdateContent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 576);
+            this.ClientSize = new System.Drawing.Size(615, 461);
             this.Controls.Add(this.Button_Clear);
             this.Controls.Add(this.Button_Edit);
             this.Controls.Add(this.Button_Close);
             this.Controls.Add(this.GroupBox_Content);
             this.Controls.Add(this.GroupBox_Title);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_UpdateContent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑内容";

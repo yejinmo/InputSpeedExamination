@@ -16,73 +16,77 @@ namespace InputSpeedExamination_Controller.ServiceReference {
     [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.ControllerServiceSoap")]
     public interface ControllerServiceSoap {
         
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/Login", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool Login(string username, string password);
+        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetStats", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetStats(string BatchID, string RoomID);
+        System.Data.DataSet GetStats(string BatchID, string RoomID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetExamRoomList();
+        System.Data.DataSet GetExamRoomList(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CreateNewExamRoom(string RoomTitle, string IncludeIP);
+        string CreateNewExamRoom(string RoomTitle, string IncludeIP, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/EditExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP);
+        string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteExamRoom", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        bool DeleteExamRoom(string RoomID);
+        bool DeleteExamRoom(string RoomID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetAllContent();
+        System.Data.DataSet GetAllContent(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewContent", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CreateNewContent(string Title, string Content);
+        string CreateNewContent(string Title, string Content, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateContent", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string UpdateContent(string ContentID, string Title, string Content);
+        string UpdateContent(string ContentID, string Title, string Content, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteContent", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        bool DeleteContent(string ContentID);
+        bool DeleteContent(string ContentID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByPaperID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetContentByPaperID(string IncludePaper);
+        System.Data.DataSet GetContentByPaperID(string IncludePaper, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetContentByBatchID(string BatchID);
+        System.Data.DataSet GetContentByBatchID(string BatchID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetBatchList();
+        System.Data.DataSet GetBatchList(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/CreateNewBatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string CreateNewBatch(string Title, string Remark, string IncludePaper);
+        string CreateNewBatch(string Title, string Remark, string IncludePaper, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/StartBatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string StartBatch(string BatchID);
+        string StartBatch(string BatchID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/StopBatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string StopBatch(string BatchID);
+        string StopBatch(string BatchID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/DeleteBatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string DeleteBatch(string BatchID);
+        string DeleteBatch(string BatchID, string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/EditBatch", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        string EditBatch(string BatchID, string Title, string Remark, string IncludePaper);
+        string EditBatch(string BatchID, string Title, string Remark, string IncludePaper, string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -112,72 +116,76 @@ namespace InputSpeedExamination_Controller.ServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public System.Data.DataSet GetStats(string BatchID, string RoomID) {
-            return base.Channel.GetStats(BatchID, RoomID);
+        public bool Login(string username, string password) {
+            return base.Channel.Login(username, password);
         }
         
-        public System.Data.DataSet GetExamRoomList() {
-            return base.Channel.GetExamRoomList();
+        public System.Data.DataSet GetStats(string BatchID, string RoomID, string username, string password) {
+            return base.Channel.GetStats(BatchID, RoomID, username, password);
         }
         
-        public string CreateNewExamRoom(string RoomTitle, string IncludeIP) {
-            return base.Channel.CreateNewExamRoom(RoomTitle, IncludeIP);
+        public System.Data.DataSet GetExamRoomList(string username, string password) {
+            return base.Channel.GetExamRoomList(username, password);
         }
         
-        public string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP) {
-            return base.Channel.EditExamRoom(RoomID, RoomTitle, IncludeIP);
+        public string CreateNewExamRoom(string RoomTitle, string IncludeIP, string username, string password) {
+            return base.Channel.CreateNewExamRoom(RoomTitle, IncludeIP, username, password);
         }
         
-        public bool DeleteExamRoom(string RoomID) {
-            return base.Channel.DeleteExamRoom(RoomID);
+        public string EditExamRoom(string RoomID, string RoomTitle, string IncludeIP, string username, string password) {
+            return base.Channel.EditExamRoom(RoomID, RoomTitle, IncludeIP, username, password);
         }
         
-        public System.Data.DataSet GetAllContent() {
-            return base.Channel.GetAllContent();
+        public bool DeleteExamRoom(string RoomID, string username, string password) {
+            return base.Channel.DeleteExamRoom(RoomID, username, password);
         }
         
-        public string CreateNewContent(string Title, string Content) {
-            return base.Channel.CreateNewContent(Title, Content);
+        public System.Data.DataSet GetAllContent(string username, string password) {
+            return base.Channel.GetAllContent(username, password);
         }
         
-        public string UpdateContent(string ContentID, string Title, string Content) {
-            return base.Channel.UpdateContent(ContentID, Title, Content);
+        public string CreateNewContent(string Title, string Content, string username, string password) {
+            return base.Channel.CreateNewContent(Title, Content, username, password);
         }
         
-        public bool DeleteContent(string ContentID) {
-            return base.Channel.DeleteContent(ContentID);
+        public string UpdateContent(string ContentID, string Title, string Content, string username, string password) {
+            return base.Channel.UpdateContent(ContentID, Title, Content, username, password);
         }
         
-        public System.Data.DataSet GetContentByPaperID(string IncludePaper) {
-            return base.Channel.GetContentByPaperID(IncludePaper);
+        public bool DeleteContent(string ContentID, string username, string password) {
+            return base.Channel.DeleteContent(ContentID, username, password);
         }
         
-        public System.Data.DataSet GetContentByBatchID(string BatchID) {
-            return base.Channel.GetContentByBatchID(BatchID);
+        public System.Data.DataSet GetContentByPaperID(string IncludePaper, string username, string password) {
+            return base.Channel.GetContentByPaperID(IncludePaper, username, password);
         }
         
-        public System.Data.DataSet GetBatchList() {
-            return base.Channel.GetBatchList();
+        public System.Data.DataSet GetContentByBatchID(string BatchID, string username, string password) {
+            return base.Channel.GetContentByBatchID(BatchID, username, password);
         }
         
-        public string CreateNewBatch(string Title, string Remark, string IncludePaper) {
-            return base.Channel.CreateNewBatch(Title, Remark, IncludePaper);
+        public System.Data.DataSet GetBatchList(string username, string password) {
+            return base.Channel.GetBatchList(username, password);
         }
         
-        public string StartBatch(string BatchID) {
-            return base.Channel.StartBatch(BatchID);
+        public string CreateNewBatch(string Title, string Remark, string IncludePaper, string username, string password) {
+            return base.Channel.CreateNewBatch(Title, Remark, IncludePaper, username, password);
         }
         
-        public string StopBatch(string BatchID) {
-            return base.Channel.StopBatch(BatchID);
+        public string StartBatch(string BatchID, string username, string password) {
+            return base.Channel.StartBatch(BatchID, username, password);
         }
         
-        public string DeleteBatch(string BatchID) {
-            return base.Channel.DeleteBatch(BatchID);
+        public string StopBatch(string BatchID, string username, string password) {
+            return base.Channel.StopBatch(BatchID, username, password);
         }
         
-        public string EditBatch(string BatchID, string Title, string Remark, string IncludePaper) {
-            return base.Channel.EditBatch(BatchID, Title, Remark, IncludePaper);
+        public string DeleteBatch(string BatchID, string username, string password) {
+            return base.Channel.DeleteBatch(BatchID, username, password);
+        }
+        
+        public string EditBatch(string BatchID, string Title, string Remark, string IncludePaper, string username, string password) {
+            return base.Channel.EditBatch(BatchID, Title, Remark, IncludePaper, username, password);
         }
     }
 }

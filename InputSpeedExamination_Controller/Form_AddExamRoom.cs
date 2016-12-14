@@ -14,10 +14,14 @@ namespace InputSpeedExamination_Controller
 {
     public partial class Form_AddExamRoom : Form
     {
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
 
-        public Form_AddExamRoom()
+        public Form_AddExamRoom(string u, string p)
         {
             InitializeComponent();
+            USERNAME = u;
+            PASSWORD = p;
         }
 
         private void Button_AddIPs_Click(object sender, EventArgs e)
@@ -77,7 +81,7 @@ namespace InputSpeedExamination_Controller
                     if (includeIP.EndsWith(","))
                         includeIP = includeIP.Substring(0, includeIP.Length - 1);
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().CreateNewExamRoom(title, includeIP);
+                var res = new ServiceReference.ControllerServiceSoapClient().CreateNewExamRoom(title, includeIP, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")

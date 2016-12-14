@@ -14,11 +14,16 @@ namespace InputSpeedExamination_Controller
     public partial class Form_Main : Form
     {
 
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
+
         #region UI
 
-        public Form_Main()
+        public Form_Main(string u, string p)
         {
             InitializeComponent();
+            USERNAME = u;
+            PASSWORD = p;
         }
 
         private void Form_Main_Load(object sender, EventArgs e)
@@ -69,7 +74,7 @@ namespace InputSpeedExamination_Controller
                     ListView_AllContent.SuspendLayout();
                     ListView_AllContent.Items.Clear();
                 });
-                var ds = new ServiceReference.ControllerServiceSoapClient().GetAllContent();
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetAllContent(USERNAME, PASSWORD);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string id = dr["ID"].ToString();
@@ -86,7 +91,7 @@ namespace InputSpeedExamination_Controller
                     });
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Invoke((EventHandler)delegate
                 {
@@ -105,7 +110,7 @@ namespace InputSpeedExamination_Controller
 
         private void Button_AddContent_Click(object sender, EventArgs e)
         {
-            Form_AddContent frm = new Form_AddContent();
+            Form_AddContent frm = new Form_AddContent(USERNAME, PASSWORD);
             frm.ShowDialog();
             Button_RefreshContent.PerformClick();
         }
@@ -121,8 +126,8 @@ namespace InputSpeedExamination_Controller
                 ListView_AllContent.SelectedItems[0].SubItems[0].Text,
                 ListView_AllContent.SelectedItems[0].SubItems[3].Text,
                 ListView_AllContent.SelectedItems[0].SubItems[1].Text,
-                ListView_AllContent.SelectedItems[0].SubItems[2].Text
-                );
+                ListView_AllContent.SelectedItems[0].SubItems[2].Text,
+                USERNAME, PASSWORD);
             frm.ShowDialog();
             Button_RefreshContent.PerformClick();
         }
@@ -156,7 +161,7 @@ namespace InputSpeedExamination_Controller
                 });
                 if (needreturn)
                     return;
-                var res = new ServiceReference.ControllerServiceSoapClient().DeleteContent(id);
+                var res = new ServiceReference.ControllerServiceSoapClient().DeleteContent(id, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res)
@@ -203,7 +208,7 @@ namespace InputSpeedExamination_Controller
                     ListView_ExamRoom.Items.Clear();
                     ListView_ExamRoom_IPList.Items.Clear();
                 });
-                var ds = new ServiceReference.ControllerServiceSoapClient().GetExamRoomList();
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetExamRoomList(USERNAME, PASSWORD);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string id = dr["ID"].ToString();
@@ -280,7 +285,7 @@ namespace InputSpeedExamination_Controller
                 });
                 if (needreturn)
                     return;
-                var res = new ServiceReference.ControllerServiceSoapClient().DeleteExamRoom(id);
+                var res = new ServiceReference.ControllerServiceSoapClient().DeleteExamRoom(id, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res)
@@ -308,7 +313,7 @@ namespace InputSpeedExamination_Controller
 
         private void Button_AddExamRoom_Click(object sender, EventArgs e)
         {
-            new Form_AddExamRoom().ShowDialog();
+            new Form_AddExamRoom(USERNAME, PASSWORD).ShowDialog();
             Button_RefreshExamRoom.PerformClick();
         }
 
@@ -321,7 +326,8 @@ namespace InputSpeedExamination_Controller
             }
             new Form_EditExamRoom(ListView_ExamRoom.SelectedItems[0].SubItems[0].Text,
                 ListView_ExamRoom.SelectedItems[0].SubItems[1].Text,
-                ListView_ExamRoom.SelectedItems[0].SubItems[2].Text).ShowDialog();
+                ListView_ExamRoom.SelectedItems[0].SubItems[2].Text,
+                USERNAME, PASSWORD).ShowDialog();
             Button_RefreshExamRoom.PerformClick();
         }
 
@@ -346,7 +352,7 @@ namespace InputSpeedExamination_Controller
                     ListView_BatchList.Items.Clear();
                     ListView_Batch_IncludePaperList.Items.Clear();
                 });
-                var ds = new ServiceReference.ControllerServiceSoapClient().GetBatchList();
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetBatchList(USERNAME, PASSWORD);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     string id = dr["ID"].ToString();
@@ -406,7 +412,7 @@ namespace InputSpeedExamination_Controller
                     ListView_Batch_IncludePaperList.SuspendLayout();
                     ListView_Batch_IncludePaperList.Items.Clear();
                 });
-                var ds = new ServiceReference.ControllerServiceSoapClient().GetContentByPaperID(includePaper);
+                var ds = new ServiceReference.ControllerServiceSoapClient().GetContentByPaperID(includePaper, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     foreach (DataRow dr in ds.Tables[0].Rows)
@@ -418,7 +424,7 @@ namespace InputSpeedExamination_Controller
                     }
                 });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Invoke((EventHandler)delegate
                 {
@@ -456,7 +462,7 @@ namespace InputSpeedExamination_Controller
                     Enabled = false;
                     id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().DeleteBatch(id);
+                var res = new ServiceReference.ControllerServiceSoapClient().DeleteBatch(id, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
@@ -503,7 +509,7 @@ namespace InputSpeedExamination_Controller
                     Enabled = false;
                     id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().StartBatch(id);
+                var res = new ServiceReference.ControllerServiceSoapClient().StartBatch(id, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
@@ -550,7 +556,7 @@ namespace InputSpeedExamination_Controller
                     Enabled = false;
                     id = ListView_BatchList.SelectedItems[0].SubItems[0].Text;
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().StopBatch(id);
+                var res = new ServiceReference.ControllerServiceSoapClient().StopBatch(id, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")

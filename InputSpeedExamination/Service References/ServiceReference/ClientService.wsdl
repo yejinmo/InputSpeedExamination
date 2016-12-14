@@ -236,6 +236,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetOnlineRank">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOnlineRankResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOnlineRankResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -339,6 +353,12 @@
   <wsdl:message name="UpdateFinallyScoreSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateFinallyScoreResponse" />
   </wsdl:message>
+  <wsdl:message name="GetOnlineRankSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOnlineRank" />
+  </wsdl:message>
+  <wsdl:message name="GetOnlineRankSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOnlineRankResponse" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -430,6 +450,12 @@
     <wsdl:part name="CorrectPercent" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateFinallyScoreHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOnlineRankHttpGetIn">
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOnlineRankHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -525,6 +551,12 @@
   <wsdl:message name="UpdateFinallyScoreHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetOnlineRankHttpPostIn">
+    <wsdl:part name="GUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOnlineRankHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="ClientServiceSoap">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
@@ -600,6 +632,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">提交最终成绩</wsdl:documentation>
       <wsdl:input message="tns:UpdateFinallyScoreSoapIn" />
       <wsdl:output message="tns:UpdateFinallyScoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取线上排名</wsdl:documentation>
+      <wsdl:input message="tns:GetOnlineRankSoapIn" />
+      <wsdl:output message="tns:GetOnlineRankSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpGet">
@@ -678,6 +715,11 @@
       <wsdl:input message="tns:UpdateFinallyScoreHttpGetIn" />
       <wsdl:output message="tns:UpdateFinallyScoreHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取线上排名</wsdl:documentation>
+      <wsdl:input message="tns:GetOnlineRankHttpGetIn" />
+      <wsdl:output message="tns:GetOnlineRankHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpPost">
     <wsdl:operation name="SayHello">
@@ -754,6 +796,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">提交最终成绩</wsdl:documentation>
       <wsdl:input message="tns:UpdateFinallyScoreHttpPostIn" />
       <wsdl:output message="tns:UpdateFinallyScoreHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取线上排名</wsdl:documentation>
+      <wsdl:input message="tns:GetOnlineRankHttpPostIn" />
+      <wsdl:output message="tns:GetOnlineRankHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
@@ -886,6 +933,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFinallyScore">
       <soap:operation soapAction="WebService/UpdateFinallyScore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <soap:operation soapAction="WebService/GetOnlineRank" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1031,6 +1087,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <soap12:operation soapAction="WebService/GetOnlineRank" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpGet" type="tns:ClientServiceHttpGet">
     <http:binding verb="GET" />
@@ -1169,6 +1234,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <http:operation location="/GetOnlineRank" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpPost" type="tns:ClientServiceHttpPost">
     <http:binding verb="POST" />
@@ -1300,6 +1374,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateFinallyScore">
       <http:operation location="/UpdateFinallyScore" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOnlineRank">
+      <http:operation location="/GetOnlineRank" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

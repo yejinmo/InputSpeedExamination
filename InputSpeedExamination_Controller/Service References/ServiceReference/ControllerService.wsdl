@@ -2,11 +2,28 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="WebService" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="WebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="WebService">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetStats">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -25,7 +42,12 @@
         </s:complexType>
       </s:element>
       <s:element name="GetExamRoomList">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetExamRoomListResponse">
         <s:complexType>
@@ -46,6 +68,8 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="RoomTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -62,6 +86,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="RoomTitle" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludeIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -76,6 +102,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="RoomID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -87,7 +115,12 @@
         </s:complexType>
       </s:element>
       <s:element name="GetAllContent">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetAllContentResponse">
         <s:complexType>
@@ -108,6 +141,8 @@
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -124,6 +159,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="ContentID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -138,6 +175,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ContentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -152,6 +191,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -173,6 +214,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -191,7 +234,12 @@
         </s:complexType>
       </s:element>
       <s:element name="GetBatchList">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetBatchListResponse">
         <s:complexType>
@@ -213,6 +261,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -227,6 +277,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -241,6 +293,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -255,6 +309,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="BatchID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -272,6 +328,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="IncludePaper" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -282,6 +340,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="boolean" type="s:boolean" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
           <s:sequence>
@@ -291,9 +350,14 @@
         </s:complexType>
       </s:element>
       <s:element name="string" nillable="true" type="s:string" />
-      <s:element name="boolean" type="s:boolean" />
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
   <wsdl:message name="GetStatsSoapIn">
     <wsdl:part name="parameters" element="tns:GetStats" />
   </wsdl:message>
@@ -396,20 +460,34 @@
   <wsdl:message name="EditBatchSoapOut">
     <wsdl:part name="parameters" element="tns:EditBatchResponse" />
   </wsdl:message>
+  <wsdl:message name="LoginHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="GetStatsHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
     <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetExamRoomListHttpGetIn" />
+  <wsdl:message name="GetExamRoomListHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetExamRoomListHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="CreateNewExamRoomHttpGetIn">
     <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -418,23 +496,32 @@
     <wsdl:part name="RoomID" type="s:string" />
     <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteExamRoomHttpGetIn">
     <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteExamRoomHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentHttpGetIn" />
+  <wsdl:message name="GetAllContentHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetAllContentHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="CreateNewContentHttpGetIn">
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Content" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewContentHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -443,29 +530,40 @@
     <wsdl:part name="ContentID" type="s:string" />
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Content" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateContentHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteContentHttpGetIn">
     <wsdl:part name="ContentID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteContentHttpGetOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
   <wsdl:message name="GetContentByPaperIDHttpGetIn">
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByPaperIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListHttpGetIn" />
+  <wsdl:message name="GetBatchListHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchListHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
@@ -473,24 +571,32 @@
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Remark" type="s:string" />
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="StartBatchHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="StartBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="StopBatchHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="StopBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteBatchHttpGetIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -500,24 +606,40 @@
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Remark" type="s:string" />
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="LoginHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
   <wsdl:message name="GetStatsHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
     <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetStatsHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetExamRoomListHttpPostIn" />
+  <wsdl:message name="GetExamRoomListHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetExamRoomListHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="CreateNewExamRoomHttpPostIn">
     <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -526,23 +648,32 @@
     <wsdl:part name="RoomID" type="s:string" />
     <wsdl:part name="RoomTitle" type="s:string" />
     <wsdl:part name="IncludeIP" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteExamRoomHttpPostIn">
     <wsdl:part name="RoomID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteExamRoomHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
-  <wsdl:message name="GetAllContentHttpPostIn" />
+  <wsdl:message name="GetAllContentHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetAllContentHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="CreateNewContentHttpPostIn">
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Content" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewContentHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -551,29 +682,40 @@
     <wsdl:part name="ContentID" type="s:string" />
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Content" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="UpdateContentHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteContentHttpPostIn">
     <wsdl:part name="ContentID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteContentHttpPostOut">
     <wsdl:part name="Body" element="tns:boolean" />
   </wsdl:message>
   <wsdl:message name="GetContentByPaperIDHttpPostIn">
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByPaperIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
-  <wsdl:message name="GetBatchListHttpPostIn" />
+  <wsdl:message name="GetBatchListHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchListHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
@@ -581,24 +723,32 @@
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Remark" type="s:string" />
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="CreateNewBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="StartBatchHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="StartBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="StopBatchHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="StopBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="DeleteBatchHttpPostIn">
     <wsdl:part name="BatchID" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="DeleteBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -608,11 +758,18 @@
     <wsdl:part name="Title" type="s:string" />
     <wsdl:part name="Remark" type="s:string" />
     <wsdl:part name="IncludePaper" type="s:string" />
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
   </wsdl:message>
   <wsdl:message name="EditBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:portType name="ControllerServiceSoap">
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">登录验证</wsdl:documentation>
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
       <wsdl:input message="tns:GetStatsSoapIn" />
@@ -700,6 +857,11 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ControllerServiceHttpGet">
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">登录验证</wsdl:documentation>
+      <wsdl:input message="tns:LoginHttpGetIn" />
+      <wsdl:output message="tns:LoginHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
       <wsdl:input message="tns:GetStatsHttpGetIn" />
@@ -787,6 +949,11 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ControllerServiceHttpPost">
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">登录验证</wsdl:documentation>
+      <wsdl:input message="tns:LoginHttpPostIn" />
+      <wsdl:output message="tns:LoginHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取指定考场状态表</wsdl:documentation>
       <wsdl:input message="tns:GetStatsHttpPostIn" />
@@ -875,6 +1042,15 @@
   </wsdl:portType>
   <wsdl:binding name="ControllerServiceSoap" type="tns:ControllerServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="WebService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <soap:operation soapAction="WebService/GetStats" style="document" />
       <wsdl:input>
@@ -1031,6 +1207,15 @@
   </wsdl:binding>
   <wsdl:binding name="ControllerServiceSoap12" type="tns:ControllerServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="WebService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <soap12:operation soapAction="WebService/GetStats" style="document" />
       <wsdl:input>
@@ -1187,6 +1372,15 @@
   </wsdl:binding>
   <wsdl:binding name="ControllerServiceHttpGet" type="tns:ControllerServiceHttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <http:operation location="/GetStats" />
       <wsdl:input>
@@ -1343,6 +1537,15 @@
   </wsdl:binding>
   <wsdl:binding name="ControllerServiceHttpPost" type="tns:ControllerServiceHttpPost">
     <http:binding verb="POST" />
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetStats">
       <http:operation location="/GetStats" />
       <wsdl:input>

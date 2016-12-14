@@ -75,6 +75,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateFinallyScore", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetOnlineRank", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetOnlineRank(string GUID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -162,6 +166,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent) {
             return base.Channel.UpdateFinallyScore(GUID, Speed, Process, CorrectPercent);
+        }
+        
+        public string GetOnlineRank(string GUID) {
+            return base.Channel.GetOnlineRank(GUID);
         }
     }
 }

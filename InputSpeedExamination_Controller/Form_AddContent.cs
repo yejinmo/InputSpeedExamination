@@ -13,10 +13,14 @@ namespace InputSpeedExamination_Controller
 {
     public partial class Form_AddContent : Form
     {
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
 
-        public Form_AddContent()
+        public Form_AddContent(string u, string p)
         {
             InitializeComponent();
+            USERNAME = u;
+            PASSWORD = p;
         }
 
         private void Button_Close_Click(object sender, EventArgs e)
@@ -42,7 +46,7 @@ namespace InputSpeedExamination_Controller
                     content = Text_Content.Text;
                     Enabled = false;
                 });
-                string res = new ServiceReference.ControllerServiceSoapClient().CreateNewContent(title, content);
+                string res = new ServiceReference.ControllerServiceSoapClient().CreateNewContent(title, content, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
@@ -75,6 +79,11 @@ namespace InputSpeedExamination_Controller
         {
             Text_Content.Text = string.Empty;
             Text_Title.Text = string.Empty;
+        }
+
+        private void Text_Content_TextChanged(object sender, EventArgs e)
+        {
+            GroupBox_Content.Text = string.Format("内容[长度:{0}]", Text_Content.Text.Length);
         }
     }
 }

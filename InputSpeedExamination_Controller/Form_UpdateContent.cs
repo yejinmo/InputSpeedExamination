@@ -15,9 +15,13 @@ namespace InputSpeedExamination_Controller
     {
 
         string ID = string.Empty;
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
 
-        public Form_UpdateContent(string id, string md5, string title, string content)
-        {
+        public Form_UpdateContent(string id, string md5, string title, string content, string u, string p)
+        { 
+            USERNAME = u;
+            PASSWORD = p;
             InitializeComponent();
             ID = id;
             Text_Content.Text = content;
@@ -43,7 +47,7 @@ namespace InputSpeedExamination_Controller
                     content = Text_Content.Text;
                     Enabled = false;
                 });
-                string res = new ServiceReference.ControllerServiceSoapClient().UpdateContent(ID, title, content);
+                string res = new ServiceReference.ControllerServiceSoapClient().UpdateContent(ID, title, content, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
@@ -86,6 +90,11 @@ namespace InputSpeedExamination_Controller
         private void Form_UpdateContent_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Text_Content_TextChanged(object sender, EventArgs e)
+        {
+            GroupBox_Content.Text = string.Format("内容[长度:{0}]", Text_Content.Text.Length);
         }
     }
 }

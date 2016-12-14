@@ -16,10 +16,14 @@ namespace InputSpeedExamination_Controller
     {
 
         string ExamRoomID = string.Empty;
+        string USERNAME = string.Empty;
+        string PASSWORD = string.Empty;
 
-        public Form_EditExamRoom(string id, string title, string includeIP)
+        public Form_EditExamRoom(string id, string title, string includeIP, string u, string p)
         {
             InitializeComponent();
+            USERNAME = u;
+            PASSWORD = p;
             ExamRoomID = id;
             Text = string.Format("编辑考场 [ID:{0}, 标题:{1}]", id, title);
             Text_Title.Text = title;
@@ -85,7 +89,7 @@ namespace InputSpeedExamination_Controller
                     if (includeIP.EndsWith(","))
                         includeIP = includeIP.Substring(0, includeIP.Length - 1);
                 });
-                var res = new ServiceReference.ControllerServiceSoapClient().EditExamRoom(ExamRoomID, title, includeIP);
+                var res = new ServiceReference.ControllerServiceSoapClient().EditExamRoom(ExamRoomID, title, includeIP, USERNAME, PASSWORD);
                 Invoke((EventHandler)delegate
                 {
                     if (res == "ok")
