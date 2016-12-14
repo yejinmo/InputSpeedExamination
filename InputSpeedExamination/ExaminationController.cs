@@ -136,6 +136,8 @@ namespace InputSpeedExamination
                     temp = TrimAll(temp);
                     if (temp.Length != 0)
                     {
+                        if (pos == len && ExaminationText[pos - 1] != '\n')
+                            temp += ExaminationText[pos - 1];
                         TextLine tl = new TextLine();
                         tl.ExaminationText = temp;
                         tl.UserText = string.Empty;

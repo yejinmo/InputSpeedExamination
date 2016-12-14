@@ -86,8 +86,8 @@ namespace WebService
                 IPAddress = "0.0.0.0";
             else
                 IPAddress = Context.Request.UserHostAddress.ToString();
-            if (!new DBHelper().CheckContentMD5(ContentMD5))
-                return "md5 error";
+            //if (!new DBHelper().CheckContentMD5(ContentMD5))
+            //    return "md5 error";
             string GUID = Guid.NewGuid().ToString("N");
             if (new DBHelper().InsertExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, GetNowDateTime(), BatchID, RoomID))
                 return GUID;
@@ -139,6 +139,23 @@ namespace WebService
         public DataSet GetContentByBatchID(string BatchID)
         {
             return new DBHelper().GetContentByBatchID(BatchID);
+        }
+
+        [WebMethod(Description = "提交最终成绩")]
+        public string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent)
+        {
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+            return new DBHelper().UpdateFinallyScore(GUID, Speed, Process, CorrectPercent, IPAddress);
+        }
+
+        [WebMethod(Description = "获取线上排名")]
+        public string GetOnlineRank(string GUID)
+        {
+            return new DBHelper().GetOnlineRank(GUID);
         }
 
         /// <summary>

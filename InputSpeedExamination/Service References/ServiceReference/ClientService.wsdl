@@ -219,6 +219,23 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateFinallyScore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Speed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Process" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CorrectPercent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFinallyScoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateFinallyScoreResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="DataSet" nillable="true">
         <s:complexType>
@@ -316,6 +333,12 @@
   <wsdl:message name="GetContentByBatchIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetContentByBatchIDResponse" />
   </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFinallyScore" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFinallyScoreResponse" />
+  </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
   </wsdl:message>
@@ -399,6 +422,15 @@
   </wsdl:message>
   <wsdl:message name="GetContentByBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreHttpGetIn">
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Speed" type="s:string" />
+    <wsdl:part name="Process" type="s:string" />
+    <wsdl:part name="CorrectPercent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
     <wsdl:part name="data" type="s:string" />
@@ -484,6 +516,15 @@
   <wsdl:message name="GetContentByBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreHttpPostIn">
+    <wsdl:part name="GUID" type="s:string" />
+    <wsdl:part name="Speed" type="s:string" />
+    <wsdl:part name="Process" type="s:string" />
+    <wsdl:part name="CorrectPercent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFinallyScoreHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:portType name="ClientServiceSoap">
     <wsdl:operation name="SayHello">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">测试服务器连接</wsdl:documentation>
@@ -496,7 +537,7 @@
       <wsdl:output message="tns:GetAllDepartmentSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取下属专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentSoapIn" />
       <wsdl:output message="tns:GetMajorByDepartmentSoapOut" />
     </wsdl:operation>
@@ -555,6 +596,11 @@
       <wsdl:input message="tns:GetContentByBatchIDSoapIn" />
       <wsdl:output message="tns:GetContentByBatchIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">提交最终成绩</wsdl:documentation>
+      <wsdl:input message="tns:UpdateFinallyScoreSoapIn" />
+      <wsdl:output message="tns:UpdateFinallyScoreSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpGet">
     <wsdl:operation name="SayHello">
@@ -568,7 +614,7 @@
       <wsdl:output message="tns:GetAllDepartmentHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取下属专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentHttpGetIn" />
       <wsdl:output message="tns:GetMajorByDepartmentHttpGetOut" />
     </wsdl:operation>
@@ -627,6 +673,11 @@
       <wsdl:input message="tns:GetContentByBatchIDHttpGetIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">提交最终成绩</wsdl:documentation>
+      <wsdl:input message="tns:UpdateFinallyScoreHttpGetIn" />
+      <wsdl:output message="tns:UpdateFinallyScoreHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpPost">
     <wsdl:operation name="SayHello">
@@ -640,7 +691,7 @@
       <wsdl:output message="tns:GetAllDepartmentHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetMajorByDepartment">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取专业</wsdl:documentation>
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据 DepartmentID 获取下属专业</wsdl:documentation>
       <wsdl:input message="tns:GetMajorByDepartmentHttpPostIn" />
       <wsdl:output message="tns:GetMajorByDepartmentHttpPostOut" />
     </wsdl:operation>
@@ -698,6 +749,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据考场ID获取内容</wsdl:documentation>
       <wsdl:input message="tns:GetContentByBatchIDHttpPostIn" />
       <wsdl:output message="tns:GetContentByBatchIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">提交最终成绩</wsdl:documentation>
+      <wsdl:input message="tns:UpdateFinallyScoreHttpPostIn" />
+      <wsdl:output message="tns:UpdateFinallyScoreHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
@@ -821,6 +877,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <soap:operation soapAction="WebService/GetContentByBatchID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <soap:operation soapAction="WebService/UpdateFinallyScore" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -957,6 +1022,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <soap12:operation soapAction="WebService/UpdateFinallyScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpGet" type="tns:ClientServiceHttpGet">
     <http:binding verb="GET" />
@@ -1086,6 +1160,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <http:operation location="/UpdateFinallyScore" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ClientServiceHttpPost" type="tns:ClientServiceHttpPost">
     <http:binding verb="POST" />
@@ -1208,6 +1291,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetContentByBatchID">
       <http:operation location="/GetContentByBatchID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFinallyScore">
+      <http:operation location="/UpdateFinallyScore" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

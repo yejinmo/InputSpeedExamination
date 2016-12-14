@@ -72,17 +72,38 @@
             this.ColumnHeader_ExaminationList_MD5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProcessBar_SearchExamination = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Result = new System.Windows.Forms.TabPage();
+            this.Panel_Result = new System.Windows.Forms.Panel();
+            this.Text_Result_Total = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Result_Time = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Result_CorrectPercent = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Result_Speed = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Label_Result_Tip_Total = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Result_Tip_Time = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Result_Tip_CorrectPercent = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Result_Tip_Speed = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Result_Tip = new MaterialSkin.Controls.MaterialLabel();
+            this.TabPage_Main = new System.Windows.Forms.TabPage();
+            this.PictureBox_UserImage = new System.Windows.Forms.PictureBox();
             this.Timer_Clocks = new System.Windows.Forms.Timer(this.components);
             this.Timer_SearchExamination = new System.Windows.Forms.Timer(this.components);
             this.Label_UserName = new System.Windows.Forms.Label();
             this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.Timer_UpdateStats = new System.Windows.Forms.Timer(this.components);
-            this.TabPage_Main = new System.Windows.Forms.TabPage();
-            this.PictureBox_UserImage = new System.Windows.Forms.PictureBox();
-            this.Label_Main_Welcome = new MaterialSkin.Controls.MaterialLabel();
-            this.Label_Main_Department = new MaterialSkin.Controls.MaterialLabel();
-            this.Label_Main_Major = new MaterialSkin.Controls.MaterialLabel();
-            this.Label_Main_Class = new MaterialSkin.Controls.MaterialLabel();
+            this.Button_Result_Close = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Panel_Result_Online = new System.Windows.Forms.Panel();
+            this.Label_Result_Tip_SendResult = new MaterialSkin.Controls.MaterialLabel();
+            this.Process_Result_SendResult = new MaterialSkin.Controls.MaterialProcessBar();
+            this.Text_Result_FinalScore = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Label_Result_Tip_FianlScore = new MaterialSkin.Controls.MaterialLabel();
+            this.Label_Result_Tip_Percent = new MaterialSkin.Controls.MaterialLabel();
+            this.Progress_Result_Percent = new MaterialSkin.Controls.MaterialProgressBar();
+            this.Button_Complete = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_About = new MaterialSkin.Controls.MaterialFlatButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.materialSingleLineTextField_Examination1 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.materialSingleLineTextField_Examination2 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.materialSingleLineTextField_Examination3 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.materialSingleLineTextField_Examination4 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -92,7 +113,11 @@
             this.Panel_Start.SuspendLayout();
             this.TabPage_SelectText.SuspendLayout();
             this.TabPage_Result.SuspendLayout();
+            this.Panel_Result.SuspendLayout();
+            this.TabPage_Main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).BeginInit();
+            this.Panel_Result_Online.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -101,11 +126,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl_Main.Controls.Add(this.TabPage_Select);
-            this.TabControl_Main.Controls.Add(this.TabPage_Examination);
-            this.TabControl_Main.Controls.Add(this.TabPage_Start);
-            this.TabControl_Main.Controls.Add(this.TabPage_SelectText);
-            this.TabControl_Main.Controls.Add(this.TabPage_Result);
             this.TabControl_Main.Controls.Add(this.TabPage_Main);
+            this.TabControl_Main.Controls.Add(this.TabPage_SelectText);
+            this.TabControl_Main.Controls.Add(this.TabPage_Start);
+            this.TabControl_Main.Controls.Add(this.TabPage_Examination);
+            this.TabControl_Main.Controls.Add(this.TabPage_Result);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(1, 66);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(1);
@@ -118,6 +143,7 @@
             // TabPage_Select
             // 
             this.TabPage_Select.BackColor = System.Drawing.Color.White;
+            this.TabPage_Select.Controls.Add(this.Button_About);
             this.TabPage_Select.Controls.Add(this.Panel_Login);
             this.TabPage_Select.Controls.Add(this.WebView_Select_BG);
             this.TabPage_Select.Location = new System.Drawing.Point(4, 22);
@@ -125,7 +151,7 @@
             this.TabPage_Select.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage_Select.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Select.TabIndex = 0;
-            this.TabPage_Select.Text = "tabPage1";
+            this.TabPage_Select.Text = "TabPage_Select";
             // 
             // Panel_Login
             // 
@@ -268,13 +294,14 @@
             this.TabPage_Examination.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage_Examination.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Examination.TabIndex = 1;
-            this.TabPage_Examination.Text = "tabPage2";
+            this.TabPage_Examination.Text = "TabPage_Examination";
             // 
             // Panel_Input_Main
             // 
             this.Panel_Input_Main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Input_Main.Controls.Add(this.Button_Complete);
             this.Panel_Input_Main.Controls.Add(this.Button_Back);
             this.Panel_Input_Main.Controls.Add(this.Button_Pause_Continue);
             this.Panel_Input_Main.Controls.Add(this.Label_Stats_Time);
@@ -298,9 +325,9 @@
             // 
             // Button_Back
             // 
-            this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_Back.Depth = 0;
-            this.Button_Back.Location = new System.Drawing.Point(608, 622);
+            this.Button_Back.Location = new System.Drawing.Point(9, 622);
             this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Back.Name = "Button_Back";
             this.Button_Back.Primary = true;
@@ -331,7 +358,7 @@
             this.Label_Stats_Time.Depth = 0;
             this.Label_Stats_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Label_Stats_Time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Stats_Time.Location = new System.Drawing.Point(3, 632);
+            this.Label_Stats_Time.Location = new System.Drawing.Point(4, 569);
             this.Label_Stats_Time.MouseState = MaterialSkin.MouseState.HOVER;
             this.Label_Stats_Time.Name = "Label_Stats_Time";
             this.Label_Stats_Time.Size = new System.Drawing.Size(505, 46);
@@ -415,6 +442,7 @@
             this.Examination_TextLine_5.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_5.TabIndex = 9;
             this.Examination_TextLine_5.TabStop = false;
+            this.Examination_TextLine_5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Examination_TextLine_5.UseSystemPasswordChar = false;
             this.Examination_TextLine_5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Examination_TextLine_5_KeyDown);
             this.Examination_TextLine_5.TextChanged += new System.EventHandler(this.Examination_TextLine_5_TextChanged);
@@ -468,6 +496,7 @@
             this.Examination_TextLine_1.TabIndex = 0;
             this.Examination_TextLine_1.TabStop = false;
             this.Examination_TextLine_1.Text = "123   一二三abc   123   一二三abc   123   一二三abc   ";
+            this.Examination_TextLine_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Examination_TextLine_1.UseSystemPasswordChar = false;
             this.Examination_TextLine_1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Examination_TextLine_1_KeyDown);
             this.Examination_TextLine_1.TextChanged += new System.EventHandler(this.Examination_TextLine_1_TextChanged);
@@ -501,6 +530,7 @@
             this.Examination_TextLine_4.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_4.TabIndex = 8;
             this.Examination_TextLine_4.TabStop = false;
+            this.Examination_TextLine_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Examination_TextLine_4.UseSystemPasswordChar = false;
             this.Examination_TextLine_4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Examination_TextLine_4_KeyDown);
             this.Examination_TextLine_4.TextChanged += new System.EventHandler(this.Examination_TextLine_4_TextChanged);
@@ -572,6 +602,7 @@
             this.Examination_TextLine_3.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_3.TabIndex = 7;
             this.Examination_TextLine_3.TabStop = false;
+            this.Examination_TextLine_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Examination_TextLine_3.UseSystemPasswordChar = false;
             this.Examination_TextLine_3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Examination_TextLine_3_KeyDown);
             this.Examination_TextLine_3.TextChanged += new System.EventHandler(this.Examination_TextLine_3_TextChanged);
@@ -624,6 +655,7 @@
             this.Examination_TextLine_2.Size = new System.Drawing.Size(1131, 51);
             this.Examination_TextLine_2.TabIndex = 6;
             this.Examination_TextLine_2.TabStop = false;
+            this.Examination_TextLine_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Examination_TextLine_2.UseSystemPasswordChar = false;
             this.Examination_TextLine_2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Examination_TextLine_2_KeyDown);
             this.Examination_TextLine_2.TextChanged += new System.EventHandler(this.Examination_TextLine_2_TextChanged);
@@ -827,16 +859,256 @@
             // TabPage_Result
             // 
             this.TabPage_Result.BackColor = System.Drawing.Color.White;
-            this.TabPage_Result.Controls.Add(this.Label_Main_Class);
-            this.TabPage_Result.Controls.Add(this.Label_Main_Major);
-            this.TabPage_Result.Controls.Add(this.Label_Main_Department);
-            this.TabPage_Result.Controls.Add(this.Label_Main_Welcome);
-            this.TabPage_Result.Controls.Add(this.PictureBox_UserImage);
+            this.TabPage_Result.Controls.Add(this.Button_Result_Close);
+            this.TabPage_Result.Controls.Add(this.Panel_Result);
             this.TabPage_Result.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Result.Name = "TabPage_Result";
             this.TabPage_Result.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Result.TabIndex = 4;
             this.TabPage_Result.Text = "TabPage_Result";
+            // 
+            // Panel_Result
+            // 
+            this.Panel_Result.Controls.Add(this.Text_Result_FinalScore);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip_FianlScore);
+            this.Panel_Result.Controls.Add(this.Panel_Result_Online);
+            this.Panel_Result.Controls.Add(this.Text_Result_Total);
+            this.Panel_Result.Controls.Add(this.Text_Result_Time);
+            this.Panel_Result.Controls.Add(this.Text_Result_CorrectPercent);
+            this.Panel_Result.Controls.Add(this.Text_Result_Speed);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip_Total);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip_Time);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip_CorrectPercent);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip_Speed);
+            this.Panel_Result.Controls.Add(this.Label_Result_Tip);
+            this.Panel_Result.Location = new System.Drawing.Point(231, 66);
+            this.Panel_Result.Name = "Panel_Result";
+            this.Panel_Result.Size = new System.Drawing.Size(783, 489);
+            this.Panel_Result.TabIndex = 0;
+            // 
+            // Text_Result_Total
+            // 
+            this.Text_Result_Total.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Result_Total.BindingLabel = null;
+            this.Text_Result_Total.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Total.Depth = 0;
+            this.Text_Result_Total.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Result_Total.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Result_Total.ErrorModeString = "";
+            this.Text_Result_Total.FollowLabel = null;
+            this.Text_Result_Total.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Result_Total.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Result_Total.ForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Total.Hint = "";
+            this.Text_Result_Total.IsErrorMode = false;
+            this.Text_Result_Total.Location = new System.Drawing.Point(213, 233);
+            this.Text_Result_Total.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Result_Total.MaxLength = 32767;
+            this.Text_Result_Total.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Result_Total.Name = "Text_Result_Total";
+            this.Text_Result_Total.PasswordChar = '\0';
+            this.Text_Result_Total.ReadOlay = true;
+            this.Text_Result_Total.SelectedText = "";
+            this.Text_Result_Total.SelectionLength = 0;
+            this.Text_Result_Total.SelectionStart = 0;
+            this.Text_Result_Total.Size = new System.Drawing.Size(564, 51);
+            this.Text_Result_Total.TabIndex = 8;
+            this.Text_Result_Total.TabStop = false;
+            this.Text_Result_Total.Text = "Text";
+            this.Text_Result_Total.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Result_Total.UseSystemPasswordChar = false;
+            // 
+            // Text_Result_Time
+            // 
+            this.Text_Result_Time.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Result_Time.BindingLabel = null;
+            this.Text_Result_Time.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Time.Depth = 0;
+            this.Text_Result_Time.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Result_Time.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Result_Time.ErrorModeString = "";
+            this.Text_Result_Time.FollowLabel = null;
+            this.Text_Result_Time.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Result_Time.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Result_Time.ForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Time.Hint = "";
+            this.Text_Result_Time.IsErrorMode = false;
+            this.Text_Result_Time.Location = new System.Drawing.Point(213, 175);
+            this.Text_Result_Time.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Result_Time.MaxLength = 32767;
+            this.Text_Result_Time.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Result_Time.Name = "Text_Result_Time";
+            this.Text_Result_Time.PasswordChar = '\0';
+            this.Text_Result_Time.ReadOlay = true;
+            this.Text_Result_Time.SelectedText = "";
+            this.Text_Result_Time.SelectionLength = 0;
+            this.Text_Result_Time.SelectionStart = 0;
+            this.Text_Result_Time.Size = new System.Drawing.Size(564, 51);
+            this.Text_Result_Time.TabIndex = 7;
+            this.Text_Result_Time.TabStop = false;
+            this.Text_Result_Time.Text = "Text";
+            this.Text_Result_Time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Result_Time.UseSystemPasswordChar = false;
+            // 
+            // Text_Result_CorrectPercent
+            // 
+            this.Text_Result_CorrectPercent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Result_CorrectPercent.BindingLabel = null;
+            this.Text_Result_CorrectPercent.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Result_CorrectPercent.Depth = 0;
+            this.Text_Result_CorrectPercent.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Result_CorrectPercent.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Result_CorrectPercent.ErrorModeString = "";
+            this.Text_Result_CorrectPercent.FollowLabel = null;
+            this.Text_Result_CorrectPercent.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Result_CorrectPercent.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Result_CorrectPercent.ForeColor = System.Drawing.Color.Black;
+            this.Text_Result_CorrectPercent.Hint = "";
+            this.Text_Result_CorrectPercent.IsErrorMode = false;
+            this.Text_Result_CorrectPercent.Location = new System.Drawing.Point(213, 117);
+            this.Text_Result_CorrectPercent.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Result_CorrectPercent.MaxLength = 32767;
+            this.Text_Result_CorrectPercent.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Result_CorrectPercent.Name = "Text_Result_CorrectPercent";
+            this.Text_Result_CorrectPercent.PasswordChar = '\0';
+            this.Text_Result_CorrectPercent.ReadOlay = true;
+            this.Text_Result_CorrectPercent.SelectedText = "";
+            this.Text_Result_CorrectPercent.SelectionLength = 0;
+            this.Text_Result_CorrectPercent.SelectionStart = 0;
+            this.Text_Result_CorrectPercent.Size = new System.Drawing.Size(564, 51);
+            this.Text_Result_CorrectPercent.TabIndex = 6;
+            this.Text_Result_CorrectPercent.TabStop = false;
+            this.Text_Result_CorrectPercent.Text = "Text";
+            this.Text_Result_CorrectPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Result_CorrectPercent.UseSystemPasswordChar = false;
+            // 
+            // Text_Result_Speed
+            // 
+            this.Text_Result_Speed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Result_Speed.BindingLabel = null;
+            this.Text_Result_Speed.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Speed.Depth = 0;
+            this.Text_Result_Speed.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Result_Speed.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Result_Speed.ErrorModeString = "";
+            this.Text_Result_Speed.FollowLabel = null;
+            this.Text_Result_Speed.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Result_Speed.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Result_Speed.ForeColor = System.Drawing.Color.Black;
+            this.Text_Result_Speed.Hint = "";
+            this.Text_Result_Speed.IsErrorMode = false;
+            this.Text_Result_Speed.Location = new System.Drawing.Point(213, 59);
+            this.Text_Result_Speed.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Result_Speed.MaxLength = 32767;
+            this.Text_Result_Speed.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Result_Speed.Name = "Text_Result_Speed";
+            this.Text_Result_Speed.PasswordChar = '\0';
+            this.Text_Result_Speed.ReadOlay = true;
+            this.Text_Result_Speed.SelectedText = "";
+            this.Text_Result_Speed.SelectionLength = 0;
+            this.Text_Result_Speed.SelectionStart = 0;
+            this.Text_Result_Speed.Size = new System.Drawing.Size(564, 51);
+            this.Text_Result_Speed.TabIndex = 5;
+            this.Text_Result_Speed.TabStop = false;
+            this.Text_Result_Speed.Text = "Text";
+            this.Text_Result_Speed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Result_Speed.UseSystemPasswordChar = false;
+            // 
+            // Label_Result_Tip_Total
+            // 
+            this.Label_Result_Tip_Total.Depth = 0;
+            this.Label_Result_Tip_Total.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_Total.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_Total.Location = new System.Drawing.Point(6, 238);
+            this.Label_Result_Tip_Total.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_Total.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_Total.Name = "Label_Result_Tip_Total";
+            this.Label_Result_Tip_Total.Size = new System.Drawing.Size(195, 46);
+            this.Label_Result_Tip_Total.TabIndex = 4;
+            this.Label_Result_Tip_Total.Text = "总字数：";
+            this.Label_Result_Tip_Total.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Label_Result_Tip_Time
+            // 
+            this.Label_Result_Tip_Time.Depth = 0;
+            this.Label_Result_Tip_Time.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_Time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_Time.Location = new System.Drawing.Point(6, 180);
+            this.Label_Result_Tip_Time.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_Time.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_Time.Name = "Label_Result_Tip_Time";
+            this.Label_Result_Tip_Time.Size = new System.Drawing.Size(195, 46);
+            this.Label_Result_Tip_Time.TabIndex = 3;
+            this.Label_Result_Tip_Time.Text = "耗时：";
+            this.Label_Result_Tip_Time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Label_Result_Tip_CorrectPercent
+            // 
+            this.Label_Result_Tip_CorrectPercent.Depth = 0;
+            this.Label_Result_Tip_CorrectPercent.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_CorrectPercent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_CorrectPercent.Location = new System.Drawing.Point(6, 122);
+            this.Label_Result_Tip_CorrectPercent.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_CorrectPercent.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_CorrectPercent.Name = "Label_Result_Tip_CorrectPercent";
+            this.Label_Result_Tip_CorrectPercent.Size = new System.Drawing.Size(195, 46);
+            this.Label_Result_Tip_CorrectPercent.TabIndex = 2;
+            this.Label_Result_Tip_CorrectPercent.Text = "正确率：";
+            this.Label_Result_Tip_CorrectPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Label_Result_Tip_Speed
+            // 
+            this.Label_Result_Tip_Speed.Depth = 0;
+            this.Label_Result_Tip_Speed.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_Speed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_Speed.Location = new System.Drawing.Point(6, 64);
+            this.Label_Result_Tip_Speed.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_Speed.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_Speed.Name = "Label_Result_Tip_Speed";
+            this.Label_Result_Tip_Speed.Size = new System.Drawing.Size(195, 46);
+            this.Label_Result_Tip_Speed.TabIndex = 1;
+            this.Label_Result_Tip_Speed.Text = "速度：";
+            this.Label_Result_Tip_Speed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Label_Result_Tip
+            // 
+            this.Label_Result_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Result_Tip.Depth = 0;
+            this.Label_Result_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip.Location = new System.Drawing.Point(14, 6);
+            this.Label_Result_Tip.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip.Name = "Label_Result_Tip";
+            this.Label_Result_Tip.Size = new System.Drawing.Size(763, 46);
+            this.Label_Result_Tip.TabIndex = 0;
+            this.Label_Result_Tip.Text = "您的成绩如下";
+            this.Label_Result_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TabPage_Main
+            // 
+            this.TabPage_Main.BackColor = System.Drawing.Color.White;
+            this.TabPage_Main.Controls.Add(this.panel1);
+            this.TabPage_Main.Location = new System.Drawing.Point(4, 22);
+            this.TabPage_Main.Name = "TabPage_Main";
+            this.TabPage_Main.Size = new System.Drawing.Size(1205, 687);
+            this.TabPage_Main.TabIndex = 5;
+            this.TabPage_Main.Text = "TabPage_Main";
+            // 
+            // PictureBox_UserImage
+            // 
+            this.PictureBox_UserImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PictureBox_UserImage.Image = global::InputSpeedExamination.Properties.Resources.avatar;
+            this.PictureBox_UserImage.Location = new System.Drawing.Point(25, 49);
+            this.PictureBox_UserImage.Name = "PictureBox_UserImage";
+            this.PictureBox_UserImage.Size = new System.Drawing.Size(150, 210);
+            this.PictureBox_UserImage.TabIndex = 5;
+            this.PictureBox_UserImage.TabStop = false;
             // 
             // Timer_Clocks
             // 
@@ -886,80 +1158,310 @@
             this.Timer_UpdateStats.Interval = 5000;
             this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
             // 
-            // TabPage_Main
+            // Button_Result_Close
             // 
-            this.TabPage_Main.BackColor = System.Drawing.Color.White;
-            this.TabPage_Main.Location = new System.Drawing.Point(4, 22);
-            this.TabPage_Main.Name = "TabPage_Main";
-            this.TabPage_Main.Size = new System.Drawing.Size(1205, 687);
-            this.TabPage_Main.TabIndex = 5;
-            this.TabPage_Main.Text = "TabPage_Main";
+            this.Button_Result_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Result_Close.Depth = 0;
+            this.Button_Result_Close.Location = new System.Drawing.Point(994, 624);
+            this.Button_Result_Close.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Result_Close.Name = "Button_Result_Close";
+            this.Button_Result_Close.Primary = true;
+            this.Button_Result_Close.Size = new System.Drawing.Size(204, 56);
+            this.Button_Result_Close.TabIndex = 17;
+            this.Button_Result_Close.Text = "关闭";
+            this.Button_Result_Close.UseVisualStyleBackColor = true;
+            this.Button_Result_Close.Click += new System.EventHandler(this.Button_Result_Close_Click);
             // 
-            // PictureBox_UserImage
+            // Panel_Result_Online
             // 
-            this.PictureBox_UserImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PictureBox_UserImage.Image = global::InputSpeedExamination.Properties.Resources.avatar;
-            this.PictureBox_UserImage.Location = new System.Drawing.Point(298, 69);
-            this.PictureBox_UserImage.Name = "PictureBox_UserImage";
-            this.PictureBox_UserImage.Size = new System.Drawing.Size(150, 210);
-            this.PictureBox_UserImage.TabIndex = 0;
-            this.PictureBox_UserImage.TabStop = false;
+            this.Panel_Result_Online.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Result_Online.Controls.Add(this.Progress_Result_Percent);
+            this.Panel_Result_Online.Controls.Add(this.Label_Result_Tip_Percent);
+            this.Panel_Result_Online.Controls.Add(this.Process_Result_SendResult);
+            this.Panel_Result_Online.Controls.Add(this.Label_Result_Tip_SendResult);
+            this.Panel_Result_Online.Location = new System.Drawing.Point(3, 356);
+            this.Panel_Result_Online.Name = "Panel_Result_Online";
+            this.Panel_Result_Online.Size = new System.Drawing.Size(777, 129);
+            this.Panel_Result_Online.TabIndex = 9;
             // 
-            // Label_Main_Welcome
+            // Label_Result_Tip_SendResult
             // 
-            this.Label_Main_Welcome.AutoSize = true;
-            this.Label_Main_Welcome.Depth = 0;
-            this.Label_Main_Welcome.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Main_Welcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Main_Welcome.Location = new System.Drawing.Point(601, 69);
-            this.Label_Main_Welcome.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
-            this.Label_Main_Welcome.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Main_Welcome.Name = "Label_Main_Welcome";
-            this.Label_Main_Welcome.Size = new System.Drawing.Size(170, 46);
-            this.Label_Main_Welcome.TabIndex = 1;
-            this.Label_Main_Welcome.Text = "欢迎，{0}";
+            this.Label_Result_Tip_SendResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Result_Tip_SendResult.Depth = 0;
+            this.Label_Result_Tip_SendResult.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_SendResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_SendResult.Location = new System.Drawing.Point(6, 6);
+            this.Label_Result_Tip_SendResult.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_SendResult.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_SendResult.Name = "Label_Result_Tip_SendResult";
+            this.Label_Result_Tip_SendResult.Size = new System.Drawing.Size(765, 46);
+            this.Label_Result_Tip_SendResult.TabIndex = 1;
+            this.Label_Result_Tip_SendResult.Text = "正在将成绩提交至服务器";
+            this.Label_Result_Tip_SendResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Label_Main_Department
+            // Process_Result_SendResult
             // 
-            this.Label_Main_Department.AutoSize = true;
-            this.Label_Main_Department.Depth = 0;
-            this.Label_Main_Department.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Main_Department.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Main_Department.Location = new System.Drawing.Point(601, 115);
-            this.Label_Main_Department.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
-            this.Label_Main_Department.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Main_Department.Name = "Label_Main_Department";
-            this.Label_Main_Department.Size = new System.Drawing.Size(100, 46);
-            this.Label_Main_Department.TabIndex = 2;
-            this.Label_Main_Department.Text = "{0}系";
+            this.Process_Result_SendResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Process_Result_SendResult.Depth = 0;
+            this.Process_Result_SendResult.Interval = 10;
+            this.Process_Result_SendResult.LengthValue = 300;
+            this.Process_Result_SendResult.Location = new System.Drawing.Point(3, 56);
+            this.Process_Result_SendResult.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Process_Result_SendResult.Name = "Process_Result_SendResult";
+            this.Process_Result_SendResult.Processing = true;
+            this.Process_Result_SendResult.Size = new System.Drawing.Size(768, 5);
+            this.Process_Result_SendResult.StepValue = 7;
+            this.Process_Result_SendResult.TabIndex = 2;
             // 
-            // Label_Main_Major
+            // Text_Result_FinalScore
             // 
-            this.Label_Main_Major.AutoSize = true;
-            this.Label_Main_Major.Depth = 0;
-            this.Label_Main_Major.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Main_Major.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Main_Major.Location = new System.Drawing.Point(601, 161);
-            this.Label_Main_Major.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
-            this.Label_Main_Major.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Main_Major.Name = "Label_Main_Major";
-            this.Label_Main_Major.Size = new System.Drawing.Size(135, 46);
-            this.Label_Main_Major.TabIndex = 3;
-            this.Label_Main_Major.Text = "{0}专业";
+            this.Text_Result_FinalScore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Result_FinalScore.BindingLabel = null;
+            this.Text_Result_FinalScore.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Result_FinalScore.Depth = 0;
+            this.Text_Result_FinalScore.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Result_FinalScore.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Result_FinalScore.ErrorModeString = "";
+            this.Text_Result_FinalScore.FollowLabel = null;
+            this.Text_Result_FinalScore.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Result_FinalScore.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Result_FinalScore.ForeColor = System.Drawing.Color.Black;
+            this.Text_Result_FinalScore.Hint = "";
+            this.Text_Result_FinalScore.IsErrorMode = false;
+            this.Text_Result_FinalScore.Location = new System.Drawing.Point(213, 296);
+            this.Text_Result_FinalScore.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Result_FinalScore.MaxLength = 32767;
+            this.Text_Result_FinalScore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Result_FinalScore.Name = "Text_Result_FinalScore";
+            this.Text_Result_FinalScore.PasswordChar = '\0';
+            this.Text_Result_FinalScore.ReadOlay = true;
+            this.Text_Result_FinalScore.SelectedText = "";
+            this.Text_Result_FinalScore.SelectionLength = 0;
+            this.Text_Result_FinalScore.SelectionStart = 0;
+            this.Text_Result_FinalScore.Size = new System.Drawing.Size(564, 51);
+            this.Text_Result_FinalScore.TabIndex = 11;
+            this.Text_Result_FinalScore.TabStop = false;
+            this.Text_Result_FinalScore.Text = "Text";
+            this.Text_Result_FinalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Result_FinalScore.UseSystemPasswordChar = false;
             // 
-            // Label_Main_Class
+            // Label_Result_Tip_FianlScore
             // 
-            this.Label_Main_Class.AutoSize = true;
-            this.Label_Main_Class.Depth = 0;
-            this.Label_Main_Class.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Main_Class.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Main_Class.Location = new System.Drawing.Point(601, 207);
-            this.Label_Main_Class.Margin = new System.Windows.Forms.Padding(150, 0, 3, 0);
-            this.Label_Main_Class.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Main_Class.Name = "Label_Main_Class";
-            this.Label_Main_Class.Size = new System.Drawing.Size(100, 46);
-            this.Label_Main_Class.TabIndex = 4;
-            this.Label_Main_Class.Text = "{0}班";
+            this.Label_Result_Tip_FianlScore.Depth = 0;
+            this.Label_Result_Tip_FianlScore.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_FianlScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_FianlScore.Location = new System.Drawing.Point(6, 301);
+            this.Label_Result_Tip_FianlScore.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_FianlScore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_FianlScore.Name = "Label_Result_Tip_FianlScore";
+            this.Label_Result_Tip_FianlScore.Size = new System.Drawing.Size(195, 46);
+            this.Label_Result_Tip_FianlScore.TabIndex = 10;
+            this.Label_Result_Tip_FianlScore.Text = "最终成绩：";
+            this.Label_Result_Tip_FianlScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // Label_Result_Tip_Percent
+            // 
+            this.Label_Result_Tip_Percent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Result_Tip_Percent.Depth = 0;
+            this.Label_Result_Tip_Percent.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Result_Tip_Percent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Result_Tip_Percent.Location = new System.Drawing.Point(6, 64);
+            this.Label_Result_Tip_Percent.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Result_Tip_Percent.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Result_Tip_Percent.Name = "Label_Result_Tip_Percent";
+            this.Label_Result_Tip_Percent.Size = new System.Drawing.Size(765, 46);
+            this.Label_Result_Tip_Percent.TabIndex = 3;
+            this.Label_Result_Tip_Percent.Text = "您的成绩击败了全校 {0}% 的人";
+            this.Label_Result_Tip_Percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Progress_Result_Percent
+            // 
+            this.Progress_Result_Percent.Depth = 0;
+            this.Progress_Result_Percent.Location = new System.Drawing.Point(3, 119);
+            this.Progress_Result_Percent.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Progress_Result_Percent.Name = "Progress_Result_Percent";
+            this.Progress_Result_Percent.Size = new System.Drawing.Size(768, 5);
+            this.Progress_Result_Percent.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.Progress_Result_Percent.TabIndex = 4;
+            this.Progress_Result_Percent.Value = 10;
+            // 
+            // Button_Complete
+            // 
+            this.Button_Complete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Complete.Depth = 0;
+            this.Button_Complete.Location = new System.Drawing.Point(608, 622);
+            this.Button_Complete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Complete.Name = "Button_Complete";
+            this.Button_Complete.Primary = true;
+            this.Button_Complete.Size = new System.Drawing.Size(129, 56);
+            this.Button_Complete.TabIndex = 16;
+            this.Button_Complete.Text = "完成";
+            this.Button_Complete.UseVisualStyleBackColor = true;
+            this.Button_Complete.Visible = false;
+            this.Button_Complete.Click += new System.EventHandler(this.Button_Complete_Click);
+            // 
+            // Button_About
+            // 
+            this.Button_About.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_About.Depth = 0;
+            this.Button_About.Location = new System.Drawing.Point(1111, 645);
+            this.Button_About.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_About.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_About.Name = "Button_About";
+            this.Button_About.Primary = false;
+            this.Button_About.Size = new System.Drawing.Size(87, 36);
+            this.Button_About.TabIndex = 4;
+            this.Button_About.Text = "关于";
+            this.Button_About.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination4);
+            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination3);
+            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination2);
+            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination1);
+            this.panel1.Controls.Add(this.PictureBox_UserImage);
+            this.panel1.Location = new System.Drawing.Point(195, 75);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(899, 528);
+            this.panel1.TabIndex = 10;
+            // 
+            // materialSingleLineTextField_Examination1
+            // 
+            this.materialSingleLineTextField_Examination1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialSingleLineTextField_Examination1.BindingLabel = null;
+            this.materialSingleLineTextField_Examination1.CorrectForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination1.Depth = 0;
+            this.materialSingleLineTextField_Examination1.ErrorForeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination1.ErrorModeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination1.ErrorModeString = "";
+            this.materialSingleLineTextField_Examination1.FollowLabel = null;
+            this.materialSingleLineTextField_Examination1.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSingleLineTextField_Examination1.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.materialSingleLineTextField_Examination1.ForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination1.Hint = "";
+            this.materialSingleLineTextField_Examination1.IsErrorMode = false;
+            this.materialSingleLineTextField_Examination1.Location = new System.Drawing.Point(231, 31);
+            this.materialSingleLineTextField_Examination1.Margin = new System.Windows.Forms.Padding(6);
+            this.materialSingleLineTextField_Examination1.MaxLength = 32767;
+            this.materialSingleLineTextField_Examination1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField_Examination1.Name = "materialSingleLineTextField_Examination1";
+            this.materialSingleLineTextField_Examination1.PasswordChar = '\0';
+            this.materialSingleLineTextField_Examination1.ReadOlay = true;
+            this.materialSingleLineTextField_Examination1.SelectedText = "";
+            this.materialSingleLineTextField_Examination1.SelectionLength = 0;
+            this.materialSingleLineTextField_Examination1.SelectionStart = 0;
+            this.materialSingleLineTextField_Examination1.Size = new System.Drawing.Size(621, 51);
+            this.materialSingleLineTextField_Examination1.TabIndex = 10;
+            this.materialSingleLineTextField_Examination1.TabStop = false;
+            this.materialSingleLineTextField_Examination1.Text = "计算机系";
+            this.materialSingleLineTextField_Examination1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.materialSingleLineTextField_Examination1.UseSystemPasswordChar = false;
+            // 
+            // materialSingleLineTextField_Examination2
+            // 
+            this.materialSingleLineTextField_Examination2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialSingleLineTextField_Examination2.BindingLabel = null;
+            this.materialSingleLineTextField_Examination2.CorrectForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination2.Depth = 0;
+            this.materialSingleLineTextField_Examination2.ErrorForeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination2.ErrorModeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination2.ErrorModeString = "";
+            this.materialSingleLineTextField_Examination2.FollowLabel = null;
+            this.materialSingleLineTextField_Examination2.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSingleLineTextField_Examination2.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.materialSingleLineTextField_Examination2.ForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination2.Hint = "";
+            this.materialSingleLineTextField_Examination2.IsErrorMode = false;
+            this.materialSingleLineTextField_Examination2.Location = new System.Drawing.Point(231, 94);
+            this.materialSingleLineTextField_Examination2.Margin = new System.Windows.Forms.Padding(6);
+            this.materialSingleLineTextField_Examination2.MaxLength = 32767;
+            this.materialSingleLineTextField_Examination2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField_Examination2.Name = "materialSingleLineTextField_Examination2";
+            this.materialSingleLineTextField_Examination2.PasswordChar = '\0';
+            this.materialSingleLineTextField_Examination2.ReadOlay = true;
+            this.materialSingleLineTextField_Examination2.SelectedText = "";
+            this.materialSingleLineTextField_Examination2.SelectionLength = 0;
+            this.materialSingleLineTextField_Examination2.SelectionStart = 0;
+            this.materialSingleLineTextField_Examination2.Size = new System.Drawing.Size(621, 51);
+            this.materialSingleLineTextField_Examination2.TabIndex = 11;
+            this.materialSingleLineTextField_Examination2.TabStop = false;
+            this.materialSingleLineTextField_Examination2.Text = "软件工程专业";
+            this.materialSingleLineTextField_Examination2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.materialSingleLineTextField_Examination2.UseSystemPasswordChar = false;
+            // 
+            // materialSingleLineTextField_Examination3
+            // 
+            this.materialSingleLineTextField_Examination3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialSingleLineTextField_Examination3.BindingLabel = null;
+            this.materialSingleLineTextField_Examination3.CorrectForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination3.Depth = 0;
+            this.materialSingleLineTextField_Examination3.ErrorForeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination3.ErrorModeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination3.ErrorModeString = "";
+            this.materialSingleLineTextField_Examination3.FollowLabel = null;
+            this.materialSingleLineTextField_Examination3.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSingleLineTextField_Examination3.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.materialSingleLineTextField_Examination3.ForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination3.Hint = "";
+            this.materialSingleLineTextField_Examination3.IsErrorMode = false;
+            this.materialSingleLineTextField_Examination3.Location = new System.Drawing.Point(231, 157);
+            this.materialSingleLineTextField_Examination3.Margin = new System.Windows.Forms.Padding(6);
+            this.materialSingleLineTextField_Examination3.MaxLength = 32767;
+            this.materialSingleLineTextField_Examination3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField_Examination3.Name = "materialSingleLineTextField_Examination3";
+            this.materialSingleLineTextField_Examination3.PasswordChar = '\0';
+            this.materialSingleLineTextField_Examination3.ReadOlay = true;
+            this.materialSingleLineTextField_Examination3.SelectedText = "";
+            this.materialSingleLineTextField_Examination3.SelectionLength = 0;
+            this.materialSingleLineTextField_Examination3.SelectionStart = 0;
+            this.materialSingleLineTextField_Examination3.Size = new System.Drawing.Size(621, 51);
+            this.materialSingleLineTextField_Examination3.TabIndex = 12;
+            this.materialSingleLineTextField_Examination3.TabStop = false;
+            this.materialSingleLineTextField_Examination3.Text = "软件1402班";
+            this.materialSingleLineTextField_Examination3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.materialSingleLineTextField_Examination3.UseSystemPasswordChar = false;
+            // 
+            // materialSingleLineTextField_Examination4
+            // 
+            this.materialSingleLineTextField_Examination4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialSingleLineTextField_Examination4.BindingLabel = null;
+            this.materialSingleLineTextField_Examination4.CorrectForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination4.Depth = 0;
+            this.materialSingleLineTextField_Examination4.ErrorForeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination4.ErrorModeColor = System.Drawing.Color.Red;
+            this.materialSingleLineTextField_Examination4.ErrorModeString = "";
+            this.materialSingleLineTextField_Examination4.FollowLabel = null;
+            this.materialSingleLineTextField_Examination4.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSingleLineTextField_Examination4.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.materialSingleLineTextField_Examination4.ForeColor = System.Drawing.Color.Black;
+            this.materialSingleLineTextField_Examination4.Hint = "";
+            this.materialSingleLineTextField_Examination4.IsErrorMode = false;
+            this.materialSingleLineTextField_Examination4.Location = new System.Drawing.Point(231, 220);
+            this.materialSingleLineTextField_Examination4.Margin = new System.Windows.Forms.Padding(6);
+            this.materialSingleLineTextField_Examination4.MaxLength = 32767;
+            this.materialSingleLineTextField_Examination4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField_Examination4.Name = "materialSingleLineTextField_Examination4";
+            this.materialSingleLineTextField_Examination4.PasswordChar = '\0';
+            this.materialSingleLineTextField_Examination4.ReadOlay = true;
+            this.materialSingleLineTextField_Examination4.SelectedText = "";
+            this.materialSingleLineTextField_Examination4.SelectionLength = 0;
+            this.materialSingleLineTextField_Examination4.SelectionStart = 0;
+            this.materialSingleLineTextField_Examination4.Size = new System.Drawing.Size(621, 51);
+            this.materialSingleLineTextField_Examination4.TabIndex = 13;
+            this.materialSingleLineTextField_Examination4.TabStop = false;
+            this.materialSingleLineTextField_Examination4.Text = "104考场";
+            this.materialSingleLineTextField_Examination4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.materialSingleLineTextField_Examination4.UseSystemPasswordChar = false;
             // 
             // Form_Main
             // 
@@ -990,8 +1492,11 @@
             this.Panel_Start.ResumeLayout(false);
             this.TabPage_SelectText.ResumeLayout(false);
             this.TabPage_Result.ResumeLayout(false);
-            this.TabPage_Result.PerformLayout();
+            this.Panel_Result.ResumeLayout(false);
+            this.TabPage_Main.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).EndInit();
+            this.Panel_Result_Online.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1049,10 +1554,31 @@
         private System.Windows.Forms.Timer Timer_UpdateStats;
         private System.Windows.Forms.TabPage TabPage_Main;
         private System.Windows.Forms.PictureBox PictureBox_UserImage;
-        private MaterialSkin.Controls.MaterialLabel Label_Main_Welcome;
-        private MaterialSkin.Controls.MaterialLabel Label_Main_Department;
-        private MaterialSkin.Controls.MaterialLabel Label_Main_Class;
-        private MaterialSkin.Controls.MaterialLabel Label_Main_Major;
+        private System.Windows.Forms.Panel Panel_Result;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_Speed;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_CorrectPercent;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_Time;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_Total;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Result_Speed;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Result_Total;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Result_Time;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Result_CorrectPercent;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Result_Close;
+        private System.Windows.Forms.Panel Panel_Result_Online;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_SendResult;
+        private MaterialSkin.Controls.MaterialProcessBar Process_Result_SendResult;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Result_FinalScore;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_FianlScore;
+        private MaterialSkin.Controls.MaterialLabel Label_Result_Tip_Percent;
+        private MaterialSkin.Controls.MaterialProgressBar Progress_Result_Percent;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Complete;
+        private MaterialSkin.Controls.MaterialFlatButton Button_About;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination4;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination3;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination2;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination1;
     }
 }
 

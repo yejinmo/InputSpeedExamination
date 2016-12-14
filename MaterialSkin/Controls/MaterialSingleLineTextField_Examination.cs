@@ -50,6 +50,18 @@ namespace MaterialSkin.Controls
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
         public new int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
 
+        public HorizontalAlignment TextAlign
+        {
+            get
+            {
+                return baseTextBox.TextAlign;
+            }
+            set
+            {
+                baseTextBox.TextAlign = value;
+            }
+        }
+
         public string SelectedText { get { return baseTextBox.SelectedText; } set { baseTextBox.SelectedText = value; } }
         public string Hint { get { return baseTextBox.Hint; } set { baseTextBox.Hint = value; } }
         public bool ReadOlay { get { return baseTextBox.ReadOnly; } set { baseTextBox.ReadOnly = value; } }

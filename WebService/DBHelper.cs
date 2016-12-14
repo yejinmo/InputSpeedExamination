@@ -183,12 +183,10 @@ namespace WebService
                 string Stats = "开始";
                 string sql_insert = string.Format(
     "INSERT INTO [Table_ExaminationStats] ([Number], [Department], [Major], [Class], [Name], [ContentMD5], [ContentTitle], [IPAddress], [GUID], [BeginTime], [Stats], [BatchID], [RoomID]) " +
-    "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')"
+    "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')"
                     , Number, Department, Major, Class, Name, ContentMD5, ContentTitle, IPAddress, GUID, BeginTime, Stats, BatchID, RoomID);
-                if (new SqlCommand(sql_insert, Conn).ExecuteNonQuery() > 0)
+                new SqlCommand(sql_insert, Conn).ExecuteNonQuery();
                     return true;
-                else
-                    return false;
             }
             catch
             {
@@ -210,14 +208,20 @@ namespace WebService
         {
             try
             {
+                string sql_check = string.Format("SELECT * FROM [Table_ExaminationStats] WHERE [GUID] = '{0}' AND NOT [Stats] = '完成'", GUID);
+                var sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                if (sdr.Read())
+                    sdr.Close();
+                else
+                {
+                    sdr.Close();
+                    return false;
+                }
                 string sql_update = string.Format(
 "UPDATE [Table_ExaminationStats] SET [Stats] = '{0}', [Speed] = '{1}', [Process] = '{2}', [CorrectPercent] = '{3}', [IPAddress] = '{4}' WHERE [GUID] = '{5}'"
 , Stats, Speed, Process, CorrectPercent, IPAddress, GUID);
-                int res = new SqlCommand(sql_update, Conn).ExecuteNonQuery();
-                if (res > 0)
-                    return true;
-                else
-                    return false;
+                new SqlCommand(sql_update, Conn).ExecuteNonQuery();
+                return true;
             }
             catch
             {
@@ -265,6 +269,95 @@ namespace WebService
             catch
             {
                 return "1";
+            }
+        }
+
+        /// <summary>
+        /// 提交最终成绩
+        /// </summary>
+        /// <returns></returns>
+        public string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent, string IPAddress)
+        {
+            try
+            {
+                double dSpeed = 0;
+                double dCorrectPercent = 0;
+                if (!(double.TryParse(Speed, out dSpeed) && double.TryParse(CorrectPercent, out dCorrectPercent)))
+                    return "成绩参数错误";
+                double finalScore = dSpeed * dCorrectPercent;
+                string sql_update = string.Format(
+"UPDATE [Table_ExaminationStats] SET [Stats] = '{0}', [Speed] = '{1}', [Process] = '{2}', [CorrectPercent] = '{3}', [IPAddress] = '{4}', [FinishTime] = '{5}', [FinalScore] = '{6}' WHERE [GUID] = '{7}' AND NOT [Stats] = '完成'"
+, "完成", Speed, Process, CorrectPercent, IPAddress, GetNowDateTime(), finalScore, GUID);
+                new SqlCommand(sql_update, Conn).ExecuteNonQuery();
+                    return "ok";
+            }
+            catch
+            {
+                return "服务器写入成绩时发生错误";
+            }
+        }
+
+        /// <summary>
+        /// 获取线上排名
+        /// </summary>
+        /// <param name="GUID"></param>
+        /// <returns></returns>
+        public string GetOnlineRank(string GUID)
+        {
+            try
+            {
+                string md5 = string.Empty;
+                string sql_get_md5 = string.Format(
+                    "SELECT * FROM [Table_ExaminationStats] WHERE [GUID] = '{0}'", GUID);
+                var sdr = new SqlCommand(sql_get_md5, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    md5 = sdr["ContentMD5"].ToString();
+                    sdr.Close();
+                }
+                else
+                {
+                    sdr.Close();
+                    return "guid error";
+                }
+                int RANK = 0;
+                string sql_get_rank = string.Format(
+"SELECT [RANK] FROM (SELECT RANK() OVER(ORDER BY [FinalScore] DESC) [RANK], [GUID] FROM [Table_ExaminationStats] WHERE [ContentMD5] = '{0}') [Table_Rank] WHERE [GUID] = '{1}'"
+, md5, GUID);
+                sdr = new SqlCommand(sql_get_rank, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["RANK"].ToString();
+                    sdr.Close();
+                    if (!int.TryParse(res, out RANK))
+                        return "rank error";
+                }
+                else
+                {
+                    sdr.Close();
+                    return "md5 error";
+                }
+                int COUNT = 0;
+                string sql_get_count = string.Format(
+    "SELECT COUNT(*) AS [Count] FROM [Table_ExaminationStats] WHERE [ContentMD5] = '{0}'", md5);
+                sdr = new SqlCommand(sql_get_count, Conn).ExecuteReader();
+                if (sdr.Read())
+                {
+                    string res = sdr["Count"].ToString();
+                    sdr.Close();
+                    if (!int.TryParse(res, out COUNT) || COUNT == 0)
+                        return "count error";
+                    return ((COUNT - RANK) / (double)COUNT).ToString();
+                }
+                else
+                {
+                    sdr.Close();
+                    return "count error";
+                }
+            }
+            catch
+            {
+                return "error";
             }
         }
 

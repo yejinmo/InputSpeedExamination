@@ -53,9 +53,35 @@ namespace InputSpeedExamination
             /// </summary>
             public static string ContentID = string.Empty;
             /// <summary>
+            /// 内容标题
+            /// </summary>
+            public static string ContentTitle = string.Empty;
+            /// <summary>
             /// 当前GUID
             /// </summary>
             public static string GUID = string.Empty;
+
+            /// <summary>
+            /// 考场ID
+            /// </summary>
+            public static string ExamRoomID = string.Empty;
+            /// <summary>
+            /// 考场标题
+            /// </summary>
+            public static string ExamRoomTitle = string.Empty;
+            /// <summary>
+            /// 批次ID
+            /// </summary>
+            public static string BatchID = string.Empty;
+            /// <summary>
+            /// 批次标题
+            /// </summary>
+            public static string BatchTitle = string.Empty;
+
+            /// <summary>
+            /// 试题MD5
+            /// </summary>
+            public static string ContentMD5 = string.Empty;
 
             private static bool onLine = false;
             /// <summary>
@@ -131,6 +157,7 @@ namespace InputSpeedExamination
         {
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
+            NeedCenterControlList.Add(new NeedCenterControl(Panel_Result, NeedCenterControlStyle.Both));
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             UserInformation.OnLineStatsChange = OnLineStatsChange;
             UserInformation.OnLine = false;
@@ -217,6 +244,8 @@ namespace InputSpeedExamination
 
         private void FlatButton_Select_OffLine_Click(object sender, EventArgs e)
         {
+            if (ProcessBar_Login.Visible)
+                return;
             Thread ThreadLoadExaminationList = new Thread(new ThreadStart(LoadExaminationList));
             ThreadLoadExaminationList.Start();
         }
@@ -394,7 +423,18 @@ namespace InputSpeedExamination
 
         private void Button_Back_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void Button_Complete_Click(object sender, EventArgs e)
+        {
+            if (Stats_Char_Current_Total != Stats_Char_Total)
+                return;
+            if(Timer_UpdateStats.Enabled)
+                Timer_UpdateStats.Enabled = false;
+            Enabled = false;
+            Thread ThreadLoadResultPage = new Thread(new ThreadStart(LoadResultPage));
+            ThreadLoadResultPage.Start();
         }
 
         /// <summary>
@@ -523,7 +563,38 @@ namespace InputSpeedExamination
         /// </summary>
         private void LoadExamination(string str)
         {
+            try
+            {
+                if (UserInformation.OnLine)
+                {
+                    UserInformation.GUID = new ServiceReference.ClientServiceSoapClient().GetExaminationGUID(
+                        UserInformation.Number,
+                        UserInformation.Department,
+                        UserInformation.Major,
+                        UserInformation.Class,
+                        UserInformation.Name,
+                        UserInformation.ContentMD5,
+                        UserInformation.ContentTitle,
+                        UserInformation.BatchID,
+                        UserInformation.ExamRoomID
+                        );
+                    if (UserInformation.GUID == "md5 error")
+                    {
+                        MessageBox.Show(this, "试题MD5值校验错误\n\n服务器试题库中未查询到此试题\n\n成绩将不会被服务器记录", "错误");
+                    }
+                    else if (UserInformation.GUID == "database error")
+                    {
+                        MessageBox.Show(this, "服务器内部错误\n\n无法获取线上测试编号\n\n成绩将不会被服务器记录", "错误");
+                    }
+                    else
+                        Timer_UpdateStats.Enabled = true;
+                }
+            }
+            catch
+            {
 
+            }
+            TabControl_Main.SelectedTab = TabPage_Start;
             ExaminationController.Reset(str);
             ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
 
@@ -600,7 +671,14 @@ namespace InputSpeedExamination
             {
                 _Stats_Char_Current_Total = value;
                 if (value == Stats_Char_Total)
+                {
                     Input_Status = Input_Status_Enum.Pause;
+                    Button_Complete.Visible = true;
+                }
+                else
+                {
+                    Button_Complete.Visible = false;
+                }
             }
         }
 
@@ -739,7 +817,7 @@ namespace InputSpeedExamination
 
         #endregion
 
-        #region SelectExamination
+        #region Select Examination
 
         Thread SearchExaminationThread = null;
 
@@ -916,16 +994,36 @@ namespace InputSpeedExamination
         {
             try
             {
-                Thread.Sleep(200);
-                RefreshExaminationList();
                 Invoke((EventHandler)delegate
                 {
-                    TabControl_Main.SelectedTab = TabPage_SelectText;
+                    ProcessBar_Login.Visible = true;
                 });
+                Update_Label_Login_Tip(Color.Black, "正在尝试获取试题库");
+                Thread.Sleep(500);
+                var ds = new ServiceReference.ClientServiceSoapClient().GetAllContent();
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    string title = dr["Title"].ToString();
+                    string content = dr["String"].ToString();
+                    db.InsertNewContent(title, content);
+                }
             }
             catch
             {
-
+                Update_Label_Login_Tip(Color.Red, "连接服务器失败");
+                Thread.Sleep(500);
+            }
+            finally
+            {
+                Update_Label_Login_Tip(Color.Black, "正在加载界面");
+                Thread.Sleep(500);
+                RefreshExaminationList();
+                Invoke((EventHandler)delegate
+                {
+                    ProcessBar_Login.Visible = false;
+                    TabControl_Main.SelectedTab = TabPage_SelectText;
+                    Update_Label_Login_Tip(Color.Black);
+                });
             }
         }
 
@@ -969,53 +1067,14 @@ namespace InputSpeedExamination
             string content = db.GetContentByMD5(md5);
             if (string.IsNullOrEmpty(content))
                 return;
+            UserInformation.ContentMD5 = md5;
+            UserInformation.ContentTitle = ListView_ExaminationList.SelectedItems[0].SubItems[0].Text;
             LoadExamination(content);
-            TabControl_Main.SelectedTab = TabPage_Start;
         }
 
         private void ListView_ExaminationList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Button_SelectText_Begin.PerformClick();
-        }
-
-        #endregion
-
-        #region Debug
-
-        string debug_str = @"
-示例文字
-扮演年轻的聪明黑客马可仕．哈洛威（Marcus Holloway），来到技术革命的起源地：旧金山湾区。
-加入最恶名昭彰的黑客团体 DedSec，执行史上最大规模的黑客行动，彻底消灭犯罪首脑用来大规模监视操控市民的侵入性运作系统 ctOS 2.0。 
-
-探索动态开放世界，充满各种游戏操作可能。 
-骇进每一组联机装置，控制城市公共设施。 
-根据你的游戏风格培养不同技能，升级你的黑客工具：遥控车、四旋翼无人机、3D 打印武器和更多内容。 
-在全新的合作模式和对抗式多人游戏与好友无缝联机，享受全新的《看门狗》游戏体验。
-123456789
-987654321
-123456
-654321
-abcdef
-123
-321
-456
-654
-abc
-cba
-";
-
-        private void debug()
-        {
-            LoadExamination(debug_str);
-            //ExaminationController.Reset(debug_str);
-            //ExaminationController.Spilt(Examination_Lable_1.Font, Examination_Lable_1.Width);
-
-            //TextLineList = ExaminationController.GetSpiltList();
-            //Examination_Lable_1.TextString = GetExaminationStringByIndex(0);
-            //Examination_Lable_2.TextString = GetExaminationStringByIndex(1);
-            //Examination_Lable_3.TextString = GetExaminationStringByIndex(2);
-            //Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
-            //Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
         }
 
         #endregion
@@ -1154,7 +1213,6 @@ cba
                     UserInformation.Class = res_array[2];
                     UserInformation.Name = res_array[3];
                     UserInformation.Number = res_array[4];
-                    UserInformation.GUID = string.Empty;
                     UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
@@ -1168,11 +1226,12 @@ cba
                     }
                     Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black, "正在加载界面");
+                    RefreshExaminationList();
+                    Thread.Sleep(250);
                     Invoke((EventHandler)delegate
                     {
-                        FlatButton_Select_OffLine.PerformClick();
+                        TabControl_Main.SelectedTab = TabPage_SelectText;
                     });
-                    Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black);
                 }
             }
@@ -1207,7 +1266,7 @@ cba
 
         #endregion
 
-        #region UpdateStats
+        #region Update Stats
 
         private void Timer_UpdateStats_Tick(object sender, EventArgs e)
         {
@@ -1230,15 +1289,96 @@ cba
                     str_Input_Status = "输入中";
                     break;
             }
+            double CorrectPercent = Stats_Char_Current_Total == 0 ? 1.00 : ((double)Stats_Char_Correct_Total / Stats_Char_Total * 1.00);
+            double Process = Stats_Char_Current_Total == 0 ? 0 : ((double)Stats_Char_Current_Total / Stats_Char_Total);
+            int Speed = Stats_Time == 0 ? 0 : (int)((double)Stats_Char_Current_Total / Stats_Time * 60.0);
+            int Time = Stats_Time;
             new ServiceReference.ClientServiceSoapClient().UpdateExaminationStats(
                 UserInformation.GUID,
                 str_Input_Status,
-                (Stats_Time == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Time * 60.0)).ToString(),
-                ((Stats_Char_Total == 0 ? 0 : (int)((float)Stats_Char_Current_Total / Stats_Char_Total * 100)) + "%"),
-                (Stats_Char_Current_Total == 0 ? 100 : (int)((float)Stats_Char_Correct_Total / Stats_Char_Current_Total * 100)) + "%");
+                Speed.ToString(),
+                Process.ToString(),
+                CorrectPercent.ToString());
         }
 
         #endregion
+
+        #region Result Page
+
+        private void LoadResultPage()
+        {
+            double CorrectPercent = Stats_Char_Current_Total == 0 ? 1.00 : ((double)Stats_Char_Correct_Total / Stats_Char_Total * 1.00);
+            double Process = Stats_Char_Current_Total == 0 ? 0 : ((double)Stats_Char_Current_Total / Stats_Char_Total);
+            int Speed = Stats_Time == 0 ? 0 : (int)((double)Stats_Char_Current_Total / Stats_Time * 60.0);
+            int Time = Stats_Time;
+            int Total = Stats_Char_Total;
+            double FinalScore = Speed * CorrectPercent;
+            try
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Text_Result_CorrectPercent.Text = (CorrectPercent * 100) + " % ";
+                    Text_Result_FinalScore.Text = FinalScore.ToString() + " 分 ";
+                    Text_Result_Speed.Text = Speed.ToString() + " 字/分 ";
+                    Text_Result_Time.Text = Time / 60 + " 分 " + Time % 60 + " 秒 ";
+                    Text_Result_Total.Text = Total.ToString() + " 字 ";
+                    Label_Result_Tip_Percent.Visible = false;
+                    Progress_Result_Percent.Visible = false;
+                    if (UserInformation.OnLine)
+                    {
+                        Label_Result_Tip_SendResult.Text = "正在将成绩提交至服务器";
+                        Panel_Result_Online.Visible = true;
+                        Process_Result_SendResult.Visible = true;
+                    }
+                    else
+                        Panel_Result_Online.Visible = false;
+                    TabControl_Main.SelectedTab = TabPage_Result;
+                    Enabled = true;
+                });
+                if (UserInformation.OnLine)
+                {
+                    Thread.Sleep(5000);
+                    Invoke((EventHandler)delegate
+                    {
+                        string res = "提交成绩失败";
+                        try
+                        {
+                            res = new ServiceReference.ClientServiceSoapClient().UpdateFinallyScore(
+                            UserInformation.GUID, Speed.ToString(), Process.ToString(), CorrectPercent.ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        if (res == "ok")
+                            Label_Result_Tip_SendResult.Text = "成绩已成功提交至服务器";
+                        else
+                            Label_Result_Tip_SendResult.Text = res;
+                        Process_Result_SendResult.Visible = false;
+                    });
+                };
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Invoke((EventHandler)delegate
+                {
+                    TabControl_Main.SelectedTab = TabPage_Result;
+                    Enabled = true;
+                });
+            }
+        }
+
+        private void Button_Result_Close_Click(object sender, EventArgs e)
+        {
+            TabControl_Main.SelectedTab = TabPage_SelectText;
+        }
+
+        #endregion
+
     }
 }
 

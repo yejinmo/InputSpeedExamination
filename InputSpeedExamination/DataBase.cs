@@ -74,14 +74,18 @@ namespace InputSpeedExamination
         {
             try
             {
+                string textMD5 = GetMD5Hash(text);
                 text = text.Replace("'", "''");
                 CONN.Open();
-                string textMD5 = GetMD5Hash(text);
                 string sql_check = string.Format(@"SELECT * FROM ContentTable WHERE [MD5_Value] = '{0}'", textMD5);
                 var cmd_check = new SQLiteCommand(sql_check, CONN);
-                var sda_check = cmd_check.ExecuteReader();
-                if (sda_check.HasRows)
+                var sdr_check = cmd_check.ExecuteReader();
+                if (sdr_check.HasRows)
+                {
+                    sdr_check.Close();
                     return false;
+                }
+                sdr_check.Close();
                 string sql = string.Format
                     (@"INSERT INTO ContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
                     title, text, text.Length.ToString(), textMD5);

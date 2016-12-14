@@ -71,6 +71,10 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetContentByBatchID(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateFinallyScore", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -154,6 +158,10 @@ namespace InputSpeedExamination.ServiceReference {
         
         public System.Data.DataSet GetContentByBatchID(string BatchID) {
             return base.Channel.GetContentByBatchID(BatchID);
+        }
+        
+        public string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent) {
+            return base.Channel.UpdateFinallyScore(GUID, Speed, Process, CorrectPercent);
         }
     }
 }
