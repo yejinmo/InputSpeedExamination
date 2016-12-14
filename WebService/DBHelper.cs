@@ -60,12 +60,12 @@ namespace WebService
                 SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
                 sda.Fill(ds);
                 sda.Dispose();
+                return ds;
             }
             catch
             {
-
+                return ds;
             }
-            return ds;
         }
 
         /// <summary>
@@ -358,6 +358,27 @@ namespace WebService
             catch
             {
                 return "error";
+            }
+        }
+
+        /// <summary>
+        /// 获取更新列表
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetUpdateList()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                string sql = string.Format("SELECT * FROM [Table_Update]");
+                SqlDataAdapter sda = new SqlDataAdapter(sql, Conn);
+                sda.Fill(ds);
+                sda.Dispose();
+                return ds;
+            }
+            catch
+            {
+                return ds;
             }
         }
 

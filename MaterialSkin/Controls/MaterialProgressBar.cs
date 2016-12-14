@@ -49,6 +49,40 @@ namespace MaterialSkin.Controls
         [Browsable(false)]
         public MouseState MouseState { get; set; }
 
+        private bool isPercent = false;
+        public bool IsPercent
+        {
+            get
+            {
+                return isPercent;
+            }
+
+            set
+            {
+                isPercent = value;
+                Invalidate();
+            }
+        }
+
+        private double percentValue = 0.5;
+        public double PercentValue
+        {
+            get
+            {
+                return percentValue;
+            }
+
+            set
+            {
+                if (value < 0)
+                    value = 0;
+                if (value > 1)
+                    value = 1;
+                percentValue = value;
+                Invalidate();
+            }
+        }
+
         /// <summary>
         /// Performs the work of setting the specified bounds of this control.
         /// </summary>
@@ -68,9 +102,19 @@ namespace MaterialSkin.Controls
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            var doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
+            var doneProgress = 0;
+
+            if (IsPercent)
+            {
+                doneProgress = (int)(e.ClipRectangle.Width * percentValue);
+            }
+            else
+            {
+                doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
+            }
             e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, 0, 0, doneProgress, e.ClipRectangle.Height);
             e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
         }
+
     }
 }

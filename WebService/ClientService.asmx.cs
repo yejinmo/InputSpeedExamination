@@ -40,12 +40,6 @@ namespace WebService
             return new DBHelper().GetMajorByDepartment(DepartmentID);
         }
 
-        [WebMethod(Description = "获取更新列表")]
-        public DataSet GetUpdateList()
-        {
-            return new DataSet();
-        }
-
         [WebMethod(Description = "获取课表")]
         public string GetEdu(string username, string password)
         {
@@ -156,6 +150,12 @@ namespace WebService
         public string GetOnlineRank(string GUID)
         {
             return new DBHelper().GetOnlineRank(GUID);
+        }
+
+        [WebMethod(Description = "获取更新列表")]
+        public DataSet GetUpdateList()
+        {
+            return new DBHelper().GetUpdateList();
         }
 
         /// <summary>

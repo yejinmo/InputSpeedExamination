@@ -13,8 +13,8 @@ namespace Update.ServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.HelloServerSoap")]
-    public interface HelloServerSoap {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="WebService", ConfigurationName="ServiceReference.ClientServiceSoap")]
+    public interface ClientServiceSoap {
         
         [System.ServiceModel.OperationContractAttribute(Action="WebService/SayHello", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -28,39 +28,83 @@ namespace Update.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetMajorByDepartment(string DepartmentID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetUpdateList();
-        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetEdu", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetEdu(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUserInfo", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetUserInfo(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetClientIP", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetClientIP();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExaminationGUID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle, string BatchID, string RoomID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateExaminationStats", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateInterVal", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int GetUpdateInterVal();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContent", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllContent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExamRoomID();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetBatchID();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetContentByBatchID", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetContentByBatchID(string BatchID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/UpdateFinallyScore", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetOnlineRank", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetOnlineRank(string GUID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetUpdateList();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface HelloServerSoapChannel : Update.ServiceReference.HelloServerSoap, System.ServiceModel.IClientChannel {
+    public interface ClientServiceSoapChannel : Update.ServiceReference.ClientServiceSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class HelloServerSoapClient : System.ServiceModel.ClientBase<Update.ServiceReference.HelloServerSoap>, Update.ServiceReference.HelloServerSoap {
+    public partial class ClientServiceSoapClient : System.ServiceModel.ClientBase<Update.ServiceReference.ClientServiceSoap>, Update.ServiceReference.ClientServiceSoap {
         
-        public HelloServerSoapClient() {
+        public ClientServiceSoapClient() {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName) : 
+        public ClientServiceSoapClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName, string remoteAddress) : 
+        public ClientServiceSoapClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public HelloServerSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClientServiceSoapClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public HelloServerSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClientServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -76,12 +120,56 @@ namespace Update.ServiceReference {
             return base.Channel.GetMajorByDepartment(DepartmentID);
         }
         
-        public System.Data.DataSet GetUpdateList() {
-            return base.Channel.GetUpdateList();
-        }
-        
         public string GetEdu(string username, string password) {
             return base.Channel.GetEdu(username, password);
+        }
+        
+        public string GetUserInfo(string username, string password) {
+            return base.Channel.GetUserInfo(username, password);
+        }
+        
+        public string GetClientIP() {
+            return base.Channel.GetClientIP();
+        }
+        
+        public string GetExaminationGUID(string Number, string Department, string Major, string Class, string Name, string ContentMD5, string ContentTitle, string BatchID, string RoomID) {
+            return base.Channel.GetExaminationGUID(Number, Department, Major, Class, Name, ContentMD5, ContentTitle, BatchID, RoomID);
+        }
+        
+        public bool UpdateExaminationStats(string GUID, string Stats, string Speed, string Process, string CorrectPercent) {
+            return base.Channel.UpdateExaminationStats(GUID, Stats, Speed, Process, CorrectPercent);
+        }
+        
+        public int GetUpdateInterVal() {
+            return base.Channel.GetUpdateInterVal();
+        }
+        
+        public System.Data.DataSet GetAllContent() {
+            return base.Channel.GetAllContent();
+        }
+        
+        public string GetExamRoomID() {
+            return base.Channel.GetExamRoomID();
+        }
+        
+        public string GetBatchID() {
+            return base.Channel.GetBatchID();
+        }
+        
+        public System.Data.DataSet GetContentByBatchID(string BatchID) {
+            return base.Channel.GetContentByBatchID(BatchID);
+        }
+        
+        public string UpdateFinallyScore(string GUID, string Speed, string Process, string CorrectPercent) {
+            return base.Channel.UpdateFinallyScore(GUID, Speed, Process, CorrectPercent);
+        }
+        
+        public string GetOnlineRank(string GUID) {
+            return base.Channel.GetOnlineRank(GUID);
+        }
+        
+        public System.Data.DataSet GetUpdateList() {
+            return base.Channel.GetUpdateList();
         }
     }
 }

@@ -185,7 +185,7 @@ namespace Update
             {
                 
             }
-            var ds = new ServiceReference.HelloServerSoapClient().GetUpdateList();
+            var ds = new ServiceReference.ClientServiceSoapClient().GetUpdateList();
             Update(ds);
         }
 

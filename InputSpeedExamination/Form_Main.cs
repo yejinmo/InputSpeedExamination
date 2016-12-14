@@ -246,6 +246,7 @@ namespace InputSpeedExamination
         {
             if (ProcessBar_Login.Visible)
                 return;
+            UserInformation.OnLine = false;
             Thread ThreadLoadExaminationList = new Thread(new ThreadStart(LoadExaminationList));
             ThreadLoadExaminationList.Start();
         }
@@ -1377,7 +1378,8 @@ namespace InputSpeedExamination
                         else
                         {
                             Label_Result_Tip_Percent.Text = string.Format("您的成绩已超过{0:N2}%的人", d_rank * 100);
-                            //Progress_Result_Percent.Value = 
+                            Progress_Result_Percent.PercentValue = d_rank;
+                            Progress_Result_Percent.Visible = true;
                         }
                     });
                 };

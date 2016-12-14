@@ -28,14 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Label_Tip = new System.Windows.Forms.Label();
+            this.materialProcessBar1 = new Update.MaterialProcessBar();
             this.SuspendLayout();
+            // 
+            // Label_Tip
+            // 
+            this.Label_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Tip.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_Tip.Location = new System.Drawing.Point(12, 9);
+            this.Label_Tip.Name = "Label_Tip";
+            this.Label_Tip.Size = new System.Drawing.Size(537, 42);
+            this.Label_Tip.TabIndex = 0;
+            this.Label_Tip.Text = "检查更新中";
+            this.Label_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // materialProcessBar1
+            // 
+            this.materialProcessBar1.Depth = 0;
+            this.materialProcessBar1.Interval = 10;
+            this.materialProcessBar1.LengthValue = 10;
+            this.materialProcessBar1.Location = new System.Drawing.Point(12, 54);
+            this.materialProcessBar1.Name = "materialProcessBar1";
+            this.materialProcessBar1.Processing = false;
+            this.materialProcessBar1.Size = new System.Drawing.Size(537, 5);
+            this.materialProcessBar1.StepValue = 5;
+            this.materialProcessBar1.TabIndex = 1;
             // 
             // Form_Update
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(572, 353);
+            this.ClientSize = new System.Drawing.Size(561, 380);
+            this.Controls.Add(this.materialProcessBar1);
+            this.Controls.Add(this.Label_Tip);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form_Update";
@@ -48,6 +77,9 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label Label_Tip;
+        private MaterialProcessBar materialProcessBar1;
     }
 }
 
