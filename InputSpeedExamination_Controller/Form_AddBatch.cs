@@ -15,8 +15,10 @@ namespace InputSpeedExamination_Controller
         string USERNAME = string.Empty;
         string PASSWORD = string.Empty;
 
-        public Form_AddBatch()
+        public Form_AddBatch(string u,string p)
         {
+            USERNAME = u;
+            PASSWORD = p;
             InitializeComponent();
         }
 

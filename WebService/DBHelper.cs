@@ -241,12 +241,43 @@ namespace WebService
                 SqlCommand cmd = new SqlCommand(sql, Conn);
                 var sdr = cmd.ExecuteReader();
                 if (!sdr.Read())
+                {
+                    sdr.Close();
                     return "";
-                return sdr[0].ToString();
+                }
+                var res = sdr[0].ToString();
+                sdr.Close();
+                return res;
             }
             catch
             {
-                return "";
+                return "error";
+            }
+        }
+
+        /// <summary>
+        /// 获取批次标题
+        /// </summary>
+        /// <returns></returns>
+        public string GetBatchTitle()
+        {
+            try
+            {
+                string sql = string.Format("SELECT [Title] FROM [Table_Batch] WHERE [IsOpen] = '{0}'", 1);
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (!sdr.Read())
+                {
+                    sdr.Close();
+                    return "";
+                }
+                var res = sdr[0].ToString();
+                sdr.Close();
+                return res;
+            }
+            catch
+            {
+                return "error";
             }
         }
 
@@ -259,16 +290,48 @@ namespace WebService
         {
             try
             {
-                string sql = string.Format("SELECT [ID] FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '{0}'", IPAddress);
+                string sql = string.Format("SELECT [ID] FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '%{0}%'", IPAddress);
                 SqlCommand cmd = new SqlCommand(sql, Conn);
                 var sdr = cmd.ExecuteReader();
                 if (!sdr.Read())
+                {
+                    sdr.Close();
                     return "1";
-                return sdr[0].ToString();
+                }
+                var res = sdr[0].ToString();
+                sdr.Close();
+                return res;
             }
             catch
             {
-                return "1";
+                return "error";
+            }
+        }
+
+        /// <summary>
+        /// 根据客户机IP获取考场标题
+        /// </summary>
+        /// <param name="IPAddress"></param>
+        /// <returns></returns>
+        public string GetExamRoomTitle(string IPAddress)
+        {
+            try
+            {
+                string sql = string.Format("SELECT [RoomTitle] FROM [Table_ExamRoom] WHERE [IncludeIP] LIKE '%{0}%'", IPAddress);
+                SqlCommand cmd = new SqlCommand(sql, Conn);
+                var sdr = cmd.ExecuteReader();
+                if (!sdr.Read())
+                {
+                    sdr.Close();
+                    return "默认考场";
+                }
+                var res = sdr[0].ToString();
+                sdr.Close();
+                return res;
+            }
+            catch
+            {
+                return "error";
             }
         }
 
@@ -773,7 +836,7 @@ namespace WebService
                 sdr.Close();
 
                 string sql_check2 = string.Format("SELECT * FROM [Table_Batch] WHERE [IsOpen] = '-1' AND [ID] = '{0}'", BatchID);
-                sdr = new SqlCommand(sql_check, Conn).ExecuteReader();
+                sdr = new SqlCommand(sql_check2, Conn).ExecuteReader();
                 if (!sdr.Read())
                 {
                     string res = "[ID:" + BatchID + "] 已使用过\n\n不能再次开启";

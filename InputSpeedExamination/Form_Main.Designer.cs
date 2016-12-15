@@ -41,11 +41,11 @@
             this.FlatButton_Select_OffLine = new MaterialSkin.Controls.MaterialFlatButton();
             this.WebView_Select_BG = new System.Windows.Forms.WebBrowser();
             this.TabPage_Main = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.materialSingleLineTextField_Examination4 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
-            this.materialSingleLineTextField_Examination3 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
-            this.materialSingleLineTextField_Examination2 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
-            this.materialSingleLineTextField_Examination1 = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Panel_Main_UserInformation = new System.Windows.Forms.Panel();
+            this.Text_Main_ExamRoom = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Main_Class = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Main_Major = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Main_Department = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.PictureBox_UserImage = new System.Windows.Forms.PictureBox();
             this.TabPage_SelectText = new System.Windows.Forms.TabPage();
             this.Button_SelectText_Import = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -104,11 +104,18 @@
             this.Label_UserName = new System.Windows.Forms.Label();
             this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.Timer_UpdateStats = new System.Windows.Forms.Timer(this.components);
+            this.Text_Main_Batch = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Button_Main_Back = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_Main_Free = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Button_Main_OnlineExam = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Text_Main_Name = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Text_Main_Number = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
+            this.Label_Main_Tip = new MaterialSkin.Controls.MaterialLabel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
             this.TabPage_Main.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.Panel_Main_UserInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).BeginInit();
             this.TabPage_SelectText.SuspendLayout();
             this.TabPage_Start.SuspendLayout();
@@ -166,6 +173,7 @@
             this.Button_About.TabIndex = 4;
             this.Button_About.Text = "关于";
             this.Button_About.UseVisualStyleBackColor = true;
+            this.Button_About.Click += new System.EventHandler(this.Button_About_Click);
             // 
             // Panel_Login
             // 
@@ -302,162 +310,169 @@
             // TabPage_Main
             // 
             this.TabPage_Main.BackColor = System.Drawing.Color.White;
-            this.TabPage_Main.Controls.Add(this.panel1);
+            this.TabPage_Main.Controls.Add(this.Button_Main_OnlineExam);
+            this.TabPage_Main.Controls.Add(this.Button_Main_Free);
+            this.TabPage_Main.Controls.Add(this.Button_Main_Back);
+            this.TabPage_Main.Controls.Add(this.Panel_Main_UserInformation);
             this.TabPage_Main.Location = new System.Drawing.Point(4, 22);
             this.TabPage_Main.Name = "TabPage_Main";
             this.TabPage_Main.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Main.TabIndex = 5;
             this.TabPage_Main.Text = "TabPage_Main";
             // 
-            // panel1
+            // Panel_Main_UserInformation
             // 
-            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination4);
-            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination3);
-            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination2);
-            this.panel1.Controls.Add(this.materialSingleLineTextField_Examination1);
-            this.panel1.Controls.Add(this.PictureBox_UserImage);
-            this.panel1.Location = new System.Drawing.Point(195, 75);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(899, 528);
-            this.panel1.TabIndex = 10;
+            this.Panel_Main_UserInformation.Controls.Add(this.Label_Main_Tip);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Number);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Name);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Batch);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_ExamRoom);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Class);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Major);
+            this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Department);
+            this.Panel_Main_UserInformation.Controls.Add(this.PictureBox_UserImage);
+            this.Panel_Main_UserInformation.Location = new System.Drawing.Point(183, 64);
+            this.Panel_Main_UserInformation.Name = "Panel_Main_UserInformation";
+            this.Panel_Main_UserInformation.Size = new System.Drawing.Size(899, 399);
+            this.Panel_Main_UserInformation.TabIndex = 10;
             // 
-            // materialSingleLineTextField_Examination4
+            // Text_Main_ExamRoom
             // 
-            this.materialSingleLineTextField_Examination4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Text_Main_ExamRoom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField_Examination4.BindingLabel = null;
-            this.materialSingleLineTextField_Examination4.CorrectForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination4.Depth = 0;
-            this.materialSingleLineTextField_Examination4.ErrorForeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination4.ErrorModeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination4.ErrorModeString = "";
-            this.materialSingleLineTextField_Examination4.FollowLabel = null;
-            this.materialSingleLineTextField_Examination4.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialSingleLineTextField_Examination4.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.materialSingleLineTextField_Examination4.ForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination4.Hint = "";
-            this.materialSingleLineTextField_Examination4.IsErrorMode = false;
-            this.materialSingleLineTextField_Examination4.Location = new System.Drawing.Point(231, 220);
-            this.materialSingleLineTextField_Examination4.Margin = new System.Windows.Forms.Padding(6);
-            this.materialSingleLineTextField_Examination4.MaxLength = 32767;
-            this.materialSingleLineTextField_Examination4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField_Examination4.Name = "materialSingleLineTextField_Examination4";
-            this.materialSingleLineTextField_Examination4.PasswordChar = '\0';
-            this.materialSingleLineTextField_Examination4.ReadOlay = true;
-            this.materialSingleLineTextField_Examination4.SelectedText = "";
-            this.materialSingleLineTextField_Examination4.SelectionLength = 0;
-            this.materialSingleLineTextField_Examination4.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination4.Size = new System.Drawing.Size(621, 51);
-            this.materialSingleLineTextField_Examination4.TabIndex = 13;
-            this.materialSingleLineTextField_Examination4.TabStop = false;
-            this.materialSingleLineTextField_Examination4.Text = "104考场";
-            this.materialSingleLineTextField_Examination4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialSingleLineTextField_Examination4.UseSystemPasswordChar = false;
+            this.Text_Main_ExamRoom.BindingLabel = null;
+            this.Text_Main_ExamRoom.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_ExamRoom.Depth = 0;
+            this.Text_Main_ExamRoom.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_ExamRoom.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_ExamRoom.ErrorModeString = "";
+            this.Text_Main_ExamRoom.FollowLabel = null;
+            this.Text_Main_ExamRoom.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_ExamRoom.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_ExamRoom.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_ExamRoom.Hint = "";
+            this.Text_Main_ExamRoom.IsErrorMode = false;
+            this.Text_Main_ExamRoom.Location = new System.Drawing.Point(231, 271);
+            this.Text_Main_ExamRoom.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_ExamRoom.MaxLength = 32767;
+            this.Text_Main_ExamRoom.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_ExamRoom.Name = "Text_Main_ExamRoom";
+            this.Text_Main_ExamRoom.PasswordChar = '\0';
+            this.Text_Main_ExamRoom.ReadOlay = true;
+            this.Text_Main_ExamRoom.SelectedText = "";
+            this.Text_Main_ExamRoom.SelectionLength = 0;
+            this.Text_Main_ExamRoom.SelectionStart = 0;
+            this.Text_Main_ExamRoom.Size = new System.Drawing.Size(621, 51);
+            this.Text_Main_ExamRoom.TabIndex = 13;
+            this.Text_Main_ExamRoom.TabStop = false;
+            this.Text_Main_ExamRoom.Text = "104考场";
+            this.Text_Main_ExamRoom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_ExamRoom.UseSystemPasswordChar = false;
             // 
-            // materialSingleLineTextField_Examination3
+            // Text_Main_Class
             // 
-            this.materialSingleLineTextField_Examination3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Text_Main_Class.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField_Examination3.BindingLabel = null;
-            this.materialSingleLineTextField_Examination3.CorrectForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination3.Depth = 0;
-            this.materialSingleLineTextField_Examination3.ErrorForeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination3.ErrorModeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination3.ErrorModeString = "";
-            this.materialSingleLineTextField_Examination3.FollowLabel = null;
-            this.materialSingleLineTextField_Examination3.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialSingleLineTextField_Examination3.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.materialSingleLineTextField_Examination3.ForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination3.Hint = "";
-            this.materialSingleLineTextField_Examination3.IsErrorMode = false;
-            this.materialSingleLineTextField_Examination3.Location = new System.Drawing.Point(231, 157);
-            this.materialSingleLineTextField_Examination3.Margin = new System.Windows.Forms.Padding(6);
-            this.materialSingleLineTextField_Examination3.MaxLength = 32767;
-            this.materialSingleLineTextField_Examination3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField_Examination3.Name = "materialSingleLineTextField_Examination3";
-            this.materialSingleLineTextField_Examination3.PasswordChar = '\0';
-            this.materialSingleLineTextField_Examination3.ReadOlay = true;
-            this.materialSingleLineTextField_Examination3.SelectedText = "";
-            this.materialSingleLineTextField_Examination3.SelectionLength = 0;
-            this.materialSingleLineTextField_Examination3.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination3.Size = new System.Drawing.Size(621, 51);
-            this.materialSingleLineTextField_Examination3.TabIndex = 12;
-            this.materialSingleLineTextField_Examination3.TabStop = false;
-            this.materialSingleLineTextField_Examination3.Text = "软件1402班";
-            this.materialSingleLineTextField_Examination3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialSingleLineTextField_Examination3.UseSystemPasswordChar = false;
+            this.Text_Main_Class.BindingLabel = null;
+            this.Text_Main_Class.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Class.Depth = 0;
+            this.Text_Main_Class.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Class.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Class.ErrorModeString = "";
+            this.Text_Main_Class.FollowLabel = null;
+            this.Text_Main_Class.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Class.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Class.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Class.Hint = "";
+            this.Text_Main_Class.IsErrorMode = false;
+            this.Text_Main_Class.Location = new System.Drawing.Point(231, 208);
+            this.Text_Main_Class.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Class.MaxLength = 32767;
+            this.Text_Main_Class.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Class.Name = "Text_Main_Class";
+            this.Text_Main_Class.PasswordChar = '\0';
+            this.Text_Main_Class.ReadOlay = true;
+            this.Text_Main_Class.SelectedText = "";
+            this.Text_Main_Class.SelectionLength = 0;
+            this.Text_Main_Class.SelectionStart = 0;
+            this.Text_Main_Class.Size = new System.Drawing.Size(621, 51);
+            this.Text_Main_Class.TabIndex = 12;
+            this.Text_Main_Class.TabStop = false;
+            this.Text_Main_Class.Text = "软件1402班";
+            this.Text_Main_Class.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Class.UseSystemPasswordChar = false;
             // 
-            // materialSingleLineTextField_Examination2
+            // Text_Main_Major
             // 
-            this.materialSingleLineTextField_Examination2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Text_Main_Major.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField_Examination2.BindingLabel = null;
-            this.materialSingleLineTextField_Examination2.CorrectForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination2.Depth = 0;
-            this.materialSingleLineTextField_Examination2.ErrorForeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination2.ErrorModeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination2.ErrorModeString = "";
-            this.materialSingleLineTextField_Examination2.FollowLabel = null;
-            this.materialSingleLineTextField_Examination2.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialSingleLineTextField_Examination2.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.materialSingleLineTextField_Examination2.ForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination2.Hint = "";
-            this.materialSingleLineTextField_Examination2.IsErrorMode = false;
-            this.materialSingleLineTextField_Examination2.Location = new System.Drawing.Point(231, 94);
-            this.materialSingleLineTextField_Examination2.Margin = new System.Windows.Forms.Padding(6);
-            this.materialSingleLineTextField_Examination2.MaxLength = 32767;
-            this.materialSingleLineTextField_Examination2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField_Examination2.Name = "materialSingleLineTextField_Examination2";
-            this.materialSingleLineTextField_Examination2.PasswordChar = '\0';
-            this.materialSingleLineTextField_Examination2.ReadOlay = true;
-            this.materialSingleLineTextField_Examination2.SelectedText = "";
-            this.materialSingleLineTextField_Examination2.SelectionLength = 0;
-            this.materialSingleLineTextField_Examination2.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination2.Size = new System.Drawing.Size(621, 51);
-            this.materialSingleLineTextField_Examination2.TabIndex = 11;
-            this.materialSingleLineTextField_Examination2.TabStop = false;
-            this.materialSingleLineTextField_Examination2.Text = "软件工程专业";
-            this.materialSingleLineTextField_Examination2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialSingleLineTextField_Examination2.UseSystemPasswordChar = false;
+            this.Text_Main_Major.BindingLabel = null;
+            this.Text_Main_Major.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Major.Depth = 0;
+            this.Text_Main_Major.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Major.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Major.ErrorModeString = "";
+            this.Text_Main_Major.FollowLabel = null;
+            this.Text_Main_Major.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Major.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Major.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Major.Hint = "";
+            this.Text_Main_Major.IsErrorMode = false;
+            this.Text_Main_Major.Location = new System.Drawing.Point(231, 145);
+            this.Text_Main_Major.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Major.MaxLength = 32767;
+            this.Text_Main_Major.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Major.Name = "Text_Main_Major";
+            this.Text_Main_Major.PasswordChar = '\0';
+            this.Text_Main_Major.ReadOlay = true;
+            this.Text_Main_Major.SelectedText = "";
+            this.Text_Main_Major.SelectionLength = 0;
+            this.Text_Main_Major.SelectionStart = 0;
+            this.Text_Main_Major.Size = new System.Drawing.Size(621, 51);
+            this.Text_Main_Major.TabIndex = 11;
+            this.Text_Main_Major.TabStop = false;
+            this.Text_Main_Major.Text = "软件工程专业";
+            this.Text_Main_Major.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Major.UseSystemPasswordChar = false;
             // 
-            // materialSingleLineTextField_Examination1
+            // Text_Main_Department
             // 
-            this.materialSingleLineTextField_Examination1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Text_Main_Department.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField_Examination1.BindingLabel = null;
-            this.materialSingleLineTextField_Examination1.CorrectForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination1.Depth = 0;
-            this.materialSingleLineTextField_Examination1.ErrorForeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination1.ErrorModeColor = System.Drawing.Color.Red;
-            this.materialSingleLineTextField_Examination1.ErrorModeString = "";
-            this.materialSingleLineTextField_Examination1.FollowLabel = null;
-            this.materialSingleLineTextField_Examination1.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialSingleLineTextField_Examination1.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.materialSingleLineTextField_Examination1.ForeColor = System.Drawing.Color.Black;
-            this.materialSingleLineTextField_Examination1.Hint = "";
-            this.materialSingleLineTextField_Examination1.IsErrorMode = false;
-            this.materialSingleLineTextField_Examination1.Location = new System.Drawing.Point(231, 31);
-            this.materialSingleLineTextField_Examination1.Margin = new System.Windows.Forms.Padding(6);
-            this.materialSingleLineTextField_Examination1.MaxLength = 32767;
-            this.materialSingleLineTextField_Examination1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField_Examination1.Name = "materialSingleLineTextField_Examination1";
-            this.materialSingleLineTextField_Examination1.PasswordChar = '\0';
-            this.materialSingleLineTextField_Examination1.ReadOlay = true;
-            this.materialSingleLineTextField_Examination1.SelectedText = "";
-            this.materialSingleLineTextField_Examination1.SelectionLength = 0;
-            this.materialSingleLineTextField_Examination1.SelectionStart = 0;
-            this.materialSingleLineTextField_Examination1.Size = new System.Drawing.Size(621, 51);
-            this.materialSingleLineTextField_Examination1.TabIndex = 10;
-            this.materialSingleLineTextField_Examination1.TabStop = false;
-            this.materialSingleLineTextField_Examination1.Text = "计算机系";
-            this.materialSingleLineTextField_Examination1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialSingleLineTextField_Examination1.UseSystemPasswordChar = false;
+            this.Text_Main_Department.BindingLabel = null;
+            this.Text_Main_Department.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Department.Depth = 0;
+            this.Text_Main_Department.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Department.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Department.ErrorModeString = "";
+            this.Text_Main_Department.FollowLabel = null;
+            this.Text_Main_Department.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Department.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Department.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Department.Hint = "";
+            this.Text_Main_Department.IsErrorMode = false;
+            this.Text_Main_Department.Location = new System.Drawing.Point(231, 82);
+            this.Text_Main_Department.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Department.MaxLength = 32767;
+            this.Text_Main_Department.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Department.Name = "Text_Main_Department";
+            this.Text_Main_Department.PasswordChar = '\0';
+            this.Text_Main_Department.ReadOlay = true;
+            this.Text_Main_Department.SelectedText = "";
+            this.Text_Main_Department.SelectionLength = 0;
+            this.Text_Main_Department.SelectionStart = 0;
+            this.Text_Main_Department.Size = new System.Drawing.Size(621, 51);
+            this.Text_Main_Department.TabIndex = 10;
+            this.Text_Main_Department.TabStop = false;
+            this.Text_Main_Department.Text = "计算机系";
+            this.Text_Main_Department.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Department.UseSystemPasswordChar = false;
             // 
             // PictureBox_UserImage
             // 
             this.PictureBox_UserImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PictureBox_UserImage.Image = global::InputSpeedExamination.Properties.Resources.avatar;
-            this.PictureBox_UserImage.Location = new System.Drawing.Point(25, 49);
+            this.PictureBox_UserImage.Location = new System.Drawing.Point(37, 49);
             this.PictureBox_UserImage.Name = "PictureBox_UserImage";
             this.PictureBox_UserImage.Size = new System.Drawing.Size(150, 210);
             this.PictureBox_UserImage.TabIndex = 5;
@@ -482,7 +497,7 @@
             // 
             this.Button_SelectText_Import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_SelectText_Import.Depth = 0;
-            this.Button_SelectText_Import.Location = new System.Drawing.Point(844, 628);
+            this.Button_SelectText_Import.Location = new System.Drawing.Point(846, 624);
             this.Button_SelectText_Import.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Import.Name = "Button_SelectText_Import";
             this.Button_SelectText_Import.Primary = true;
@@ -496,7 +511,7 @@
             // 
             this.Button_SelectText_Begin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Button_SelectText_Begin.Depth = 0;
-            this.Button_SelectText_Begin.Location = new System.Drawing.Point(1023, 628);
+            this.Button_SelectText_Begin.Location = new System.Drawing.Point(1025, 624);
             this.Button_SelectText_Begin.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Begin.Name = "Button_SelectText_Begin";
             this.Button_SelectText_Begin.Primary = true;
@@ -510,7 +525,7 @@
             // 
             this.Button_SelectText_Return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_SelectText_Return.Depth = 0;
-            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 628);
+            this.Button_SelectText_Return.Location = new System.Drawing.Point(7, 624);
             this.Button_SelectText_Return.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_SelectText_Return.Name = "Button_SelectText_Return";
             this.Button_SelectText_Return.Primary = true;
@@ -570,7 +585,7 @@
             this.ListView_ExaminationList.MouseState = MaterialSkin.MouseState.OUT;
             this.ListView_ExaminationList.Name = "ListView_ExaminationList";
             this.ListView_ExaminationList.OwnerDraw = true;
-            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 572);
+            this.ListView_ExaminationList.Size = new System.Drawing.Size(1189, 568);
             this.ListView_ExaminationList.TabIndex = 0;
             this.ListView_ExaminationList.UseCompatibleStateImageBehavior = false;
             this.ListView_ExaminationList.View = System.Windows.Forms.View.Details;
@@ -1465,6 +1480,163 @@
             this.Timer_UpdateStats.Interval = 5000;
             this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
             // 
+            // Text_Main_Batch
+            // 
+            this.Text_Main_Batch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Main_Batch.BindingLabel = null;
+            this.Text_Main_Batch.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Batch.Depth = 0;
+            this.Text_Main_Batch.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Batch.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Batch.ErrorModeString = "";
+            this.Text_Main_Batch.FollowLabel = null;
+            this.Text_Main_Batch.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Batch.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Batch.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Batch.Hint = "";
+            this.Text_Main_Batch.IsErrorMode = false;
+            this.Text_Main_Batch.Location = new System.Drawing.Point(231, 334);
+            this.Text_Main_Batch.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Batch.MaxLength = 32767;
+            this.Text_Main_Batch.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Batch.Name = "Text_Main_Batch";
+            this.Text_Main_Batch.PasswordChar = '\0';
+            this.Text_Main_Batch.ReadOlay = true;
+            this.Text_Main_Batch.SelectedText = "";
+            this.Text_Main_Batch.SelectionLength = 0;
+            this.Text_Main_Batch.SelectionStart = 0;
+            this.Text_Main_Batch.Size = new System.Drawing.Size(621, 51);
+            this.Text_Main_Batch.TabIndex = 14;
+            this.Text_Main_Batch.TabStop = false;
+            this.Text_Main_Batch.Text = "104考场";
+            this.Text_Main_Batch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Batch.UseSystemPasswordChar = false;
+            // 
+            // Button_Main_Back
+            // 
+            this.Button_Main_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_Main_Back.Depth = 0;
+            this.Button_Main_Back.Location = new System.Drawing.Point(7, 624);
+            this.Button_Main_Back.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Main_Back.Name = "Button_Main_Back";
+            this.Button_Main_Back.Primary = true;
+            this.Button_Main_Back.Size = new System.Drawing.Size(173, 56);
+            this.Button_Main_Back.TabIndex = 15;
+            this.Button_Main_Back.Text = "返回";
+            this.Button_Main_Back.UseVisualStyleBackColor = true;
+            this.Button_Main_Back.Click += new System.EventHandler(this.Button_Main_Back_Click);
+            // 
+            // Button_Main_Free
+            // 
+            this.Button_Main_Free.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Main_Free.Depth = 0;
+            this.Button_Main_Free.Location = new System.Drawing.Point(1025, 624);
+            this.Button_Main_Free.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Main_Free.Name = "Button_Main_Free";
+            this.Button_Main_Free.Primary = true;
+            this.Button_Main_Free.Size = new System.Drawing.Size(173, 56);
+            this.Button_Main_Free.TabIndex = 16;
+            this.Button_Main_Free.Text = "自由练习";
+            this.Button_Main_Free.UseVisualStyleBackColor = true;
+            this.Button_Main_Free.Click += new System.EventHandler(this.Button_Main_Free_Click);
+            // 
+            // Button_Main_OnlineExam
+            // 
+            this.Button_Main_OnlineExam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Main_OnlineExam.Depth = 0;
+            this.Button_Main_OnlineExam.Location = new System.Drawing.Point(846, 624);
+            this.Button_Main_OnlineExam.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Main_OnlineExam.Name = "Button_Main_OnlineExam";
+            this.Button_Main_OnlineExam.Primary = true;
+            this.Button_Main_OnlineExam.Size = new System.Drawing.Size(173, 56);
+            this.Button_Main_OnlineExam.TabIndex = 17;
+            this.Button_Main_OnlineExam.Text = "在线测试";
+            this.Button_Main_OnlineExam.UseVisualStyleBackColor = true;
+            this.Button_Main_OnlineExam.Click += new System.EventHandler(this.Button_Main_OnlineExam_Click);
+            // 
+            // Text_Main_Name
+            // 
+            this.Text_Main_Name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Main_Name.BindingLabel = null;
+            this.Text_Main_Name.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Name.Depth = 0;
+            this.Text_Main_Name.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Name.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Name.ErrorModeString = "";
+            this.Text_Main_Name.FollowLabel = null;
+            this.Text_Main_Name.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Name.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Name.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Name.Hint = "";
+            this.Text_Main_Name.IsErrorMode = false;
+            this.Text_Main_Name.Location = new System.Drawing.Point(6, 271);
+            this.Text_Main_Name.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Name.MaxLength = 32767;
+            this.Text_Main_Name.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Name.Name = "Text_Main_Name";
+            this.Text_Main_Name.PasswordChar = '\0';
+            this.Text_Main_Name.ReadOlay = true;
+            this.Text_Main_Name.SelectedText = "";
+            this.Text_Main_Name.SelectionLength = 0;
+            this.Text_Main_Name.SelectionStart = 0;
+            this.Text_Main_Name.Size = new System.Drawing.Size(213, 51);
+            this.Text_Main_Name.TabIndex = 15;
+            this.Text_Main_Name.TabStop = false;
+            this.Text_Main_Name.Text = "姓名";
+            this.Text_Main_Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Name.UseSystemPasswordChar = false;
+            // 
+            // Text_Main_Number
+            // 
+            this.Text_Main_Number.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Text_Main_Number.BindingLabel = null;
+            this.Text_Main_Number.CorrectForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Number.Depth = 0;
+            this.Text_Main_Number.ErrorForeColor = System.Drawing.Color.Red;
+            this.Text_Main_Number.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Main_Number.ErrorModeString = "";
+            this.Text_Main_Number.FollowLabel = null;
+            this.Text_Main_Number.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Main_Number.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Main_Number.ForeColor = System.Drawing.Color.Black;
+            this.Text_Main_Number.Hint = "";
+            this.Text_Main_Number.IsErrorMode = false;
+            this.Text_Main_Number.Location = new System.Drawing.Point(6, 334);
+            this.Text_Main_Number.Margin = new System.Windows.Forms.Padding(6);
+            this.Text_Main_Number.MaxLength = 32767;
+            this.Text_Main_Number.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Main_Number.Name = "Text_Main_Number";
+            this.Text_Main_Number.PasswordChar = '\0';
+            this.Text_Main_Number.ReadOlay = true;
+            this.Text_Main_Number.SelectedText = "";
+            this.Text_Main_Number.SelectionLength = 0;
+            this.Text_Main_Number.SelectionStart = 0;
+            this.Text_Main_Number.Size = new System.Drawing.Size(213, 51);
+            this.Text_Main_Number.TabIndex = 16;
+            this.Text_Main_Number.TabStop = false;
+            this.Text_Main_Number.Text = "学号";
+            this.Text_Main_Number.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Text_Main_Number.UseSystemPasswordChar = false;
+            // 
+            // Label_Main_Tip
+            // 
+            this.Label_Main_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Main_Tip.Depth = 0;
+            this.Label_Main_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Main_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Main_Tip.Location = new System.Drawing.Point(231, 24);
+            this.Label_Main_Tip.Margin = new System.Windows.Forms.Padding(6);
+            this.Label_Main_Tip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Main_Tip.Name = "Label_Main_Tip";
+            this.Label_Main_Tip.Size = new System.Drawing.Size(621, 46);
+            this.Label_Main_Tip.TabIndex = 17;
+            this.Label_Main_Tip.Text = "请核对您的信息";
+            this.Label_Main_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1488,7 +1660,7 @@
             this.TabPage_Select.ResumeLayout(false);
             this.Panel_Login.ResumeLayout(false);
             this.TabPage_Main.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.Panel_Main_UserInformation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserImage)).EndInit();
             this.TabPage_SelectText.ResumeLayout(false);
             this.TabPage_Start.ResumeLayout(false);
@@ -1576,11 +1748,18 @@
         private MaterialSkin.Controls.MaterialProgressBar Progress_Result_Percent;
         private MaterialSkin.Controls.MaterialRaisedButton Button_Complete;
         private MaterialSkin.Controls.MaterialFlatButton Button_About;
-        private System.Windows.Forms.Panel panel1;
-        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination4;
-        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination3;
-        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination2;
-        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination materialSingleLineTextField_Examination1;
+        private System.Windows.Forms.Panel Panel_Main_UserInformation;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_ExamRoom;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Class;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Major;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Department;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Main_Back;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Batch;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Main_Free;
+        private MaterialSkin.Controls.MaterialRaisedButton Button_Main_OnlineExam;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Name;
+        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Number;
+        private MaterialSkin.Controls.MaterialLabel Label_Main_Tip;
     }
 }
 

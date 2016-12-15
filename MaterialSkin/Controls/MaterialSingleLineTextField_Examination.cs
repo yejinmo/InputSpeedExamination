@@ -48,7 +48,7 @@ namespace MaterialSkin.Controls
 
         public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; } }
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
-        public new int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
+        public int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
 
         public HorizontalAlignment TextAlign
         {

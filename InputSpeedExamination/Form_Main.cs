@@ -24,6 +24,7 @@ namespace InputSpeedExamination
         /// </summary>
         static class UserInformation
         {
+
             /// <summary>
             /// 系
             /// </summary>
@@ -101,6 +102,11 @@ namespace InputSpeedExamination
                 }
             }
 
+            /// <summary>
+            /// 测试模式
+            /// </summary>
+            public static bool OnLineExamination = false;
+
             public delegate void OnLineChange(bool OnLine);
             public static OnLineChange OnLineStatsChange;
         }
@@ -155,6 +161,7 @@ namespace InputSpeedExamination
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
+            NeedCenterControlList.Add(new NeedCenterControl(Panel_Main_UserInformation, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Result, NeedCenterControlStyle.Both));
@@ -237,6 +244,11 @@ namespace InputSpeedExamination
 
         #region Select
 
+        private void Button_About_Click(object sender, EventArgs e)
+        {
+            new Form_About().ShowDialog();
+        }
+
         private void FlatButton_Select_OffLine_MouseMove(object sender, MouseEventArgs e)
         {
             //WebView_Select_BG.mouse
@@ -247,12 +259,18 @@ namespace InputSpeedExamination
             if (ProcessBar_Login.Visible)
                 return;
             UserInformation.OnLine = false;
+            Button_SelectText_Import.Visible = true;
             Thread ThreadLoadExaminationList = new Thread(new ThreadStart(LoadExaminationList));
             ThreadLoadExaminationList.Start();
         }
 
+        private void Button_Main_Back_Click(object sender, EventArgs e)
+        {
+            TabControl_Main.SelectedTab = TabPage_Select;
+        }
+
         #endregion
-        
+
         #region Examination
 
         private void Examination_TextLine_1_KeyDown(object sender, KeyEventArgs e)
@@ -885,7 +903,7 @@ namespace InputSpeedExamination
                             needbreak = true;
                     });
                 }
-                var dt = db.GetContentByKeyword(SearchKeyword);
+                var dt = db.GetContentByKeyword(SearchKeyword, UserInformation.OnLineExamination && UserInformation.OnLine);
                 Invoke((EventHandler)delegate
                 {
                     ListView_ExaminationList.Items.Clear();
@@ -921,7 +939,10 @@ namespace InputSpeedExamination
 
         private void Button_SelectText_Return_Click(object sender, EventArgs e)
         {
-            TabControl_Main.SelectedTab = TabPage_Select;
+            if (UserInformation.OnLine)
+                TabControl_Main.SelectedTab = TabPage_Main;
+            else
+                TabControl_Main.SelectedTab = TabPage_Select;
         }
 
         private void Button_SelectText_Import_Click(object sender, EventArgs e)
@@ -1028,10 +1049,9 @@ namespace InputSpeedExamination
             }
         }
 
-        private void RefreshExaminationList(DataTable dt = null)
+        private void RefreshExaminationList()
         {
-            if (dt == null)
-                dt = db.GetAllContent();
+            var dt = db.GetAllContent(UserInformation.OnLineExamination && UserInformation.OnLine);
             Invoke((EventHandler)delegate
             {
                 ListView_ExaminationList.Items.Clear();
@@ -1129,6 +1149,20 @@ namespace InputSpeedExamination
         {
             if (ProcessBar_Login.Visible == true)
                 return;
+            UserInformation.BatchID = "";
+            UserInformation.BatchTitle = "";
+            UserInformation.Class = "";
+            UserInformation.ContentID = "";
+            UserInformation.ContentMD5 = "";
+            UserInformation.ContentTitle = "";
+            UserInformation.Department = "";
+            UserInformation.ExamRoomID = "";
+            UserInformation.ExamRoomTitle = "";
+            UserInformation.GUID = "";
+            UserInformation.Major = "";
+            UserInformation.Name = "";
+            UserInformation.OnLine = false;
+            UserInformation.OnLineExamination = false;
             UserInformation.Number = TextField_UserName.Text;
             UserInformation.Password = TextField_PassWord.Text;
             if (string.IsNullOrEmpty(UserInformation.Number))
@@ -1217,21 +1251,61 @@ namespace InputSpeedExamination
                     UserInformation.OnLine = true;
                     Update_Label_Login_Tip(Color.Black, "登录成功");
                     Thread.Sleep(250);
-                    Update_Label_Login_Tip(Color.Black, "正在获取试题库");
-                    var ds = new ServiceReference.ClientServiceSoapClient().GetAllContent();
-                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    Update_Label_Login_Tip(Color.Black, "获取考场信息");
+                    Thread.Sleep(250);
                     {
-                        string title = dr["Title"].ToString();
-                        string content = dr["String"].ToString();
-                        db.InsertNewContent(title, content);
+                        var temp = new ServiceReference.ClientServiceSoapClient().GetBatchID();
+                        int tempid = 1;                        
+                        if (!string.IsNullOrEmpty(temp) && int.TryParse(temp, out tempid))
+                        {
+                            UserInformation.BatchID = temp;
+                            UserInformation.BatchTitle = new ServiceReference.ClientServiceSoapClient().GetBatchTitle();
+                        }
+                        temp = new ServiceReference.ClientServiceSoapClient().GetExamRoomID();
+                        if (!string.IsNullOrEmpty(temp) && int.TryParse(temp, out tempid))
+                        {
+                            UserInformation.ExamRoomID = temp;
+                            UserInformation.ExamRoomTitle = new ServiceReference.ClientServiceSoapClient().GetExamRoomTitle();
+                        }
                     }
+                    Update_Label_Login_Tip(Color.Black, "正在获取试题库");
+                    try
+                    {
+                        var ds = new ServiceReference.ClientServiceSoapClient().GetAllContent();
+                        foreach (DataRow dr in ds.Tables[0].Rows)
+                        {
+                            string title = dr["Title"].ToString();
+                            string content = dr["String"].ToString();
+                            db.InsertNewContent(title, content);
+                        }
+                        db.ClearOnlineContent();
+                        ds = new ServiceReference.ClientServiceSoapClient().GetAllContentOnlineBatch();
+                        foreach (DataRow dr in ds.Tables[0].Rows)
+                        {
+                            string title = dr["Title"].ToString();
+                            string content = dr["String"].ToString();
+                            db.InsertNewOnlineContent(title, content);
+                        }
+                    }
+                    catch { }
                     Thread.Sleep(250);
                     Update_Label_Login_Tip(Color.Black, "正在加载界面");
                     RefreshExaminationList();
                     Thread.Sleep(250);
                     Invoke((EventHandler)delegate
                     {
-                        TabControl_Main.SelectedTab = TabPage_SelectText;
+                        if (string.IsNullOrEmpty(UserInformation.BatchID))
+                            Button_Main_OnlineExam.Enabled = false;
+                        else
+                            Button_Main_OnlineExam.Enabled = true;
+                        Text_Main_Class.Text = UserInformation.Class.IndexOf("班") > 0 ? UserInformation.Class : UserInformation.Class + "班";
+                        Text_Main_Department.Text = UserInformation.Department.IndexOf("系") > 0 ? UserInformation.Department : UserInformation.Department + "系";
+                        Text_Main_ExamRoom.Text = UserInformation.ExamRoomTitle;
+                        Text_Main_Major.Text = UserInformation.Major.IndexOf("专业") > 0 ? UserInformation.Major : UserInformation.Major + "专业";
+                        Text_Main_Batch.Text = string.IsNullOrEmpty(UserInformation.BatchTitle) ? "当前暂无正在进行的考试" : UserInformation.BatchTitle;
+                        Text_Main_Number.Text = UserInformation.Number;
+                        Text_Main_Name.Text = UserInformation.Name;
+                        TabControl_Main.SelectedTab = TabPage_Main;
                     });
                     Update_Label_Login_Tip(Color.Black);
                 }
@@ -1400,7 +1474,53 @@ namespace InputSpeedExamination
 
         private void Button_Result_Close_Click(object sender, EventArgs e)
         {
+            if (Process_Result_SendResult.Visible)
+                return;
             TabControl_Main.SelectedTab = TabPage_SelectText;
+        }
+
+        #endregion
+
+        #region Main
+
+        private void Button_Main_Free_Click(object sender, EventArgs e)
+        {
+            UserInformation.OnLineExamination = false;
+            Thread ThreadRefreshExaminationList = new Thread(new ThreadStart(delegate 
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                });
+                RefreshExaminationList();
+                Invoke((EventHandler)delegate
+                {
+                    Button_SelectText_Import.Visible = false;
+                    TabControl_Main.SelectedTab = TabPage_SelectText;
+                    Enabled = true;
+                });
+            }));
+            ThreadRefreshExaminationList.Start();
+        }
+
+        private void Button_Main_OnlineExam_Click(object sender, EventArgs e)
+        {
+            UserInformation.OnLineExamination = true;
+            Thread ThreadRefreshExaminationList = new Thread(new ThreadStart(delegate
+            {
+                Invoke((EventHandler)delegate
+                {
+                    Enabled = false;
+                });
+                RefreshExaminationList();
+                Invoke((EventHandler)delegate
+                {
+                    Button_SelectText_Import.Visible = false;
+                    TabControl_Main.SelectedTab = TabPage_SelectText;
+                    Enabled = true;
+                });
+            }));
+            ThreadRefreshExaminationList.Start();
         }
 
         #endregion

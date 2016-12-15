@@ -67,8 +67,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-        private new string Text;
-
         private string textString = string.Empty;
         public string TextString
         {

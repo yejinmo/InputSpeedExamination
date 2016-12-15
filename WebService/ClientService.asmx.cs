@@ -123,6 +123,23 @@ namespace WebService
             return new DBHelper().GetExamRoomID(IPAddress);
         }
 
+        [WebMethod(Description = "获取考场标题")]
+        public string GetExamRoomTitle()
+        {
+            string IPAddress = string.Empty;
+            if (Context.Request.IsLocal)
+                IPAddress = "0.0.0.0";
+            else
+                IPAddress = Context.Request.UserHostAddress.ToString();
+            return new DBHelper().GetExamRoomTitle(IPAddress);
+        }
+
+        [WebMethod(Description = "获取批次标题")]
+        public string GetBatchTitle()
+        {
+            return new DBHelper().GetBatchTitle();
+        }
+
         [WebMethod(Description = "获取批次号")]
         public string GetBatchID()
         {
@@ -156,6 +173,12 @@ namespace WebService
         public DataSet GetUpdateList()
         {
             return new DBHelper().GetUpdateList();
+        }
+
+        [WebMethod(Description = "获取正在进行的考试内容")]
+        public DataSet GetAllContentOnlineBatch()
+        {
+            return new DBHelper().GetContentByBatchID(new DBHelper().GetBatchID());
         }
 
         /// <summary>

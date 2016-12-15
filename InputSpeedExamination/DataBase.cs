@@ -116,13 +116,17 @@ namespace InputSpeedExamination
                 string textMD5 = GetMD5Hash(text);
                 text = text.Replace("'", "''");
                 CONN.Open();
-                string sql_check = string.Format(@"SELECT * FROM OnlineContentTable WHERE [MD5_Value] = '{0}'", textMD5);
+                string sql_check = string.Format(@"SELECT * FROM [OnlineContentTable] WHERE [MD5_Value] = '{0}'", textMD5);
                 var cmd_check = new SQLiteCommand(sql_check, CONN);
-                var sda_check = cmd_check.ExecuteReader();
-                if (sda_check.HasRows)
+                var sdr_check = cmd_check.ExecuteReader();
+                if (sdr_check.HasRows)
+                {
+                    sdr_check.Close();
                     return false;
+                }
+                sdr_check.Close();
                 string sql = string.Format
-                    (@"INSERT INTO OnlineContentTable ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
+                    (@"INSERT INTO [OnlineContentTable] ([Title], [Text], [Length_Value], [MD5_Value]) VALUES ('{0}', '{1}', '{2}', '{3}')",
                     title, text, text.Length.ToString(), textMD5);
                 SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
                 cmd.ExecuteNonQuery();
@@ -139,21 +143,22 @@ namespace InputSpeedExamination
         }
 
         /// <summary>
-        /// 清空在线测试输入文本内容
+        /// 清空在线试题库的缓存
         /// </summary>
         /// <returns></returns>
         public bool ClearOnlineContent()
         {
             try
             {
-                string sql = "TRUNCATE TABLE OnlineContentTable";
+                CONN.Open();
+                string sql = "TRUNCATE TABLE [OnlineContentTable]";
                 SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                return false;
             }
             finally
             {
@@ -165,22 +170,23 @@ namespace InputSpeedExamination
         /// 获取全部内容
         /// </summary>
         /// <returns></returns>
-        public DataTable GetAllContent()
+        public DataTable GetAllContent(bool OnlineCache = false)
         {
             try
             {
+                string TABLENAME = OnlineCache ? "OnlineContentTable" : "ContentTable";
                 CONN.Open();
 
                 var res = new DataSet();
 
-                string sql = @"SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM ContentTable";
+                string sql = string.Format("SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM [{0}]", TABLENAME);
                 SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, CONN);
-                sda.Fill(res, "ContentTable");
+                sda.Fill(res, TABLENAME);
                 sda.Dispose();
 
                 return res.Tables[0];
             }
-            catch (Exception e)
+            catch
             {
                 return null;
             }
@@ -195,15 +201,17 @@ namespace InputSpeedExamination
         /// </summary>
         /// <param name="Keyword"></param>
         /// <returns></returns>
-        public DataTable GetContentByKeyword(string Keyword)
+        public DataTable GetContentByKeyword(string Keyword, bool OnlineCache = false)
         {
             try
             {
+                string TABLENAME = OnlineCache ? "OnlineContentTable" : "ContentTable";
+
                 CONN.Open();
                 var ds = new DataSet();
                 string sql = string.Format(
-                    "SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM ContentTable WHERE Title LIKE '%{0}%' OR Text LIKE '%{1}%'",
-                    Keyword, Keyword);
+                    "SELECT [Title], [Text], [Length_Value], [MD5_Value] FROM [{0}] WHERE Title LIKE '%{1}%' OR Text LIKE '%{2}%'",
+                    TABLENAME, Keyword, Keyword);
                 SQLiteDataAdapter sda = new SQLiteDataAdapter(sql, CONN);
                 sda.Fill(ds, "ContentTable");
                 sda.Dispose();

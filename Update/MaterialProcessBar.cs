@@ -28,7 +28,7 @@ namespace Update
 
         private void RenderTimer_Tick(object sender, EventArgs e)
         {
-            if (Processing)
+            if (Processing && !IsPercent)
             {
                 int i = Value;
                 i += StepValue;
@@ -121,6 +121,39 @@ namespace Update
             }
         }
 
+        private bool isPercent = false;
+        public bool IsPercent
+        {
+            get
+            {
+                return isPercent;
+            }
+
+            set
+            {
+                isPercent = value;
+                Invalidate();
+            }
+        }
+
+        private double percentValue = 0.5;
+        public double PercentValue
+        {
+            get
+            {
+                return percentValue;
+            }
+
+            set
+            {
+                if (value < 0)
+                    value = 0;
+                if (value > 1)
+                    value = 1;
+                percentValue = value;
+                Invalidate();
+            }
+        }
 
         /// <summary>
         /// Performs the work of setting the specified bounds of this control.
@@ -141,99 +174,22 @@ namespace Update
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-
             try
             {
-                //draw background
-                //e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, top_pos, e.ClipRectangle.Width, e.ClipRectangle.Height);
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(66, 0, 0, 0)), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-                //draw process block
-                //e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, top_pos, LengthValue, e.ClipRectangle.Height);
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(0x37474F)), Value, 0, LengthValue, e.ClipRectangle.Height);
-                /*
-                var doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
-                e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, 0, 0, doneProgress, e.ClipRectangle.Height);
-                e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-                */
+                if (IsPercent)
+                {
+                    var doneProgress = (int)(e.ClipRectangle.Width * percentValue);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(55, 71, 79)), 0, 0, doneProgress, e.ClipRectangle.Height);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(66, 0, 0, 0)), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(66, 0, 0, 0)), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(55, 71, 79)), Value, 0, LengthValue, e.ClipRectangle.Height);
+                }
             }
             catch { }
         }
-
-        //private bool visible = true;
-        //int top_pos = 0;
-        //public new bool Visible
-        //{
-        //    get
-        //    {
-        //        return visible;
-        //    }
-        //    set
-        //    {
-        //        visible = value;
-        //        if (visible)
-        //        {
-        //            top_pos = -Height;
-        //            Invalidate();
-        //            if (HideThread != null)
-        //                HideThread.Abort();
-        //            if (ShowThread != null)
-        //                ShowThread.Abort();
-        //            ShowThread = new Thread(new ThreadStart(ShowSub));
-        //            ShowThread.Start();
-        //        }
-        //        else
-        //        {
-        //            top_pos = 0;
-        //            Invalidate();
-        //            if (ShowThread != null)
-        //                ShowThread.Abort();
-        //            if (HideThread != null)
-        //                HideThread.Abort();
-        //            HideThread = new Thread(new ThreadStart(HideSub));
-        //            HideThread.Start();
-        //        }
-        //    }
-        //}
-
-        //Thread ShowThread;
-
-        //Thread HideThread;
-
-        //private void ShowSub()
-        //{
-        //    while (true && IsCreated)
-        //    {
-        //        Thread.Sleep(40);
-        //        top_pos++;
-        //        Invoke((EventHandler)delegate {
-        //            Invalidate();
-        //        });
-        //        if (top_pos >= 0)
-        //            break;
-        //    }
-        //    Invoke((EventHandler)delegate {
-        //        base.Visible = true;
-        //    });
-        //}
-
-        //private void HideSub()
-        //{
-        //    while (true && IsCreated)
-        //    {
-        //        Thread.Sleep(40);
-        //        top_pos--;
-        //        Invoke((EventHandler)delegate {
-        //            Invalidate();
-        //        });
-        //        if (top_pos <= -Height)
-        //            break;
-        //    }
-        //    Invoke((EventHandler)delegate {
-        //        base.Visible = false;
-        //    });
-        //}
-
-        //private bool IsCreated = false;
 
     }
 }

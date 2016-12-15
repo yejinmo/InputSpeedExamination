@@ -584,7 +584,7 @@ namespace InputSpeedExamination_Controller
 
         private void Button_Batch_Add_Click(object sender, EventArgs e)
         {
-            new Form_AddBatch().ShowDialog();
+            new Form_AddBatch(USERNAME,PASSWORD).ShowDialog();
             Button_Batch_Refresh.PerformClick();
         }
 

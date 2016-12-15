@@ -28,10 +28,6 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetMajorByDepartment(string DepartmentID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Data.DataSet GetUpdateList();
-        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetEdu", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetEdu(string username, string password);
@@ -64,6 +60,14 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetExamRoomID();
         
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomTitle", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExamRoomTitle();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchTitle", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetBatchTitle();
+        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetBatchID();
@@ -79,6 +83,14 @@ namespace InputSpeedExamination.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetOnlineRank", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetOnlineRank(string GUID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetUpdateList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContentOnlineBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllContentOnlineBatch();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -120,10 +132,6 @@ namespace InputSpeedExamination.ServiceReference {
             return base.Channel.GetMajorByDepartment(DepartmentID);
         }
         
-        public System.Data.DataSet GetUpdateList() {
-            return base.Channel.GetUpdateList();
-        }
-        
         public string GetEdu(string username, string password) {
             return base.Channel.GetEdu(username, password);
         }
@@ -156,6 +164,14 @@ namespace InputSpeedExamination.ServiceReference {
             return base.Channel.GetExamRoomID();
         }
         
+        public string GetExamRoomTitle() {
+            return base.Channel.GetExamRoomTitle();
+        }
+        
+        public string GetBatchTitle() {
+            return base.Channel.GetBatchTitle();
+        }
+        
         public string GetBatchID() {
             return base.Channel.GetBatchID();
         }
@@ -170,6 +186,14 @@ namespace InputSpeedExamination.ServiceReference {
         
         public string GetOnlineRank(string GUID) {
             return base.Channel.GetOnlineRank(GUID);
+        }
+        
+        public System.Data.DataSet GetUpdateList() {
+            return base.Channel.GetUpdateList();
+        }
+        
+        public System.Data.DataSet GetAllContentOnlineBatch() {
+            return base.Channel.GetAllContentOnlineBatch();
         }
     }
 }
