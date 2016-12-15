@@ -161,14 +161,38 @@ namespace InputSpeedExamination
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
+            Thread.Sleep(1000);
+            RunCmd("RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 8");
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Main_UserInformation, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
-            NeedCenterControlList.Add(new NeedCenterControl(Panel_Start, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Result, NeedCenterControlStyle.Both));
+            WebView_Select_BG.ScriptErrorsSuppressed = true;
             WebView_Select_BG.Navigate(Environment.CurrentDirectory + @"\sources\web\main\index.html");
             UserInformation.OnLineStatsChange = OnLineStatsChange;
             UserInformation.OnLine = false;
             Form_Main_Resize(sender, e);
+            Focus();
+            BringToFront();
+            Focus();
+            BringToFront();
+        }
+
+        void RunCmd(string cmd)
+        {
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.FileName = "cmd.exe";
+            // 关闭Shell的使用
+            p.StartInfo.UseShellExecute = false;
+            // 重定向标准输入
+            p.StartInfo.RedirectStandardInput = true;
+            // 重定向标准输出
+            p.StartInfo.RedirectStandardOutput = true;
+            //重定向错误输出
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.Start();
+            p.StandardInput.WriteLine(cmd);
+            p.StandardInput.WriteLine("exit");
         }
 
         DataBase db = new DataBase();
@@ -281,6 +305,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (e.KeyCode == Keys.Back && Examination_TextLine_1.Text.Length == 0)
+                LoadPreviousExaminationPage();
             if (Examination_TextLine_1.Text.Length == Examination_TextLine_1.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_2.Focus();
         }
@@ -293,6 +319,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (e.KeyCode == Keys.Back && Examination_TextLine_2.Text.Length == 0)
+                Examination_TextLine_1.Focus();
             if (Examination_TextLine_2.Text.Length == Examination_TextLine_2.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_3.Focus();
         }
@@ -305,6 +333,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (e.KeyCode == Keys.Back && Examination_TextLine_3.Text.Length == 0)
+                Examination_TextLine_2.Focus();
             if (Examination_TextLine_3.Text.Length == Examination_TextLine_3.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_4.Focus();
         }
@@ -317,6 +347,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (e.KeyCode == Keys.Back && Examination_TextLine_4.Text.Length == 0)
+                Examination_TextLine_3.Focus();
             if (Examination_TextLine_4.Text.Length == Examination_TextLine_4.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 Examination_TextLine_5.Focus();
         }
@@ -329,6 +361,8 @@ namespace InputSpeedExamination
                 return;
             if (Input_Status == Input_Status_Enum.Pause)
                 Input_Status = Input_Status_Enum.Input;
+            if (e.KeyCode == Keys.Back && Examination_TextLine_5.Text.Length == 0)
+                Examination_TextLine_4.Focus();
             if (Examination_TextLine_5.Text.Length == Examination_TextLine_5.BindingLabel.TextString.Length && e.KeyCode != Keys.Back)
                 LoadNextExaminationPage();
         }
@@ -1525,6 +1559,10 @@ namespace InputSpeedExamination
 
         #endregion
 
+        private void TabPage_Start_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

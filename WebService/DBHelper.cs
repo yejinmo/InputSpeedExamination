@@ -945,6 +945,46 @@ namespace WebService
             }
         }
 
+        /// <summary>
+        /// 重置更新信息
+        /// </summary>
+        /// <returns></returns>
+        public bool ClearUpdateRule()
+        {
+            try
+            {
+                string sql = "TRUNCATE TABLE [Table_Update]";
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 插入一条更新记录
+        /// </summary>
+        /// <param name="ClientPath"></param>
+        /// <param name="ServerPath"></param>
+        /// <param name="ServerMD5"></param>
+        /// <returns></returns>
+        public bool InsertUpdateRule(string ClientPath, string ServerPath, string ServerMD5)
+        {
+            try
+            {
+                string sql = string.Format(
+"INSERT INTO [Table_Update] ([ClientPath], [ServerPath], [ServerMD5]) VALUES ('{0}', '{1}', '{2}')", ClientPath, ServerPath, ServerMD5);
+                new SqlCommand(sql, Conn).ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         /// <summary>

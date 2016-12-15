@@ -60,6 +60,14 @@ namespace Update.ServiceReference {
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetExamRoomID();
         
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetExamRoomTitle", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetExamRoomTitle();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchTitle", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetBatchTitle();
+        
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetBatchID", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         string GetBatchID();
@@ -79,6 +87,10 @@ namespace Update.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="WebService/GetUpdateList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Data.DataSet GetUpdateList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="WebService/GetAllContentOnlineBatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Data.DataSet GetAllContentOnlineBatch();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -152,6 +164,14 @@ namespace Update.ServiceReference {
             return base.Channel.GetExamRoomID();
         }
         
+        public string GetExamRoomTitle() {
+            return base.Channel.GetExamRoomTitle();
+        }
+        
+        public string GetBatchTitle() {
+            return base.Channel.GetBatchTitle();
+        }
+        
         public string GetBatchID() {
             return base.Channel.GetBatchID();
         }
@@ -170,6 +190,10 @@ namespace Update.ServiceReference {
         
         public System.Data.DataSet GetUpdateList() {
             return base.Channel.GetUpdateList();
+        }
+        
+        public System.Data.DataSet GetAllContentOnlineBatch() {
+            return base.Channel.GetAllContentOnlineBatch();
         }
     }
 }

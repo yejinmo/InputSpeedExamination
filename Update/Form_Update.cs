@@ -10,6 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Net;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Update
 {
@@ -49,7 +50,7 @@ namespace Update
         /// <returns></returns>
         private bool CheckFileNeedUpdate(string FileLocalPath, string ServerMD5)
         {
-            return !CheckFileExist(FileLocalPath) && !CheckFileMD5(FileLocalPath, ServerMD5);
+            return !CheckFileExist(FileLocalPath) || !CheckFileMD5(FileLocalPath, ServerMD5);
         }
 
         /// <summary>
@@ -106,47 +107,63 @@ namespace Update
             }
         }
 
-        /// <summary>        
-        /// 下载文件        
-        /// </summary>        
-        private bool DownloadFile(string ServerFilePath, string LocalFilePath, ProgressBar prog = null, Label label1 = null)
+        Stopwatch sw = new Stopwatch(); //用于计算下载速度
+        WebClient webClient; //下载文件使用
+
+        //下载进度http下载模式
+        public bool DownloadFile(string ServerFilePath, string LocalFilePath, MaterialProcessBar Prog)
         {
-            float percent = 0;
+            string StrFileName = LocalFilePath;
+            string StrUrl = ServerFilePath; //根据实际情况设置
+            long lStartPos = 0;
+            string strRootFilePath = StrFileName.Substring(0, StrFileName.LastIndexOf("\\"));
+            if (!Directory.Exists(strRootFilePath))//如果不存在就创建file文件夹
+                Directory.CreateDirectory(strRootFilePath);//创建该文件夹
+            System.IO.FileStream fs = new System.IO.FileStream(StrFileName, System.IO.FileMode.Create);
             try
             {
-                HttpWebRequest Myrq = (HttpWebRequest)WebRequest.Create(ServerFilePath);
-                HttpWebResponse myrp = (HttpWebResponse)Myrq.GetResponse();
-                long totalBytes = myrp.ContentLength;
-                if (prog != null)
+                System.Net.HttpWebRequest Myrq = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(ServerFilePath);
+                System.Net.HttpWebResponse myrp = (System.Net.HttpWebResponse)Myrq.GetResponse();
+                long totalBytes;
+                if (myrp.ContentLength > 0)
                 {
-                    prog.Maximum = (int)totalBytes;
+                    totalBytes = myrp.ContentLength;
                 }
-                Stream st = myrp.GetResponseStream();
-                Stream so = new FileStream(LocalFilePath, FileMode.Create);
-                long totalDownloadedByte = 0;
-                byte[] by = new byte[1024];
-                int osize = st.Read(by, 0, (int)by.Length);
-                while (osize > 0)
+                else
                 {
-                    totalDownloadedByte = osize + totalDownloadedByte;
-                    Application.DoEvents();
-                    so.Write(by, 0, osize);
-                    if (prog != null)
+                    totalBytes = lStartPos;
+                    return true;
+                }
+                myrp.Close();
+                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(StrUrl);
+                if (lStartPos >= 0 && lStartPos < totalBytes)
+                {
+                    request.AddRange((int)lStartPos); //设置Range值
+                    //向服务器请求，获得服务器回应数据流
+                    System.IO.Stream ns = request.GetResponse().GetResponseStream();
+                    byte[] nbytes = new byte[512];
+                    int nReadSize = 0;
+                    nReadSize = ns.Read(nbytes, 0, 512);
+                    int processv = 0;
+                    while (nReadSize > 0)
                     {
-                        prog.Value = (int)totalDownloadedByte;
+                        fs.Write(nbytes, 0, nReadSize);
+                        nReadSize = ns.Read(nbytes, 0, 512);
+                        processv += nReadSize;
+                        Invoke((EventHandler)delegate
+                        {
+                            Prog.PercentValue = processv / (double)totalBytes;
+                        });
                     }
-                    osize = st.Read(by, 0, (int)by.Length);
-
-                    percent = (float)totalDownloadedByte / (float)totalBytes * 100;
-                    label1.Text = "当前补丁下载进度" + percent.ToString() + "%";
-                    Application.DoEvents();
+                    fs.Close();
+                    ns.Close();
                 }
-                so.Close();
-                st.Close();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                fs.Close();
                 return false;
             }
         }
@@ -162,17 +179,39 @@ namespace Update
                 return false;
             if (ds.Tables.Count != 1)
                 return false;
-            if (ds.Tables[0].Columns.Count != 3)
+            if (ds.Tables[0].Columns.Count != 4)
                 return false;
+            Invoke((EventHandler)delegate
+            {
+                ProcessBar_Update.IsPercent = true;
+                Label_Tip.Text = "正在下载";
+            });
+            int index = 0;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                string LocalFilePath = Application.StartupPath + "\\" + row[0].ToString();
-                string ServerFilePath = row[1].ToString();
-                string ServerFileMD5 = row[2].ToString();
+                index++;
+                Invoke((EventHandler)delegate
+                {
+                    Label_Tip.Text = string.Format("正在下载({0}/{1})", index, ds.Tables[0].Rows.Count);
+                });
+                string LocalFilePath = Application.StartupPath + "\\" + row["ClientPath"].ToString().Replace(@"/", @"\");
+                string ServerFilePath = row["ServerPath"].ToString();
+                string ServerFileMD5 = row["ServerMD5"].ToString();
                 if (CheckFileNeedUpdate(LocalFilePath, ServerFileMD5))
-                    if (DownloadFile(ServerFilePath, LocalFilePath))
+                    if (!DownloadFile(ServerFilePath, LocalFilePath, ProcessBar_Update))
+                    {
+                        Invoke((EventHandler)delegate
+                        {
+                            Label_Tip.Text += "下载失败";
+                        });
                         return false;
+                    }
             }
+            Invoke((EventHandler)delegate
+            {
+                Label_Tip.Text = "更新完成";
+                UpdateDone();
+            });
             return true;
         }
 
@@ -190,6 +229,46 @@ namespace Update
         }
 
         #endregion
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCHITTEST = 0x84;
+            const int HTCLIENT = 0x01;
+            const int HTCAPTION = 0x02;
+            if (m.Msg == WM_NCHITTEST)
+            {
+                this.DefWndProc(ref m);
+                if (m.Result.ToInt32() == HTCLIENT)
+                    m.Result = new IntPtr(HTCAPTION);
+                else
+                    base.WndProc(ref m);
+            }
+            else
+            {
+                base.WndProc(ref m);
+            }
+        }
+
+        private void UpdateDone()
+        {
+            try
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "InputSpeedExamination.exe";
+                startInfo.Arguments = "updatedone";
+                startInfo.WindowStyle = ProcessWindowStyle.Normal;
+                Process.Start(startInfo);
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            Invoke((EventHandler)delegate
+                {
+                    Close();
+                });
+        }
 
     }
 }

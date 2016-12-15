@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services;
 
@@ -170,6 +172,86 @@ namespace WebService
             if (!CheckLogin(username, password))
                 return "身份验证失败";
             return new DBHelper().EditBatch(BatchID, Title, Remark, IncludePaper);
+        }
+
+        [WebMethod(Description = "配置更新")]
+        public string UpdateConfig(string username, string password)
+        {
+            try
+            {
+                if (!CheckLogin(username, password))
+                    return "身份验证失败";
+
+                new DBHelper().ClearUpdateRule();
+                ListFiles(@"D:\WebService\update\");
+                return "ok";
+            }
+            catch
+            {
+                return "error";
+            }
+        }
+
+
+        /// <summary>
+        /// 文件目录循环遍历
+        /// </summary>
+        /// <param name="info"></param>
+        private void ListFiles(string folderFullName)
+        {
+            DirectoryInfo dir = new DirectoryInfo(folderFullName);
+            // 子目录不空，则优先遍历所有的子目录，再遍历每个子目录中的文件  
+            DirectoryInfo[] subDir = dir.GetDirectories();
+            foreach (DirectoryInfo sub in subDir)
+            {
+                ListFiles(sub.FullName); // 先遍历当前目录的子目录  
+            }
+            // 遍历当前目录的文件  
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo f in files)
+            {
+                new DBHelper().InsertUpdateRule(
+                        CutRootPath(f.FullName),
+                        "http://keyboard.hcs.ac.cn/update/" + CutRootPath(f.FullName),
+                        GetMD5HashFromFile(f.FullName));
+            }
+        }
+
+        /// <summary>
+        /// 获取服务器文件路径
+        /// </summary>
+        /// <param name="FullFileName"></param>
+        /// <returns></returns>
+        private string CutRootPath(string FullFileName)
+        {
+            return FullFileName.Substring(@"D:\WebService\update\".Length).Replace(@"\", @"/");
+        }
+
+        /// <summary>
+        /// 获取文件MD5
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <returns></returns>
+        private string GetMD5HashFromFile(string FileName)
+        {
+            try
+            {
+                FileStream file = new FileStream(FileName, FileMode.Open);
+                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(file);
+                file.Close();
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString().ToLower();
+            }
+            catch
+            {
+                return "";
+            }
         }
 
     }

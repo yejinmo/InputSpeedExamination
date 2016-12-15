@@ -171,6 +171,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetExamRoomTitle">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetExamRoomTitleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExamRoomTitleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBatchTitle">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBatchTitleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBatchTitleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetBatchID">
         <s:complexType />
       </s:element>
@@ -240,6 +260,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetUpdateListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllContentOnlineBatch">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllContentOnlineBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllContentOnlineBatchResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -329,6 +366,18 @@
   <wsdl:message name="GetExamRoomIDSoapOut">
     <wsdl:part name="parameters" element="tns:GetExamRoomIDResponse" />
   </wsdl:message>
+  <wsdl:message name="GetExamRoomTitleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExamRoomTitle" />
+  </wsdl:message>
+  <wsdl:message name="GetExamRoomTitleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExamRoomTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchTitleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBatchTitle" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchTitleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBatchTitleResponse" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDSoapIn">
     <wsdl:part name="parameters" element="tns:GetBatchID" />
   </wsdl:message>
@@ -358,6 +407,12 @@
   </wsdl:message>
   <wsdl:message name="GetUpdateListSoapOut">
     <wsdl:part name="parameters" element="tns:GetUpdateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentOnlineBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllContentOnlineBatch" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentOnlineBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllContentOnlineBatchResponse" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpGetIn">
     <wsdl:part name="data" type="s:string" />
@@ -429,6 +484,14 @@
   <wsdl:message name="GetExamRoomIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetExamRoomTitleHttpGetIn" />
+  <wsdl:message name="GetExamRoomTitleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchTitleHttpGetIn" />
+  <wsdl:message name="GetBatchTitleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDHttpGetIn" />
   <wsdl:message name="GetBatchIDHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -456,6 +519,10 @@
   </wsdl:message>
   <wsdl:message name="GetUpdateListHttpGetIn" />
   <wsdl:message name="GetUpdateListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentOnlineBatchHttpGetIn" />
+  <wsdl:message name="GetAllContentOnlineBatchHttpGetOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:message name="SayHelloHttpPostIn">
@@ -528,6 +595,14 @@
   <wsdl:message name="GetExamRoomIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GetExamRoomTitleHttpPostIn" />
+  <wsdl:message name="GetExamRoomTitleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBatchTitleHttpPostIn" />
+  <wsdl:message name="GetBatchTitleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GetBatchIDHttpPostIn" />
   <wsdl:message name="GetBatchIDHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
@@ -555,6 +630,10 @@
   </wsdl:message>
   <wsdl:message name="GetUpdateListHttpPostIn" />
   <wsdl:message name="GetUpdateListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetAllContentOnlineBatchHttpPostIn" />
+  <wsdl:message name="GetAllContentOnlineBatchHttpPostOut">
     <wsdl:part name="Body" element="tns:DataSet" />
   </wsdl:message>
   <wsdl:portType name="ClientServiceSoap">
@@ -613,6 +692,16 @@
       <wsdl:input message="tns:GetExamRoomIDSoapIn" />
       <wsdl:output message="tns:GetExamRoomIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场标题</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomTitleSoapIn" />
+      <wsdl:output message="tns:GetExamRoomTitleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次标题</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchTitleSoapIn" />
+      <wsdl:output message="tns:GetBatchTitleSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
       <wsdl:input message="tns:GetBatchIDSoapIn" />
@@ -637,6 +726,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListSoapIn" />
       <wsdl:output message="tns:GetUpdateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取正在进行的考试内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentOnlineBatchSoapIn" />
+      <wsdl:output message="tns:GetAllContentOnlineBatchSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpGet">
@@ -695,6 +789,16 @@
       <wsdl:input message="tns:GetExamRoomIDHttpGetIn" />
       <wsdl:output message="tns:GetExamRoomIDHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场标题</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomTitleHttpGetIn" />
+      <wsdl:output message="tns:GetExamRoomTitleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次标题</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchTitleHttpGetIn" />
+      <wsdl:output message="tns:GetBatchTitleHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
       <wsdl:input message="tns:GetBatchIDHttpGetIn" />
@@ -719,6 +823,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListHttpGetIn" />
       <wsdl:output message="tns:GetUpdateListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取正在进行的考试内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentOnlineBatchHttpGetIn" />
+      <wsdl:output message="tns:GetAllContentOnlineBatchHttpGetOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ClientServiceHttpPost">
@@ -777,6 +886,16 @@
       <wsdl:input message="tns:GetExamRoomIDHttpPostIn" />
       <wsdl:output message="tns:GetExamRoomIDHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取考场标题</wsdl:documentation>
+      <wsdl:input message="tns:GetExamRoomTitleHttpPostIn" />
+      <wsdl:output message="tns:GetExamRoomTitleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次标题</wsdl:documentation>
+      <wsdl:input message="tns:GetBatchTitleHttpPostIn" />
+      <wsdl:output message="tns:GetBatchTitleHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取批次号</wsdl:documentation>
       <wsdl:input message="tns:GetBatchIDHttpPostIn" />
@@ -801,6 +920,11 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取更新列表</wsdl:documentation>
       <wsdl:input message="tns:GetUpdateListHttpPostIn" />
       <wsdl:output message="tns:GetUpdateListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取正在进行的考试内容</wsdl:documentation>
+      <wsdl:input message="tns:GetAllContentOnlineBatchHttpPostIn" />
+      <wsdl:output message="tns:GetAllContentOnlineBatchHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ClientServiceSoap" type="tns:ClientServiceSoap">
@@ -904,6 +1028,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <soap:operation soapAction="WebService/GetExamRoomTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <soap:operation soapAction="WebService/GetBatchTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <soap:operation soapAction="WebService/GetBatchID" style="document" />
       <wsdl:input>
@@ -942,6 +1084,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
       <soap:operation soapAction="WebService/GetUpdateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <soap:operation soapAction="WebService/GetAllContentOnlineBatch" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1051,6 +1202,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <soap12:operation soapAction="WebService/GetExamRoomTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <soap12:operation soapAction="WebService/GetBatchTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <soap12:operation soapAction="WebService/GetBatchID" style="document" />
       <wsdl:input>
@@ -1089,6 +1258,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
       <soap12:operation soapAction="WebService/GetUpdateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <soap12:operation soapAction="WebService/GetAllContentOnlineBatch" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1198,6 +1376,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <http:operation location="/GetExamRoomTitle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <http:operation location="/GetBatchTitle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <http:operation location="/GetBatchID" />
       <wsdl:input>
@@ -1236,6 +1432,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
       <http:operation location="/GetUpdateList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <http:operation location="/GetAllContentOnlineBatch" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1345,6 +1550,24 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetExamRoomTitle">
+      <http:operation location="/GetExamRoomTitle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBatchTitle">
+      <http:operation location="/GetBatchTitle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetBatchID">
       <http:operation location="/GetBatchID" />
       <wsdl:input>
@@ -1383,6 +1606,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUpdateList">
       <http:operation location="/GetUpdateList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllContentOnlineBatch">
+      <http:operation location="/GetAllContentOnlineBatch" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
