@@ -161,7 +161,6 @@ namespace InputSpeedExamination
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            Thread.Sleep(1000);
             RunCmd("RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 8");
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Main_UserInformation, NeedCenterControlStyle.Both));
             NeedCenterControlList.Add(new NeedCenterControl(Panel_Login, NeedCenterControlStyle.Both));
@@ -171,6 +170,10 @@ namespace InputSpeedExamination
             UserInformation.OnLineStatsChange = OnLineStatsChange;
             UserInformation.OnLine = false;
             Form_Main_Resize(sender, e);
+            Top = 0;
+            Left = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
             Focus();
             BringToFront();
             Focus();
@@ -476,7 +479,9 @@ namespace InputSpeedExamination
 
         private void Button_Back_Click(object sender, EventArgs e)
         {
-            
+            TabControl_Main.SelectedTab = TabPage_SelectText;
+            Thread ThreadUserStop = new Thread(new ThreadStart(UserStop));
+            ThreadUserStop.Start();
         }
 
         private void Button_Complete_Click(object sender, EventArgs e)
@@ -486,6 +491,7 @@ namespace InputSpeedExamination
             if(Timer_UpdateStats.Enabled)
                 Timer_UpdateStats.Enabled = false;
             Enabled = false;
+            Button_Result_Retry.Visible = false;
             Thread ThreadLoadResultPage = new Thread(new ThreadStart(LoadResultPage));
             ThreadLoadResultPage.Start();
         }
@@ -675,6 +681,34 @@ namespace InputSpeedExamination
             Examination_Lable_4.TextString = GetExaminationStringByIndex(3);
             Examination_Lable_5.TextString = GetExaminationStringByIndex(4);
 
+        }
+
+        /// <summary>
+        /// 用户终止
+        /// </summary>
+        private void UserStop()
+        {
+            try
+            {
+                if (UserInformation.OnLine && !(UserInformation.GUID.IndexOf("error") > 0))
+                {
+                    double CorrectPercent = Stats_Char_Current_Total == 0 ? 1.00 : ((double)Stats_Char_Correct_Total / Stats_Char_Total * 1.00);
+                    double Process = Stats_Char_Current_Total == 0 ? 0 : ((double)Stats_Char_Current_Total / Stats_Char_Total);
+                    int Speed = Stats_Time == 0 ? 0 : (int)((double)Stats_Char_Current_Total / Stats_Time * 60.0);
+                    int Time = Stats_Time;
+                    new ServiceReference.ClientServiceSoapClient().UpdateExaminationStats(
+                        UserInformation.GUID,
+                        "用户终止",
+                        Speed.ToString(),
+                        Process.ToString(),
+                        CorrectPercent.ToString());
+                    Timer_UpdateStats.Enabled = false;
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         #endregion
@@ -1421,7 +1455,7 @@ namespace InputSpeedExamination
             int Speed = Stats_Time == 0 ? 0 : (int)((double)Stats_Char_Current_Total / Stats_Time * 60.0);
             int Time = Stats_Time;
             int Total = Stats_Char_Total;
-            double FinalScore = Speed * CorrectPercent;
+            double FinalScore = (double)Speed * CorrectPercent * (1.0 - (double)Speed / 2000.0) * 1.05;
             try
             {
                 Invoke((EventHandler)delegate
@@ -1469,6 +1503,7 @@ namespace InputSpeedExamination
                         {
                             Process_Result_SendResult.Visible = false;
                             Label_Result_Tip_SendResult.Text = res;
+                            Button_Result_Retry.Visible = true;
                         }
                     });
                     if (res != "ok")
@@ -1511,6 +1546,19 @@ namespace InputSpeedExamination
             if (Process_Result_SendResult.Visible)
                 return;
             TabControl_Main.SelectedTab = TabPage_SelectText;
+        }
+
+        private void Button_Result_Retry_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            Button_Result_Retry.Visible = false;
+            Thread ThreadLoadResultPage = new Thread(new ThreadStart(LoadResultPage));
+            ThreadLoadResultPage.Start();
+        }
+
+        private void Button_Result_CalcScore_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, "最终成绩 = 速度 X 正确率 X (1 - 速度 / 2000) X 1.05", "计算公式");
         }
 
         #endregion
@@ -1559,10 +1607,6 @@ namespace InputSpeedExamination
 
         #endregion
 
-        private void TabPage_Start_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 

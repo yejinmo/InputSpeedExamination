@@ -210,6 +210,8 @@ namespace WebService
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo f in files)
             {
+                if (f.Name.ToLower() == "update.exe" || f.Name.ToLower() == "update.exe.config" || f.Name.ToLower() == "web.config")
+                    continue;
                 new DBHelper().InsertUpdateRule(
                         CutRootPath(f.FullName),
                         "http://keyboard.hcs.ac.cn/update/" + CutRootPath(f.FullName),

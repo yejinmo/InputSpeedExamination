@@ -107,9 +107,6 @@ namespace Update
             }
         }
 
-        Stopwatch sw = new Stopwatch(); //用于计算下载速度
-        WebClient webClient; //下载文件使用
-
         //下载进度http下载模式
         public bool DownloadFile(string ServerFilePath, string LocalFilePath, MaterialProcessBar Prog)
         {
@@ -153,6 +150,7 @@ namespace Update
                         Invoke((EventHandler)delegate
                         {
                             Prog.PercentValue = processv / (double)totalBytes;
+                            Label_Tip.Text = Tip_String + string.Format("[{0}/{1}]", processv / 1024, totalBytes / 1024);
                         });
                     }
                     fs.Close();
@@ -167,6 +165,8 @@ namespace Update
                 return false;
             }
         }
+
+        string Tip_String = string.Empty;
 
         /// <summary>
         /// 更新主方法
@@ -184,7 +184,7 @@ namespace Update
             Invoke((EventHandler)delegate
             {
                 ProcessBar_Update.IsPercent = true;
-                Label_Tip.Text = "正在下载";
+                Label_Tip.Text = "正在获取";
             });
             int index = 0;
             foreach (DataRow row in ds.Tables[0].Rows)
@@ -192,20 +192,37 @@ namespace Update
                 index++;
                 Invoke((EventHandler)delegate
                 {
-                    Label_Tip.Text = string.Format("正在下载({0}/{1})", index, ds.Tables[0].Rows.Count);
+                    Tip_String = string.Format("正在获取({0}/{1})", index, ds.Tables[0].Rows.Count);
+                    Label_Tip.Text = Tip_String;
                 });
                 string LocalFilePath = Application.StartupPath + "\\" + row["ClientPath"].ToString().Replace(@"/", @"\");
                 string ServerFilePath = row["ServerPath"].ToString();
                 string ServerFileMD5 = row["ServerMD5"].ToString();
                 if (CheckFileNeedUpdate(LocalFilePath, ServerFileMD5))
-                    if (!DownloadFile(ServerFilePath, LocalFilePath, ProcessBar_Update))
+                {
+                    int TrulyError = 0;
+                    while (TrulyError < 3)
+                    {
+                        if (!DownloadFile(ServerFilePath, LocalFilePath, ProcessBar_Update))
+                        {
+                            TrulyError++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (TrulyError >= 3)
                     {
                         Invoke((EventHandler)delegate
                         {
                             Label_Tip.Text += "下载失败";
+                            Label_Retry.Visible = true;
+                            Label_Close.Visible = true;
                         });
                         return false;
                     }
+                }
             }
             Invoke((EventHandler)delegate
             {
@@ -224,8 +241,15 @@ namespace Update
             {
                 
             }
-            var ds = new ServiceReference.ClientServiceSoapClient().GetUpdateList();
-            Update(ds);
+            try
+            {
+                var ds = new ServiceReference.ClientServiceSoapClient().GetUpdateList();
+                Update(ds);
+            }
+            catch
+            {
+                UpdateDone();
+            }
         }
 
         #endregion
@@ -258,16 +282,28 @@ namespace Update
                 startInfo.Arguments = "updatedone";
                 startInfo.WindowStyle = ProcessWindowStyle.Normal;
                 Process.Start(startInfo);
-
             }
-            catch (Exception ex)
+            catch
             {
-                throw;
+               
             }
             Invoke((EventHandler)delegate
                 {
                     Close();
                 });
+        }
+
+        private void Label_Close_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Label_Retry_Click(object sender, EventArgs e)
+        {
+            Label_Retry.Visible = false;
+            Label_Close.Visible = false;
+            Thread ThreadCheckUpdate = new Thread(new ThreadStart(CheckUpdate));
+            ThreadCheckUpdate.Start();
         }
 
     }

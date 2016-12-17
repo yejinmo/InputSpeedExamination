@@ -9,13 +9,14 @@ namespace InputSpeedExamination
 {
     static class Program
     {
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
-            bool DEBUG = true;
+            bool DEBUG = false;
             if (args.Length == 0 && !DEBUG)
             {
                 try
@@ -26,9 +27,9 @@ namespace InputSpeedExamination
                     startInfo.WindowStyle = ProcessWindowStyle.Normal;
                     Process.Start(startInfo);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    throw;
+
                 }
                 return;
             }
@@ -43,5 +44,6 @@ namespace InputSpeedExamination
             string g1 = Guid.NewGuid().ToString("N");
             Application.Run(new Form_Main());
         }
+
     }
 }

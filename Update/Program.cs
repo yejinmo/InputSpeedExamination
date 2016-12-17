@@ -13,11 +13,8 @@ namespace Update
         [STAThread]
         static void Main(string[] args)
         {
-            MessageBox.Show("");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            foreach (var str in args)
-                Console.WriteLine(str);
             Application.Run(new Form_Update(args));
         }
     }

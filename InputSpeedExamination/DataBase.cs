@@ -151,7 +151,7 @@ namespace InputSpeedExamination
             try
             {
                 CONN.Open();
-                string sql = "TRUNCATE TABLE [OnlineContentTable]";
+                string sql = "DELETE FROM [OnlineContentTable]";
                 SQLiteCommand cmd = new SQLiteCommand(sql, CONN);
                 cmd.ExecuteNonQuery();
                 return true;

@@ -22,27 +22,30 @@ namespace WebService
     public class DBHelper : IDisposable
     {
 
-        public static SqlConnection Conn;  
+        public SqlConnection Conn;  
 
         private string ConServerStr = @"Data Source=keyboard.hcs.ac.cn;Initial Catalog=master;Persist Security Info=True;User ID=sa;Password=jsjxh-2008";
 
         public DBHelper()
         {
-            if (Conn == null)
+            try
             {
                 Conn = new SqlConnection();
                 Conn.ConnectionString = ConServerStr;
                 Conn.Open();
             }
+            catch
+            { }
         }
 
         public void Dispose()
         {
-            if (Conn != null)
+            try
             {
                 Conn.Close();
-                Conn = null;
             }
+            catch
+            { }
         }
 
         #region Client
@@ -347,7 +350,7 @@ namespace WebService
                 double dCorrectPercent = 0;
                 if (!(double.TryParse(Speed, out dSpeed) && double.TryParse(CorrectPercent, out dCorrectPercent)))
                     return "成绩参数错误";
-                double finalScore = dSpeed * dCorrectPercent;
+                double finalScore = dSpeed * dCorrectPercent * (1.0 - dSpeed / 2000.0) * 1.05;
                 string sql_update = string.Format(
 "UPDATE [Table_ExaminationStats] SET [Stats] = '{0}', [Speed] = '{1}', [Process] = '{2}', [CorrectPercent] = '{3}', [IPAddress] = '{4}', [FinishTime] = '{5}', [FinalScore] = '{6}' WHERE [GUID] = '{7}' AND NOT [Stats] = '完成'"
 , "完成", Speed, Process, CorrectPercent, IPAddress, GetNowDateTime(), finalScore, GUID);

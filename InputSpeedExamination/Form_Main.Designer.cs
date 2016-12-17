@@ -94,6 +94,7 @@
             this.Text_Result_FinalScore = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.Label_Result_Tip_FianlScore = new MaterialSkin.Controls.MaterialLabel();
             this.Panel_Result_Online = new System.Windows.Forms.Panel();
+            this.Button_Result_Retry = new MaterialSkin.Controls.MaterialFlatButton();
             this.Progress_Result_Percent = new MaterialSkin.Controls.MaterialProgressBar();
             this.Label_Result_Tip_Percent = new MaterialSkin.Controls.MaterialLabel();
             this.Process_Result_SendResult = new MaterialSkin.Controls.MaterialProcessBar();
@@ -112,6 +113,7 @@
             this.Label_UserName = new System.Windows.Forms.Label();
             this.LinkLabel_LoginOrOut = new System.Windows.Forms.LinkLabel();
             this.Timer_UpdateStats = new System.Windows.Forms.Timer(this.components);
+            this.Button_Result_CalcScore = new MaterialSkin.Controls.MaterialFlatButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Select.SuspendLayout();
             this.Panel_Login.SuspendLayout();
@@ -365,6 +367,7 @@
             // 
             // Panel_Main_UserInformation
             // 
+            this.Panel_Main_UserInformation.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Panel_Main_UserInformation.Controls.Add(this.Label_Main_Tip);
             this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Number);
             this.Panel_Main_UserInformation.Controls.Add(this.Text_Main_Name);
@@ -788,6 +791,7 @@
             // 
             // TabPage_Start
             // 
+            this.TabPage_Start.BackColor = System.Drawing.Color.White;
             this.TabPage_Start.Controls.Add(this.Label_Start_Helper);
             this.TabPage_Start.Controls.Add(this.Panel_Start);
             this.TabPage_Start.Location = new System.Drawing.Point(4, 22);
@@ -795,7 +799,6 @@
             this.TabPage_Start.Size = new System.Drawing.Size(1205, 687);
             this.TabPage_Start.TabIndex = 2;
             this.TabPage_Start.Text = "TabPage_Start";
-            this.TabPage_Start.UseVisualStyleBackColor = true;
             // 
             // Label_Start_Helper
             // 
@@ -900,7 +903,7 @@
             // 
             this.Button_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_Back.Depth = 0;
-            this.Button_Back.Location = new System.Drawing.Point(9, 622);
+            this.Button_Back.Location = new System.Drawing.Point(3, 622);
             this.Button_Back.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Back.Name = "Button_Back";
             this.Button_Back.Primary = true;
@@ -1001,7 +1004,7 @@
             this.Examination_TextLine_5.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.Examination_TextLine_5.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_5.Hint = "";
-            this.Examination_TextLine_5.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.Examination_TextLine_5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Examination_TextLine_5.IsErrorMode = false;
             this.Examination_TextLine_5.Location = new System.Drawing.Point(9, 496);
             this.Examination_TextLine_5.Margin = new System.Windows.Forms.Padding(2);
@@ -1055,7 +1058,7 @@
             this.Examination_TextLine_1.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.Examination_TextLine_1.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_1.Hint = "";
-            this.Examination_TextLine_1.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.Examination_TextLine_1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Examination_TextLine_1.IsErrorMode = false;
             this.Examination_TextLine_1.Location = new System.Drawing.Point(9, 60);
             this.Examination_TextLine_1.Margin = new System.Windows.Forms.Padding(5, 2, 5, 2);
@@ -1091,7 +1094,7 @@
             this.Examination_TextLine_4.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.Examination_TextLine_4.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_4.Hint = "";
-            this.Examination_TextLine_4.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.Examination_TextLine_4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Examination_TextLine_4.IsErrorMode = false;
             this.Examination_TextLine_4.Location = new System.Drawing.Point(9, 387);
             this.Examination_TextLine_4.Margin = new System.Windows.Forms.Padding(2);
@@ -1164,7 +1167,7 @@
             this.Examination_TextLine_3.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.Examination_TextLine_3.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_3.Hint = "";
-            this.Examination_TextLine_3.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.Examination_TextLine_3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Examination_TextLine_3.IsErrorMode = false;
             this.Examination_TextLine_3.Location = new System.Drawing.Point(9, 278);
             this.Examination_TextLine_3.Margin = new System.Windows.Forms.Padding(2);
@@ -1218,7 +1221,7 @@
             this.Examination_TextLine_2.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.Examination_TextLine_2.ForeColor = System.Drawing.Color.Black;
             this.Examination_TextLine_2.Hint = "";
-            this.Examination_TextLine_2.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.Examination_TextLine_2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Examination_TextLine_2.IsErrorMode = false;
             this.Examination_TextLine_2.Location = new System.Drawing.Point(9, 169);
             this.Examination_TextLine_2.Margin = new System.Windows.Forms.Padding(2);
@@ -1265,6 +1268,8 @@
             // 
             // Panel_Result
             // 
+            this.Panel_Result.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Panel_Result.Controls.Add(this.Button_Result_CalcScore);
             this.Panel_Result.Controls.Add(this.Text_Result_FinalScore);
             this.Panel_Result.Controls.Add(this.Label_Result_Tip_FianlScore);
             this.Panel_Result.Controls.Add(this.Panel_Result_Online);
@@ -1333,6 +1338,7 @@
             // 
             this.Panel_Result_Online.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Result_Online.Controls.Add(this.Button_Result_Retry);
             this.Panel_Result_Online.Controls.Add(this.Progress_Result_Percent);
             this.Panel_Result_Online.Controls.Add(this.Label_Result_Tip_Percent);
             this.Panel_Result_Online.Controls.Add(this.Process_Result_SendResult);
@@ -1341,6 +1347,21 @@
             this.Panel_Result_Online.Name = "Panel_Result_Online";
             this.Panel_Result_Online.Size = new System.Drawing.Size(777, 129);
             this.Panel_Result_Online.TabIndex = 9;
+            // 
+            // Button_Result_Retry
+            // 
+            this.Button_Result_Retry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Result_Retry.Depth = 0;
+            this.Button_Result_Retry.Location = new System.Drawing.Point(684, 11);
+            this.Button_Result_Retry.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Result_Retry.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Result_Retry.Name = "Button_Result_Retry";
+            this.Button_Result_Retry.Primary = false;
+            this.Button_Result_Retry.Size = new System.Drawing.Size(87, 36);
+            this.Button_Result_Retry.TabIndex = 18;
+            this.Button_Result_Retry.Text = "重试";
+            this.Button_Result_Retry.UseVisualStyleBackColor = true;
+            this.Button_Result_Retry.Click += new System.EventHandler(this.Button_Result_Retry_Click);
             // 
             // Progress_Result_Percent
             // 
@@ -1654,6 +1675,21 @@
             this.Timer_UpdateStats.Interval = 5000;
             this.Timer_UpdateStats.Tick += new System.EventHandler(this.Timer_UpdateStats_Tick);
             // 
+            // Button_Result_CalcScore
+            // 
+            this.Button_Result_CalcScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Result_CalcScore.Depth = 0;
+            this.Button_Result_CalcScore.Location = new System.Drawing.Point(667, 301);
+            this.Button_Result_CalcScore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Result_CalcScore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Result_CalcScore.Name = "Button_Result_CalcScore";
+            this.Button_Result_CalcScore.Primary = false;
+            this.Button_Result_CalcScore.Size = new System.Drawing.Size(107, 36);
+            this.Button_Result_CalcScore.TabIndex = 19;
+            this.Button_Result_CalcScore.Text = "计算公式";
+            this.Button_Result_CalcScore.UseVisualStyleBackColor = true;
+            this.Button_Result_CalcScore.Click += new System.EventHandler(this.Button_Result_CalcScore_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1668,7 +1704,6 @@
             this.Name = "Form_Main";
             this.Sizable = false;
             this.Text = "键盘录入测试";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.ResizeBegin += new System.EventHandler(this.Form_Main_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.Form_Main_ResizeEnd);
@@ -1778,6 +1813,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Main_Number;
         private MaterialSkin.Controls.MaterialLabel Label_Main_Tip;
         private System.Windows.Forms.Label Label_Start_Helper;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Result_Retry;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Result_CalcScore;
     }
 }
 
