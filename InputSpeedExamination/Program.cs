@@ -18,7 +18,7 @@ namespace InputSpeedExamination
         {
             bool DEBUG = false;
             if (args.Length == 0 && !DEBUG)
-            {
+            { 
                 try
                 {
                     ProcessStartInfo startInfo = new ProcessStartInfo();
